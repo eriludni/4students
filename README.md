@@ -2,7 +2,7 @@
 Gruppnamn: 4Students
 Gruppnummer: 31
 
-GIthub usernames:
+Github usernames:
 Enilo - Caroline Larsson
 eriludni - Erik Lundin
 lucas-cr - Lucas Ruud
