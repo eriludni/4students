@@ -38,7 +38,7 @@ hs_err_pid*
 ## File-based project format:
 *.iws
 #Rad
-## RAD_1.pdf
+RAD_1.pdf
 
 ## Plugin-specific files:
 
