@@ -5,13 +5,13 @@ import org.junit.Before;
 import org.junit.After; 
 
 /** 
-* theGame Tester. 
+* Game Tester.
 * 
 * @author <Authors name> 
 * @since <pre>mar 29, 2017</pre> 
 * @version 1.0 
 */ 
-public class theGameTest { 
+public class gameTest {
 
 @Before
 public void before() throws Exception { 
