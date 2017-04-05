@@ -11,6 +11,8 @@ public class Player {
 
     private final int health = 3;
 
-
+    public int getHealth() {
+        return health;
+    }
 
 }

@@ -1,8 +1,10 @@
 package test.com.mygdx.Dash;
 
-import org.junit.Test; 
+import com.mygdx.game.Player;
+import org.junit.Test;
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+import static org.junit.Assert.assertTrue;
 
 /** 
 * Game Tester.
@@ -59,7 +61,13 @@ public void testDispose() throws Exception {
 @Test
 public void testHej() throws Exception { 
 //TODO: Test goes here... 
-} 
+}
 
+    @Test
+    public void testHealth() {
+        Player player = new Player();
 
-} 
+        assertTrue(player.getHealth() == 3);
+    }
+
+}
