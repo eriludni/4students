@@ -15,6 +15,7 @@ public class Dash extends Game {
 
     public static final int WIDTH = 1240;
     public static final int HEIGHT = 600;
+    public static final int PPM = 100;
 
     public static final String TITLE = "DASH";
 

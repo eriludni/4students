@@ -35,9 +35,9 @@ public class PlayScreen implements Screen {
     public PlayScreen(Dash game){
         this.game  = game;
         gameCam = new OrthographicCamera();
-        gamePort = new FitViewport(1200,600, gameCam);
+        gamePort = new FitViewport(,600, gameCam);
         maploader  = new TmxMapLoader();
-        map = maploader.load("C:\\Users\\Erik\\Desktop\\TDA367projekt\\4students\\core\\assets\\map.tmx");
+        map = maploader.load("map.tmx");
         renderer = new OrthogonalTiledMapRenderer(map);
 
         gameCam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2,0);
@@ -74,6 +74,8 @@ public class PlayScreen implements Screen {
         handleInput(dt);
         gameCam.update();
         renderer.setView(gameCam);
+
+        world.step(1/60f,6,2);
     }
 
     @Override

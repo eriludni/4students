@@ -1,4 +1,4 @@
-package test.com.mygdx.Dash;
+package test.com.mygdx.game.Dash;
 
 import com.mygdx.game.Player;
 import org.junit.Test;
