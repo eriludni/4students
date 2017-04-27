@@ -63,11 +63,13 @@ public void testHej() throws Exception {
 //TODO: Test goes here... 
 }
 
+/*
     @Test
     public void testHealth() {
         Player player = new Player();
 
         assertTrue(player.getHealth() == 3);
     }
+*/
 
 }

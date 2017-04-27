@@ -16,6 +16,7 @@ public class GameWorld {
     private Dash game;
     private World world;
     private Player playerCharacter;
+    private Enemy enemyCharacter;
 
     private TmxMapLoader maploader;
     private TiledMap map;
@@ -47,6 +48,7 @@ public class GameWorld {
         }
 
         playerCharacter = new Player(this);
+        enemyCharacter = new Enemy(3, 10, 10, this);
 
    }
 
