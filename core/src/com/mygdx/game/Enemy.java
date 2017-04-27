@@ -5,33 +5,24 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * Created by Lucas on 2017-04-27.
  */
-public class Enemy {
+public class Enemy extends Character implements ICharacter{
     private int health;
     private int V_velocity;
     private int H_velocity;
+    private float xPos;
+    private float yPos;
+    private float radius;
     private World world;
-    private Body b2body;
 
-    public Enemy(int health, int h_velocity, int v_velocity, GameWorld world){
+    public Enemy(int health, int h_velocity, int v_velocity, float xPos, float yPos, float radius, GameWorld world){
         this.health = health;
         this.H_velocity = h_velocity;
         this.V_velocity = v_velocity;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.radius = radius;
         this.world = world.getWorld();
-        defineEnemy();
-    }
-
-    public void defineEnemy(){
-        BodyDef bdef = new BodyDef();
-        bdef.position.set(200 / Dash.PPM, 200 / Dash.PPM);
-        bdef.type = BodyDef.BodyType.DynamicBody;
-        b2body = world.createBody(bdef);
-
-        FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(10 / Dash.PPM);
-        fdef.shape = shape;
-
-        b2body.createFixture(fdef);
+        defineCharacter();
     }
 
     public void reduceHealth(int damageValue){
@@ -50,11 +41,28 @@ public class Enemy {
         return H_velocity;
     }
 
-    public Body getBody(){
-        return b2body;
+    @Override
+    public void defineCharacter() {
+        super.defineCharacter(this);
     }
 
-    public World getWorld(){
+    @Override
+    public float getXPos() {
+        return xPos;
+    }
+
+    @Override
+    public float getYPos() {
+        return yPos;
+    }
+
+    @Override
+    public World getWorld() {
         return world;
+    }
+
+    @Override
+    public float getRadius() {
+        return radius;
     }
 }
