@@ -1,7 +1,8 @@
-package com.mygdx.game;
+package com.mygdx.game.model;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.GameWorld;
 
 /**
  * Created by Lucas on 2017-04-27.
@@ -24,33 +25,8 @@ public class Enemy extends Character implements ICharacter{
         defineCharacter();
     }
 
-    public void reduceHealth(int damageValue){
-        health -= damageValue;
-    }
-
-    public boolean isDead() {
-        if (getHealth() == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public void reverseXVelocity() {
-        velocity.x = -velocity.x;
-    }
-
-    public void reverseYVelocity() {
-        velocity.y = -velocity.y;
-    }
-
     public int getHealth(){
         return health;
-    }
-
-    public void update(float dt) {
-        b2body.setLinearVelocity(velocity);
     }
 
     @Override

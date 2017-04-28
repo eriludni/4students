@@ -1,6 +1,7 @@
-package com.mygdx.game;
+package com.mygdx.game.model;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.Dash;
 
 /**
  * Created by Lucas on 2017-04-27.

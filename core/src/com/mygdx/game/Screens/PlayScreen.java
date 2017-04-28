@@ -1,25 +1,17 @@
 package com.mygdx.game.Screens;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Dash;
+import com.mygdx.game.model.EnemyBrain;
 import com.mygdx.game.GameWorld;
-import com.mygdx.game.Player;
 
 /**
  * Created by Erik on 05/04/2017.
@@ -31,6 +23,8 @@ public class PlayScreen implements Screen {
     private Viewport gamePort;
     private GameWorld gameWorld;
     private PlayerController PC;
+
+    private EnemyBrain EB;
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
@@ -47,6 +41,8 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
 
         PC = new PlayerController(gameWorld);
+
+        EB = new EnemyBrain(gameWorld.getEnemyCharacter());
     }
 
 
@@ -56,7 +52,7 @@ public class PlayScreen implements Screen {
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2body().getPosition().x;
 
-        gameWorld.getEnemyCharacter().update(dt);
+        EB.update(dt);
 
         gameCam.update();
         renderer.setView(gameCam);
