@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
@@ -7,17 +8,15 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 public class Enemy extends Character implements ICharacter{
     private int health;
-    private int V_velocity;
-    private int H_velocity;
     private float xPos;
     private float yPos;
     private float radius;
     private World world;
+    private Vector2 velocity;
 
-    public Enemy(int health, int h_velocity, int v_velocity, float xPos, float yPos, float radius, GameWorld world){
+    public Enemy(int health, Vector2 velocity, float xPos, float yPos, float radius, GameWorld world){
         this.health = health;
-        this.H_velocity = h_velocity;
-        this.V_velocity = v_velocity;
+        this.velocity = velocity;
         this.xPos = xPos;
         this.yPos = yPos;
         this.radius = radius;
@@ -29,21 +28,38 @@ public class Enemy extends Character implements ICharacter{
         health -= damageValue;
     }
 
+    public boolean isDead() {
+        if (getHealth() == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void reverseXVelocity() {
+        velocity.x = -velocity.x;
+    }
+
+    public void reverseYVelocity() {
+        velocity.y = -velocity.y;
+    }
+
     public int getHealth(){
         return health;
     }
 
-    public int getV_velocity(){
-        return V_velocity;
-    }
-
-    public int getH_velocity(){
-        return H_velocity;
+    public void update(float dt) {
+        b2body.setLinearVelocity(velocity);
     }
 
     @Override
     public void defineCharacter() {
         super.defineCharacter(this);
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
     }
 
     @Override

@@ -48,7 +48,7 @@ public class GameWorld {
         }
 
         playerCharacter = new Player(this);
-        enemyCharacter = new Enemy(3, 10, 10, 200, 200, 10, this);
+        enemyCharacter = new Enemy(3, new Vector2(2, 0), 200, 100, 10, this);
 
    }
 
@@ -60,6 +60,9 @@ public class GameWorld {
    }
    public Player getPlayerCharacter(){
        return playerCharacter;
+   }
+   public Enemy getEnemyCharacter() {
+       return enemyCharacter;
    }
 
 

@@ -67,13 +67,12 @@ public void testHej() throws Exception {
 //TODO: Test goes here... 
 }
 
+    /*
     @Test
     public void testPlayerHealth() {
         Dash dash = new Dash();
         GameWorld world = new GameWorld(dash);
-        Player player = world.getPlayerCharacter();
-
-        assertTrue(player.getHealth() == 3);
     }
+    */
 
 }
