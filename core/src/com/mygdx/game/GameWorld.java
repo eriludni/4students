@@ -49,7 +49,7 @@ public class GameWorld {
         }
 
         playerCharacter = new Player(this);
-        enemyCharacter = new Enemy(3, new Vector2(2, 0), 200, 100, 10, this);
+        enemyCharacter = new Enemy(250, new Vector2(2, 0), 200, 100, 10, this);
 
    }
 

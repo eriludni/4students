@@ -38,6 +38,10 @@ public class Enemy extends Character implements ICharacter{
         return velocity;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     @Override
     public float getXPos() {
         return xPos;
