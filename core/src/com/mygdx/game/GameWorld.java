@@ -48,7 +48,7 @@ public class GameWorld {
             body.createFixture(fdef);
         }
 
-        playerCharacter = new Player(this);
+        playerCharacter = new Player(3, new Vector2(2, 0), 100, 100, 5, this);
         enemyCharacter = new Enemy(250, new Vector2(2, 0), 200, 100, 10, this);
 
    }

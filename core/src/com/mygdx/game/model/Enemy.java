@@ -38,8 +38,25 @@ public class Enemy extends Character implements ICharacter{
         return velocity;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public boolean isDead() {
+        if (health == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void reduceHealth(int damageValue){
+        health -= damageValue;
+    }
+
+    public void reverseXVelocity() {
+        velocity.x = -velocity.x;
+    }
+
+    public void reverseYVelocity() {
+        velocity.y = -velocity.y;
     }
 
     @Override

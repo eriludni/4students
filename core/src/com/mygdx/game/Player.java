@@ -2,26 +2,40 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.model.Character;
+import com.mygdx.game.model.ICharacter;
 
 /**
  * Created by Erik on 03/04/2017.
  */
-public class Player extends Sprite {
+public class Player extends Character implements ICharacter{
 
     private World world;
-    private Body b2body;
 
-    private final int health = 3;
+    private final int health;
+    private float xPos;
+    private float yPos;
+    private float radius;
+    private Vector2 velocity;
 
     private Texture playerSprite;
 
-    public Player(GameWorld world) {
+    public Player(int health, Vector2 velocity, float xPos, float yPos, float radius, GameWorld world) {
+        this.health = health;
+        this.velocity = velocity;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.radius = radius;
         this.world = world.getWorld();
-        definePlayer();
+
+        defineCharacter();
         System.out.println("player created");
     }
 
+
+    /*
     public void definePlayer() {
         BodyDef bdef = new BodyDef();
         bdef.position.set(100 / Dash.PPM, 100 / Dash.PPM);
@@ -34,9 +48,8 @@ public class Player extends Sprite {
         fdef.shape = shape;
 
         b2body.createFixture(fdef);
-
-
     }
+    */
 
     public int getHealth() {
         return health;
@@ -46,4 +59,33 @@ public class Player extends Sprite {
         return b2body;
     }
 
+    @Override
+    public void defineCharacter() {
+        super.defineCharacter(this);
+    }
+
+    @Override
+    public float getXPos() {
+        return xPos;
+    }
+
+    @Override
+    public float getYPos() {
+        return yPos;
+    }
+
+    @Override
+    public World getWorld() {
+        return world;
+    }
+
+    @Override
+    public float getRadius() {
+        return radius;
+    }
+
+    @Override
+    public Vector2 getVelocity() {
+        return velocity;
+    }
 }

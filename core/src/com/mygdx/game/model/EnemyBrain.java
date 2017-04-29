@@ -2,6 +2,8 @@ package com.mygdx.game.model;
 
 import com.badlogic.gdx.math.Vector2;
 
+import static java.lang.System.out;
+
 /**
  * Created by Lucas on 2017-04-28.
  */
@@ -11,6 +13,8 @@ public class EnemyBrain {
     private Vector2 velocity;
     private boolean dead;
     private boolean toBeRemoved;
+    private boolean airBorn;
+    private int airTime;
 
     // test for reversing
     private int time = 100;
@@ -21,24 +25,17 @@ public class EnemyBrain {
         this.velocity = enemy.getVelocity();
         dead = false;
         toBeRemoved = false;
+        airBorn = false;
+        airTime = 50;
     }
 
-    public void reduceHealth(int damageValue){
-        health -= damageValue;
-        enemy.setHealth(health);
-    }
-
-    public boolean isDead() {
-        if (health == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    public void jump() {
+        enemy.b2body.applyLinearImpulse(new Vector2(0, 20), enemy.b2body.getWorldCenter(), true);
+        airBorn = true;
     }
 
     public void checkDead() {
-        if (isDead()) {
+        if (enemy.isDead()) {
             toBeRemoved = true;
         }
     }
@@ -50,26 +47,37 @@ public class EnemyBrain {
         }
     }
 
+    public void checkAirBorn(int AT) {
+        if(AT > 0) {
+            airBorn = true;
+        }
+        else {
+            airBorn = false;
+            airTime = 50;
+        }
+    }
+
     public void update(float dt) {
         enemy.b2body.setLinearVelocity(velocity);
 
-        // For testing purposes only, to be removed later
+        // For testing
         time--;
-        reduceHealth(1);
+        //enemy.reduceHealth(1);
         if (time == 0) {
-            reverseXVelocity();
+            enemy.reverseXVelocity();
             time = 100;
         }
+
+        if(enemy.b2body.getLinearVelocity().y == 0 && airBorn == false)
+        {
+            jump();
+        }
+        else {
+            airTime--;
+            checkAirBorn(airTime);
+        }
+
         checkDead();
         removeEnemy();
-    }
-
-
-    public void reverseXVelocity() {
-        velocity.x = -velocity.x;
-    }
-
-    public void reverseYVelocity() {
-        velocity.y = -velocity.y;
     }
 }
