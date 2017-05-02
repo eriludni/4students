@@ -29,7 +29,7 @@ public class GameWorld {
         world = new World(new Vector2(0,-10),true);
 
         maploader  = new TmxMapLoader();
-        map = maploader.load("map.tmx");
+        map = maploader.load("C:\\Users\\Erik\\Desktop\\TDA367\\4students\\core\\assets\\map.tmx");
 
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
@@ -37,6 +37,17 @@ public class GameWorld {
         Body body;
 
         for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            bdf.type = BodyDef.BodyType.StaticBody;
+            bdf.position.set((rect.getX()+rect.getWidth() / 2)/Dash.PPM, (rect.getY()+ rect.getHeight() / 2)/Dash.PPM);
+
+            body = world.createBody(bdf);
+
+            shape.setAsBox((rect.getWidth() /2)/Dash.PPM, (rect.getHeight() /2)/Dash.PPM);
+            fdef.shape = shape;
+            body.createFixture(fdef);
+        }
+        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdf.type = BodyDef.BodyType.StaticBody;
             bdf.position.set((rect.getX()+rect.getWidth() / 2)/Dash.PPM, (rect.getY()+ rect.getHeight() / 2)/Dash.PPM);

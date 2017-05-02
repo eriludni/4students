@@ -34,14 +34,12 @@ public class PlayScreen implements Screen {
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
         gamePort = new FitViewport(Dash.WIDTH / Dash.PPM, Dash.HEIGHT / Dash.PPM, gameCam);
-
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
         renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / Dash.PPM);
         b2dr = new Box2DDebugRenderer();
 
         PC = new PlayerController(gameWorld);
-
         EB = new EnemyBrain(gameWorld.getEnemyCharacter());
     }
 
