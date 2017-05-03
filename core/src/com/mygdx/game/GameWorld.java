@@ -29,7 +29,7 @@ public class GameWorld {
         world = new World(new Vector2(0,-10),true);
 
         maploader  = new TmxMapLoader();
-        map = maploader.load("C:\\Users\\Erik\\Desktop\\TDA367\\4students\\core\\assets\\map.tmx");
+        map = maploader.load("map.tmx");
 
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
