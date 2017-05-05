@@ -1,13 +1,7 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.model.Enemy;
+import com.mygdx.game.libgdx.Dash;
+
 
 /**
  * Created by Erik on 26/04/2017.
@@ -15,15 +9,16 @@ import com.mygdx.game.model.Enemy;
 public class GameWorld {
 
     private Dash game;
-    private World world;
-    private Player playerCharacter;
-    private Enemy enemyCharacter;
+    private Player logicalPlayer;
+    private Enemy logicalEnemy;
 
-    private TmxMapLoader maploader;
-    private TiledMap map;
+    public GameWorld(Player player, Enemy enemy, Dash game) {
+        this.logicalPlayer = player;
+        this.logicalEnemy = enemy;
+        this.game = game;
+    }
 
-
-
+    /*
     public GameWorld(Dash game){
         this.game = game;
         world = new World(new Vector2(0,-10),true);
@@ -58,23 +53,14 @@ public class GameWorld {
             fdef.shape = shape;
             body.createFixture(fdef);
         }
+   }
+   */
 
-        playerCharacter = new Player(3, new Vector2(2, 0), 100, 100, 5, this);
-        enemyCharacter = new Enemy(250, new Vector2(2, 0), 200, 100, 10, this);
-
+   public Player getLogicalPlayerCharacter(){
+       return logicalPlayer;
    }
-
-   public World getWorld(){
-        return world;
-   }
-   public TiledMap getMap(){
-       return map;
-   }
-   public Player getPlayerCharacter(){
-       return playerCharacter;
-   }
-   public Enemy getEnemyCharacter() {
-       return enemyCharacter;
+   public Enemy getLogicalEnemyCharacter() {
+       return logicalEnemy;
    }
 
 

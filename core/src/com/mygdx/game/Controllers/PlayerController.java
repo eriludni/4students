@@ -4,9 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.GameWorld;
-import com.mygdx.game.Player;
-import com.mygdx.game.Dash;
+import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Model.Player;
+import com.mygdx.game.libgdx.libgdx_player;
+import com.mygdx.game.libgdx.libgdx_world;
 
 /**
  * Created by Erik on 26/04/2017.
@@ -14,12 +15,11 @@ import com.mygdx.game.Dash;
 public class PlayerController {
 
     private World world;
-    private Player player;
+    private libgdx_player player;
 
-    public PlayerController(GameWorld gameWorld){
+    public PlayerController(libgdx_world gameWorld){
         this.world = gameWorld.getWorld();
         this.player = gameWorld.getPlayerCharacter();
-
     }
 
 

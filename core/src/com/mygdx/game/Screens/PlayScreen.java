@@ -9,9 +9,9 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
-import com.mygdx.game.Dash;
-import com.mygdx.game.model.EnemyBrain;
-import com.mygdx.game.GameWorld;
+import com.mygdx.game.libgdx.Dash;
+import com.mygdx.game.Model.EnemyBrain;
+import com.mygdx.game.libgdx.libgdx_world;
 
 /**
  * Created by Erik on 05/04/2017.
@@ -21,7 +21,7 @@ public class PlayScreen implements Screen {
     private Dash game;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
-    private GameWorld gameWorld;
+    private libgdx_world gameWorld;
     private PlayerController PC;
 
     private EnemyBrain EB;
@@ -29,7 +29,7 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
 
-    public PlayScreen(Dash game, GameWorld gameWorld) {
+    public PlayScreen(Dash game, libgdx_world gameWorld) {
         this.game = game;
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
@@ -40,7 +40,6 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
 
         PC = new PlayerController(gameWorld);
-        EB = new EnemyBrain(gameWorld.getEnemyCharacter());
     }
 
 
@@ -49,8 +48,6 @@ public class PlayScreen implements Screen {
 
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2body().getPosition().x;
-
-        EB.update(dt);
 
         gameCam.update();
         renderer.setView(gameCam);

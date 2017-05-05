@@ -1,14 +1,9 @@
 package test.com.mygdx.game.Dash;
 
-import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.Dash;
-import com.mygdx.game.GameWorld;
-import com.mygdx.game.Player;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import static org.junit.Assert.assertTrue;
-import static sun.audio.AudioPlayer.player;
 
 /** 
 * Game Tester.

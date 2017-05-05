@@ -1,18 +1,15 @@
-package com.mygdx.game;
+package com.mygdx.game.libgdx;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.libgdx.libgdx_world;
 
 
 public class Dash extends Game {
     public SpriteBatch batch;
-    private GameWorld gameWorld;
+    private libgdx_world gameWorld;
 
     //width of the window
     public static final int WIDTH = 1240;
@@ -27,7 +24,7 @@ public class Dash extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        gameWorld = new GameWorld(this);
+        gameWorld = new libgdx_world(this);
 
         setScreen(new PlayScreen(this, gameWorld));
     }
