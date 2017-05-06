@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.libgdx.Dash;
 import com.mygdx.game.Model.EnemyBrain;
+import com.mygdx.game.libgdx.libgdx_enemyBrain;
 import com.mygdx.game.libgdx.libgdx_world;
 
 /**
@@ -24,7 +25,7 @@ public class PlayScreen implements Screen {
     private libgdx_world gameWorld;
     private PlayerController PC;
 
-    private EnemyBrain EB;
+    private libgdx_enemyBrain EB;
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
@@ -40,6 +41,7 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
 
         PC = new PlayerController(gameWorld);
+        EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
     }
 
 
@@ -48,6 +50,8 @@ public class PlayScreen implements Screen {
 
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2body().getPosition().x;
+
+        EB.update(dt);
 
         gameCam.update();
         renderer.setView(gameCam);

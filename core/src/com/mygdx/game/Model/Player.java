@@ -17,6 +17,6 @@ public class Player extends Character implements ICharacter{
         this.radius = radius;
         this.dead = false;
 
-        System.out.println("player created");
+        System.out.println("logical player created");
     }
 }

@@ -13,6 +13,7 @@ public abstract class Character implements ICharacter{
     protected float y_velocity;
     protected boolean dead;
     protected boolean airBorn;
+    protected boolean toBeRemoved;
 
     @Override
     public float getXPos() {
@@ -95,6 +96,14 @@ public abstract class Character implements ICharacter{
     }
 
     @Override
+    public void checkDead() {
+        if (isDead()) {
+            setDead(true);
+            setToBeRemoved(true);
+        }
+    }
+
+    @Override
     public void setDead(boolean dead) {
         this.dead = dead;
     }
@@ -107,6 +116,11 @@ public abstract class Character implements ICharacter{
     @Override
     public void setAirBorn(boolean airBorn) {
         this.airBorn = airBorn;
+    }
+
+    @Override
+    public void setToBeRemoved(boolean toBeRemoved) {
+        this.toBeRemoved = toBeRemoved;
     }
 
 

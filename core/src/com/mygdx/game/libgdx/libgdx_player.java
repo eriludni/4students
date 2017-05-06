@@ -12,6 +12,8 @@ public class libgdx_player extends libgdx_character{
     public libgdx_player(Player player) {
         this.character = player;
         defineCharacter(character);
+
+        System.out.println("libgdx_player created");
     }
 
     @Override

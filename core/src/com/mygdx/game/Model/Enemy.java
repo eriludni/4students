@@ -13,5 +13,7 @@ public class Enemy extends Character implements ICharacter{
         this.yPos = yPos;
         this.radius = radius;
         this.dead = false;
+
+        System.out.println("logical enemy created");
     }
 }

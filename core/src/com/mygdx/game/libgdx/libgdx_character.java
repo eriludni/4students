@@ -26,4 +26,8 @@ public abstract class libgdx_character extends Character{
 
         b2Body.createFixture(fdef);
     }
+
+    public Body getB2Body() {
+        return b2Body;
+    }
 }
