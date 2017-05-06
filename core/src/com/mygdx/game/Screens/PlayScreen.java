@@ -49,7 +49,7 @@ public class PlayScreen implements Screen {
         PC.handleInput(dt);
 
         gameWorld.getWorld().step(1 / 60f, 6, 2);
-        gameCam.position.x = gameWorld.getPlayerCharacter().getB2body().getPosition().x;
+        gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
         EB.update(dt);
 

@@ -49,23 +49,23 @@ public class PlayerController {
     }
 
     public float getPlayerLinearXVelocity() {
-        return player.getB2body().getLinearVelocity().x;
+        return player.getB2Body().getLinearVelocity().x;
     }
 
     public float getPlayerLinearYVelocity() {
-        return player.getB2body().getLinearVelocity().y;
+        return player.getB2Body().getLinearVelocity().y;
     }
 
     public void movePlayerUp(float y) {
-        player.getB2body().applyLinearImpulse(new Vector2(0, y), player.getB2body().getWorldCenter(),true);
+        player.getB2Body().applyLinearImpulse(new Vector2(0, y), player.getB2Body().getWorldCenter(),true);
     }
 
     public void movePlayerRight(float x) {
-        player.getB2body().applyLinearImpulse(new Vector2(x, 0), player.getB2body().getWorldCenter(), true);
+        player.getB2Body().applyLinearImpulse(new Vector2(x, 0), player.getB2Body().getWorldCenter(), true);
     }
 
     public void movePlayerLeft(float x) {
-        player.getB2body().applyLinearImpulse(new Vector2(x, 0), player.getB2body().getWorldCenter(), true);
+        player.getB2Body().applyLinearImpulse(new Vector2(x, 0), player.getB2Body().getWorldCenter(), true);
     }
 
 }

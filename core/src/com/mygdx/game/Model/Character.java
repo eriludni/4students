@@ -98,7 +98,6 @@ public abstract class Character implements ICharacter{
     @Override
     public void checkDead() {
         if (isDead()) {
-            setDead(true);
             setToBeRemoved(true);
         }
     }
@@ -121,6 +120,11 @@ public abstract class Character implements ICharacter{
     @Override
     public void setToBeRemoved(boolean toBeRemoved) {
         this.toBeRemoved = toBeRemoved;
+    }
+
+    @Override
+    public boolean getToBeRemoved() {
+        return toBeRemoved;
     }
 
 

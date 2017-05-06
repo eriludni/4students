@@ -20,8 +20,4 @@ public class libgdx_player extends libgdx_character{
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
     }
-
-    public Body getB2body() {
-        return b2Body;
-    }
 }

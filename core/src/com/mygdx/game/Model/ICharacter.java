@@ -25,4 +25,5 @@ public interface ICharacter {
     boolean isAirBorn();
     void setAirBorn(boolean airBorn);
     void setToBeRemoved(boolean toBeRemoved);
+    boolean getToBeRemoved();
 }
