@@ -5,30 +5,29 @@ package com.mygdx.game.Model;
  */
 public class EnemyBrain {
     private Enemy enemy;
-    private boolean dead;
     private boolean toBeRemoved;
-    private boolean airBorn;
     private int airTime;
 
     public EnemyBrain(Enemy enemy) {
         this.enemy = enemy;
-        dead = false;
+        enemy.dead = false;
         toBeRemoved = false;
-        airBorn = false;
+        enemy.airBorn = false;
     }
 
     public void checkDead() {
         if (enemy.isDead()) {
+            setDead(true);
             setToBeRemoved(true);
         }
     }
     public void setAirBorn(boolean airBorn) {
-        this.airBorn = airBorn;
+        enemy.airBorn = airBorn;
     }
     public void setToBeRemoved(boolean toBeRemoved) {
         this.toBeRemoved = toBeRemoved;
     }
     public void setDead(boolean dead) {
-        this.dead = dead;
+        enemy.dead = dead;
     }
 }

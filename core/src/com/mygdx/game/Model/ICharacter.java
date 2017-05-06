@@ -20,4 +20,7 @@ public interface ICharacter {
     void setHealth(int health);
     void reduceHealth(int damageValue);
     boolean isDead();
+    void setDead(boolean dead);
+    boolean isAirBorn();
+    void setAirBorn(boolean airBorn);
 }

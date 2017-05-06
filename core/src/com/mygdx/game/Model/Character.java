@@ -12,6 +12,7 @@ public abstract class Character implements ICharacter{
     protected float x_velocity;
     protected float y_velocity;
     protected boolean dead;
+    protected boolean airBorn;
 
     @Override
     public float getXPos() {
@@ -90,12 +91,22 @@ public abstract class Character implements ICharacter{
 
     @Override
     public boolean isDead() {
-        if(dead) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return dead;
+    }
+
+    @Override
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    @Override
+    public boolean isAirBorn() {
+        return airBorn;
+    }
+
+    @Override
+    public void setAirBorn(boolean airBorn) {
+        this.airBorn = airBorn;
     }
 
 

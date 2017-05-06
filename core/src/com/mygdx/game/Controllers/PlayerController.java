@@ -21,18 +21,51 @@ public class PlayerController {
         this.world = gameWorld.getWorld();
         this.player = gameWorld.getPlayerCharacter();
     }
-
-
-
+    
     public void handleInput(float dt){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && player.getB2body().getLinearVelocity().y <= 0)
-            player.getB2body().applyLinearImpulse(new Vector2(0, 4f), player.getB2body().getWorldCenter(),true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.getB2body().getLinearVelocity().x <= 2)
-            player.getB2body().applyLinearImpulse(new Vector2(0.1f, 0), player.getB2body().getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.getB2body().getLinearVelocity().x >= -2)
-            player.getB2body().applyLinearImpulse(new Vector2(-0.1f, 0), player.getB2body().getWorldCenter(), true);
+        if(checkUpKeyPressed() && getPlayerLinearYVelocity() == 0) {
+            movePlayerUp(4f);
+        }
+        if (checkRightKeyPressed() && getPlayerLinearXVelocity() <= 2) {
+            movePlayerRight(0.1f);
+        }
+        if (checkLeftKeyPressed() && getPlayerLinearXVelocity() >= -2) {
+            movePlayerLeft(-0.1f);
+        }
+
 
     }
 
+    public boolean checkUpKeyPressed() {
+        return Gdx.input.isKeyJustPressed(Input.Keys.UP);
+    }
+
+    public boolean checkRightKeyPressed() {
+        return Gdx.input.isKeyPressed(Input.Keys.RIGHT);
+    }
+
+    public boolean checkLeftKeyPressed() {
+        return Gdx.input.isKeyPressed(Input.Keys.LEFT);
+    }
+
+    public float getPlayerLinearXVelocity() {
+        return player.getB2body().getLinearVelocity().x;
+    }
+
+    public float getPlayerLinearYVelocity() {
+        return player.getB2body().getLinearVelocity().y;
+    }
+
+    public void movePlayerUp(float y) {
+        player.getB2body().applyLinearImpulse(new Vector2(0, y), player.getB2body().getWorldCenter(),true);
+    }
+
+    public void movePlayerRight(float x) {
+        player.getB2body().applyLinearImpulse(new Vector2(x, 0), player.getB2body().getWorldCenter(), true);
+    }
+
+    public void movePlayerLeft(float x) {
+        player.getB2body().applyLinearImpulse(new Vector2(x, 0), player.getB2body().getWorldCenter(), true);
+    }
 
 }
