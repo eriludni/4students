@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
 import java.util.Random;
 
@@ -19,7 +19,7 @@ public class Generator {
     public void loopThroughMap(){
         for (int r = 0; r < row; r++){
             for ( int c = 0; c < col; c++){
-                mapArray[r][c] = ;
+                //mapArray[r][c] = ;
             }
         }
     }

@@ -1,14 +1,11 @@
 package test.com.mygdx.game.Dash;
 
-import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.Dash;
-import com.mygdx.game.GameWorld;
-import com.mygdx.game.Player;
+import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Model.Player;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import static org.junit.Assert.assertTrue;
-import static sun.audio.AudioPlayer.player;
 
 /** 
 * Game Tester.
@@ -19,60 +16,77 @@ import static sun.audio.AudioPlayer.player;
 */ 
 public class dashTest {
 
-@Before
-public void before() throws Exception { 
-} 
+    @Before
+    public void before() throws Exception {
 
-@After
-public void after() throws Exception { 
-} 
-
-/** 
-* 
-* Method: create() 
-* 
-*/ 
-@Test
-public void testCreate() throws Exception { 
-//TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: render() 
-* 
-*/ 
-@Test
-public void testRender() throws Exception { 
-//TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: dispose() 
-* 
-*/ 
-@Test
-public void testDispose() throws Exception { 
-//TODO: Test goes here... 
-} 
-
-/** 
-* 
-* Method: hej() 
-* 
-*/ 
-@Test
-public void testHej() throws Exception { 
-//TODO: Test goes here... 
-}
-
-    /*
-    @Test
-    public void testPlayerHealth() {
-        Dash dash = new Dash();
-        GameWorld world = new GameWorld(dash);
     }
-    */
 
+    @After
+    public void after() throws Exception {
+
+    }
+
+    @Test
+    public void testPlayerReduceHealth() {
+        Player player = new Player(3, 2, 0, 100, 100, 5);
+        player.reduceHealth(1);
+        int health = player.getHealth();
+        assertTrue(health == 2);
+    }
+
+    @Test
+    public void testReversePlayerXVelocity() {
+        Player player = new Player(3, 2, 2, 100, 100, 5);
+        float xVelocity = player.getX_velocity();
+        player.reverseXVelocity();
+        assertTrue(player.getX_velocity() == -xVelocity);
+    }
+
+    @Test
+    public void testReversePlayerYVelocity() {
+        Player player = new Player(3, 2, 2, 100, 100, 5);
+        float yVelocity = player.getY_velocity();
+        player.reverseYVelocity();
+        assertTrue(player.getY_velocity() == -yVelocity);
+    }
+
+    @Test
+    public void testPlayerCheckDead() {
+        Player player = new Player(3, 2, 2, 100, 100, 5);
+        player.setDead(true);
+        player.checkDead();
+        assertTrue(player.getToBeRemoved() == true);
+    }
+
+    @Test
+    public void testEnemyReduceHealth() {
+        Enemy enemy = new Enemy(3, 2, 0, 100, 100, 5);
+        enemy.reduceHealth(1);
+        int health = enemy.getHealth();
+        assertTrue(health == 2);
+    }
+
+    @Test
+    public void testReverseEnemyXVelocity() {
+        Enemy enemy = new Enemy(3, 2, 2, 100, 100, 5);
+        float xVelocity = enemy.getX_velocity();
+        enemy.reverseXVelocity();
+        assertTrue(enemy.getX_velocity() == -xVelocity);
+    }
+
+    @Test
+    public void testReverseEnemyYVelocity() {
+        Enemy enemy = new Enemy(3, 2, 2, 100, 100, 5);
+        float yVelocity = enemy.getY_velocity();
+        enemy.reverseYVelocity();
+        assertTrue(enemy.getY_velocity() == -yVelocity);
+    }
+
+    @Test
+    public void testEnemyCheckDead() {
+        Enemy enemy = new Enemy(3, 2, 2, 100, 100, 5);
+        enemy.setDead(true);
+        enemy.checkDead();
+        assertTrue(enemy.getToBeRemoved() == true);
+    }
 }
