@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Model;
 
 import java.util.Random;
 
@@ -80,6 +80,7 @@ public class Generator {
 
    /* public void cleanUpGround(){
         for (int r = 0; r < row; r++){
+<<<<<<< HEAD:core/src/com/mygdx/game/Generator.java
             for ( int c = 0; c < col; c++) {
 
                 if(r+1 < row && c-1> 0 && c+1< col){
@@ -122,6 +123,10 @@ public class Generator {
                     cleanMapArray[r][c] = 0;
                 }
                 System.out.print(cleanMapArray[r][c]);
+=======
+            for ( int c = 0; c < col; c++){
+                //mapArray[r][c] = ;
+>>>>>>> 48431c4634aa17015ab4257a7baf2e6eda4424b7:core/src/com/mygdx/game/Model/Generator.java
             }
             System.out.println();
         }
