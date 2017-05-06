@@ -3,6 +3,7 @@ package test.com.mygdx.game.Dash;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Dash;
 import com.mygdx.game.GameWorld;
+import com.mygdx.game.Generator;
 import com.mygdx.game.Player;
 import org.junit.Test;
 import org.junit.Before; 
@@ -65,6 +66,13 @@ public void testDispose() throws Exception {
 @Test
 public void testHej() throws Exception { 
 //TODO: Test goes here... 
+}
+@Test
+public void testGenerator(){
+    Generator generator = new Generator();
+    generator.loopThroughMap();
+    System.out.println();
+    generator.cleanUp();
 }
 
     /*
