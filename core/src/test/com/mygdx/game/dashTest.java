@@ -1,14 +1,8 @@
 package test.com.mygdx.game.Dash;
 
-
-import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.Dash;
-import com.mygdx.game.GameWorld;
-import com.mygdx.game.Generator;
-import com.mygdx.game.Player;
-
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
+import com.mygdx.game.Model.Generator;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
@@ -45,8 +39,15 @@ public class dashTest {
     public void testGenerator(){
     Generator generator = new Generator();
     generator.loopThroughMap();
-    System.out.println();
-    generator.cleanUp();
+
+    for (int x = 0; x <generator.getRow(); x++){
+        for (int y = 0; y < generator.getCol(); y++){
+            System.out.print(generator.getMapArray(x,y));
+        }
+        System.out.println();
+    }
+
+    //generator.cleanUp();
 }
 
     @Test

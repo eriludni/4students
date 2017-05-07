@@ -23,23 +23,8 @@ public class Generator {
 
     public void loopThroughMap() {
         randNumber = random.nextInt(99);
-        for (int r = 0; r < row; r++) {
-            for (int c = 0; c < col; c++) {
-
-                if(test>3){
-                    randNumber = random.nextInt(99);
-                    test = 0;
-                }
-
-                if (r * 5 > randNumber) {
-                    mapArray[r][c] = 1;
-                } else {
-                    mapArray[r][c] = 0;
-                }
-                test++;
-                System.out.print(mapArray[r][c]);
-
-            }
+        for (int c = 0; c < col-6; c=c+6) {
+            mapArray[random.nextInt(4) + 14][c] = 1;
             System.out.println();
         }
     }
@@ -53,10 +38,10 @@ public class Generator {
                 }
                 if (11 <= r && r < 16) {
                     if (c - 1 > 0 && c + 1 < col) {
-                        if(mapArray[r-1][c-1] + mapArray[r-1][c] + mapArray[r-1][c+1] + mapArray[r][c-1] + mapArray[r][c+1] > 3){
+                        if (mapArray[r - 1][c - 1] + mapArray[r - 1][c] + mapArray[r - 1][c + 1] + mapArray[r][c - 1] + mapArray[r][c + 1] > 3) {
                             cleanMapArray[r][c] = 1;
                         }
-                        if(mapArray[r-1][c-1] + mapArray[r-1][c] + mapArray[r-1][c+1] + mapArray[r][c-1] + mapArray[r][c+1] < 1){
+                        if (mapArray[r - 1][c - 1] + mapArray[r - 1][c] + mapArray[r - 1][c + 1] + mapArray[r][c - 1] + mapArray[r][c + 1] < 1) {
                             cleanMapArray[r][c] = 0;
                         }
 
@@ -77,109 +62,14 @@ public class Generator {
         }
         */
     }
-
-   /* public void cleanUpGround(){
-        for (int r = 0; r < row; r++){
-<<<<<<< HEAD:core/src/com/mygdx/game/Generator.java
-            for ( int c = 0; c < col; c++) {
-
-                if(r+1 < row && c-1> 0 && c+1< col){
-                    if(mapArray[r][c+1] + mapArray[r+1][c] + mapArray[r][c-1] > 0 ){
-                        cleanMapArray[r][c] = 1;
-                    }
-
-                }
-                else if(r+1 > row && c-1 > 0 && c+1 < col){
-                    if(mapArray[r][c+1] + mapArray[r][c-1] > 0 ){
-                        cleanMapArray[r][c] = 1;
-                    }
-
-                }
-
-                else if(r+1> row && c-1< 0){
-                    if(mapArray[r][c+1] == 1 ){
-                        cleanMapArray[r][c] = 1;
-                    }
-
-                }
-                else if(r+1> row && c+1> col){
-                    if(mapArray[r][c-1] == 1 ){
-                        cleanMapArray[r][c] = 1;
-                    }
-
-                }
-                else if(r+1 < row && c-1< 0){
-                    if(mapArray[r][c+1] + mapArray[r+1][c] > 0 ){
-                        cleanMapArray[r][c] = 1;
-                    }
-
-                }
-                else if(r+1 < row && c+1 > col){
-                    if(mapArray[r][c-1] + mapArray[r+1][c] > 0 ){
-                        cleanMapArray[r][c] = 1;
-                    }
-                }
-                else{
-                    cleanMapArray[r][c] = 0;
-                }
-                System.out.print(cleanMapArray[r][c]);
-=======
-            for ( int c = 0; c < col; c++){
-                //mapArray[r][c] = ;
->>>>>>> 48431c4634aa17015ab4257a7baf2e6eda4424b7:core/src/com/mygdx/game/Model/Generator.java
-            }
-            System.out.println();
-        }
+    public int getRow(){
+        return row;
     }
-
-    public void cleanUpAir(){
-        for (int r = 0; r < row; r++){
-            for ( int c = 0; c < col; c++) {
-
-                if(r+1 < row && c-1> 0 && c+1< col){
-                    if(mapArray[r][c+1] + mapArray[r+1][c] + mapArray[r][c-1] > 0 ){
-                        cleanMapArray[r][c] = 0;
-                    }
-
-                }
-                else if(r+1 > row && c-1 > 0 && c+1 < col){
-                    if(mapArray[r][c+1] + mapArray[r][c-1] > 0 ){
-                        cleanMapArray[r][c] = 0;
-                    }
-
-                }
-
-                else if(r+1> row && c-1< 0){
-                    if(mapArray[r][c+1] == 1 ){
-                        cleanMapArray[r][c] = 0;
-                    }
-
-                }
-                else if(r+1> row && c+1> col){
-                    if(mapArray[r][c-1] == 1 ){
-                        cleanMapArray[r][c] = 0;
-                    }
-
-                }
-                else if(r+1 < row && c-1< 0){
-                    if(mapArray[r][c+1] + mapArray[r+1][c] > 0 ){
-                        cleanMapArray[r][c] = 0;
-                    }
-
-                }
-                else if(r+1 < row && c+1 > col){
-                    if(mapArray[r][c-1] + mapArray[r+1][c] > 0 ){
-                        cleanMapArray[r][c] = 0;
-                    }
-                }
-                else{
-                    cleanMapArray[r][c] = 0;
-                }
-                System.out.print(cleanMapArray[r][c]);
-            }
-            System.out.println();
-        }
+    public int getCol(){
+        return col;
     }
-*/
+    public int getMapArray(int x, int y){
+        return this.mapArray[x][y];
+    }
 
 }
