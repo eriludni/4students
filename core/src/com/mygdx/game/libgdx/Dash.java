@@ -24,6 +24,7 @@ public class Dash extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
+
         gameWorld = new libgdx_world(this);
 
         setScreen(new PlayScreen(this, gameWorld));

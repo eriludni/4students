@@ -28,16 +28,17 @@ public class libgdx_world {
     public libgdx_world(Dash game) {
             this.game = game;
             world = new World(new Vector2(0, -10), true);
+            libgdx_map mapCreator = new libgdx_map();
 
-            maploader = new TmxMapLoader();
-            map = maploader.load("map.tmx");
+            //maploader = new TmxMapLoader();
+            map = mapCreator.getMap(); //maploader.load("map.tmx");
 
             BodyDef bdf = new BodyDef();
             PolygonShape shape = new PolygonShape();
             FixtureDef fdef = new FixtureDef();
             Body body;
 
-            for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
+            for (MapObject object : map.getLayers().get(0).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 bdf.type = BodyDef.BodyType.StaticBody;
                 bdf.position.set((rect.getX() + rect.getWidth() / 2) / Dash.PPM, (rect.getY() + rect.getHeight() / 2) / Dash.PPM);
@@ -48,7 +49,7 @@ public class libgdx_world {
                 fdef.shape = shape;
                 body.createFixture(fdef);
             }
-            for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+           /* for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 bdf.type = BodyDef.BodyType.StaticBody;
                 bdf.position.set((rect.getX() + rect.getWidth() / 2) / Dash.PPM, (rect.getY() + rect.getHeight() / 2) / Dash.PPM);
@@ -59,6 +60,7 @@ public class libgdx_world {
                 fdef.shape = shape;
                 body.createFixture(fdef);
             }
+            */
 
         lgdxWorld = this;
             playerCharacter = new libgdx_player(logicalPlayer);

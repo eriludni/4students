@@ -8,10 +8,9 @@ import java.util.Random;
 public class Generator {
 
     private int[][] mapArray;
-    private final int row = 19;
-    private final int col = 99;
+    private final int row =19;
+    private final int col = 100;
     private Random random = new Random();
-    private int[][] cleanMapArray;
     private int pointsDistance = 6;
     private int mountainTop = 14;
     private int mountainDiff = 4;
@@ -27,7 +26,7 @@ public class Generator {
     }
 
 
-    public void setBasePoints() {
+    private void setBasePoints() {
         for (int c = 0; c < col - pointsDistance; c = c + pointsDistance) {
             this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
         }
@@ -36,7 +35,7 @@ public class Generator {
         }
     }
 
-    public void growFromPoints(int initValue) {
+    private void growFromPoints(int initValue) {
         int endValue = nextPointValue(initValue);
         int rowStart = findRow(initValue);
         if (rowStart < endValue) {
@@ -91,7 +90,7 @@ public class Generator {
     }
 
     public int getMapArray(int x, int y) {
-        return this.mapArray[x][y];
+        return this.mapArray[y][x];
     }
 
 }
