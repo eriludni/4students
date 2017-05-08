@@ -38,7 +38,6 @@ public class dashTest {
     @Test
     public void testGenerator(){
     Generator generator = new Generator();
-    generator.loopThroughMap();
 
     for (int x = 0; x <generator.getRow(); x++){
         for (int y = 0; y < generator.getCol(); y++){
@@ -46,8 +45,6 @@ public class dashTest {
         }
         System.out.println();
     }
-
-    //generator.cleanUp();
 }
 
     @Test
