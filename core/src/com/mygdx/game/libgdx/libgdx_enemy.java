@@ -30,7 +30,7 @@ public class libgdx_enemy extends libgdx_character{
     }
 
     public void moveEnemyLeft(float x) {
-        getB2Body().applyLinearImpulse(new Vector2(x, 0), getB2Body().getWorldCenter(),true);
+        getB2Body().applyLinearImpulse(new Vector2(-x, 0), getB2Body().getWorldCenter(),true);
     }
 
     public float getEnemyLinearYVelocity() {
@@ -39,5 +39,13 @@ public class libgdx_enemy extends libgdx_character{
 
     public float getEnemyLinearXVelocity() {
         return getB2Body().getLinearVelocity().x;
+    }
+
+    public void setEnemyLinearXVelocity(float x) {
+        getB2Body().setLinearVelocity(x, getB2Body().getLinearVelocity().y);
+    }
+
+    public void setEnemyLinearYVelocity(float y) {
+        getB2Body().setLinearVelocity(getB2Body().getLinearVelocity().x, y);
     }
 }
