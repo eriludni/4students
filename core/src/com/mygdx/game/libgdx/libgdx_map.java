@@ -45,7 +45,6 @@ public class libgdx_map {
         groundEdge = new StaticTiledMapTile(splitTiles[0][0]);
         ground = new StaticTiledMapTile(splitTiles[0][4]);
 
-
         for (int x = 0; x < arrayGenerator.getCol(); x++) {
             for (int y = arrayGenerator.getRow() - 1; y > 0; y--) {
                 Cell cell = new Cell();
@@ -66,11 +65,8 @@ public class libgdx_map {
                 }
             }
         }
-        layers.add(background)                                                                 
+        layers.add(background);
         layers.add(groundLayer);
-
-
-
     }
 
     public TiledMap getMap() {

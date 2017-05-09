@@ -13,6 +13,16 @@ public abstract class libgdx_character extends Character{
     protected Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
 
+    protected int health;
+    protected float xPos;
+    protected float yPos;
+    protected float radius;
+    protected float x_velocity;
+    protected float y_velocity;
+    protected boolean dead;
+    protected boolean airBorn;
+    protected boolean toBeRemoved;
+
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();
         bdef.position.set( character.getXPos() / Dash.PPM, character.getYPos() / Dash.PPM);

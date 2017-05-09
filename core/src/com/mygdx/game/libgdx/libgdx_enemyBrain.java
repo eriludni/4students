@@ -1,5 +1,7 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.mygdx.game.Model.Enemy;
 
 import java.util.Random;
@@ -9,20 +11,14 @@ import java.util.Random;
  */
 public class libgdx_enemyBrain {
     private libgdx_enemy lgdxEnemy;
+    private final int BEHAVIOR;
     private Random rand = new Random();
 
     public libgdx_enemyBrain(libgdx_enemy lgdxEnemy) {
         this.lgdxEnemy = lgdxEnemy;
+        this.BEHAVIOR = rand.nextInt(3);
 
         System.out.println("libgdx_enemy created");
-    }
-
-    public void checkCollision() {
-
-    }
-
-    public float checkXSpeed() {
-        return lgdxEnemy.getB2Body().getLinearVelocity().x;
     }
 
     public void sporadicBehavior() {
@@ -63,10 +59,53 @@ public class libgdx_enemyBrain {
     }
 
     public void linearBehavior() {
+        System.out.println(lgdxEnemy.getEnemyXVelocity());
+        lgdxEnemy.moveEnemyRight(lgdxEnemy.getEnemyXVelocity());
+        if(lgdxEnemy.getEnemyLinearXVelocity() >= 3) {
+            lgdxEnemy.reverseEnemyXVelocity();
+        }
+        if(lgdxEnemy.getEnemyLinearXVelocity() <= -3) {
+            lgdxEnemy.reverseEnemyXVelocity();
+        }
+    }
 
+    public void mirroredBehavior() {
+        if(checkUpKeyPressed() && lgdxEnemy.getEnemyLinearYVelocity() == 0) {
+            lgdxEnemy.moveEnemyUp(4f);
+        }
+        if(checkRightKeyPressed() && lgdxEnemy.getEnemyLinearXVelocity() >= -2) {
+            lgdxEnemy.moveEnemyLeft(0.1f);
+        }
+        if(checkLeftKeyPressed() && lgdxEnemy.getEnemyLinearXVelocity() <= 2) {
+            lgdxEnemy.moveEnemyRight(0.1f);
+        }
+    }
+
+    public boolean checkUpKeyPressed() {
+        return Gdx.input.isKeyJustPressed(Input.Keys.UP);
+    }
+
+    public boolean checkRightKeyPressed() {
+        return Gdx.input.isKeyPressed(Input.Keys.RIGHT);
+    }
+
+    public boolean checkLeftKeyPressed() {
+        return Gdx.input.isKeyPressed(Input.Keys.LEFT);
     }
 
     public void update(float dt) {
-        sporadicBehavior();
+        switch(BEHAVIOR) {
+            case(0):
+                linearBehavior();
+                break;
+
+            case(1):
+                sporadicBehavior();
+                break;
+
+            case(2):
+                mirroredBehavior();
+                break;
+        }
     }
 }

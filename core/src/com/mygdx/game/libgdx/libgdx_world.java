@@ -18,8 +18,8 @@ public class libgdx_world {
     private World world;
     private libgdx_player playerCharacter;
     private libgdx_enemy enemyCharacter;
-    private Player logicalPlayer = new Player(3, 2, 0, 100, 100, 5);
-    private Enemy logicalEnemy = new Enemy(3, 2, 0, 200, 100, 10);
+    private Player logicalPlayer = new Player(3, 0.1f, 0, 100, 100, 5);
+    private Enemy logicalEnemy = new Enemy(3, 0.1f, 0, 200, 100, 10);
     private static libgdx_world lgdxWorld;
 
     private TmxMapLoader maploader;
@@ -31,7 +31,8 @@ public class libgdx_world {
         libgdx_map mapCreator = new libgdx_map();
 
         //maploader = new TmxMapLoader();
-        map = mapCreator.getMap(); //maploader.load("map.tmx");
+        //map = maploader.load("map.tmx");
+        map = mapCreator.getMap();
 
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
@@ -49,7 +50,8 @@ public class libgdx_world {
             fdef.shape = shape;
             body.createFixture(fdef);
         }
-           /* for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+            /*
+            for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 bdf.type = BodyDef.BodyType.StaticBody;
                 bdf.position.set((rect.getX() + rect.getWidth() / 2) / Dash.PPM, (rect.getY() + rect.getHeight() / 2) / Dash.PPM);
@@ -61,6 +63,7 @@ public class libgdx_world {
                 body.createFixture(fdef);
             }
             */
+
 
         lgdxWorld = this;
         playerCharacter = new libgdx_player(logicalPlayer);
