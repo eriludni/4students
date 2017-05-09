@@ -3,6 +3,7 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -22,6 +23,8 @@ public class libgdx_world {
     private Enemy logicalEnemy = new Enemy(3, 0.1f, 0, 200, 100, 10);
     private static libgdx_world lgdxWorld;
 
+    private TiledMapTileLayer objectLayer;
+
     private TmxMapLoader maploader;
     private TiledMap map;
 
@@ -33,25 +36,29 @@ public class libgdx_world {
         //maploader = new TmxMapLoader();
         //map = maploader.load("map.tmx");
         map = mapCreator.getMap();
+        objectLayer = mapCreator.getGroundLayer();
+
 
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
 
-        for (MapObject object : map.getLayers().get(0).getObjects().getByType(RectangleMapObject.class)) {
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdf.type = BodyDef.BodyType.StaticBody;
-            bdf.position.set((rect.getX() + rect.getWidth() / 2) / Dash.PPM, (rect.getY() + rect.getHeight() / 2) / Dash.PPM);
+       /*for (int x = 0; x < mapCreator.getMapWidth(); x++) {
+            for (int y = 0; x < mapCreator.getMapHeight(); y++) {
+                if(objectLayer.getCell(x,y).getTile().getId() == 1)
+                bdf.type = BodyDef.BodyType.StaticBody;
+                bdf.position.set(x,y);
 
-            body = world.createBody(bdf);
+                body = world.createBody(bdf);
 
-            shape.setAsBox((rect.getWidth() / 2) / Dash.PPM, (rect.getHeight() / 2) / Dash.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
-            /*
-            for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
+                shape.setAsBox(16/Dash.PPM, 16/Dash.PPM);
+                fdef.shape = shape;
+                body.createFixture(fdef);
+            }
+        }*/
+
+            for (MapObject object : map.getLayers().get(0).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 bdf.type = BodyDef.BodyType.StaticBody;
                 bdf.position.set((rect.getX() + rect.getWidth() / 2) / Dash.PPM, (rect.getY() + rect.getHeight() / 2) / Dash.PPM);
@@ -62,7 +69,7 @@ public class libgdx_world {
                 fdef.shape = shape;
                 body.createFixture(fdef);
             }
-            */
+
 
 
         lgdxWorld = this;
