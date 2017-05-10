@@ -14,7 +14,7 @@ public class Dash extends Game {
     //width of the window
     public static final int WIDTH = 1240;
     //Height of the window
-    public static final int HEIGHT = 600;
+    public static final int HEIGHT = 800;
     //Pixels per meter in game
     public static final float PPM = 100;
 
@@ -24,6 +24,7 @@ public class Dash extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
+
         gameWorld = new libgdx_world(this);
 
         setScreen(new PlayScreen(this, gameWorld));
