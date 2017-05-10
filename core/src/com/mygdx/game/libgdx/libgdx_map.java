@@ -16,6 +16,8 @@ import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Model.Generator;
 
+import java.util.List;
+
 
 /**
  * Created by Erik on 08/05/2017.
@@ -29,6 +31,8 @@ public class libgdx_map {
     private Texture backgroundimg;
 
     private TiledMapTileLayer groundLayer;
+
+    private List<int [][]> mapList;
 
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
@@ -79,6 +83,10 @@ public class libgdx_map {
                 }
             }
         }
+    }
+
+    public void addMap(){
+
     }
 
 
