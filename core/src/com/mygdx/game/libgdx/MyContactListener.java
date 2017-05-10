@@ -28,6 +28,21 @@ public class MyContactListener implements ContactListener {
             libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureB.getBody().getUserData();
             userdata.isSetForRemoval = true;
         }
+        if(fixtureA.getUserData() instanceof libgdx_player || fixtureB.getUserData() instanceof libgdx_player) {
+            Fixture player;
+            Fixture enemy;
+            if(fixtureA.getUserData() instanceof libgdx_player) {
+                player = fixtureA;
+
+                ((libgdx_player) player.getUserData()).reduceHealth(1);
+            }
+            else {
+                player = fixtureB;
+
+                ((libgdx_player) player.getUserData()).reduceHealth(1);
+            }
+            System.out.println("contact");
+        }
     }
 
     @Override

@@ -32,7 +32,7 @@ public class libgdx_enemy extends libgdx_character{
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
-        b2Body.setUserData("Enemy");
+        fixture.setUserData(this);
     }
 
     public void moveEnemyUp(float y) {

@@ -96,8 +96,8 @@ public abstract class Character implements ICharacter{
 
     @Override
     public void checkDead() {
-        if (isDead()) {
-            setToBeRemoved(true);
+        if (health == 0) {
+            setDead(true);
         }
     }
 

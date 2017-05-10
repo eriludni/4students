@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.Character;
 import com.mygdx.game.Model.ICharacter;
@@ -15,6 +16,7 @@ public abstract class libgdx_character extends Character{
     protected ICharacter character;
     protected Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
+    protected Fixture fixture;
 
     protected int health;
     protected float xPos;
@@ -39,13 +41,20 @@ public abstract class libgdx_character extends Character{
         fdef.shape = shape;
 
         b2Body.createFixture(fdef);
+
+        EdgeShape sensor = new EdgeShape();
+        sensor.set(new Vector2(8 / Dash.PPM, 10 / Dash.PPM), new Vector2(8 / Dash.PPM, -8 / Dash.PPM));
+        fdef.isSensor = true;
+        fdef.shape = sensor;
+
+        fixture = b2Body.createFixture(fdef);
     }
 
     public void shootProjectile(Point targetPosition) {
         int x = (int)(getB2Body().getWorldCenter().x * 100);
         int y = (int)(getB2Body().getWorldCenter().y * 100 + 20);
         Point playerPosition = new Point(x,y);
-        new libgdx_projectile(playerPosition, targetPosition, 5);
+        //new libgdx_projectile(playerPosition, targetPosition, 5);
     }
 
     public Body getB2Body() {

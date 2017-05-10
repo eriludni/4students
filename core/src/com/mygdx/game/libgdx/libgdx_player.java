@@ -1,6 +1,9 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.mygdx.game.Model.ICharacter;
 import com.mygdx.game.Model.Player;
 
@@ -21,6 +24,15 @@ public class libgdx_player extends libgdx_character{
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
-        b2Body.setUserData("Player");
+        fixture.setUserData(this);
+    }
+
+    public void update(float dt) {
+        character.checkDead();
+        System.out.println(character.getHealth());
+
+        if(character.isDead()) {
+            System.out.println("check 2");
+        }
     }
 }

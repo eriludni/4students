@@ -80,15 +80,15 @@ public class libgdx_enemyBrain {
     }
 
     public boolean checkUpKeyPressed() {
-        return Gdx.input.isKeyJustPressed(Input.Keys.UP);
+        return Gdx.input.isKeyJustPressed(Input.Keys.W);
     }
 
     public boolean checkRightKeyPressed() {
-        return Gdx.input.isKeyPressed(Input.Keys.RIGHT);
+        return Gdx.input.isKeyPressed(Input.Keys.D);
     }
 
     public boolean checkLeftKeyPressed() {
-        return Gdx.input.isKeyPressed(Input.Keys.LEFT);
+        return Gdx.input.isKeyPressed(Input.Keys.A);
     }
 
     public void update(float dt) {
