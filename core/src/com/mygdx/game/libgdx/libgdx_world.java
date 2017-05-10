@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.Player;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 
 /**
  * Created by Lucas on 2017-05-05.
@@ -30,10 +31,19 @@ public class libgdx_world {
     private TiledMap map;
 
     public libgdx_world(Dash game) {
+//<<<<<<< Updated upstream
         this.game = game;
         world = new World(new Vector2(0, -10), true);
+        world.setContactListener(new MyContactListener(world));
         libgdx_map mapCreator = new libgdx_map();
 
+//=======
+//            this.game = game;
+//            world = new World(new Vector2(0, -10), true);
+//            world.setContactListener(new MyContactListener(world));
+//            maploader = new TmxMapLoader();
+//            map = maploader.load("map.tmx");
+//>>>>>>> Stashed changes
 
         map = mapCreator.getMap();
 
@@ -60,8 +70,11 @@ public class libgdx_world {
                     System.out.println(body.getUserData());
                 }
             }
+//<<<<<<< Updated upstream
         }
 
+//=======
+//>>>>>>> Stashed changes
         lgdxWorld = this;
         playerCharacter = new libgdx_player(logicalPlayer);
         enemyCharacter = new libgdx_enemy(logicalEnemy);
