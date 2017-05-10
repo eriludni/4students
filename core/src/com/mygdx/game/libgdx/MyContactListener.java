@@ -22,11 +22,11 @@ public class MyContactListener implements ContactListener {
         System.out.println(fixtureA.getShape().getType().equals(fixtureB.getShape().getType()));
         if(fixtureA.getBody().isBullet()){
             libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureA.getBody().getUserData();
-            userdata.setForDeletion = true;
+            userdata.isSetForRemoval = true;
         }
         if(fixtureB.getBody().isBullet()){
             libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureB.getBody().getUserData();
-            userdata.setForDeletion = true;
+            userdata.isSetForRemoval = true;
         }
     }
 

@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Model.Player;
-import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.libgdx.Dash;
 import com.mygdx.game.libgdx.libgdx_player;
 import com.mygdx.game.libgdx.libgdx_world;
 
@@ -43,7 +41,7 @@ public class PlayerController {
             movePlayerLeft(-0.1f);
         }
         if (Gdx.input.isTouched()){
-            player.shoot(new Point(Gdx.input.getX() + (int)(gameCam.position.x * 100) - viewPort.getScreenWidth()/2 ,viewPort.getScreenHeight() - Gdx.input.getY()));
+            shootPlayerProjectile();
         }
     }
 
@@ -65,6 +63,17 @@ public class PlayerController {
 
     public float getPlayerLinearYVelocity() {
         return player.getB2Body().getLinearVelocity().y;
+    }
+
+    public void shootPlayerProjectile(){
+        int gameCamRightPos = (int)(gameCam.position.x * Dash.PPM);
+        int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth()/2;
+        int x = currentPlayerPos + Gdx.input.getX();
+
+        int y = viewPort.getScreenHeight() - Gdx.input.getY();
+
+        Point shootingPoint = new Point(x,y);
+        player.shootProjectile(shootingPoint);
     }
 
     public void movePlayerUp(float y) {

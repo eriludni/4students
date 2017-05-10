@@ -66,7 +66,7 @@ public class PlayScreen implements Screen {
             Body body = bodies.get(i);
             if (body != null && body.isBullet()) {
                 libgdx_body_userdata data = (libgdx_body_userdata) body.getUserData();
-                if (data.setForDeletion) {
+                if (data.isSetForRemoval) {
                     gameWorld.getWorld().destroyBody(body);
                     body.setUserData(null);
                     body = null;

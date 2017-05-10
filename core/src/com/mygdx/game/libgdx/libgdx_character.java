@@ -39,10 +39,9 @@ public abstract class libgdx_character extends Character{
         fdef.shape = shape;
 
         b2Body.createFixture(fdef);
-
     }
 
-    public void shoot(Point targetPosition){
+    public void shootProjectile(Point targetPosition) {
         int x = (int)(getB2Body().getWorldCenter().x * 100);
         int y = (int)(getB2Body().getWorldCenter().y * 100 + 20);
         Point playerPosition = new Point(x,y);
