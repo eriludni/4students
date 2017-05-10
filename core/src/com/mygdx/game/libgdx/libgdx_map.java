@@ -29,29 +29,27 @@ public class libgdx_map {
     private Texture backgroundimg;
 
     private TiledMapTileLayer groundLayer;
-    private TiledMapImageLayer background;
 
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
+    private TiledMapTile sky;
 
     public libgdx_map() {
         arrayGenerator = new Generator();
         texture = new Texture(Gdx.files.internal("tiles/Tiles_32x32.png"));
-        backgroundimg = new Texture(Gdx.files.internal("tiles/BackgroundGradient.png"));
         TextureRegion[][] splitTiles = TextureRegion.split(texture, 32, 32);
 
         groundLayer = new TiledMapTileLayer(arrayGenerator.getCol(), arrayGenerator.getRow(), 32, 32);
-        background = new TiledMapImageLayer(new TextureRegion(backgroundimg), arrayGenerator.getCol(), arrayGenerator.getRow());
 
         map = new TiledMap();
         MapLayers layers = map.getLayers();
 
         groundEdge = new StaticTiledMapTile(splitTiles[0][0]);
         ground = new StaticTiledMapTile(splitTiles[0][4]);
+        sky = new StaticTiledMapTile(splitTiles[5][7]);
 
         placeTexture();
 
-        layers.add(background);
         layers.add(groundLayer);
 
 
@@ -67,6 +65,8 @@ public class libgdx_map {
                 int id = arrayGenerator.getMapArray(x, y);
                 switch (id) {
                     case 0:
+                        cell.setTile(sky);
+                        groundLayer.setCell(x, arrayGenerator.getRow() - y, cell);
                         break;
                     case 1:
                         cell.setTile(groundEdge);

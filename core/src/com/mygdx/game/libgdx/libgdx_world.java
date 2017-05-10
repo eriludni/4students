@@ -48,7 +48,6 @@ public class libgdx_world {
         for (int x = 0; x < mapCreator.getMapWidth(); x++) {
             for (int y = 0; y < mapCreator.getMapHeight(); y++) {
                 if (mapCreator.getArrayId(x, y) == 1) {
-                    System.out.println("placed stuff at" +x +" " + (mapCreator.getMapHeight() - y));
                     bdf.type = BodyDef.BodyType.StaticBody;
                     bdf.position.set((x*32+16)/Dash.PPM ,((mapCreator.getMapHeight() - y)*32+16)/Dash.PPM );
 
