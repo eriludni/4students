@@ -22,17 +22,17 @@ import com.mygdx.game.Model.Generator;
  */
 public class libgdx_map {
 
-   private Generator arrayGenerator;
-   private TiledMap map;
+    private Generator arrayGenerator;
+    private TiledMap map;
 
-   private Texture texture;
-   private Texture backgroundimg;
+    private Texture texture;
+    private Texture backgroundimg;
 
-   private TiledMapTileLayer groundLayer;
-   private TiledMapImageLayer background;
+    private TiledMapTileLayer groundLayer;
+    private TiledMapImageLayer background;
 
-   private TiledMapTile groundEdge;
-   private TiledMapTile ground;
+    private TiledMapTile groundEdge;
+    private TiledMapTile ground;
 
     public libgdx_map() {
         arrayGenerator = new Generator();
@@ -41,7 +41,7 @@ public class libgdx_map {
         TextureRegion[][] splitTiles = TextureRegion.split(texture, 32, 32);
 
         groundLayer = new TiledMapTileLayer(arrayGenerator.getCol(), arrayGenerator.getRow(), 32, 32);
-        background = new TiledMapImageLayer(new TextureRegion(backgroundimg), arrayGenerator.getCol(),arrayGenerator.getRow());
+        background = new TiledMapImageLayer(new TextureRegion(backgroundimg), arrayGenerator.getCol(), arrayGenerator.getRow());
 
         map = new TiledMap();
         MapLayers layers = map.getLayers();
@@ -49,6 +49,15 @@ public class libgdx_map {
         groundEdge = new StaticTiledMapTile(splitTiles[0][0]);
         ground = new StaticTiledMapTile(splitTiles[0][4]);
 
+        placeTexture();
+
+        layers.add(background);
+        layers.add(groundLayer);
+
+
+    }
+
+    void placeTexture() {
         groundEdge.setId(1);
         ground.setId(0);
 
@@ -70,24 +79,23 @@ public class libgdx_map {
                 }
             }
         }
-        layers.add(background);
-        layers.add(groundLayer);
-
-
     }
+
 
     public TiledMap getMap() {
         return this.map;
     }
 
-    public int getMapWidth(){
+    public int getMapWidth() {
         return arrayGenerator.getCol();
     }
-    public int getMapHeight(){
+
+    public int getMapHeight() {
         return arrayGenerator.getRow();
     }
-    public int getArrayId(int x, int y){
-        return arrayGenerator.getMapArray(x,y);
+
+    public int getArrayId(int x, int y) {
+        return arrayGenerator.getMapArray(x, y);
     }
 
 }
