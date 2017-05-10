@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Model.Generator;
 
 
@@ -32,7 +33,6 @@ public class libgdx_map {
 
    private TiledMapTile groundEdge;
    private TiledMapTile ground;
-
 
     public libgdx_map() {
         arrayGenerator = new Generator();

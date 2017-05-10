@@ -17,8 +17,6 @@ public class libgdx_enemyBrain {
     public libgdx_enemyBrain(libgdx_enemy lgdxEnemy) {
         this.lgdxEnemy = lgdxEnemy;
         this.BEHAVIOR = rand.nextInt(3);
-
-        System.out.println("libgdx_enemy created");
     }
 
     public void sporadicBehavior() {

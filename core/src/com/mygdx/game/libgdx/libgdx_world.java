@@ -21,7 +21,7 @@ public class libgdx_world {
     private libgdx_player playerCharacter;
     private libgdx_enemy enemyCharacter;
     private Player logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 10);
-    private Enemy logicalEnemy = new Enemy(3, 0.1f, 0, 200, 300, 5);
+    private Enemy logicalEnemy = new Enemy(3, 0.1f, 0, 200, 300, 20);
     private static libgdx_world lgdxWorld;
 
     private TiledMapTileLayer objectLayer;
@@ -57,6 +57,9 @@ public class libgdx_world {
                     shape.setAsBox(16 / Dash.PPM, 16 / Dash.PPM);
                     fdef.shape = shape;
                     body.createFixture(fdef);
+
+                    body.setUserData("GroundEdge");
+                    System.out.println(body.getUserData());
                 }
             }
         }

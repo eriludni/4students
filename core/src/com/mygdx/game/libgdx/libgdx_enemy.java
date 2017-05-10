@@ -1,6 +1,7 @@
 package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.ICharacter;
 
@@ -8,7 +9,6 @@ import com.mygdx.game.Model.ICharacter;
  * Created by Lucas on 2017-05-05.
  */
 public class libgdx_enemy extends libgdx_character{
-    private float x_velocity;
 
     public libgdx_enemy(Enemy enemy) {
         this.character = enemy;
@@ -24,11 +24,15 @@ public class libgdx_enemy extends libgdx_character{
         this.toBeRemoved = character.getToBeRemoved();
 
         defineCharacter(character);
+
+        System.out.println("libgdx_enemy created");
+        System.out.println(b2Body.getUserData());
     }
 
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
+        b2Body.setUserData("Enemy");
     }
 
     public void moveEnemyUp(float y) {

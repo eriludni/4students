@@ -14,10 +14,12 @@ public class libgdx_player extends libgdx_character{
         defineCharacter(character);
 
         System.out.println("libgdx_player created");
+        System.out.println(b2Body.getUserData());
     }
 
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
+        b2Body.setUserData("Player");
     }
 }
