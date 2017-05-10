@@ -8,9 +8,21 @@ import com.mygdx.game.Model.ICharacter;
  * Created by Lucas on 2017-05-05.
  */
 public class libgdx_enemy extends libgdx_character{
+    private float x_velocity;
 
     public libgdx_enemy(Enemy enemy) {
         this.character = enemy;
+
+        this.health = character.getHealth();
+        this.xPos = character.getXPos();
+        this.yPos = character.getYPos();
+        this.radius = character.getRadius();
+        this.x_velocity = character.getX_velocity();
+        this.y_velocity = character.getY_velocity();
+        this.dead = character.isDead();
+        this.airBorn = character.isAirBorn();
+        this.toBeRemoved = character.getToBeRemoved();
+
         defineCharacter(character);
     }
 
@@ -47,5 +59,13 @@ public class libgdx_enemy extends libgdx_character{
 
     public void setEnemyLinearYVelocity(float y) {
         getB2Body().setLinearVelocity(getB2Body().getLinearVelocity().x, y);
+    }
+
+    public float getEnemyXVelocity() {
+        return this.x_velocity;
+    }
+
+    public void reverseEnemyXVelocity() {
+        this.x_velocity = -this.x_velocity;
     }
 }
