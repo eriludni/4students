@@ -86,8 +86,8 @@ public class libgdx_map {
     public int getMapHeight(){
         return arrayGenerator.getRow();
     }
-    public TiledMapTileLayer getGroundLayer(){
-        return groundLayer;
+    public int getArrayId(int x, int y){
+        return arrayGenerator.getMapArray(x,y);
     }
 
 }
