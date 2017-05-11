@@ -72,4 +72,16 @@ public class libgdx_enemy extends libgdx_character{
     public void reverseEnemyXVelocity() {
         this.x_velocity = -this.x_velocity;
     }
+
+    public void dispose() {
+        this.dispose();
+    }
+
+    public void update(float dt) {
+        this.checkDead();
+
+        if(isDead()) {
+            System.out.println("Enemy died");
+        }
+    }
 }

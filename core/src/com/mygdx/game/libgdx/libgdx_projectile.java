@@ -53,6 +53,15 @@ public class libgdx_projectile {
         fdef.shape = shape;
 
         b2Body.createFixture(fdef);
+
+        CircleShape sensor = new CircleShape();
+        sensor.setRadius(1 / Dash.PPM);
+
+        fdef.isSensor = true;
+        fdef.shape = sensor;
+
+        b2Body.createFixture(fdef);
+
         return b2Body;
     }
 }

@@ -41,13 +41,6 @@ public abstract class libgdx_character{
         shape.setRadius(character.getRadius() / Dash.PPM);
         fdef.shape = shape;
 
-        b2Body.createFixture(fdef);
-
-        EdgeShape sensor = new EdgeShape();
-        sensor.set(new Vector2(8 / Dash.PPM, 10 / Dash.PPM), new Vector2(8 / Dash.PPM, -8 / Dash.PPM));
-        fdef.isSensor = true;
-        fdef.shape = sensor;
-
         fixture = b2Body.createFixture(fdef);
     }
 

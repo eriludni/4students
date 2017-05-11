@@ -14,11 +14,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
-import com.mygdx.game.libgdx.Dash;
+import com.mygdx.game.libgdx.*;
 import com.mygdx.game.Model.EnemyBrain;
-import com.mygdx.game.libgdx.libgdx_body_userdata;
-import com.mygdx.game.libgdx.libgdx_enemyBrain;
-import com.mygdx.game.libgdx.libgdx_world;
 
 import java.util.Iterator;
 
@@ -34,6 +31,7 @@ public class PlayScreen implements Screen {
     private PlayerController PC;
 
     private libgdx_enemyBrain EB;
+    private libgdx_enemy enemies;
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
@@ -50,6 +48,7 @@ public class PlayScreen implements Screen {
 
         PC = new PlayerController(gameWorld, gameCam, gamePort);
         EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
+        enemies = gameWorld.getEnemyCharacter();
     }
 
     public void update(float dt) {
@@ -62,6 +61,7 @@ public class PlayScreen implements Screen {
         removeBodies();
 
         EB.update(dt);
+        enemies.update(dt);
 
         gameCam.update();
         renderer.setView(gameCam);

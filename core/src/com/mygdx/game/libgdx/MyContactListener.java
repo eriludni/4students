@@ -13,6 +13,7 @@ public class MyContactListener implements ContactListener {
 
     private libgdx_world lgdxWorld = libgdx_world.getlgdxWorld();
     private libgdx_player lgdxPlayer = lgdxWorld.getPlayerCharacter();
+    private libgdx_enemy lgdxEnemy;
 
     public MyContactListener(World world){
         this.world = world;
@@ -22,6 +23,7 @@ public class MyContactListener implements ContactListener {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
         Body body = fixtureA.getBody();
+
         System.out.println(fixtureA.getShape().getType().equals(fixtureB.getShape().getType()));
         if(fixtureA.getBody().isBullet()){
             libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureA.getBody().getUserData();
@@ -34,14 +36,19 @@ public class MyContactListener implements ContactListener {
         if(fixtureA.getUserData() instanceof libgdx_player || fixtureB.getUserData() instanceof libgdx_player) {
             if(fixtureA.getUserData() instanceof libgdx_player) {
                 lgdxPlayer.reduceHealth(1);
-                System.out.println(lgdxPlayer.getHealth());
-                System.out.println("contact_1");
             }
             else {
                 System.out.println("contact_2");
             }
+        }
+        if(fixtureA.getBody().isBullet() || fixtureB.getBody().isBullet()) {
+                lgdxEnemy = lgdxWorld.getEnemyCharacter();
+                lgdxEnemy.reduceHealth(1);
+
+                System.out.println(lgdxEnemy.getHealth());
 
         }
+
     }
 
     @Override
