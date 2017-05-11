@@ -11,9 +11,9 @@ public class Generator {
     private final int row =19;
     private final int col = 100;
     private Random random = new Random();
-    private int pointsDistance = 6;
-    private int mountainTop = 14;
-    private int mountainDiff = 4;
+    private int pointsDistance = 5;
+    private int mountainTop = 13;
+    private int mountainDiff = 5;
 
 
     public Generator() {

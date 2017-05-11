@@ -32,15 +32,16 @@ public class libgdx_map {
 
     private TiledMapTileLayer groundLayer;
 
-    private List<int [][]> mapList;
 
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
     private TiledMapTile sky;
-    private libgdx_world libgdxWorld = libgdx_world.getlgdxWorld();
 
     public libgdx_map() {
+
         arrayGenerator = new Generator();
+
+
         texture = new Texture(Gdx.files.internal("tiles/Tiles_32x32.png"));
         TextureRegion[][] splitTiles = TextureRegion.split(texture, 32, 32);
 
@@ -83,9 +84,7 @@ public class libgdx_map {
             }
         }
     }
-    public void addMap(){
 
-    }
 
 
     public TiledMap getMap() {
