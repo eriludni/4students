@@ -31,13 +31,13 @@ public class PlayerController {
     }
     
     public void handleInput(float dt){
-        if(checkUpKeyPressed() && getPlayerLinearYVelocity() >= -0.2 && getPlayerLinearYVelocity() <= 0.2) {
+        if(player.getB2Body() != null && checkUpKeyPressed() && getPlayerLinearYVelocity() >= -0.2 && getPlayerLinearYVelocity() <= 0.2) {
             movePlayerUp(4f);
         }
-        if (checkRightKeyPressed() && getPlayerLinearXVelocity() <= 2) {
+        if (player.getB2Body() != null && checkRightKeyPressed() && getPlayerLinearXVelocity() <= 2) {
             movePlayerRight(0.1f);
         }
-        if (checkLeftKeyPressed() && getPlayerLinearXVelocity() >= -2) {
+        if (player.getB2Body() != null && checkLeftKeyPressed() && getPlayerLinearXVelocity() >= -2) {
             movePlayerLeft(-0.1f);
         }
         if (Gdx.input.isTouched()){

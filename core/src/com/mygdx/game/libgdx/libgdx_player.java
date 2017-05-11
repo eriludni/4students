@@ -16,9 +16,9 @@ public class libgdx_player extends libgdx_character{
 
     public libgdx_player(Player player) {
         this.character = player;
+        this.health = player.getHealth();
+
         defineCharacter(character);
-        System.out.println("libgdx_player created");
-        System.out.println(b2Body.getUserData());
     }
 
     @Override
@@ -28,11 +28,10 @@ public class libgdx_player extends libgdx_character{
     }
 
     public void update(float dt) {
-        character.checkDead();
-        System.out.println(character.getHealth());
+        this.checkDead();
 
-        if(character.isDead()) {
-            System.out.println("check 2");
+        if(this.isDead()) {
+
         }
     }
 }

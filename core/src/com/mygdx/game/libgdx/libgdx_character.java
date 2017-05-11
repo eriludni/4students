@@ -3,6 +3,7 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.Character;
+import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.ICharacter;
 import com.mygdx.game.Model.Projectile;
 
@@ -11,7 +12,7 @@ import java.awt.*;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class libgdx_character extends Character{
+public abstract class libgdx_character{
 
     protected ICharacter character;
     protected Body b2Body;
@@ -59,5 +60,31 @@ public abstract class libgdx_character extends Character{
 
     public Body getB2Body() {
         return b2Body;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void reduceHealth(int damageValue) {
+        setHealth(health - damageValue);
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void checkDead() {
+        if (health == 0) {
+            setDead(true);
+        }
     }
 }

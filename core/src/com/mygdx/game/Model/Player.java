@@ -18,5 +18,6 @@ public class Player extends Character implements ICharacter{
         this.dead = false;
 
         System.out.println("logical player created");
+        System.out.println(this.health);
     }
 }

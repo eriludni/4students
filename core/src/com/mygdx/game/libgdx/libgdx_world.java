@@ -34,7 +34,7 @@ public class libgdx_world {
 //<<<<<<< Updated upstream
         this.game = game;
         world = new World(new Vector2(0, -10), true);
-        world.setContactListener(new MyContactListener(world));
+
         libgdx_map mapCreator = new libgdx_map();
 
 //=======
@@ -78,6 +78,8 @@ public class libgdx_world {
         lgdxWorld = this;
         playerCharacter = new libgdx_player(logicalPlayer);
         enemyCharacter = new libgdx_enemy(logicalEnemy);
+
+        world.setContactListener(new MyContactListener(world));
     }
 
     public static libgdx_world getlgdxWorld() {

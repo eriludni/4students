@@ -11,6 +11,9 @@ import java.util.ArrayList;
 public class MyContactListener implements ContactListener {
     private World world;
 
+    private libgdx_world lgdxWorld = libgdx_world.getlgdxWorld();
+    private libgdx_player lgdxPlayer = lgdxWorld.getPlayerCharacter();
+
     public MyContactListener(World world){
         this.world = world;
     }
@@ -29,19 +32,15 @@ public class MyContactListener implements ContactListener {
             userdata.isSetForRemoval = true;
         }
         if(fixtureA.getUserData() instanceof libgdx_player || fixtureB.getUserData() instanceof libgdx_player) {
-            Fixture player;
-            Fixture enemy;
             if(fixtureA.getUserData() instanceof libgdx_player) {
-                player = fixtureA;
-
-                ((libgdx_player) player.getUserData()).reduceHealth(1);
+                lgdxPlayer.reduceHealth(1);
+                System.out.println(lgdxPlayer.getHealth());
+                System.out.println("contact_1");
             }
             else {
-                player = fixtureB;
-
-                ((libgdx_player) player.getUserData()).reduceHealth(1);
+                System.out.println("contact_2");
             }
-            System.out.println("contact");
+
         }
     }
 
