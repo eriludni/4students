@@ -13,7 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.Generator;
 
 import java.util.List;
@@ -37,6 +37,7 @@ public class libgdx_map {
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
     private TiledMapTile sky;
+    private libgdx_world libgdxWorld = libgdx_world.getlgdxWorld();
 
     public libgdx_map() {
         arrayGenerator = new Generator();
@@ -53,13 +54,11 @@ public class libgdx_map {
         sky = new StaticTiledMapTile(splitTiles[5][7]);
 
         placeTexture();
-
         layers.add(groundLayer);
-
 
     }
 
-    void placeTexture() {
+    private void placeTexture() {
         groundEdge.setId(1);
         ground.setId(0);
 
@@ -84,7 +83,6 @@ public class libgdx_map {
             }
         }
     }
-
     public void addMap(){
 
     }
