@@ -37,23 +37,41 @@ public class libgdx_map {
     private TiledMapTile ground;
     private TiledMapTile sky;
 
+    private MapLayers layers;
+    private int offsetX;
+
+    private TextureRegion[][] splitTiles;
+
+    public int getOffsetX() {
+        return offsetX;
+    }
+
     public libgdx_map() {
+        offsetX = 0;
 
         arrayGenerator = new Generator();
 
 
         texture = new Texture(Gdx.files.internal("tiles/Tiles_32x32.png"));
-        TextureRegion[][] splitTiles = TextureRegion.split(texture, 32, 32);
+        splitTiles = TextureRegion.split(texture, 32, 32);
 
-        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol(), arrayGenerator.getRow(), 32, 32);
+        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + 500, arrayGenerator.getRow(), 32, 32);
 
         map = new TiledMap();
-        MapLayers layers = map.getLayers();
+        layers = map.getLayers();
 
         groundEdge = new StaticTiledMapTile(splitTiles[0][0]);
         ground = new StaticTiledMapTile(splitTiles[0][4]);
         sky = new StaticTiledMapTile(splitTiles[5][7]);
 
+        placeTexture();
+        layers.add(groundLayer);
+
+    }
+
+    public void setNextlibgdx_map() {
+        offsetX += arrayGenerator.getCol();
+        arrayGenerator.setNextMapStructure();
         placeTexture();
         layers.add(groundLayer);
 
@@ -70,15 +88,15 @@ public class libgdx_map {
                 switch (id) {
                     case 0:
                         cell.setTile(sky);
-                        groundLayer.setCell(x, arrayGenerator.getRow() - y, cell);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
                         break;
                     case 1:
                         cell.setTile(groundEdge);
-                        groundLayer.setCell(x, arrayGenerator.getRow() - y, cell);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
                         break;
                     case 2:
                         cell.setTile(ground);
-                        groundLayer.setCell(x, arrayGenerator.getRow() - y, cell);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
                         break;
                 }
             }

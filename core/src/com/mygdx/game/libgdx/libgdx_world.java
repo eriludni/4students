@@ -43,7 +43,7 @@ public class libgdx_world {
         mapList = new ArrayList<libgdx_map>();
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
-        createGroundHitbox(mapList.get(0));
+        createGroundHitbox(mapList.get(0), 0);
 
         this.lgdxWorld = this;
         this.playerCharacter = new libgdx_player(logicalPlayer);
@@ -52,7 +52,7 @@ public class libgdx_world {
 
     }
 
-    private void createGroundHitbox(libgdx_map currentMap){
+    private void createGroundHitbox(libgdx_map currentMap, int offsetX){
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
@@ -60,9 +60,9 @@ public class libgdx_world {
 
         for (int x = 0; x < currentMap.getMapWidth(); x++) {
             for (int y = 0; y < currentMap.getMapHeight(); y++) {
-                if (x ==0 || y == 0){
+                if (y == 0){
                     bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set((x * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
+                    bdf.position.set(((x + offsetX) * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
 
                     body = world.createBody(bdf);
 
@@ -73,7 +73,7 @@ public class libgdx_world {
                 }
                 if (currentMap.getArrayId(x, y) == 1) {
                     bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set((x * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
+                    bdf.position.set(((x + offsetX) * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
 
                     body = world.createBody(bdf);
 
@@ -89,6 +89,12 @@ public class libgdx_world {
 
     public void mapListManager(){
 
+    }
+
+    public void updateWorld(){
+        mapList.get(0).setNextlibgdx_map();
+        int offsetX = mapList.get(0).getOffsetX();
+        createGroundHitbox(mapList.get(0), offsetX);
     }
 
     public static libgdx_world getlgdxWorld() {

@@ -30,6 +30,8 @@ public class PlayScreen implements Screen {
     private libgdx_world gameWorld;
     private PlayerController PC;
 
+    private int limit = 12;
+
     private libgdx_enemyBrain EB;
     private libgdx_enemy enemies;
 
@@ -54,6 +56,13 @@ public class PlayScreen implements Screen {
     public void update(float dt) {
         PC.handleInput(dt);
         gameWorld.getPlayerCharacter().update(dt);
+
+        System.out.println("HEJSAN:" + ((int) gameCam.position.x > limit));
+        if((int) gameCam.position.x > limit)
+        {
+            gameWorld.updateWorld();
+            limit += 12;
+        }
 
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
