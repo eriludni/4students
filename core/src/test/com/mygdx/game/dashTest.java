@@ -39,8 +39,8 @@ public class dashTest {
     public void testGenerator(){
     Generator generator = new Generator();
 
-    for (int x = 0; x <generator.getRow(); x++){
-        for (int y = 0; y < generator.getCol(); y++){
+    for (int x = 0; x <generator.getCol(); x++){
+        for (int y = 0; y < generator.getRow(); y++){
             System.out.print(generator.getMapArray(x,y));
         }
         System.out.println();

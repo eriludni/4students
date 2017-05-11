@@ -8,12 +8,12 @@ import java.util.Random;
 public class Generator {
 
     private int[][] mapArray;
-    private final int row =19;
-    private final int col = 100;
+    private final int row =20;
+    private final int col = 400;
     private Random random = new Random();
-    private int pointsDistance = 5;
-    private int mountainTop = 13;
-    private int mountainDiff = 5;
+    private int pointsDistance = 4;
+    private int mountainTop = 17;
+    private int mountainDiff = 3;
 
 
     public Generator() {
