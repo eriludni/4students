@@ -52,7 +52,6 @@ public class PlayScreen implements Screen {
         EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
     }
 
-
     public void update(float dt) {
         PC.handleInput(dt);
         gameWorld.getPlayerCharacter().update(dt);
