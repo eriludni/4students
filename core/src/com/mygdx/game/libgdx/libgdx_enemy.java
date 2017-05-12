@@ -4,15 +4,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.ICharacter;
+import com.mygdx.game.Model.IKillable;
 
 /**
  * Created by Lucas on 2017-05-05.
  */
 public class libgdx_enemy extends libgdx_character{
+    private ICharacter character;
+    private IKillable killableCharacter;
 
     public libgdx_enemy(Enemy enemy) {
-        this.character = enemy;
-        this.killableCharacter = enemy;
+        character = enemy;
+        killableCharacter = enemy;
 
         defineCharacter(character);
 
@@ -80,14 +83,6 @@ public class libgdx_enemy extends libgdx_character{
         getB2Body().setLinearVelocity(getB2Body().getLinearVelocity().x, y);
     }
 
-    public float getEnemyXVelocity() {
-        return character.getX_velocity();
-    }
-
-    public void reverseEnemyXVelocity() {
-        character.reverseXVelocity();
-    }
-
     public void dispose() {
         this.dispose();
     }
@@ -96,10 +91,18 @@ public class libgdx_enemy extends libgdx_character{
     Checks if the enemy has died
      */
     public void update(float dt) {
-        this.checkDead();
+        killableCharacter.checkDead();
 
-        if(isDead()) {
+        if(killableCharacter.isDead()) {
             //System.out.println("Enemy died");
         }
+    }
+
+    public ICharacter getCharacter() {
+        return character;
+    }
+
+    public IKillable getKillableCharacter() {
+        return killableCharacter;
     }
 }

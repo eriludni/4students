@@ -114,7 +114,7 @@ public class PlayScreen implements Screen {
         enemies = gameWorld.getEnemyCharacters();
 
         for(int i = 0; i < enemies.size(); i++) {
-            if(enemies.get(i).isDead()) {
+            if(enemies.get(i).getKillableCharacter().isDead()) {
                 libgdx_enemy enemy = enemies.get(i);
                 enemies.remove(enemy);
                 gameWorld.getWorld().destroyBody(enemy.getB2Body());

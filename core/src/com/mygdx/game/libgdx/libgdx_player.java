@@ -3,6 +3,7 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.ICharacter;
+import com.mygdx.game.Model.IKillable;
 import com.mygdx.game.Model.Player;
 
 import java.awt.*;
@@ -11,10 +12,12 @@ import java.awt.*;
  * Created by Lucas on 2017-05-05.
  */
 public class libgdx_player extends libgdx_character{
+    private ICharacter character;
+    private IKillable killableCharacter;
 
     public libgdx_player(Player player) {
-        this.character = player;
-        this.killableCharacter = player;
+        character = player;
+        killableCharacter = player;
         //this.health = player.getHealth();
 
         defineCharacter(character);
@@ -47,6 +50,14 @@ public class libgdx_player extends libgdx_character{
     Checks if the player has died
      */
     public void update(float dt) {
-        this.checkDead();
+        killableCharacter.checkDead();
+    }
+
+    public ICharacter getCharacter() {
+        return character;
+    }
+
+    public IKillable getKillableCharacter() {
+        return killableCharacter;
     }
 }

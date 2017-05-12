@@ -12,9 +12,6 @@ import java.util.ArrayList;
  * Created by Lucas on 2017-05-05.
  */
 public abstract class libgdx_character{
-
-    protected ICharacter character;
-    protected IKillable killableCharacter;
     protected Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
     protected Fixture fixture;
@@ -46,34 +43,10 @@ public abstract class libgdx_character{
             int x = (int) (getB2Body().getWorldCenter().x * 100);
             int y = (int) (getB2Body().getWorldCenter().y * 100 + 20);
             Point playerPosition = new Point(x, y);
-            new libgdx_projectile(playerPosition, targetPosition, new Projectile(5,2));
+            new libgdx_projectile(playerPosition, targetPosition, new Projectile(5,1));
     }
 
     public Body getB2Body() {
         return b2Body;
-    }
-
-    public int getHealth() {
-        return killableCharacter.getHealth();
-    }
-
-    public void setHealth(int health) {
-        killableCharacter.setHealth(health);
-    }
-
-    public void reduceHealth(int damageValue) {
-        killableCharacter.reduceHealth(damageValue);
-    }
-
-    public void setDead(boolean dead) {
-        killableCharacter.setDead(dead);
-    }
-
-    public boolean isDead() {
-        return killableCharacter.isDead();
-    }
-
-    public void checkDead() {
-        killableCharacter.checkDead();
     }
 }

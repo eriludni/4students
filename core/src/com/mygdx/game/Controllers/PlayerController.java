@@ -40,7 +40,7 @@ public class PlayerController {
         if (player.getB2Body() != null && checkLeftKeyPressed() && getPlayerLinearXVelocity() >= -2) {
             movePlayerLeft(-0.1f);
         }
-        if (Gdx.input.isTouched()){
+        if (Gdx.input.justTouched()){
             shootPlayerProjectile();
         }
     }
