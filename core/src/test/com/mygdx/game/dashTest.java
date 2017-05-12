@@ -53,10 +53,9 @@ public class dashTest {
 
     @Test
     public void testPlayerCheckDead() {
-        Player player = new Player(3, 2, 2, 100, 100, 5);
-        player.setDead(true);
+        Player player = new Player(0, 2, 2, 100, 100, 5);
         player.checkDead();
-        assertTrue(player.getToBeRemoved() == true);
+        assertTrue(player.isDead() == true);
     }
 
     @Test
@@ -85,10 +84,9 @@ public class dashTest {
 
     @Test
     public void testEnemyCheckDead() {
-        Enemy enemy = new Enemy(3, 2, 2, 100, 100, 5);
-        enemy.setDead(true);
+        Enemy enemy = new Enemy(0, 2, 2, 100, 100, 5);
         enemy.checkDead();
-        assertTrue(enemy.getToBeRemoved() == true);
+        assertTrue(enemy.isDead() == true);
     }
 
     @Test
