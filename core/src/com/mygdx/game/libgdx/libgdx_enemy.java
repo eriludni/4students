@@ -14,16 +14,16 @@ public class libgdx_enemy extends libgdx_character{
         this.character = enemy;
         this.killableCharacter = enemy;
 
-        this.health = killableCharacter.getHealth();
-        this.dead = killableCharacter.isDead();
-        this.toBeRemoved = killableCharacter.getToBeRemoved();
-
-        this.xPos = character.getXPos();
-        this.yPos = character.getYPos();
-        this.radius = character.getRadius();
-        this.x_velocity = character.getX_velocity();
-        this.y_velocity = character.getY_velocity();
-        this.airBorn = character.isAirBorn();
+        //this.health = killableCharacter.getHealth();
+        //this.dead = killableCharacter.isDead();
+        //this.toBeRemoved = killableCharacter.getToBeRemoved();
+//
+        //this.xPos = character.getXPos();
+        //this.yPos = character.getYPos();
+        //this.radius = character.getRadius();
+        //this.x_velocity = character.getX_velocity();
+        //this.y_velocity = character.getY_velocity();
+        //this.airBorn = character.isAirBorn();
 
         defineCharacter(character);
 
@@ -92,11 +92,11 @@ public class libgdx_enemy extends libgdx_character{
     }
 
     public float getEnemyXVelocity() {
-        return this.x_velocity;
+        return character.getX_velocity();
     }
 
     public void reverseEnemyXVelocity() {
-        this.x_velocity = -this.x_velocity;
+        character.reverseXVelocity();
     }
 
     public void dispose() {

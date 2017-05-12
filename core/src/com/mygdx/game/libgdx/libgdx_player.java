@@ -14,7 +14,8 @@ public class libgdx_player extends libgdx_character{
 
     public libgdx_player(Player player) {
         this.character = player;
-        this.health = player.getHealth();
+        this.killableCharacter = player;
+        //this.health = player.getHealth();
 
         defineCharacter(character);
 

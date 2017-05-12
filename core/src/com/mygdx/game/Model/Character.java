@@ -96,7 +96,7 @@ public abstract class Character implements ICharacter, IKillable{
 
     @Override
     public void checkDead() {
-        if (health == 0) {
+        if (health <= 0) {
             setDead(true);
         }
     }

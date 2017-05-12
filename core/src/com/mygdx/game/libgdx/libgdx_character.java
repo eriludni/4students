@@ -19,16 +19,6 @@ public abstract class libgdx_character{
     protected libgdx_world world = libgdx_world.getlgdxWorld();
     protected Fixture fixture;
 
-    protected int health;
-    protected float xPos;
-    protected float yPos;
-    protected float radius;
-    protected float x_velocity;
-    protected float y_velocity;
-    protected boolean dead;
-    protected boolean airBorn;
-    protected boolean toBeRemoved;
-
     /*
     Applies a Body to the specified character
      */
@@ -64,28 +54,26 @@ public abstract class libgdx_character{
     }
 
     public int getHealth() {
-        return health;
+        return killableCharacter.getHealth();
     }
 
     public void setHealth(int health) {
-        this.health = health;
+        killableCharacter.setHealth(health);
     }
 
     public void reduceHealth(int damageValue) {
-        setHealth(health - damageValue);
+        killableCharacter.reduceHealth(damageValue);
     }
 
     public void setDead(boolean dead) {
-        this.dead = dead;
+        killableCharacter.setDead(dead);
     }
 
     public boolean isDead() {
-        return dead;
+        return killableCharacter.isDead();
     }
 
     public void checkDead() {
-        if (health <= 0) {
-            setDead(true);
-        }
+        killableCharacter.checkDead();
     }
 }
