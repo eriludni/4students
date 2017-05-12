@@ -10,17 +10,11 @@ import com.mygdx.game.Model.IKillable;
  * Created by Lucas on 2017-05-05.
  */
 public class libgdx_enemy extends libgdx_character{
-    private ICharacter character;
-    private IKillable killableCharacter;
+    private Enemy enemyModel;
 
     public libgdx_enemy(Enemy enemy) {
-        character = enemy;
-        killableCharacter = enemy;
-
-        defineCharacter(character);
-
-        System.out.println("libgdx_enemy created");
-        System.out.println(b2Body.getUserData());
+        enemyModel = enemy;
+        defineCharacter(enemyModel);
     }
 
     /*
@@ -29,7 +23,7 @@ public class libgdx_enemy extends libgdx_character{
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
-        b2Body.setUserData(this);
+        getB2Body().setUserData(this);
     }
 
     /*
@@ -91,18 +85,14 @@ public class libgdx_enemy extends libgdx_character{
     Checks if the enemy has died
      */
     public void update(float dt) {
-        killableCharacter.checkDead();
+        enemyModel.checkDead();
 
-        if(killableCharacter.isDead()) {
+        if(enemyModel.isDead()) {
             //System.out.println("Enemy died");
         }
     }
 
-    public ICharacter getCharacter() {
-        return character;
-    }
-
-    public IKillable getKillableCharacter() {
-        return killableCharacter;
+    public Enemy getEnemyModel() {
+        return enemyModel;
     }
 }

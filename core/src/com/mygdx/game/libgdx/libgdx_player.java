@@ -12,18 +12,12 @@ import java.awt.*;
  * Created by Lucas on 2017-05-05.
  */
 public class libgdx_player extends libgdx_character{
-    private ICharacter character;
-    private IKillable killableCharacter;
+    private Player playerModel;
 
     public libgdx_player(Player player) {
-        character = player;
-        killableCharacter = player;
-        //this.health = player.getHealth();
+        playerModel = player;
 
-        defineCharacter(character);
-
-        System.out.println("libgdx_player created");
-        System.out.println(b2Body.getUserData());
+        defineCharacter(playerModel);
     }
 
     /*
@@ -41,23 +35,19 @@ public class libgdx_player extends libgdx_character{
         fdef.isSensor = true;
         fdef.shape = sensor;
 
-        fixture = b2Body.createFixture(fdef);
+        getB2Body().createFixture(fdef);
 
-        b2Body.setUserData(this);
+        getB2Body().setUserData(this);
     }
 
     /*
     Checks if the player has died
      */
     public void update(float dt) {
-        killableCharacter.checkDead();
+        playerModel.checkDead();
     }
 
-    public ICharacter getCharacter() {
-        return character;
-    }
-
-    public IKillable getKillableCharacter() {
-        return killableCharacter;
+    public Player getPlayerModel() {
+        return playerModel;
     }
 }

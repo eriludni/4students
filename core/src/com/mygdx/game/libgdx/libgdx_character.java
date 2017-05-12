@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * Created by Lucas on 2017-05-05.
  */
 public abstract class libgdx_character{
-    protected Body b2Body;
-    protected libgdx_world world = libgdx_world.getlgdxWorld();
-    protected Fixture fixture;
+    private Body b2Body;
+    private libgdx_world world = libgdx_world.getlgdxWorld();
+    private Fixture fixture;
 
     /*
     Applies a Body to the specified character

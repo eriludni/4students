@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.*;
 //<<<<<<< Updated upstream
-import com.badlogic.gdx.utils.viewport.*;
 //=======
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -16,10 +15,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.libgdx.*;
-import com.mygdx.game.Model.EnemyBrain;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by Erik on 05/04/2017.
@@ -114,7 +111,7 @@ public class PlayScreen implements Screen {
         enemies = gameWorld.getEnemyCharacters();
 
         for(int i = 0; i < enemies.size(); i++) {
-            if(enemies.get(i).getKillableCharacter().isDead()) {
+            if(enemies.get(i).getEnemyModel().isDead()) {
                 libgdx_enemy enemy = enemies.get(i);
                 enemies.remove(enemy);
                 gameWorld.getWorld().destroyBody(enemy.getB2Body());

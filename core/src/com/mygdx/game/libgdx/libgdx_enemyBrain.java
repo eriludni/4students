@@ -61,13 +61,13 @@ public class libgdx_enemyBrain {
 
 
     public void linearBehaviour() {
-        System.out.println(lgdxEnemy.getCharacter().getX_velocity());
-        lgdxEnemy.moveEnemyRight(lgdxEnemy.getCharacter().getX_velocity());
+        System.out.println(lgdxEnemy.getEnemyModel().getX_velocity());
+        lgdxEnemy.moveEnemyRight(lgdxEnemy.getEnemyModel().getX_velocity());
         if(lgdxEnemy.getEnemyLinearXVelocity() >= 3) {
-            lgdxEnemy.getCharacter().reverseXVelocity();
+            lgdxEnemy.getEnemyModel().reverseXVelocity();
         }
         if(lgdxEnemy.getEnemyLinearXVelocity() <= -3) {
-            lgdxEnemy.getCharacter().reverseYVelocity();
+            lgdxEnemy.getEnemyModel().reverseYVelocity();
         }
     }
 
