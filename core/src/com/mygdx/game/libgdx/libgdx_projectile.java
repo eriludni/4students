@@ -17,6 +17,7 @@ import java.awt.*;
 public class libgdx_projectile {
     private Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
+    private boolean setForRemoval = false;
 
     libgdx_projectile(Point startPosition, Point targetPosition, float speed){
         Vector2 projectileVector = getDirectionVector(startPosition, targetPosition);
@@ -67,6 +68,14 @@ public class libgdx_projectile {
         b2Body.createFixture(fdef);
 
         return b2Body;
+    }
+
+    public boolean isSetForRemoval() {
+        return setForRemoval;
+    }
+
+    public void setForRemoval() {
+        setForRemoval = true;
     }
 
     public void dispose() {

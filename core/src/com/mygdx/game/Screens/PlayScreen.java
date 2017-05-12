@@ -17,6 +17,7 @@ import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.libgdx.*;
 import com.mygdx.game.Model.EnemyBrain;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -57,7 +58,7 @@ public class PlayScreen implements Screen {
         PC.handleInput(dt);
         gameWorld.getPlayerCharacter().update(dt);
 
-        System.out.println("HEJSAN:" + ((int) gameCam.position.x > limit));
+        //System.out.println("HEJSAN:" + ((int) gameCam.position.x > limit));
         if((int) gameCam.position.x > limit)
         {
             gameWorld.updateWorld();
@@ -67,7 +68,7 @@ public class PlayScreen implements Screen {
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
-        //removeBodies();
+        removeBodies();
 
         EB.update(dt);
         enemies.update(dt);
@@ -75,15 +76,16 @@ public class PlayScreen implements Screen {
         gameCam.update();
         renderer.setView(gameCam);
     }
-/*
+
     public void removeBodies() {
         Array<Body> bodies = new Array<Body>(10);
         gameWorld.getWorld().getBodies(bodies);
         for (int i = 0; i < bodies.size; i++) {
             Body body = bodies.get(i);
             if (body != null && body.isBullet()) {
-                libgdx_body_userdata data = (libgdx_body_userdata) body.getUserData();
-                if (data.isSetForRemoval) {
+                //libgdx_body_userdata data = (libgdx_body_userdata) body.getUserData();
+                libgdx_projectile data = (libgdx_projectile) body.getUserData();
+                if (data.isSetForRemoval()) {
                     gameWorld.getWorld().destroyBody(body);
                     body.setUserData(null);
                     body = null;
@@ -91,7 +93,6 @@ public class PlayScreen implements Screen {
             }
         }
     }
-    */
 
     @Override
     public void show() {

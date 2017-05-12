@@ -17,6 +17,9 @@ public class libgdx_player extends libgdx_character{
         this.health = player.getHealth();
 
         defineCharacter(character);
+
+        System.out.println("libgdx_player created");
+        System.out.println(b2Body.getUserData());
     }
 
     @Override
@@ -33,7 +36,7 @@ public class libgdx_player extends libgdx_character{
 
         fixture = b2Body.createFixture(fdef);
 
-        fixture.setUserData(this);
+        b2Body.setUserData(this);
     }
 
     public void update(float dt) {

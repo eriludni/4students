@@ -30,8 +30,6 @@ public abstract class libgdx_character{
     protected boolean airBorn;
     protected boolean toBeRemoved;
 
-    protected ArrayList<String> list = new ArrayList<String>();
-
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();
         bdef.position.set( character.getXPos() / Dash.PPM, character.getYPos() / Dash.PPM);
@@ -50,10 +48,10 @@ public abstract class libgdx_character{
     }
 
     public void shootProjectile(Point targetPosition) {
-        int x = (int)(getB2Body().getWorldCenter().x * 100);
-        int y = (int)(getB2Body().getWorldCenter().y * 100 + 20);
-        Point playerPosition = new Point(x,y);
-        new libgdx_projectile(playerPosition, targetPosition, 5);
+            int x = (int) (getB2Body().getWorldCenter().x * 100);
+            int y = (int) (getB2Body().getWorldCenter().y * 100 + 20);
+            Point playerPosition = new Point(x, y);
+            new libgdx_projectile(playerPosition, targetPosition, 5);
     }
 
     public Body getB2Body() {

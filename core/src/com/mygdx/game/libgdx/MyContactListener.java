@@ -28,19 +28,27 @@ public class MyContactListener implements ContactListener {
         if(fixtureA.getBody().isBullet()){
             //libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureA.getBody().getUserData();
             //userdata.isSetForRemoval = true;
+
+            libgdx_projectile userdata = (libgdx_projectile) fixtureA.getBody().getUserData();
+            userdata.setForRemoval();
         }
         if(fixtureB.getBody().isBullet()){
             //libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureB.getBody().getUserData();
             //userdata.isSetForRemoval = true;
 
-            ((libgdx_projectile) fixtureB.getBody().getUserData()).dispose();
+            libgdx_projectile userdata = (libgdx_projectile) fixtureB.getBody().getUserData();
+            userdata.setForRemoval();
         }
 
-        if(fixtureA.getUserData() instanceof libgdx_player || fixtureB.getUserData() instanceof libgdx_player) {
-            if(fixtureA.getUserData() instanceof libgdx_player) {
+        if(fixtureA.getBody().getUserData() instanceof libgdx_player || fixtureB.getBody().getUserData() instanceof libgdx_player) {
+            if(fixtureA.getBody().getUserData() instanceof libgdx_player && fixtureB.getBody().getUserData() instanceof libgdx_enemy) {
                 lgdxPlayer.reduceHealth(1);
+                System.out.println(lgdxPlayer.getHealth());
+                System.out.println("contact_1");
             }
-            else {
+            else if(fixtureA.getBody().getUserData() instanceof  libgdx_enemy && fixtureB.getBody().getUserData() instanceof libgdx_player) {
+                lgdxPlayer.reduceHealth(1);
+                System.out.println(lgdxPlayer.getHealth());
                 System.out.println("contact_2");
             }
         }
@@ -50,6 +58,7 @@ public class MyContactListener implements ContactListener {
                 lgdxEnemy.reduceHealth(1);
 
                 System.out.println(lgdxEnemy.getHealth());
+                System.out.println("contact_3");
             }
 
         }
