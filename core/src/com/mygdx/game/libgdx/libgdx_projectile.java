@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.mygdx.game.Model.Projectile;
 
 import java.awt.*;
 
@@ -17,11 +18,12 @@ import java.awt.*;
 public class libgdx_projectile {
     private Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
-    private boolean setForRemoval = false;
+    private Projectile projectileModel;
 
-    libgdx_projectile(Point startPosition, Point targetPosition, float speed){
+    libgdx_projectile(Point startPosition, Point targetPosition, Projectile projectileModel){
+        this.projectileModel = projectileModel;
         Vector2 projectileVector = getDirectionVector(startPosition, targetPosition);
-        projectileVector.setLength(speed);
+        projectileVector.setLength(this.projectileModel.getSpeed());
 
         Body projectileBody = initiateProjectileBody(startPosition);
         projectileBody.setLinearVelocity(projectileVector);
@@ -71,11 +73,11 @@ public class libgdx_projectile {
     }
 
     public boolean isSetForRemoval() {
-        return setForRemoval;
+        return projectileModel.hasCollided();
     }
 
     public void setForRemoval() {
-        setForRemoval = true;
+        projectileModel.JustCollided();
     }
 
     public void dispose() {

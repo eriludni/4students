@@ -8,10 +8,12 @@ import java.awt.color.ICC_ColorSpace;
 public class Projectile {
     private float speed;
     private int damage;
+    private boolean hasCollided;
 
-    Projectile(float speed, int damage){
+    public Projectile(float speed, int damage){
         this.speed = speed;
         this.damage = damage;
+        hasCollided = false;
     }
 
     public void dealDamage(IKillable character){
@@ -20,5 +22,13 @@ public class Projectile {
 
     public float getSpeed(){
         return speed;
+    }
+
+    public void JustCollided(){
+        hasCollided = true;
+    }
+
+    public boolean hasCollided(){
+        return hasCollided;
     }
 }

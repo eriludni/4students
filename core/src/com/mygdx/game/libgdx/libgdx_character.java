@@ -46,7 +46,7 @@ public abstract class libgdx_character{
             int x = (int) (getB2Body().getWorldCenter().x * 100);
             int y = (int) (getB2Body().getWorldCenter().y * 100 + 20);
             Point playerPosition = new Point(x, y);
-            new libgdx_projectile(playerPosition, targetPosition, 5);
+            new libgdx_projectile(playerPosition, targetPosition, new Projectile(5,2));
     }
 
     public Body getB2Body() {
