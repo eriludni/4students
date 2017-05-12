@@ -11,15 +11,18 @@ import java.util.Random;
  */
 public class libgdx_enemyBrain {
     private libgdx_enemy lgdxEnemy;
-    private final int BEHAVIOR;
+    private final int BEHAVIOUR;
     private Random rand = new Random();
 
     public libgdx_enemyBrain(libgdx_enemy lgdxEnemy) {
         this.lgdxEnemy = lgdxEnemy;
-        this.BEHAVIOR = 2;
+        this.BEHAVIOUR = 2;
     }
 
-    public void sporadicBehavior() {
+    /*
+       Move the enemy in a random direction for a random amount of time
+     */
+    public void sporadicBehaviour() {
         int direction = rand.nextInt(3);
         int time = (rand.nextInt(2) + 1) * 30;
         float jumpVelocity = rand.nextFloat() * 4;
@@ -56,7 +59,8 @@ public class libgdx_enemyBrain {
         }
     }
 
-    public void linearBehavior() {
+
+    public void linearBehaviour() {
         System.out.println(lgdxEnemy.getEnemyXVelocity());
         lgdxEnemy.moveEnemyRight(lgdxEnemy.getEnemyXVelocity());
         if(lgdxEnemy.getEnemyLinearXVelocity() >= 3) {
@@ -67,7 +71,10 @@ public class libgdx_enemyBrain {
         }
     }
 
-    public void mirroredBehavior() {
+    /*
+    Move the enemy in the opposite direction the player movement, except for up.
+     */
+    public void mirroredBehaviour() {
         if(checkUpKeyPressed() && lgdxEnemy.getEnemyLinearYVelocity() == 0) {
             lgdxEnemy.moveEnemyUp(4f);
         }
@@ -79,30 +86,42 @@ public class libgdx_enemyBrain {
         }
     }
 
+    /*
+    Checks if the key used for upwards movement has been pressed
+     */
     public boolean checkUpKeyPressed() {
         return Gdx.input.isKeyJustPressed(Input.Keys.W);
     }
 
+    /*
+    Checks if the key used for rightwards movement has been pressed
+     */
     public boolean checkRightKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.D);
     }
 
+    /*
+    Checks if the key used for leftwards movement has been pressed
+     */
     public boolean checkLeftKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.A);
     }
 
+    /*
+    Decides which method, sporadicBehaviour(), linearBehaviour(), mirroredBehaviour(), that will be executed.
+     */
     public void update(float dt) {
-        switch(BEHAVIOR) {
+        switch(BEHAVIOUR) {
             case(0):
-                linearBehavior();
+                linearBehaviour();
                 break;
 
             case(1):
-                sporadicBehavior();
+                sporadicBehaviour();
                 break;
 
             case(2):
-                mirroredBehavior();
+                mirroredBehaviour();
                 break;
         }
     }

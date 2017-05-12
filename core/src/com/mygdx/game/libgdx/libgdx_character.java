@@ -30,6 +30,9 @@ public abstract class libgdx_character{
     protected boolean airBorn;
     protected boolean toBeRemoved;
 
+    /*
+    Applies a Body to the specified character
+     */
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();
         bdef.position.set( character.getXPos() / Dash.PPM, character.getYPos() / Dash.PPM);
@@ -47,6 +50,9 @@ public abstract class libgdx_character{
         fixture = b2Body.createFixture(fdef);
     }
 
+    /*
+    Creates a projectile and launches it towards a point indicated by the mouse
+     */
     public void shootProjectile(Point targetPosition) {
             int x = (int) (getB2Body().getWorldCenter().x * 100);
             int y = (int) (getB2Body().getWorldCenter().y * 100 + 20);

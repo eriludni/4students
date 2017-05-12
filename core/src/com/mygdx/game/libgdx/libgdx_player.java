@@ -22,6 +22,9 @@ public class libgdx_player extends libgdx_character{
         System.out.println(b2Body.getUserData());
     }
 
+    /*
+    Applies a Body to the player, by using the method defineCharacter() in its super class and sets its userdata to itself, so it can be identified later
+     */
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
@@ -39,11 +42,10 @@ public class libgdx_player extends libgdx_character{
         b2Body.setUserData(this);
     }
 
+    /*
+    Checks if the player has died
+     */
     public void update(float dt) {
         this.checkDead();
-    }
-
-    public void dispose() {
-        this.dispose();
     }
 }
