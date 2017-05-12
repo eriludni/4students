@@ -2,6 +2,8 @@ package com.mygdx.game.Model;
 
 import com.mygdx.game.libgdx.Dash;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Erik on 26/04/2017.
@@ -10,11 +12,11 @@ public class GameWorld {
 
     private Dash game;
     private Player logicalPlayer;
-    private Enemy logicalEnemy;
+    private ArrayList<Enemy> logicalEnemies;
 
-    public GameWorld(Player player, Enemy enemy, Dash game) {
+    public GameWorld(Player player, ArrayList<Enemy> enemies, Dash game) {
         this.logicalPlayer = player;
-        this.logicalEnemy = enemy;
+        this.logicalEnemies = enemies;
         this.game = game;
     }
 
@@ -22,8 +24,8 @@ public class GameWorld {
    public Player getLogicalPlayerCharacter(){
        return logicalPlayer;
    }
-   public Enemy getLogicalEnemyCharacter() {
-       return logicalEnemy;
+   public ArrayList<Enemy> getLogicalEnemies() {
+       return logicalEnemies;
    }
 
 

@@ -33,8 +33,8 @@ public class PlayScreen implements Screen {
 
     private int limit = 12;
 
-    private libgdx_enemyBrain EB;
-    private libgdx_enemy enemies;
+    private ArrayList<libgdx_enemyBrain> EB = new ArrayList<libgdx_enemyBrain>();
+    private ArrayList<libgdx_enemy> enemies;
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
@@ -49,9 +49,11 @@ public class PlayScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / Dash.PPM);
         b2dr = new Box2DDebugRenderer();
 
+        enemies = gameWorld.getEnemyCharacters();
+
         PC = new PlayerController(gameWorld, gameCam, gamePort);
-        EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
-        enemies = gameWorld.getEnemyCharacter();
+        //EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
+        createEnemyBrains();
     }
 
     public void update(float dt) {
@@ -68,16 +70,27 @@ public class PlayScreen implements Screen {
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
-        removeBodies();
+        removeBullets();
 
-        EB.update(dt);
-        enemies.update(dt);
+        for(int i = 0; i < EB.size(); i++) {
+            EB.get(i).update(dt);
+        }
+
+        for(int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).update(dt);
+        }
 
         gameCam.update();
         renderer.setView(gameCam);
     }
 
-    public void removeBodies() {
+    public void createEnemyBrains() {
+        for(int i = 0; i < gameWorld.getEnemyCharacters().size(); i++) {
+            EB.add(new libgdx_enemyBrain(enemies.get(i)));
+        }
+    }
+
+    public void removeBullets() {
         Array<Body> bodies = new Array<Body>(10);
         gameWorld.getWorld().getBodies(bodies);
         for (int i = 0; i < bodies.size; i++) {

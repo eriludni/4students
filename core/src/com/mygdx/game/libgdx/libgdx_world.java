@@ -24,12 +24,14 @@ public class libgdx_world {
     private World world;
 
     private libgdx_player playerCharacter;
-    private libgdx_enemy enemyCharacter;
+
+    private ArrayList<libgdx_enemy> enemyCharacters = new ArrayList<libgdx_enemy>();
+
     private libgdx_map mapCreator;
     private ArrayList<libgdx_map> mapList;
 
     private Player logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 10);
-    private Enemy logicalEnemy = new Enemy(3, 0.1f, 0, 200, 300, 20);
+    private ArrayList<Enemy> logicalEnemies = new ArrayList<Enemy>();
 
     private static libgdx_world lgdxWorld;
 
@@ -47,9 +49,29 @@ public class libgdx_world {
 
         this.lgdxWorld = this;
         this.playerCharacter = new libgdx_player(logicalPlayer);
-        this.enemyCharacter = new libgdx_enemy(logicalEnemy);
+
+        //this.enemyCharacter = new libgdx_enemy(logicalEnemy);
+        createLogicalEnemies();
+        createLibgdxEnemies();
+
         this.world.setContactListener(new MyContactListener(world));
 
+    }
+
+    public void createLogicalEnemies() {
+        int xPos = 200;
+        int yPos = 300;
+        for(int i = 0; i < 10; i++) {
+            xPos += 100;
+            logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
+        }
+    }
+
+    public void createLibgdxEnemies() {
+        for(int i = 0; i < logicalEnemies.size(); i++) {
+            Enemy logicalEnemy = logicalEnemies.get(i);
+            enemyCharacters.add(new libgdx_enemy(logicalEnemy));
+        }
     }
 
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
@@ -106,8 +128,18 @@ public class libgdx_world {
         return playerCharacter;
     }
 
+    /*
     public libgdx_enemy getEnemyCharacter() {
         return enemyCharacter;
+    }
+    */
+
+    public ArrayList<libgdx_enemy> getEnemyCharacters() {
+        return enemyCharacters;
+    }
+
+    public ArrayList<Enemy> getLogicalEnemies() {
+        return logicalEnemies;
     }
 
     public World getWorld() {
