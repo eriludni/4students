@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Model.Player;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 
@@ -30,46 +31,37 @@ public class libgdx_world {
     private libgdx_map mapCreator;
     private ArrayList<libgdx_map> mapList;
 
-    private Player logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 10);
-    private ArrayList<Enemy> logicalEnemies = new ArrayList<Enemy>();
-
     private static libgdx_world lgdxWorld;
+    private GameWorld logicalWorld;
+
+    private ArrayList<Enemy> logicalEnemies;
 
     private TiledMap map;
 
-    public libgdx_world(Dash game) {
+    public libgdx_world(Dash game, GameWorld logicalWorld) {
 
         this.game = game;
         this.world = new World(new Vector2(0, -10), true);
+        this.logicalWorld = logicalWorld;
         //this.mapCreator = new libgdx_map();
         mapList = new ArrayList<libgdx_map>();
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
         createGroundHitbox(mapList.get(0), 0);
 
-        this.lgdxWorld = this;
-        this.playerCharacter = new libgdx_player(logicalPlayer);
+        logicalEnemies = logicalWorld.getLogicalEnemies();
 
-        //this.enemyCharacter = new libgdx_enemy(logicalEnemy);
-        createLogicalEnemies();
+        this.lgdxWorld = this;
+        this.playerCharacter = new libgdx_player(logicalWorld.getLogicalPlayerCharacter());
+
         createLibgdxEnemies();
 
         this.world.setContactListener(new MyContactListener(world));
-
-    }
-
-    public void createLogicalEnemies() {
-        int xPos = 200;
-        int yPos = 300;
-        for(int i = 0; i < 10; i++) {
-            xPos += 100;
-            logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
-        }
     }
 
     public void createLibgdxEnemies() {
         for(int i = 0; i < logicalEnemies.size(); i++) {
-            Enemy logicalEnemy = logicalEnemies.get(i);
+            Enemy logicalEnemy = logicalWorld.getLogicalEnemies().get(i);
             enemyCharacters.add(new libgdx_enemy(logicalEnemy));
         }
     }
@@ -128,18 +120,8 @@ public class libgdx_world {
         return playerCharacter;
     }
 
-    /*
-    public libgdx_enemy getEnemyCharacter() {
-        return enemyCharacter;
-    }
-    */
-
     public ArrayList<libgdx_enemy> getEnemyCharacters() {
         return enemyCharacters;
-    }
-
-    public ArrayList<Enemy> getLogicalEnemies() {
-        return logicalEnemies;
     }
 
     public World getWorld() {

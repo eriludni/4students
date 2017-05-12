@@ -10,6 +10,7 @@ import com.mygdx.game.libgdx.libgdx_world;
 public class Dash extends Game {
     public SpriteBatch batch;
     private libgdx_world gameWorld;
+    private GameWorld logicalWorld = new GameWorld();
 
     //width of the window
     public static final int WIDTH = 1240;
@@ -25,7 +26,7 @@ public class Dash extends Game {
     public void create() {
         batch = new SpriteBatch();
 
-        gameWorld = new libgdx_world(this);
+        gameWorld = new libgdx_world(this, logicalWorld);
 
         setScreen(new PlayScreen(this, gameWorld));
     }
