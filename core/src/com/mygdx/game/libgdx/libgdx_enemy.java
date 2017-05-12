@@ -14,17 +14,6 @@ public class libgdx_enemy extends libgdx_character{
         this.character = enemy;
         this.killableCharacter = enemy;
 
-        //this.health = killableCharacter.getHealth();
-        //this.dead = killableCharacter.isDead();
-        //this.toBeRemoved = killableCharacter.getToBeRemoved();
-//
-        //this.xPos = character.getXPos();
-        //this.yPos = character.getYPos();
-        //this.radius = character.getRadius();
-        //this.x_velocity = character.getX_velocity();
-        //this.y_velocity = character.getY_velocity();
-        //this.airBorn = character.isAirBorn();
-
         defineCharacter(character);
 
         System.out.println("libgdx_enemy created");

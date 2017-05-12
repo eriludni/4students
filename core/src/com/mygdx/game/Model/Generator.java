@@ -28,29 +28,14 @@ public class Generator {
     public void setNextMapStructure(){
         int lastBasePoint = findRow(col - 1);
         clear(mapArray);
-        for(int i = 0; i < row; i++){
-            System.out.println();
-            for(int j = 0; j < col; j++)
-            {
-                System.out.print(mapArray[i][j]);
-            }
-        }
         setBasePointsFrom(lastBasePoint);
         for (int x = 0; x < col - 1; x++) {
             growFromPoints(x);
         }
         placeGround();
-
-        for(int i = 0; i < row; i++){
-            System.out.println();
-            for(int j = 0; j < col; j++)
-            {
-                System.out.print(mapArray[i][j]);
-            }
-        }
     }
 
-    private void clear(int[][] array){
+    public void clear(int[][] array){
         for(int i = 0; i < col; i ++){
             for(int j = 0; j < row; j ++){
                 array[j][i] = 0;
@@ -58,11 +43,11 @@ public class Generator {
         }
     }
 
-    private void setBasePointsFrom(int lastBasePoint) {
+    public void setBasePointsFrom(int lastBasePoint) {
 
         this.mapArray[lastBasePoint][0] = 1;
 
-        for (int c = 2; c < col - pointsDistance; c = c + pointsDistance) {
+        for (int c = pointsDistance; c < col - pointsDistance; c = c + pointsDistance) {
             this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
         }
         if(findRow(col-1) == 0){
@@ -70,7 +55,7 @@ public class Generator {
         }
     }
 
-    private void setBasePoints() {
+    public void setBasePoints() {
         for (int c = 0; c < col - pointsDistance; c = c + pointsDistance) {
             this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
         }
@@ -79,7 +64,7 @@ public class Generator {
         }
     }
 
-    private void growFromPoints(int initValue) {
+    public void growFromPoints(int initValue) {
         int endValue = nextPointValue(initValue);
         int rowStart = findRow(initValue);
         if (rowStart < endValue) {
@@ -95,7 +80,7 @@ public class Generator {
         }
     }
 
-    private int nextPointValue(int currentColum) {
+    public int nextPointValue(int currentColum) {
         for (int c = currentColum + 1; c < col; c++) {
             for (int r = 0; r < row; r++) {
                 if (this.mapArray[r][c] == 1) {
@@ -106,14 +91,15 @@ public class Generator {
         return 0;
     }
 
-    private int findRow(int colum) {
+    public int findRow(int colum) {
         for (int x = 0; x < row; x++) {
             if (this.mapArray[x][colum] == 1)
                 return x;
         }
         return 0;
     }
-    private void placeGround(){
+
+    public void placeGround(){
         for(int c = 0; c < col; c++){
             for(int r = row-1; r >= 0; r--){
                 if(this.mapArray[r][c] == 1){
