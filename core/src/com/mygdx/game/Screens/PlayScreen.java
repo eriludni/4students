@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
+import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.libgdx.*;
 import com.mygdx.game.Model.EnemyBrain;
 
@@ -71,6 +72,7 @@ public class PlayScreen implements Screen {
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
         removeBullets();
+        removeEnemies();
 
         for(int i = 0; i < EB.size(); i++) {
             EB.get(i).update(dt);
@@ -103,6 +105,20 @@ public class PlayScreen implements Screen {
                     body.setUserData(null);
                     body = null;
                 }
+            }
+        }
+    }
+
+    public void removeEnemies() {
+        ArrayList<libgdx_enemy> enemies;
+        enemies = gameWorld.getEnemyCharacters();
+
+        for(int i = 0; i < enemies.size(); i++) {
+            if(enemies.get(i).isDead()) {
+                libgdx_enemy enemy = enemies.get(i);
+                enemies.remove(enemy);
+                gameWorld.getWorld().destroyBody(enemy.getB2Body());
+                enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0, 100, 300, 10)));
             }
         }
     }

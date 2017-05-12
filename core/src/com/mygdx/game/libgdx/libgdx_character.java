@@ -79,7 +79,7 @@ public abstract class libgdx_character{
     }
 
     public void checkDead() {
-        if (health == 0) {
+        if (health <= 0) {
             setDead(true);
         }
     }
