@@ -34,8 +34,12 @@ public class libgdx_projectile {
 
     private Body initiateProjectileBody(Point startPosition){
         Body b2Body = defineBody(startPosition);
-        libgdx_body_userdata userdata = new libgdx_body_userdata();
-        b2Body.setUserData(userdata);
+
+        //libgdx_body_userdata userdata = new libgdx_body_userdata();
+        //b2Body.setUserData(userdata);
+
+        b2Body.setUserData(this);
+
         b2Body.setGravityScale(0);
         b2Body.setBullet(true);
         return b2Body;
@@ -63,5 +67,9 @@ public class libgdx_projectile {
         b2Body.createFixture(fdef);
 
         return b2Body;
+    }
+
+    public void dispose() {
+
     }
 }

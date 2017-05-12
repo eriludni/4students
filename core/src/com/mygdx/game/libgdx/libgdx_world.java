@@ -81,7 +81,8 @@ public class libgdx_world {
                     fdef.shape = shape;
                     body.createFixture(fdef);
 
-                    body.setUserData("GroundEdge");
+                    //body.setUserData("GroundEdge");
+                    body.setUserData(this);
                 }
             }
         }

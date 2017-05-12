@@ -8,6 +8,7 @@ import com.mygdx.game.Model.ICharacter;
 import com.mygdx.game.Model.Projectile;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Lucas on 2017-05-05.
@@ -29,13 +30,17 @@ public abstract class libgdx_character{
     protected boolean airBorn;
     protected boolean toBeRemoved;
 
+    protected ArrayList<String> list = new ArrayList<String>();
+
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();
         bdef.position.set( character.getXPos() / Dash.PPM, character.getYPos() / Dash.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2Body = world.getWorld().createBody(bdef);
-        libgdx_body_userdata userdata = new libgdx_body_userdata();
-        b2Body.setUserData(userdata);
+
+        //libgdx_body_userdata userdata = new libgdx_body_userdata();
+        //b2Body.setUserData(userdata);
+
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(character.getRadius() / Dash.PPM);

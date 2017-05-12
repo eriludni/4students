@@ -24,15 +24,18 @@ public class MyContactListener implements ContactListener {
         Fixture fixtureB = contact.getFixtureB();
         Body body = fixtureA.getBody();
 
-        System.out.println(fixtureA.getShape().getType().equals(fixtureB.getShape().getType()));
+        //System.out.println(fixtureA.getShape().getType().equals(fixtureB.getShape().getType()));
         if(fixtureA.getBody().isBullet()){
-            libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureA.getBody().getUserData();
-            userdata.isSetForRemoval = true;
+            //libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureA.getBody().getUserData();
+            //userdata.isSetForRemoval = true;
         }
         if(fixtureB.getBody().isBullet()){
-            libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureB.getBody().getUserData();
-            userdata.isSetForRemoval = true;
+            //libgdx_body_userdata userdata = (libgdx_body_userdata) fixtureB.getBody().getUserData();
+            //userdata.isSetForRemoval = true;
+
+            ((libgdx_projectile) fixtureB.getBody().getUserData()).dispose();
         }
+
         if(fixtureA.getUserData() instanceof libgdx_player || fixtureB.getUserData() instanceof libgdx_player) {
             if(fixtureA.getUserData() instanceof libgdx_player) {
                 lgdxPlayer.reduceHealth(1);
@@ -42,10 +45,12 @@ public class MyContactListener implements ContactListener {
             }
         }
         if(fixtureA.getBody().isBullet() || fixtureB.getBody().isBullet()) {
+            if((fixtureA.getBody().isBullet() && fixtureB.getBody().getUserData() instanceof libgdx_enemy) || (fixtureA.getBody().getUserData() instanceof libgdx_enemy && fixtureB.getBody().isBullet())) {
                 lgdxEnemy = lgdxWorld.getEnemyCharacter();
                 lgdxEnemy.reduceHealth(1);
 
                 System.out.println(lgdxEnemy.getHealth());
+            }
 
         }
 

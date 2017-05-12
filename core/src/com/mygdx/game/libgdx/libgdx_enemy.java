@@ -32,7 +32,7 @@ public class libgdx_enemy extends libgdx_character{
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
-        fixture.setUserData(this);
+        b2Body.setUserData(this);
     }
 
     public void moveEnemyUp(float y) {
@@ -81,7 +81,7 @@ public class libgdx_enemy extends libgdx_character{
         this.checkDead();
 
         if(isDead()) {
-            System.out.println("Enemy died");
+            //System.out.println("Enemy died");
         }
     }
 }

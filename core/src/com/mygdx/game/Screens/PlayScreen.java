@@ -67,7 +67,7 @@ public class PlayScreen implements Screen {
         gameWorld.getWorld().step(1 / 60f, 6, 2);
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
-        removeBodies();
+        //removeBodies();
 
         EB.update(dt);
         enemies.update(dt);
@@ -75,7 +75,7 @@ public class PlayScreen implements Screen {
         gameCam.update();
         renderer.setView(gameCam);
     }
-
+/*
     public void removeBodies() {
         Array<Body> bodies = new Array<Body>(10);
         gameWorld.getWorld().getBodies(bodies);
@@ -91,6 +91,7 @@ public class PlayScreen implements Screen {
             }
         }
     }
+    */
 
     @Override
     public void show() {
