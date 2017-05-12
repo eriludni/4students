@@ -16,14 +16,6 @@ public interface ICharacter {
     float getX_velocity();
     void setX_velocity(float x_velocity);
     void reverseXVelocity();
-    int getHealth();
-    void setHealth(int health);
-    void reduceHealth(int damageValue);
-    boolean isDead();
-    void checkDead();
-    void setDead(boolean dead);
     boolean isAirBorn();
     void setAirBorn(boolean airBorn);
-    void setToBeRemoved(boolean toBeRemoved);
-    boolean getToBeRemoved();
 }

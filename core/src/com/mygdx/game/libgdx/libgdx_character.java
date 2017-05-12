@@ -2,10 +2,8 @@ package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.Model.*;
 import com.mygdx.game.Model.Character;
-import com.mygdx.game.Model.Enemy;
-import com.mygdx.game.Model.ICharacter;
-import com.mygdx.game.Model.Projectile;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,6 +14,7 @@ import java.util.ArrayList;
 public abstract class libgdx_character{
 
     protected ICharacter character;
+    protected IKillable killableCharacter;
     protected Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
     protected Fixture fixture;

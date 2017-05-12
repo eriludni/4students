@@ -14,7 +14,7 @@ public class Projectile {
         this.damage = damage;
     }
 
-    public void dealDamage(ICharacter character){
+    public void dealDamage(IKillable character){
         character.reduceHealth(damage);
     }
 
