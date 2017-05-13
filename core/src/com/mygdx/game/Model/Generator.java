@@ -16,6 +16,7 @@ public class Generator {
     private int mountainTop = 17;
     private int mountainDiff = 3;
     private int[][] platformStartPoints = new int[3][2];
+    private int[][] pitfallStartPoints = new int[3][2];
 
 
     public Generator() {
@@ -25,6 +26,8 @@ public class Generator {
             growFromPoints(x);
         }
         placeGround();
+        createPlatforms(3, 5);
+        //createPitfalls(3, 5);
     }
 
     public void setNextMapStructure(){
@@ -36,6 +39,7 @@ public class Generator {
         }
         placeGround();
         createPlatforms(3, 5);
+        //createPitfalls(3, 5);
     }
 
     public void clear(int[][] array){
@@ -140,6 +144,46 @@ public class Generator {
         }
     }
 
+    public void createPitfalls(int pitfalls, int width) {
+        setPitfallStartPoints(pitfalls);
+        for(int i = 0; i < pitfallStartPoints.length; i++) {
+            int startRow = pitfallStartPoints[i][0];
+            int startCol = pitfallStartPoints[i][1];
+            for(int length = 0; length < width; length++) {
+                for(int depth = 0; depth < this.col; depth++) {
+                    this.mapArray[startRow][startCol] = 0;
+                    if(startCol < this.col - 1) {
+                        startCol++;
+                    }
+                    if(startRow < this.row - 1) {
+                        startRow++;
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+    for(int depth = this.row - row; depth <= this.row; depth++) {
+        int row = pitfallStartPoints[i][0];
+        int startCol = pitfallStartPoints[i][1];
+        for (int start = 0; start < width; start++) {
+            mapArray[row][startCol] = 0;
+            if (startCol < this.col - 7) {
+                startCol++;
+            }
+        }
+    }
+    */
+
+    public void setPitfallStartPoints(int startPoints) {
+        for(int row = 0; row < startPoints; row++) {
+                int c = random.nextInt(this.col - 7);
+                this.mapArray[mountainTop][c] = 0;
+                pitfallStartPoints[row][0] = row;
+                pitfallStartPoints[row][1] = c;
+        }
+    }
 
     public int getRow() {
         return row;

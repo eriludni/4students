@@ -27,6 +27,19 @@ public class dashTest {
 
     }
 
+    /*
+    @Test
+    public void gen() {
+        Generator gen = new Generator();
+        for(int i = 0; i < gen.getRow(); i++) {
+            for(int j = 0; j < gen.getCol(); j++) {
+                System.out.print(gen.getMapArray(j, i));
+            }
+            System.out.println("");
+        }
+    }
+    */
+
     @Test
     public void testPlayerReduceHealth() {
         Player player = new Player(3, 2, 0, 100, 100, 5);
