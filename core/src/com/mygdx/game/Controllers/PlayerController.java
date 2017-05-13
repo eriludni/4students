@@ -32,7 +32,7 @@ public class PlayerController {
     
     public void handleInput(float dt){
         if(player.getB2Body() != null && checkUpKeyPressed() && getPlayerLinearYVelocity() >= -0.2 && getPlayerLinearYVelocity() <= 0.2) {
-            movePlayerUp(4f);
+            movePlayerUp(6f);
         }
         if (player.getB2Body() != null && checkRightKeyPressed() && getPlayerLinearXVelocity() <= 2) {
             movePlayerRight(0.1f);

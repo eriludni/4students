@@ -1,5 +1,6 @@
 package com.mygdx.game.Model;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -14,6 +15,7 @@ public class Generator {
     private int pointsDistance = 4;
     private int mountainTop = 17;
     private int mountainDiff = 3;
+    private int[][] platformStartPoints = new int[3][2];
 
 
     public Generator() {
@@ -33,6 +35,7 @@ public class Generator {
             growFromPoints(x);
         }
         placeGround();
+        createPlatforms(3, 5);
     }
 
     public void clear(int[][] array){
@@ -106,6 +109,33 @@ public class Generator {
                     break;
                 }
                 mapArray[r][c] = 2;
+            }
+        }
+    }
+
+    public void createPlatforms(int platforms, int length) {
+        setPlatformStartPoints(platforms);
+        for(int i = 0; i < platformStartPoints.length; i++) {
+            int row = platformStartPoints[i][0];
+            int startCol = platformStartPoints[i][1];
+            for (int start = 0; start < length; start++) {
+                mapArray[row][startCol] = 1;
+                if(startCol < this.col - 7) {
+                    startCol++;
+                }
+            }
+        }
+    }
+
+    public void setPlatformStartPoints(int startPoints) {
+        int i = 0;
+        for(int row = 12; row <= 15; row++) {
+            if(i < startPoints) {
+                int c = random.nextInt(this.col - 7);
+                this.mapArray[row][c] = 1;
+                platformStartPoints[i][0] = row;
+                platformStartPoints[i][1] = c;
+                i++;
             }
         }
     }
