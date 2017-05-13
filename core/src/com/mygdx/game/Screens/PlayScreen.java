@@ -115,6 +115,7 @@ public class PlayScreen implements Screen {
                 libgdx_enemy enemy = enemies.get(i);
                 enemies.remove(enemy);
                 gameWorld.getWorld().destroyBody(enemy.getB2Body());
+                gameWorld.getLogicalWorld().getLogicalPlayerCharacter().setHighscore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore() + 100);
                 enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0, 100, 300, 10)));
             }
         }

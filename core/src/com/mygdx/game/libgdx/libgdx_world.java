@@ -116,6 +116,10 @@ public class libgdx_world {
         return lgdxWorld;
     }
 
+    public GameWorld getLogicalWorld() {
+        return logicalWorld;
+    }
+
     public libgdx_player getPlayerCharacter() {
         return playerCharacter;
     }
