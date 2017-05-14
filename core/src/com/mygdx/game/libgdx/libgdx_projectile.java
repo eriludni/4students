@@ -25,7 +25,8 @@ public class libgdx_projectile {
         Vector2 projectileVector = getDirectionVector(startPosition, targetPosition);
         projectileVector.setLength(this.projectileModel.getSpeed());
 
-        Body projectileBody = initiateProjectileBody(startPosition);
+        Point projectileLaunchPoint = projectileModel.getLaunchPosition(startPosition, targetPosition, 14);
+        Body projectileBody = initiateProjectileBody(projectileLaunchPoint);
         projectileBody.setLinearVelocity(projectileVector);
     }
 

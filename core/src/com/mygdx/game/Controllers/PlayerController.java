@@ -31,8 +31,8 @@ public class PlayerController {
     }
     
     public void handleInput(float dt){
-        if(player.getB2Body() != null && checkUpKeyPressed() && getPlayerLinearYVelocity() >= -0.2 && getPlayerLinearYVelocity() <= 0.2) {
-            movePlayerUp(6f);
+        if(player.getB2Body() != null && checkUpKeyPressed() && getPlayerLinearYVelocity() <= 0.2) {
+            movePlayerUp(1f);
         }
         if (player.getB2Body() != null && checkRightKeyPressed() && getPlayerLinearXVelocity() <= 2) {
             movePlayerRight(0.1f);
@@ -40,13 +40,13 @@ public class PlayerController {
         if (player.getB2Body() != null && checkLeftKeyPressed() && getPlayerLinearXVelocity() >= -2) {
             movePlayerLeft(-0.1f);
         }
-        if (Gdx.input.justTouched()){
+        if (Gdx.input.isTouched()){
             shootPlayerProjectile();
         }
     }
 
     public boolean checkUpKeyPressed() {
-        return Gdx.input.isKeyJustPressed(Input.Keys.W);
+        return Gdx.input.isKeyPressed(Input.Keys.W);
     }
 
     public boolean checkRightKeyPressed() {
