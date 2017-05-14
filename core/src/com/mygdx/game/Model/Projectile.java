@@ -20,7 +20,7 @@ public class Projectile {
         hasCollided = false;
     }
 
-    public Point getLaunchPosition(Point characterPosition, Point targetPosition, float hitBoxRadius)
+    public static Point getLaunchPosition(Point characterPosition, Point targetPosition, float hitBoxRadius)
     {
         double yDelta = targetPosition.y - characterPosition.y;
         double xDelta = targetPosition.x - characterPosition.x;

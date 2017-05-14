@@ -1,11 +1,13 @@
 package test.com.mygdx.game.Dash;
 
-import com.mygdx.game.Model.Enemy;
-import com.mygdx.game.Model.Player;
-import com.mygdx.game.Model.Generator;
+import com.mygdx.game.Model.*;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
+
+import java.awt.*;
+
+import static java.lang.Math.*;
 import static org.junit.Assert.assertTrue;
 
 /** 
@@ -165,5 +167,31 @@ public class dashTest {
             }
         }
         assertTrue(value == value2);
+    }
+
+    @Test
+    public void testGetLaunchPosition(){
+        Point characterPosition = new Point(1,3);
+        Point targetPosition = new Point(4, 6);
+        float hitBoxRadius = 5f;
+        Point launchPoint = Projectile.getLaunchPosition(characterPosition,targetPosition,hitBoxRadius);
+
+        double deltaXlaunchPoint = launchPoint.x - characterPosition.x;
+        double deltaYlaunchPoint = launchPoint.y - characterPosition.y;
+
+        double deltaXtargetPosition = targetPosition.x - characterPosition.x;
+        double deltaYtargetPosition = targetPosition.y - characterPosition.y;
+
+        double angleLaunchPoint = atan(deltaYlaunchPoint / deltaXlaunchPoint);
+        double angleTargetPosition = atan(deltaYtargetPosition / deltaXtargetPosition);
+
+        double angleDiff = angleLaunchPoint - angleTargetPosition;
+
+        double hypothenuse = sqrt(pow(deltaYlaunchPoint, 2) + pow(deltaXlaunchPoint, 2));
+        double hypothenuseDiff = hypothenuse - hitBoxRadius;
+
+        assertTrue(abs(angleDiff) < 1 && abs(hypothenuseDiff) < 1);
+
+
     }
 }
