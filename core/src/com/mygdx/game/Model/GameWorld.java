@@ -11,18 +11,28 @@ import java.util.ArrayList;
 public class GameWorld {
     private Player logicalPlayer;
     private ArrayList<Enemy> logicalEnemies = new ArrayList<Enemy>();
+    private ArrayList<EnemyBrain> logicalEnemyBrains = new ArrayList<EnemyBrain>();
+    private int enemyCount = 10;
+
 
     public GameWorld() {
         this.logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 10);
         createLogicalEnemies();
+        createLogicalEnemyBrain();
     }
 
     public void createLogicalEnemies() {
         float xPos = logicalPlayer.getXPos() * Dash.PPM;
         float yPos = logicalPlayer.getYPos() * Dash.PPM + 300;
-        for(int i = 0; i < 10; i++) {
+        for(int i = 0; i < enemyCount; i++) {
             xPos += 100;
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
+        }
+    }
+    public void createLogicalEnemyBrain(){
+        for(int i  = 0; i < enemyCount; i++){
+            logicalEnemyBrains.add(new EnemyBrain(logicalEnemies.get(i)));
+
         }
     }
 

@@ -3,6 +3,7 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Model.EnemyBrain;
 import com.mygdx.game.Model.ICharacter;
 import com.mygdx.game.Model.IKillable;
 
@@ -11,9 +12,11 @@ import com.mygdx.game.Model.IKillable;
  */
 public class libgdx_enemy extends libgdx_character{
     private Enemy enemyModel;
+    private EnemyBrain brainModel;
 
     public libgdx_enemy(Enemy enemy) {
         enemyModel = enemy;
+        brainModel = enemy.getBrain();
         defineCharacter(enemyModel);
     }
 
@@ -38,16 +41,10 @@ public class libgdx_enemy extends libgdx_character{
     /*
     Move the enemy rightwards with a specified force
      */
-    public void moveEnemyRight(float x) {
+    public void moveEnemyX(float x) {
         getB2Body().applyLinearImpulse(new Vector2(x, 0), getB2Body().getWorldCenter(),true);
     }
 
-    /*
-    Move the enemy leftwards with a specified force
-     */
-    public void moveEnemyLeft(float x) {
-        getB2Body().applyLinearImpulse(new Vector2(-x, 0), getB2Body().getWorldCenter(),true);
-    }
 
     /*
     Get the linear velocity in the y-axis for the enemy
@@ -86,7 +83,7 @@ public class libgdx_enemy extends libgdx_character{
      */
     public void update(float dt) {
         enemyModel.checkDead();
-
+        moveEnemyX(this.brainModel.updateVelocity());
         if(enemyModel.isDead()) {
             //System.out.println("Enemy died");
         }

@@ -5,7 +5,7 @@ package com.mygdx.game.Model;
  */
 public class EnemyBehavior implements IEnemyBehavior {
 
-    EnemyBehavior behavior;
+    IEnemyBehavior behavior;
 
 
     public EnemyBehavior(){}
@@ -29,4 +29,6 @@ public class EnemyBehavior implements IEnemyBehavior {
     public float getX_Velocity() {
         return 0;
     }
+    public float UpdateX_Velocity(float currentXV){
+        return behavior.UpdateX_Velocity(currentXV);}
 }

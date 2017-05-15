@@ -20,15 +20,22 @@ public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
          return X_Velocity;
     }
 
-    private void setVelocity(){
-        if (this.X_Velocity == 0 ){
-            X_Velocity = 3;
+
+    @Override
+    public float UpdateX_Velocity(float currentXV){
+        if (currentXV == 0 ){
+            System.out.println(currentXV);
+            return 0.3f;
         }
-        else if (this.X_Velocity > 0){
-            X_Velocity = -3;
+        else if (currentXV >= 3){
+            System.out.println(currentXV);
+            return  -0.3f;
         }
-        else if (this.X_Velocity < 0){
-            X_Velocity = 3;
+        else if (currentXV <= -3){
+            System.out.println(currentXV);
+           return  0.3f;
         }
+        System.out.println("NÅGOT ÄR FEL");
+        return 0;
     }
 }

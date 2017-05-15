@@ -6,5 +6,6 @@ package com.mygdx.game.Model;
 public interface IEnemyBehavior {
 
     float getX_Velocity();
+    float UpdateX_Velocity(float currentXV);
 
 }
