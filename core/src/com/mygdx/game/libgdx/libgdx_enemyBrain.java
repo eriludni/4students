@@ -2,6 +2,8 @@ package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Model.EnemyBrain;
 
 import java.util.Random;
 
@@ -11,17 +13,24 @@ import java.util.Random;
 public class libgdx_enemyBrain {
     private libgdx_enemy lgdxEnemy;
     private final int BEHAVIOUR;
-    private Random rand = new Random();
+
+
+
 
     public libgdx_enemyBrain(libgdx_enemy lgdxEnemy) {
         this.lgdxEnemy = lgdxEnemy;
         this.BEHAVIOUR = 2;
     }
 
-    /*
-       Move the enemy in a random direction for a random amount of time
-     */
-    public void sporadicBehaviour() {
+    public void update(float dt) {
+
+    }
+
+
+
+    //   Move the enemy in a random direction for a random amount of time
+
+   /* public void sporadicBehaviour() {
         int direction = rand.nextInt(3);
         int time = (rand.nextInt(2) + 1) * 30;
         float jumpVelocity = rand.nextFloat() * 4;
@@ -59,7 +68,9 @@ public class libgdx_enemyBrain {
     }
 
 
+
     public void linearBehaviour() {
+
         System.out.println(lgdxEnemy.getEnemyModel().getX_velocity());
         lgdxEnemy.moveRight();
         if(lgdxEnemy.getLinearXVelocity() >= 3) {
@@ -67,6 +78,15 @@ public class libgdx_enemyBrain {
         }
         if(lgdxEnemy.getLinearXVelocity() <= -3) {
             lgdxEnemy.getEnemyModel().reverseYVelocity();
+
+        System.out.println(lgdxEnemy.getEnemyXVelocity());
+        lgdxEnemy.moveEnemyRight(lgdxEnemy.getEnemyXVelocity());
+        if (lgdxEnemy.getEnemyLinearXVelocity() >= 3) {
+            lgdxEnemy.reverseEnemyXVelocity();
+        }
+        if (lgdxEnemy.getEnemyLinearXVelocity() <= -3) {
+            lgdxEnemy.reverseEnemyXVelocity();
+
         }
     }
 
@@ -106,22 +126,12 @@ public class libgdx_enemyBrain {
         return Gdx.input.isKeyPressed(Input.Keys.A);
     }
 
-    /*
-    Decides which method, sporadicBehaviour(), linearBehaviour(), mirroredBehaviour(), that will be executed.
-     */
-    public void update(float dt) {
-        switch(BEHAVIOUR) {
-            case(0):
-                linearBehaviour();
-                break;
 
-            case(1):
-                sporadicBehaviour();
-                break;
+    //Decides which method, sporadicBehaviour(), linearBehaviour(), mirroredBehaviour(), that will be executed.
 
-            case(2):
-                mirroredBehaviour();
-                break;
-        }
-    }
+
+
+
+
+    */
 }
