@@ -5,7 +5,11 @@ package com.mygdx.game.Model;
  */
 public class Enemy extends Character implements ICharacter{
 
+    EnemyBrain brain;
+
     public Enemy(int health, float x_velocity, float y_velocity, float xPos, float yPos, float radius){
+        this.brain = new EnemyBrain(this);
+
         this.health = health;
         this.x_velocity = x_velocity;
         this.y_velocity = y_velocity;
@@ -15,5 +19,8 @@ public class Enemy extends Character implements ICharacter{
         this.dead = false;
 
         System.out.println("logical enemy created");
+    }
+    public EnemyBrain getBrain(){
+        return this.brain;
     }
 }
