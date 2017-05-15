@@ -45,6 +45,9 @@ public class libgdx_player extends libgdx_character{
      */
     public void update(float dt) {
         playerModel.checkDead();
+        playerModel.setyPos(this.getB2Body().getPosition().y);
+        playerModel.setxPos(this.getB2Body().getPosition().x);
+        //System.out.println(playerModel.getXPos() + " : " + playerModel.getYPos());
     }
 
     public Player getPlayerModel() {

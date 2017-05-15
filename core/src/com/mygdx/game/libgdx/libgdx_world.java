@@ -26,6 +26,7 @@ public class libgdx_world {
 
     private libgdx_player playerCharacter;
 
+    private ArrayList<Enemy> logicalEnemies;
     private ArrayList<libgdx_enemy> enemyCharacters = new ArrayList<libgdx_enemy>();
 
     private libgdx_map mapCreator;
@@ -68,7 +69,6 @@ public class libgdx_world {
         }
     }
 
-
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
         xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / Dash.PPM);
         BodyDef bdf = new BodyDef();
@@ -103,6 +103,12 @@ public class libgdx_world {
                     body.setUserData(this);
                 }
             }
+        }
+    }
+
+    public void removeAllLibgdxEnemies() {
+        for(int i = 0; i < enemyCharacters.size(); i++) {
+            enemyCharacters.remove(i);
         }
     }
 

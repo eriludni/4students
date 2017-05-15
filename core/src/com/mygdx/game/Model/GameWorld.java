@@ -18,11 +18,17 @@ public class GameWorld {
     }
 
     public void createLogicalEnemies() {
-        int xPos = 200;
-        int yPos = 300;
+        float xPos = 100;
+        float yPos = 300;
         for(int i = 0; i < 10; i++) {
             xPos += 100;
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
+        }
+    }
+
+    public void removeAllLogicalEnemies() {
+        for(int i = 0; i < logicalEnemies.size(); i++) {
+            logicalEnemies.remove(i);
         }
     }
 
