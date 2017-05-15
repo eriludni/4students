@@ -77,6 +77,9 @@ public class PlayScreen implements Screen {
 
         for(int i = 0; i < enemies.size(); i++) {
             enemies.get(i).update(dt);
+            if(enemies.get(i).getB2Body().getPosition().y <= 0) {
+                enemies.get(i).getEnemyModel().setDead(true);
+            }
         }
 
         gameCam.update();
@@ -116,7 +119,7 @@ public class PlayScreen implements Screen {
                 enemies.remove(enemy);
                 gameWorld.getWorld().destroyBody(enemy.getB2Body());
                 gameWorld.getLogicalWorld().getLogicalPlayerCharacter().setHighscore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore() + 100);
-                enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0, 100, 300, 10)));
+                enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0, gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getXPos() * 170, gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getYPos() +300, 10)));
             }
         }
     }

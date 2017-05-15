@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Model.Player;
 import com.mygdx.game.libgdx.Dash;
 import com.mygdx.game.libgdx.libgdx_player;
 import com.mygdx.game.libgdx.libgdx_world;
@@ -31,8 +32,8 @@ public class PlayerController {
     }
     
     public void handleInput(float dt){
-        if(player.getB2Body() != null && checkUpKeyPressed() && getPlayerLinearYVelocity() <= 0.2) {
-            movePlayerUp(1f);
+        if(player.getB2Body() != null && checkUpKeyPressed() && getPlayerLinearYVelocity() == 0) {
+            movePlayerUp(6f);
         }
         if (player.getB2Body() != null && checkRightKeyPressed() && getPlayerLinearXVelocity() <= 2) {
             movePlayerRight(0.1f);

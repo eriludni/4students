@@ -26,6 +26,7 @@ public class libgdx_world {
 
     private libgdx_player playerCharacter;
 
+    private ArrayList<Enemy> logicalEnemies;
     private ArrayList<libgdx_enemy> enemyCharacters = new ArrayList<libgdx_enemy>();
 
     private libgdx_map mapCreator;
@@ -33,8 +34,6 @@ public class libgdx_world {
 
     private static libgdx_world lgdxWorld;
     private GameWorld logicalWorld;
-
-    private ArrayList<Enemy> logicalEnemies;
 
     private TiledMap map;
 
@@ -99,6 +98,12 @@ public class libgdx_world {
                     body.setUserData(this);
                 }
             }
+        }
+    }
+
+    public void removeAllLibgdxEnemies() {
+        for(int i = 0; i < enemyCharacters.size(); i++) {
+            enemyCharacters.remove(i);
         }
     }
 
