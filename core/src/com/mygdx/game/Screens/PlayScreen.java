@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
 
 import java.util.ArrayList;
@@ -29,7 +30,9 @@ public class PlayScreen implements Screen {
     private libgdx_world gameWorld;
     private PlayerController PC;
 
-    private int limit = 12;
+    private int limit;
+
+    private Hud hud;
 
     private ArrayList<libgdx_enemyBrain> EB = new ArrayList<libgdx_enemyBrain>();
     private ArrayList<libgdx_enemy> enemies;
@@ -41,6 +44,7 @@ public class PlayScreen implements Screen {
         this.game = game;
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
+        hud = new Hud(game.batch);
         gamePort = new FitViewport(Dash.WIDTH / Dash.PPM, Dash.HEIGHT / Dash.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
@@ -52,6 +56,7 @@ public class PlayScreen implements Screen {
         PC = new PlayerController(gameWorld, gameCam, gamePort);
         //EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
         createEnemyBrains();
+        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth()/200 - 40;
     }
 
     public void update(float dt) {
@@ -59,10 +64,10 @@ public class PlayScreen implements Screen {
         gameWorld.getPlayerCharacter().update(dt);
 
         //System.out.println("HEJSAN:" + ((int) gameCam.position.x > limit));
-        if((int) gameCam.position.x > limit)
+        if( gameCam.position.x > limit)
         {
             gameWorld.updateWorld();
-            limit += 12;
+            limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth()/200 - 20;
         }
 
         gameWorld.getWorld().step(1 / 60f, 6, 2);
@@ -78,6 +83,8 @@ public class PlayScreen implements Screen {
         for(int i = 0; i < enemies.size(); i++) {
             enemies.get(i).update(dt);
         }
+
+        hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
 
         gameCam.update();
         renderer.setView(gameCam);
@@ -97,7 +104,12 @@ public class PlayScreen implements Screen {
             if (body != null && body.isBullet()) {
                 //libgdx_body_userdata data = (libgdx_body_userdata) body.getUserData();
                 libgdx_projectile data = (libgdx_projectile) body.getUserData();
-                if (data.isSetForRemoval()) {
+                boolean bulletOutOfBounds = body.getPosition().x < (int)(gameCam.position.x) - gamePort.getScreenWidth()/(2*Dash.PPM)||
+                        body.getPosition().x > (int)(gameCam.position.x) + gamePort.getScreenWidth()/(2*Dash.PPM) ||
+                        body.getPosition().y < 0 ||
+                        body.getPosition().y > (int)(gameCam.position.y) + gamePort.getScreenHeight()/(2*Dash.PPM);
+
+                if (data.isSetForRemoval() || bulletOutOfBounds) {
                     gameWorld.getWorld().destroyBody(body);
                     body.setUserData(null);
                     body = null;
@@ -129,14 +141,17 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
         update(delta);
-        game.batch.setProjectionMatrix(gameCam.combined);
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        game.batch.setProjectionMatrix(gameCam.combined);
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
+
 
         renderer.render();
 
         b2dr.render(gameWorld.getWorld(), gameCam.combined);
+        hud.stage.draw();
     }
 
     @Override

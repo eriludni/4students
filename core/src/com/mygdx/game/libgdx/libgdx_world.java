@@ -36,6 +36,8 @@ public class libgdx_world {
 
     private ArrayList<Enemy> logicalEnemies;
 
+    private int xPositionOfLastBody = 0;
+
     private TiledMap map;
 
     public libgdx_world(Dash game, GameWorld logicalWorld) {
@@ -66,7 +68,9 @@ public class libgdx_world {
         }
     }
 
+
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
+        xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / Dash.PPM);
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
@@ -110,6 +114,11 @@ public class libgdx_world {
         mapList.get(0).setNextlibgdx_map();
         int offsetX = mapList.get(0).getOffsetX();
         createGroundHitbox(mapList.get(0), offsetX);
+    }
+
+
+    public int getxPositionOfLastBody() {
+        return xPositionOfLastBody;
     }
 
     public static libgdx_world getlgdxWorld() {

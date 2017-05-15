@@ -103,8 +103,6 @@ public class libgdx_map {
         }
     }
 
-
-
     public TiledMap getMap() {
         return this.map;
     }
