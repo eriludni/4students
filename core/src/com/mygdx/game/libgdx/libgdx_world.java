@@ -36,7 +36,6 @@ public class libgdx_world {
     private static libgdx_world lgdxWorld;
     private GameWorld logicalWorld;
 
-
     private int xPositionOfLastBody = 0;
 
     private TiledMap map;
