@@ -17,6 +17,10 @@ public class Generator {
     private int mountainDiff = 3;
     private int[][] platformStartPoints = new int[3][2];
     private int[][] pitfallStartPoints = new int[3][2];
+    private int numberOfPlatforms = 3;
+    private int platformLength = 3;
+    private int numberOfPitfalls = 2;
+    private int pittfallLength = 3;
 
 
     public Generator() {
@@ -26,8 +30,8 @@ public class Generator {
             growFromPoints(x);
         }
         placeGround();
-        createPlatforms(3, 5);
-        //createPitfalls(3, 5);
+        createPlatforms(numberOfPlatforms, platformLength);
+        createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
     public void setNextMapStructure(){
@@ -38,8 +42,8 @@ public class Generator {
             growFromPoints(x);
         }
         placeGround();
-        createPlatforms(3, 5);
-        //createPitfalls(3, 5);
+        createPlatforms(numberOfPlatforms, platformLength);
+        createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
     public void clear(int[][] array){
@@ -152,12 +156,13 @@ public class Generator {
             for(int length = 0; length < width; length++) {
                 for(int depth = 0; depth < this.col; depth++) {
                     this.mapArray[startRow][startCol] = 0;
-                    if(startCol < this.col - 1) {
-                        startCol++;
-                    }
                     if(startRow < this.row - 1) {
                         startRow++;
                     }
+                }
+                startRow = pitfallStartPoints[i][0];
+                if(startCol < this.col - 1) {
+                    startCol++;
                 }
             }
         }
