@@ -18,8 +18,8 @@ public class GameWorld {
     }
 
     public void createLogicalEnemies() {
-        float xPos = 100;
-        float yPos = 300;
+        float xPos = logicalPlayer.getXPos() * Dash.PPM;
+        float yPos = logicalPlayer.getYPos() * Dash.PPM + 300;
         for(int i = 0; i < 10; i++) {
             xPos += 100;
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));

@@ -28,6 +28,7 @@ public class libgdx_world {
 
     private ArrayList<Enemy> logicalEnemies;
     private ArrayList<libgdx_enemy> enemyCharacters = new ArrayList<libgdx_enemy>();
+    private ArrayList<libgdx_enemyBrain> EB = new ArrayList<libgdx_enemyBrain>();
 
     private libgdx_map mapCreator;
     private ArrayList<libgdx_map> mapList;
@@ -54,6 +55,7 @@ public class libgdx_world {
         this.playerCharacter = new libgdx_player(logicalWorld.getLogicalPlayerCharacter());
 
         createLibgdxEnemies();
+        createEnemyBrains();
 
         this.world.setContactListener(new MyContactListener(world));
     }
@@ -62,6 +64,12 @@ public class libgdx_world {
         for(int i = 0; i < logicalEnemies.size(); i++) {
             Enemy logicalEnemy = logicalWorld.getLogicalEnemies().get(i);
             enemyCharacters.add(new libgdx_enemy(logicalEnemy));
+        }
+    }
+
+    public void createEnemyBrains() {
+        for(int i = 0; i < enemyCharacters.size(); i++) {
+            EB.add(new libgdx_enemyBrain(enemyCharacters.get(i)));
         }
     }
 
@@ -107,6 +115,12 @@ public class libgdx_world {
         }
     }
 
+    public void removeAllLibgdxEnemyBrains() {
+        for(int i = 0; i < EB.size(); i++) {
+            EB.remove(i);
+        }
+    }
+
     public void mapListManager(){
 
     }
@@ -115,6 +129,17 @@ public class libgdx_world {
         mapList.get(0).setNextlibgdx_map();
         int offsetX = mapList.get(0).getOffsetX();
         createGroundHitbox(mapList.get(0), offsetX);
+
+        respawnAllEnemies();
+    }
+
+    public void respawnAllEnemies() {
+        lgdxWorld.removeAllLibgdxEnemyBrains();
+        lgdxWorld.removeAllLibgdxEnemies();
+        lgdxWorld.getLogicalWorld().removeAllLogicalEnemies();
+        lgdxWorld.getLogicalWorld().createLogicalEnemies();
+        lgdxWorld.createLibgdxEnemies();
+        lgdxWorld.createEnemyBrains();
     }
 
     public static libgdx_world getlgdxWorld() {
@@ -139,5 +164,9 @@ public class libgdx_world {
 
     public TiledMap getMap() {
         return map;
+    }
+
+    public ArrayList<libgdx_enemyBrain> getEB() {
+        return EB;
     }
 }

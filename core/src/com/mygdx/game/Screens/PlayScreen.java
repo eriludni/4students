@@ -31,7 +31,7 @@ public class PlayScreen implements Screen {
 
     private int limit = 12;
 
-    private ArrayList<libgdx_enemyBrain> EB = new ArrayList<libgdx_enemyBrain>();
+    private ArrayList<libgdx_enemyBrain> EB;
     private ArrayList<libgdx_enemy> enemies;
 
     private Box2DDebugRenderer b2dr;
@@ -51,7 +51,7 @@ public class PlayScreen implements Screen {
 
         PC = new PlayerController(gameWorld, gameCam, gamePort);
         //EB = new libgdx_enemyBrain(gameWorld.getEnemyCharacter());
-        createEnemyBrains();
+        EB = gameWorld.getEB();
     }
 
     public void update(float dt) {
@@ -69,7 +69,7 @@ public class PlayScreen implements Screen {
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
         removeBullets();
-        removeEnemies();
+        respawnEnemies();
 
         for(int i = 0; i < EB.size(); i++) {
             EB.get(i).update(dt);
@@ -84,12 +84,6 @@ public class PlayScreen implements Screen {
 
         gameCam.update();
         renderer.setView(gameCam);
-    }
-
-    public void createEnemyBrains() {
-        for(int i = 0; i < gameWorld.getEnemyCharacters().size(); i++) {
-            EB.add(new libgdx_enemyBrain(enemies.get(i)));
-        }
     }
 
     public void removeBullets() {
@@ -109,7 +103,7 @@ public class PlayScreen implements Screen {
         }
     }
 
-    public void removeEnemies() {
+    public void respawnEnemies() {
         ArrayList<libgdx_enemy> enemies;
         enemies = gameWorld.getEnemyCharacters();
 
@@ -119,7 +113,7 @@ public class PlayScreen implements Screen {
                 enemies.remove(enemy);
                 gameWorld.getWorld().destroyBody(enemy.getB2Body());
                 gameWorld.getLogicalWorld().getLogicalPlayerCharacter().setHighscore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore() + 100);
-                enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0, gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getXPos() * 170, gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getYPos() +300, 10)));
+                enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0, gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getXPos() * Dash.PPM * 2, gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getYPos() * Dash.PPM * 3 , 10)));
             }
         }
     }
