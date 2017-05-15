@@ -44,7 +44,6 @@ public class PlayScreen implements Screen {
         this.game = game;
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
-        hud = new Hud(game.batch);
         gamePort = new FitViewport(Dash.WIDTH / Dash.PPM, Dash.HEIGHT / Dash.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
@@ -74,7 +73,7 @@ public class PlayScreen implements Screen {
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
         removeBullets();
-        respawnEnemies();
+        removeEnemies();
 
         for(int i = 0; i < EB.size(); i++) {
             EB.get(i).update(dt);
