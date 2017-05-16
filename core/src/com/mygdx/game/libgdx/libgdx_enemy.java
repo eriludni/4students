@@ -19,6 +19,8 @@ public class libgdx_enemy extends libgdx_character{
         enemyModel = enemy;
         brainModel = enemy.getBrain();
         defineCharacter(enemyModel);
+
+        System.out.println("libgdx enemy created");
     }
 
     /*

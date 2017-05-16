@@ -48,6 +48,10 @@ public class libgdx_world {
 
     private int xPositionOfLastBody = 0;
 
+    private int numberOfMapsCreated = 1;
+
+    private MyContactListener MCL;
+
     private TiledMap map;
 
     public libgdx_world(Dash game, GameWorld logicalWorld) {
@@ -67,9 +71,10 @@ public class libgdx_world {
         this.playerCharacter = new libgdx_player(logicalWorld.getLogicalPlayerCharacter());
 
         createLibgdxEnemies();
-        createEnemyBrains();
+        //createEnemyBrains();
 
-        this.world.setContactListener(new MyContactListener(world));
+        MCL = new MyContactListener(world);
+        this.world.setContactListener(MCL);
     }
 
     public void update(){
@@ -142,14 +147,14 @@ public class libgdx_world {
     }
 
     public void createLibgdxEnemies() {
-        for(int i = 0; i < logicalEnemies.size(); i++) {
+        for(int i = 0; i < logicalWorld.getEnemyCount(); i++) {
             Enemy logicalEnemy = logicalWorld.getLogicalEnemies().get(i);
             enemyCharacters.add(new libgdx_enemy(logicalEnemy));
         }
     }
 
     public void createEnemyBrains() {
-        for(int i = 0; i < enemyCharacters.size(); i++) {
+        for(int i = 0; i < logicalWorld.getEnemyCount(); i++) {
             EB.add(new libgdx_enemyBrain(enemyCharacters.get(i)));
         }
     }
@@ -195,9 +200,14 @@ public class libgdx_world {
     }
 
     public void removeAllLibgdxEnemies() {
+        libgdx_enemy enemy;
         for(int i = 0; i < enemyCharacters.size(); i++) {
-            enemyCharacters.remove(i);
+            enemy = enemyCharacters.get(i);
+            enemyCharacters.remove(enemy);
+            getWorld().destroyBody(enemy.getB2Body());
+            //enemyCharacters.get(i).getEnemyModel().setDead(true);
         }
+        enemyCharacters = new ArrayList<libgdx_enemy>();
     }
 
     public void removeAllLibgdxEnemyBrains() {
@@ -217,12 +227,16 @@ public class libgdx_world {
     }
 
     public void respawnAllEnemies() {
-        lgdxWorld.removeAllLibgdxEnemyBrains();
-        lgdxWorld.removeAllLibgdxEnemies();
+        //lgdxWorld.removeAllLibgdxEnemyBrains();
+        System.out.println("respawn");
+        removeAllLibgdxEnemies();
+        lgdxWorld.getLogicalWorld().removeAllLogicalEnemyBrains();
         lgdxWorld.getLogicalWorld().removeAllLogicalEnemies();
         lgdxWorld.getLogicalWorld().createLogicalEnemies();
-        lgdxWorld.createLibgdxEnemies();
-        lgdxWorld.createEnemyBrains();
+        lgdxWorld.getLogicalWorld().createLogicalEnemyBrains();
+        createLibgdxEnemies();
+        MCL.setLgdxEnemies(getEnemyCharacters());
+        //lgdxWorld.createEnemyBrains();
     }
 
     public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {//world

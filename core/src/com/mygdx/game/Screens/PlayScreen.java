@@ -64,8 +64,8 @@ public class PlayScreen implements Screen {
 
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
-
         gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
+
 
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
@@ -73,7 +73,6 @@ public class PlayScreen implements Screen {
         gameCam.update();//PlayScreen
         renderer.setView(gameCam);//PlayScreen
     }
-
 
     @Override
     public void show() {
