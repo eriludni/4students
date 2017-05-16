@@ -44,7 +44,7 @@ public class PlayScreen implements Screen {
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
         hud = new Hud(game.batch);
-        gamePort = new FitViewport(Dash.WIDTH / Dash.PPM, Dash.HEIGHT / Dash.PPM, gameCam);
+        gamePort = new FitViewport(Dash.WIDTH/Dash.PPM, Dash.HEIGHT /Dash.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
 
