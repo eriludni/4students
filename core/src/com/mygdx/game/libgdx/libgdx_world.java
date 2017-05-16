@@ -37,8 +37,6 @@ public class libgdx_world {
 
     public libgdx_world(Dash game, GameWorld logicalWorld) {
 
-        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / 200 - 40;
-
         this.game = game;
         this.world = new World(new Vector2(0, -10), true);
         this.logicalWorld = logicalWorld;
@@ -47,7 +45,7 @@ public class libgdx_world {
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
         createGroundHitbox(mapList.get(0), 0);
-
+        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / 200;
         logicalEnemies = logicalWorld.getLogicalEnemies();
 
         this.lgdxWorld = this;

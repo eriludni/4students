@@ -74,6 +74,10 @@ public class libgdx_map {
     public void setNextlibgdx_map() {
         offsetX += arrayGenerator.getCol();
         arrayGenerator.setNextMapStructure();
+        if(layers.getCount() > 2) {
+            layers.remove(0);
+        }
+        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + offsetX, arrayGenerator.getRow(), 32, 32);
         placeTexture();
         layers.add(groundLayer);
 

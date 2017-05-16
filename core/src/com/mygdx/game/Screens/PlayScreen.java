@@ -47,12 +47,13 @@ public class PlayScreen implements Screen {
         gamePort = new FitViewport(Dash.WIDTH / Dash.PPM, Dash.HEIGHT / Dash.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
+
         renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / Dash.PPM);
         b2dr = new Box2DDebugRenderer();
 
         enemies = gameWorld.getEnemyCharacters();
 
-        PC = new PlayerController(gameWorld, gameCam, gamePort);//handle mouseinput kan ske här istället
+        PC = new PlayerController(gameWorld, gameCam, gamePort);
         EB = gameWorld.getEB();
         limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av Dash.width istället.
     }
