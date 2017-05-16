@@ -44,7 +44,7 @@ public class libgdx_enemy extends libgdx_character{
     public void moveEnemyX(float x) {
         getB2Body().setLinearVelocity(x, getLinearYVelocity());
     }
-    
+
 
     public void dispose() {
         this.dispose();
