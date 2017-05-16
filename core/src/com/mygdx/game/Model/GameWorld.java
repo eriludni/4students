@@ -24,7 +24,7 @@ public class GameWorld {
 
     public void createLogicalEnemies() {
         float xPos = logicalPlayer.getXPos() * Dash.PPM + 200;
-        float yPos = logicalPlayer.getYPos() * Dash.PPM;
+        float yPos = logicalPlayer.getYPos() * Dash.PPM + 50;
 
         for(int i = 0; i < enemyCount; i++) {
             System.out.println(logicalPlayer.getXPos());

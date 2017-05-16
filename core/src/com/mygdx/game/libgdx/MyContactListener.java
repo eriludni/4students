@@ -56,6 +56,17 @@ public class MyContactListener implements ContactListener {
                 System.out.println("contact_2");
             }
         }
+
+        if(fixtureA.getBody().getUserData() instanceof libgdx_enemy || fixtureB.getBody().getUserData() instanceof libgdx_enemy) {
+            if(lgdxEnemies.contains(fixtureA.getBody().getUserData())) {
+                lgdxEnemy = (libgdx_enemy) fixtureA.getBody().getUserData();
+            }
+            else if(lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
+                lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
+            }
+
+            lgdxEnemy.getEnemyModel().setX_velocity(0);
+        }
         if(fixtureA.getBody().isBullet() || fixtureB.getBody().isBullet()) {
             if((fixtureA.getBody().isBullet() && fixtureB.getBody().getUserData() instanceof libgdx_enemy) || (fixtureA.getBody().getUserData() instanceof libgdx_enemy && fixtureB.getBody().isBullet())) {
 
