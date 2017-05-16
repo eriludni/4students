@@ -3,6 +3,7 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 public class libgdx_world {
     private Dash game;
     private World world;
+
+    private float triggerPos;
 
     private libgdx_player playerCharacter;
 
@@ -34,6 +37,8 @@ public class libgdx_world {
 
     public libgdx_world(Dash game, GameWorld logicalWorld) {
 
+        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / 200 - 40;
+
         this.game = game;
         this.world = new World(new Vector2(0, -10), true);
         this.logicalWorld = logicalWorld;
@@ -52,6 +57,24 @@ public class libgdx_world {
         createEnemyBrains();
 
         this.world.setContactListener(new MyContactListener(world));
+    }
+
+    public void update(){
+        playerCharacter.update();
+        world.step(1 / 60f, 6, 2);
+        boolean hasReachedTriggerPos = playerCharacter.getB2Body().getPosition().x > triggerPos;
+        if (hasReachedTriggerPos) {
+            triggerGeneration();
+        }
+        respawnEnemies();
+    }
+
+
+
+    private void triggerGeneration(){
+        generateNewWorldSection();
+        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
+
     }
 
     public void createLibgdxEnemies() {
@@ -120,7 +143,7 @@ public class libgdx_world {
 
     }
 
-    public void updateWorld(){
+    public void generateNewWorldSection(){
         mapList.get(0).setNextlibgdx_map();
         int offsetX = mapList.get(0).getOffsetX();
         createGroundHitbox(mapList.get(0), offsetX);
@@ -137,6 +160,48 @@ public class libgdx_world {
         lgdxWorld.createEnemyBrains();
     }
 
+    public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {//world
+        Array<Body> bodies = new Array<Body>(10);
+        world.getBodies(bodies);
+        for (int i = 0; i < bodies.size; i++) {
+            Body body = bodies.get(i);
+            if (body != null && body.isBullet()) {
+                //libgdx_body_userdata data = (libgdx_body_userdata) body.getUserData();
+                libgdx_projectile data = (libgdx_projectile) body.getUserData();
+                boolean bulletOutOfBounds = body.getPosition().x < gameCamPositionX - screenWidth / (2 * Dash.PPM) ||
+                        body.getPosition().x > gameCamPositionX + screenWidth / (2 * Dash.PPM) ||
+                        body.getPosition().y < 0 ||
+                        body.getPosition().y > gameCamPositionY + screenHeight / (2 * Dash.PPM);
+
+                if (data.isSetForRemoval() || bulletOutOfBounds) {
+                    world.destroyBody(body);
+                    body.setUserData(null);
+                    body = null;
+                }
+            }
+        }
+    }
+
+    public void respawnEnemies() {//world
+        ArrayList<libgdx_enemy> enemies;
+        enemies = getEnemyCharacters();
+
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).getEnemyModel().isDead()||
+                    enemies.get(i).getB2Body().getPosition().y <= 0) {
+                libgdx_enemy enemy = enemies.get(i);
+                enemies.remove(enemy);
+                world.destroyBody(enemy.getB2Body());
+                logicalWorld.getLogicalPlayerCharacter().setHighscore(
+                        logicalWorld.getLogicalPlayerCharacter().getHighscore() + 100);
+
+                enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0,
+                        logicalWorld.getLogicalPlayerCharacter().getXPos() * Dash.PPM * 2,
+                        logicalWorld.getLogicalPlayerCharacter().getYPos() * Dash.PPM * 3,
+                        10)));
+            }
+        }
+    }
 
     public int getxPositionOfLastBody() {
         return xPositionOfLastBody;

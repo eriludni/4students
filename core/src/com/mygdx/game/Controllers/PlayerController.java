@@ -44,7 +44,7 @@ public class PlayerController {
     }
 
     public boolean checkUpKeyPressed() {
-        return Gdx.input.isKeyPressed(Input.Keys.W);
+        return Gdx.input.isKeyJustPressed(Input.Keys.W);
     }
 
     public boolean checkRightKeyPressed() {

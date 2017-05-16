@@ -40,7 +40,7 @@ public class libgdx_player extends libgdx_character{
     /*
     Checks if the player has died
      */
-    public void update(float dt) {
+    public void update() {
         playerModel.checkDead();
         playerModel.setyPos(this.getB2Body().getPosition().y);
         playerModel.setxPos(this.getB2Body().getPosition().x);

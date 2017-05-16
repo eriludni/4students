@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Screens.MenuScreen;
 import com.mygdx.game.Screens.PlayScreen;
@@ -12,6 +13,7 @@ public class Dash extends Game {
     public SpriteBatch batch;
     private libgdx_world gameWorld;
     private GameWorld logicalWorld;
+    private PlayerController PC;
 
     //width of the window
     public static final int WIDTH = 1240;
@@ -28,7 +30,6 @@ public class Dash extends Game {
         batch = new SpriteBatch();
         logicalWorld = new GameWorld();
         gameWorld = new libgdx_world(this, logicalWorld);
-
         setScreen(new MenuScreen(this, gameWorld));
     }
 

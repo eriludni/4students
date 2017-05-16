@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Model.Enemy;
@@ -21,8 +22,8 @@ public class libgdx_enemy extends libgdx_character{
     }
 
     /*
-    Applies a Body to the enemy, by using the method defineCharacter() in its super class and sets its userdata to itself, so it can be identified later
-     */
+        Applies a Body to the enemy, by using the method defineCharacter() in its super class and sets its userdata to itself, so it can be identified later
+         */
     @Override
     public void defineCharacter(ICharacter character) {
         super.defineCharacter(character);
