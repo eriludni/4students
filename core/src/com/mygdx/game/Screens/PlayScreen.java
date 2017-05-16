@@ -60,7 +60,7 @@ public class PlayScreen implements Screen {
 
     public void update(float dt) {
         PC.handleInput(dt);//dash
-        gameWorld.update();//dash
+        gameWorld.update(dt);//dash
 
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 

@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -9,6 +10,7 @@ import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Lucas on 2017-05-05.
@@ -48,9 +50,8 @@ public class libgdx_world {
 
     private int xPositionOfLastBody = 0;
 
-    private int numberOfMapsCreated = 1;
-
     private MyContactListener MCL;
+    private Random rand = new Random();
 
     private TiledMap map;
 
@@ -274,9 +275,11 @@ public class libgdx_world {
                 logicalWorld.getLogicalPlayerCharacter().setHighscore(
                         logicalWorld.getLogicalPlayerCharacter().getHighscore() + 100);
 
+                int distance = (rand.nextInt(3) + 3) * 100;
+
                 enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0,
-                        logicalWorld.getLogicalPlayerCharacter().getXPos() * Dash.PPM * 2,
-                        logicalWorld.getLogicalPlayerCharacter().getYPos() * Dash.PPM * 3,
+                        logicalWorld.getLogicalPlayerCharacter().getXPos() * Dash.PPM + distance,
+                        logicalWorld.getLogicalPlayerCharacter().getYPos() * Dash.PPM + 50,
                         10)));
             }
         }
