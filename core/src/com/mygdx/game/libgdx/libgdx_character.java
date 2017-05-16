@@ -3,10 +3,10 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.*;
-import com.mygdx.game.Model.Character;
 
 import java.awt.*;
-import java.util.ArrayList;
+
+import static java.lang.Math.abs;
 
 /**
  * Created by Lucas on 2017-05-05.
@@ -16,6 +16,10 @@ public abstract class libgdx_character{
     private libgdx_world world = libgdx_world.getlgdxWorld();
     private Fixture fixture;
 
+    private float maxVelocity = 2;
+    private float horizontalAcceleration = 0.1f;
+    private float verticalAcceleration = 4f;
+
     /*
     Applies a Body to the specified character
      */
@@ -24,9 +28,6 @@ public abstract class libgdx_character{
         bdef.position.set( character.getXPos() / Dash.PPM, character.getYPos() / Dash.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2Body = world.getWorld().createBody(bdef);
-
-        //libgdx_body_userdata userdata = new libgdx_body_userdata();
-        //b2Body.setUserData(userdata);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
@@ -44,6 +45,46 @@ public abstract class libgdx_character{
             int y = (int) (getB2Body().getWorldCenter().y * 100);
             Point playerPosition = new Point(x, y);
             new libgdx_projectile(playerPosition, targetPosition, new Projectile(1,20));
+    }
+
+    /*
+    Move the character upwards with a force specified by the variable verticalAcceleration.
+     */
+    public void moveUp() {
+        if(abs(getLinearYVelocity()) <= 1 )
+        b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(),true);
+    }
+
+    /*
+    Move the character rightwards with a force specified by the variable horizontalAcceleration.
+     */
+    public void moveRight() {
+        if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
+            b2Body.applyLinearImpulse(new Vector2(horizontalAcceleration, 0), b2Body.getWorldCenter(), true);
+        }
+    }
+
+    /*
+    Move the character leftwards with a force specified by the variable horizontalAcceleration.
+     */
+    public void moveLeft() {
+        if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
+            b2Body.applyLinearImpulse(new Vector2(-horizontalAcceleration, 0), b2Body.getWorldCenter(), true);
+        }
+    }
+
+    /*
+    Get the linear velocity in the x-axis for the character
+     */
+    public float getLinearXVelocity() {
+        return b2Body.getLinearVelocity().x;
+    }
+
+    /*
+    Get the linear velocity in the y-axis for the character
+     */
+    public float getLinearYVelocity() {
+        return b2Body.getLinearVelocity().y;
     }
 
     public Body getB2Body() {

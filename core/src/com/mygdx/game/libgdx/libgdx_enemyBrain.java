@@ -2,7 +2,6 @@ package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.mygdx.game.Model.Enemy;
 
 import java.util.Random;
 
@@ -29,30 +28,30 @@ public class libgdx_enemyBrain {
 
         switch(direction) {
             case(0):
-                if(lgdxEnemy.getEnemyLinearXVelocity() >= 2) {
+                if(lgdxEnemy.getLinearXVelocity() >= 2) {
                     lgdxEnemy.setEnemyLinearXVelocity(0);
                     break;
                 }
                 for(int i = time; i >= 0; i--) {
-                    lgdxEnemy.moveEnemyRight(0.005f);
+                    lgdxEnemy.moveRight();
                 }
                 System.out.println("Right");
                 break;
 
             case(1):
-                if(lgdxEnemy.getEnemyLinearXVelocity() <= -2) {
+                if(lgdxEnemy.getLinearXVelocity() <= -2) {
                     lgdxEnemy.setEnemyLinearXVelocity(0);
                     break;
                 }
                 for(int i = time; i >= 0; i--) {
-                    lgdxEnemy.moveEnemyLeft(0.005f);
+                    lgdxEnemy.moveLeft();
                 }
                 System.out.println("Left");
                 break;
 
             case(2):
                 for(int i = time; i >= 0; i--) {
-                    lgdxEnemy.moveEnemyUp(jumpVelocity);
+                    lgdxEnemy.moveUp();
                 }
                 System.out.println("Up");
                 break;
@@ -62,11 +61,11 @@ public class libgdx_enemyBrain {
 
     public void linearBehaviour() {
         System.out.println(lgdxEnemy.getEnemyModel().getX_velocity());
-        lgdxEnemy.moveEnemyRight(lgdxEnemy.getEnemyModel().getX_velocity());
-        if(lgdxEnemy.getEnemyLinearXVelocity() >= 3) {
+        lgdxEnemy.moveRight();
+        if(lgdxEnemy.getLinearXVelocity() >= 3) {
             lgdxEnemy.getEnemyModel().reverseXVelocity();
         }
-        if(lgdxEnemy.getEnemyLinearXVelocity() <= -3) {
+        if(lgdxEnemy.getLinearXVelocity() <= -3) {
             lgdxEnemy.getEnemyModel().reverseYVelocity();
         }
     }
@@ -75,14 +74,14 @@ public class libgdx_enemyBrain {
     Move the enemy in the opposite direction the player movement, except for up.
      */
     public void mirroredBehaviour() {
-        if(checkUpKeyPressed() && lgdxEnemy.getEnemyLinearYVelocity() == 0) {
-            lgdxEnemy.moveEnemyUp(4f);
+        if(checkUpKeyPressed() && lgdxEnemy.getLinearYVelocity() == 0) {
+            lgdxEnemy.moveUp();
         }
-        if(checkRightKeyPressed() && lgdxEnemy.getEnemyLinearXVelocity() >= -2) {
-            lgdxEnemy.moveEnemyLeft(0.1f);
+        if(checkRightKeyPressed() && lgdxEnemy.getLinearXVelocity() >= -2) {
+            lgdxEnemy.moveLeft();
         }
-        if(checkLeftKeyPressed() && lgdxEnemy.getEnemyLinearXVelocity() <= 2) {
-            lgdxEnemy.moveEnemyRight(0.1f);
+        if(checkLeftKeyPressed() && lgdxEnemy.getLinearXVelocity() <= 2) {
+            lgdxEnemy.moveRight();
         }
     }
 

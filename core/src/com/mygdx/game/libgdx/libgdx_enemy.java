@@ -27,54 +27,17 @@ public class libgdx_enemy extends libgdx_character{
     }
 
     /*
-    Move the enemy upwards with a specified force
-     */
-    public void moveEnemyUp(float y) {
-        if(getEnemyLinearYVelocity() == 0) {
-            getB2Body().applyLinearImpulse(new Vector2(0, y), getB2Body().getWorldCenter(),true);
-        }
-    }
-
-    /*
-    Move the enemy rightwards with a specified force
-     */
-    public void moveEnemyRight(float x) {
-        getB2Body().applyLinearImpulse(new Vector2(x, 0), getB2Body().getWorldCenter(),true);
-    }
-
-    /*
-    Move the enemy leftwards with a specified force
-     */
-    public void moveEnemyLeft(float x) {
-        getB2Body().applyLinearImpulse(new Vector2(-x, 0), getB2Body().getWorldCenter(),true);
-    }
-
-    /*
-    Get the linear velocity in the y-axis for the enemy
-     */
-    public float getEnemyLinearYVelocity() {
-        return getB2Body().getLinearVelocity().y;
-    }
-
-    /*
-    Get the linear velocity in the x-axis for the enemy
-     */
-    public float getEnemyLinearXVelocity() {
-        return getB2Body().getLinearVelocity().x;
-    }
-
-    /*
     Set the linear velocity in the x-axis for the enemy
      */
     public void setEnemyLinearXVelocity(float x) {
-        getB2Body().setLinearVelocity(x, getB2Body().getLinearVelocity().y);
+        getB2Body().setLinearVelocity(x, getLinearYVelocity());
     }
 
     /*
     Set the linear velocity in the y-axis for the enemy
      */
     public void setEnemyLinearYVelocity(float y) {
-        getB2Body().setLinearVelocity(getB2Body().getLinearVelocity().x, y);
+        getB2Body().setLinearVelocity(getLinearXVelocity(), y);
     }
 
     public void dispose() {
