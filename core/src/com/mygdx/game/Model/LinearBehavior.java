@@ -24,16 +24,16 @@ public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
     @Override
     public float UpdateX_Velocity(float currentXV){
         if (currentXV == 0 ){
-            System.out.println(currentXV);
-            return 0.3f;
+            //System.out.println(currentXV);
+            return 0;
         }
         else if (currentXV >= 3){
-            System.out.println(currentXV);
-            return  -0.3f;
+            //System.out.println(currentXV);
+            return  0;
         }
         else if (currentXV <= -3){
-            System.out.println(currentXV);
-           return  0.3f;
+            //System.out.println(currentXV);
+           return  0;
         }
         System.out.println("NÅGOT ÄR FEL");
         return 0;

@@ -8,6 +8,8 @@ import com.mygdx.game.Model.ICharacter;
  */
 public class Player extends Character implements ICharacter{
     private int highscore = 0;
+    private float xSpawnPos = 10;
+    private boolean respawnEnemies = false;
 
     public Player(int health, float x_velocity, float y_velocity, float xPos, float yPos, float radius) {
         this.health = health;
@@ -27,5 +29,21 @@ public class Player extends Character implements ICharacter{
 
     public int getHighscore() {
         return highscore;
+    }
+
+    public float getxSpawnPos(){
+        return xSpawnPos;
+    }
+
+    public void setxSpawnPos(float spawn) {
+        this.xSpawnPos = spawn;
+    }
+
+    public boolean getRespawnEnemies() {
+        return respawnEnemies;
+    }
+
+    public void setRespawnEnemies(boolean respawn) {
+        this.respawnEnemies = respawn;
     }
 }

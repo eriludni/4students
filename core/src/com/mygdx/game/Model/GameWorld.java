@@ -10,29 +10,33 @@ import java.util.ArrayList;
  */
 public class GameWorld {
     private Player logicalPlayer;
+    private int enemyCount = 5;
     private ArrayList<Enemy> logicalEnemies = new ArrayList<Enemy>();
     private ArrayList<EnemyBrain> logicalEnemyBrains = new ArrayList<EnemyBrain>();
-    private int enemyCount = 10;
+
 
 
     public GameWorld() {
         this.logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 10);
         createLogicalEnemies();
-        createLogicalEnemyBrain();
+        createLogicalEnemyBrains();
     }
 
     public void createLogicalEnemies() {
         float xPos = logicalPlayer.getXPos() * Dash.PPM;
-        float yPos = logicalPlayer.getYPos() * Dash.PPM + 300;
+        float yPos = logicalPlayer.getYPos() * Dash.PPM;
+
         for(int i = 0; i < enemyCount; i++) {
-            xPos += 100;
+            System.out.println(logicalPlayer.getXPos());
+            System.out.println(logicalPlayer.getYPos());
+            System.out.println(xPos);
+            System.out.println(yPos);
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
         }
     }
-    public void createLogicalEnemyBrain(){
+    public void createLogicalEnemyBrains(){
         for(int i  = 0; i < enemyCount; i++){
             logicalEnemyBrains.add(new EnemyBrain(logicalEnemies.get(i)));
-
         }
     }
 
@@ -40,6 +44,18 @@ public class GameWorld {
         for(int i = 0; i < logicalEnemies.size(); i++) {
             logicalEnemies.remove(i);
         }
+        logicalEnemies = new ArrayList<Enemy>();
+    }
+
+    public void removeAllLogicalEnemyBrains() {
+        for(int i  = 0; i < logicalEnemyBrains.size(); i++){
+            logicalEnemyBrains.remove(i);
+        }
+        logicalEnemyBrains = new ArrayList<EnemyBrain>();
+    }
+
+    public void setLogicalEnemies(ArrayList<Enemy> logicalEnemies) {
+        this.logicalEnemies = logicalEnemies;
     }
 
    public Player getLogicalPlayerCharacter(){
@@ -47,5 +63,8 @@ public class GameWorld {
    }
    public ArrayList<Enemy> getLogicalEnemies() {
        return logicalEnemies;
+   }
+   public int getEnemyCount() {
+       return enemyCount;
    }
 }

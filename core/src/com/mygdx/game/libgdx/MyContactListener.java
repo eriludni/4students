@@ -94,4 +94,8 @@ public class MyContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
+
+    public void setLgdxEnemies(ArrayList<libgdx_enemy> lgdxEnemies) {
+        this.lgdxEnemies = lgdxEnemies;
+    }
 }
