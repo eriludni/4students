@@ -23,7 +23,7 @@ public class GameWorld {
     }
 
     public void createLogicalEnemies() {
-        float xPos = logicalPlayer.getXPos() * Dash.PPM;
+        float xPos = logicalPlayer.getXPos() * Dash.PPM + 200;
         float yPos = logicalPlayer.getYPos() * Dash.PPM;
 
         for(int i = 0; i < enemyCount; i++) {
@@ -32,6 +32,7 @@ public class GameWorld {
             System.out.println(xPos);
             System.out.println(yPos);
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
+            xPos += 100;
         }
     }
     public void createLogicalEnemyBrains(){
