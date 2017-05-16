@@ -4,8 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Screens.MenuScreen;
-import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.Screens.MainMenuScreen;
 import com.mygdx.game.libgdx.libgdx_world;
 
 
@@ -30,7 +29,10 @@ public class Dash extends Game {
         batch = new SpriteBatch();
         logicalWorld = new GameWorld();
         gameWorld = new libgdx_world(this, logicalWorld);
-        setScreen(new MenuScreen(this, gameWorld));
+
+
+        setScreen(new MainMenuScreen(this, gameWorld));
+
     }
 
     @Override
