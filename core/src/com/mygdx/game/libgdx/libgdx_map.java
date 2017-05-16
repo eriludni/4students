@@ -36,6 +36,7 @@ public class libgdx_map {
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
     private TiledMapTile sky;
+    private TiledMapTile platform;
 
     private MapLayers layers;
     private int offsetX;
@@ -63,6 +64,7 @@ public class libgdx_map {
         groundEdge = new StaticTiledMapTile(splitTiles[0][0]);
         ground = new StaticTiledMapTile(splitTiles[0][4]);
         sky = new StaticTiledMapTile(splitTiles[5][7]);
+        platform = new StaticTiledMapTile(splitTiles[0][6]);
 
         placeTexture();
         layers.add(groundLayer);
@@ -80,6 +82,7 @@ public class libgdx_map {
     private void placeTexture() {
         groundEdge.setId(1);
         ground.setId(0);
+        platform.setId(3);
 
         for (int x = 0; x < arrayGenerator.getCol(); x++) {
             for (int y = arrayGenerator.getRow() - 1; y > 0; y--) {
@@ -96,6 +99,10 @@ public class libgdx_map {
                         break;
                     case 2:
                         cell.setTile(ground);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                        break;
+                    case 3:
+                        cell.setTile(platform);
                         groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
                         break;
                 }

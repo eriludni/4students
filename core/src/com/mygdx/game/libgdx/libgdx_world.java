@@ -95,7 +95,7 @@ public class libgdx_world {
                     body.createFixture(fdef);
 
                 }
-                if (currentMap.getArrayId(x, y) == 1) {
+                if (currentMap.getArrayId(x, y) == 1 ||currentMap.getArrayId(x, y) == 3  ) {
                     bdf.type = BodyDef.BodyType.StaticBody;
                     bdf.position.set(((x + offsetX) * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
 

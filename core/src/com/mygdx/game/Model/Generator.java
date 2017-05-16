@@ -127,7 +127,7 @@ public class Generator {
             int row = platformStartPoints[i][0];
             int startCol = platformStartPoints[i][1];
             for (int start = 0; start < length; start++) {
-                mapArray[row][startCol] = 1;
+                mapArray[row][startCol] = 3;
                 if(startCol < this.col - 7) {
                     startCol++;
                 }
@@ -140,7 +140,7 @@ public class Generator {
         for(int row = 12; row <= 15; row++) {
             if(i < startPoints) {
                 int c = random.nextInt(this.col - 7);
-                this.mapArray[row][c] = 1;
+                this.mapArray[row][c] = 3;
                 platformStartPoints[i][0] = row;
                 platformStartPoints[i][1] = c;
                 i++;
