@@ -58,8 +58,19 @@ public class MainMenuScreen implements Screen {
         TextButton quitGameButton = new TextButton("Quit game", menuSkins.getSkins());
         quitGameButton.setPosition(Dash.WIDTH / 2 - Dash.WIDTH / 8, Dash.HEIGHT / 2 - Dash.HEIGHT / 10);
 
-        newGameButton.addListener(new ClickListener());
-        quitGameButton.addListener(new ClickListener());
+        newGameButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game, gameWorld));
+            }
+        });
+        quitGameButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+        ;
 
 
         mainTable.add(newGameButton);
