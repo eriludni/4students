@@ -1,6 +1,6 @@
 package com.mygdx.game.Model;
 
-import com.mygdx.game.libgdx.Dash;
+import com.mygdx.game.Dash;
 
 import java.util.ArrayList;
 

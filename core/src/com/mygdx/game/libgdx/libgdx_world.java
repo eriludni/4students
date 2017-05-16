@@ -1,21 +1,13 @@
 package com.mygdx.game.libgdx;
 
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.Dash;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Model.Player;
-import com.badlogic.gdx.physics.box2d.ContactListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Lucas on 2017-05-05.

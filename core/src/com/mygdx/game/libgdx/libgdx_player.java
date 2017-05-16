@@ -1,12 +1,9 @@
 package com.mygdx.game.libgdx;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.Dash;
 import com.mygdx.game.Model.ICharacter;
-import com.mygdx.game.Model.IKillable;
 import com.mygdx.game.Model.Player;
-
-import java.awt.*;
 
 /**
  * Created by Lucas on 2017-05-05.

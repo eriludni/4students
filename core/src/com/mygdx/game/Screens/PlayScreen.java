@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
+import com.mygdx.game.Dash;
 import com.mygdx.game.Model.Enemy;
-import com.mygdx.game.Model.EnemyBrain;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
 
