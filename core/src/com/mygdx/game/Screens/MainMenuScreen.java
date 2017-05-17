@@ -70,7 +70,6 @@ public class MainMenuScreen implements Screen {
                 Gdx.app.exit();
             }
         });
-        ;
 
 
         mainTable.add(newGameButton);
