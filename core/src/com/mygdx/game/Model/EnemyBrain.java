@@ -18,17 +18,17 @@ public class EnemyBrain {
         enemy.airBorn = false;
     }
 
-    public void updateX_Velocity() {
+    public float updateX_Velocity() {
         float currentX_Velocity = this.enemy.getX_velocity();
         float currentY_Velocity = this.enemy.getY_velocity();
 
-        this.enemy.setX_velocity(behavior.ApplyX_Velocity(currentX_Velocity, currentY_Velocity));
+        return behavior.ApplyX_Velocity(currentX_Velocity, currentY_Velocity);
     }
-    public void updateY_Velocity(){
+    public float updateY_Velocity(){
         float currentX_Velocity = this.enemy.getX_velocity();
         float currentY_Velocity = this.enemy.getY_velocity();
 
-        this.enemy.setY_velocity(behavior.ApplyY_Velocity(currentX_Velocity, currentY_Velocity));
+        return behavior.ApplyY_Velocity(currentX_Velocity, currentY_Velocity);
     }
 
 }

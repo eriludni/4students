@@ -17,10 +17,20 @@ public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
 
     @Override
     public float ApplyX_Velocity(float currentXV, float currentYV){
-           return 2f;
+        if(currentXV < 1) {
+            return 0.2f;
+        }
+        else{
+            return 0;
+        }
     }
     @Override
     public float ApplyY_Velocity(float currentXV, float currnetYV) {
-        return 0;
+        if( currentXV <= 0){
+            return 2f;
+        }
+        else{
+            return 0;
+        }
     }
 }
