@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Controllers.MenuController;
+import com.mygdx.game.Controllers.GameOverController;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Screens.MenuSkins.GameOverSkins;
 import com.mygdx.game.libgdx.libgdx_world;
@@ -29,9 +29,10 @@ public class GameOverScreen implements Screen {
     private libgdx_world gameWorld;
     private Dash game;
     private GameOverSkins gameOverSkin;
-    private MenuController MC;
+    private GameOverController GOC;
     private int score;
 
+    private Label gameOverLabel;
     private Label highscoreLabel;
     private Label scoreLabel;
 
@@ -41,7 +42,7 @@ public class GameOverScreen implements Screen {
 
         viewPort = new FitViewport(Dash.WIDTH, Dash.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewPort, game.batch);
-        //MC = new GameOverController(viewPort, this);
+        GOC = new GameOverController(viewPort, this);
 
         gameOverSkin = new GameOverSkins();
     }
@@ -54,6 +55,7 @@ public class GameOverScreen implements Screen {
 
         score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
 
+        gameOverLabel = new Label("GAME OVER", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label("Highscore: ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         highscoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
@@ -66,7 +68,8 @@ public class GameOverScreen implements Screen {
         newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game, gameWorld));
+                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game));
+                dispose();
             }
         });
         quitGameButton.addListener(new ClickListener() {
@@ -76,7 +79,8 @@ public class GameOverScreen implements Screen {
             }
         });
 
-
+        mainTable.add(gameOverLabel);
+        mainTable.row();
         mainTable.add(scoreLabel);
         mainTable.row();
         mainTable.add(highscoreLabel);
@@ -89,9 +93,13 @@ public class GameOverScreen implements Screen {
 
     }
 
+    public void update(float dt) {
+        GOC.handleInput(dt);
+    }
+
     @Override
     public void render(float delta) {
-        //update(delta);
+        update(delta);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -121,6 +129,10 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
+        stage.dispose();
+    }
 
+    public Stage getStage() {
+        return stage;
     }
 }
