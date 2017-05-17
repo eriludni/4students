@@ -18,7 +18,6 @@ public class Enemy extends Character implements ICharacter{
         this.radius = radius;
         this.dead = false;
 
-        System.out.println("logical enemy created");
     }
     public EnemyBrain getBrain(){
         return this.brain;

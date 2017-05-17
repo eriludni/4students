@@ -71,7 +71,7 @@ public class libgdx_map {
 
     }
 
-    public void setNextlibgdx_map() {
+    public void setNextlibgdx_mapSegment() {
         offsetX += arrayGenerator.getCol();
         arrayGenerator.setNextMapStructure();
         if(layers.getCount() > 2) {
@@ -81,6 +81,16 @@ public class libgdx_map {
         placeTexture();
         layers.add(groundLayer);
 
+    }
+
+    public void setGoBacklibgdx_mapSegment() {
+        offsetX = 0;
+        if(layers.getCount() > 2) {
+            layers.remove(0);
+        }
+        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + offsetX, arrayGenerator.getRow(), 32, 32);
+        placeTexture();
+        layers.add(groundLayer);
     }
 
     private void placeTexture() {

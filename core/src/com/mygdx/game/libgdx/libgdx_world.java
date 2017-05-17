@@ -19,6 +19,21 @@ public class libgdx_world {
 
     private float triggerPos;
 
+    private float playerCharacterXPos;
+    private float playerCharacterYPos;
+    private float xPositionOfFirstBody;
+    private Vector2 playerCharacterVector;
+
+    private int maxSegmentCount = 5;
+
+    private float teleportPos;
+
+    private boolean hasReachedTeleportPos = false;
+
+    private boolean playerSetToGoBack = false;
+
+    private int segmentCounter = 0;
+
     private libgdx_player playerCharacter;
 
     private ArrayList<Enemy> logicalEnemies;
@@ -45,7 +60,7 @@ public class libgdx_world {
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
         createGroundHitbox(mapList.get(0), 0);
-        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / 200;
+        triggerPos = getxPositionOfLastBody();
         logicalEnemies = logicalWorld.getLogicalEnemies();
 
         this.lgdxWorld = this;
@@ -61,18 +76,69 @@ public class libgdx_world {
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
         boolean hasReachedTriggerPos = playerCharacter.getB2Body().getPosition().x > triggerPos;
-        if (hasReachedTriggerPos) {
+        //System.out.println("hasReachedTriggerPos: " + hasReachedTriggerPos);
+        if (hasReachedTriggerPos && segmentCounter < maxSegmentCount) {
             triggerGeneration();
+            segmentCounter++;
+            System.out.println("segmentCounter" + segmentCounter);
         }
-        respawnEnemies();
+        if(playerCharacter.getB2Body().getPosition().x > xPositionOfFirstBody + 6.5 && segmentCounter >= maxSegmentCount ){
+            System.out.println("goBack()");
+            goBack();
+            segmentCounter = 0;
+        }
+        //respawnEnemies();
     }
 
+    private void goBack(){
+        triggerGoBackGeneration();
+    }
 
+    private void triggerGoBackGeneration(){
+        savePlayerBodyData();
+        world.destroyBody(playerCharacter.getB2Body());
+        removeBodiesFrom0To(getxPositionOfLastBody());
+        generateGoBackSections();
+        createCloneBody();
+        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
+    }
+
+    private void createCloneBody(){
+        playerCharacter.getPlayerModel().setxPos(playerCharacterXPos * Dash.PPM);
+        playerCharacter.getPlayerModel().setyPos(playerCharacterYPos * Dash.PPM);
+        playerCharacter.defineCharacter(playerCharacter.getPlayerModel());
+        playerCharacter.getB2Body().setLinearVelocity(playerCharacterVector);
+    }
+
+    private void savePlayerBodyData(){
+        playerCharacterXPos = playerCharacter.getB2Body().getPosition().x - xPositionOfFirstBody;
+        playerCharacterYPos = playerCharacter.getB2Body().getPosition().y;
+        playerCharacterVector = playerCharacter.getB2Body().getLinearVelocity();
+    }
+
+    private void generateGoBackSections(){
+        mapList.get(0).setGoBacklibgdx_mapSegment();
+        int offsetX = mapList.get(0).getOffsetX();
+        createGroundHitbox(mapList.get(0), offsetX);
+    }
+
+    public void removeBodiesFrom0To(int x)
+    {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for(Body body: bodies){
+            if(body.getPosition().x < x){
+                world.destroyBody(body);
+                body.setUserData(null);
+                body = null;
+            }
+        }
+
+    }
 
     private void triggerGeneration(){
         generateNewWorldSection();
         triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
-
     }
 
     public void createLibgdxEnemies() {
@@ -90,6 +156,9 @@ public class libgdx_world {
 
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
         xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / Dash.PPM);
+        if(segmentCounter == maxSegmentCount - 1) {
+            xPositionOfFirstBody = (offsetX * 32 + 16) / Dash.PPM;
+        }
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
@@ -142,11 +211,9 @@ public class libgdx_world {
     }
 
     public void generateNewWorldSection(){
-        mapList.get(0).setNextlibgdx_map();
+        mapList.get(0).setNextlibgdx_mapSegment();
         int offsetX = mapList.get(0).getOffsetX();
         createGroundHitbox(mapList.get(0), offsetX);
-
-        respawnAllEnemies();
     }
 
     public void respawnAllEnemies() {
