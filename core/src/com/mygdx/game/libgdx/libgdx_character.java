@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Dash;
@@ -12,10 +13,12 @@ import static java.lang.Math.abs;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class libgdx_character{
+public abstract class libgdx_character implements TextureObject{
     private Body b2Body;
     private libgdx_world world = libgdx_world.getlgdxWorld();
     private Fixture fixture;
+
+    private Texture texture = new Texture("player.png");
 
     private float maxVelocity = 2;
     private float minVelocity = -2;
@@ -39,6 +42,13 @@ public abstract class libgdx_character{
         fixture = b2Body.createFixture(fdef);
     }
 
+    public Texture getTexture(){
+        return texture;
+    }
+
+    public float getSize(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius();
+    }
     /*
     Creates a projectile and launches it towards a point indicated by the mouse
      */

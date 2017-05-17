@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.*;
 //<<<<<<< Updated upstream
 //=======
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
@@ -108,10 +110,36 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
+
+
+
         renderer.render();
 
         b2dr.render(gameWorld.getWorld(), gameCam.combined);
+
+        renderDynamicBodies();
+        
         hud.stage.draw();
+    }
+
+    private void renderDynamicBodies(){
+        SpriteBatch batch = new SpriteBatch();
+        Array<Body> bodies = new Array<Body>();
+        gameWorld.getWorld().getBodies(bodies);
+        for(Body body : bodies){
+            if(body.getType().getValue() == 2) {
+                if(!body.isBullet()){
+                game.batch.begin();
+                game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + Dash.WIDTH/2 - ((TextureObject) body.getUserData()).getSize() * 100, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getSize() * 100);
+                game.batch.end();}
+                else{
+                    game.batch.begin();
+                    game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + Dash.WIDTH/2 - ((TextureObject) body.getUserData()).getTexture().getWidth()/2, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getTexture().getHeight()/2);
+                    game.batch.end();
+                }
+            }
+        }
+
     }
 
     @Override

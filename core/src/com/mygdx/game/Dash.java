@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Model.GameWorld;
@@ -23,12 +25,19 @@ public class Dash extends Game {
 
     public static final String TITLE = "DASH";
 
+    private Music music;
+
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         logicalWorld = new GameWorld();
         gameWorld = new libgdx_world(this, logicalWorld);
+        //musicPlaceHolder
+        music = Gdx.audio.newMusic(Gdx.files.internal("The Proclaimers - I'm Gonna Be (500 Miles) Lyrics.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.1f);
+        music.play();//musicPlaceHolder
 
 
         setScreen(new MainMenuScreen(this, gameWorld));

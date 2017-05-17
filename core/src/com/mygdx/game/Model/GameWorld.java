@@ -17,7 +17,7 @@ public class GameWorld {
 
 
     public GameWorld() {
-        this.logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 10);
+        this.logicalPlayer = new Player(3, 0.1f, 0, 100, 300, 20);
         createLogicalEnemies();
         createLogicalEnemyBrains();
     }
@@ -31,7 +31,7 @@ public class GameWorld {
             System.out.println(logicalPlayer.getYPos());
             System.out.println(xPos);
             System.out.println(yPos);
-            logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 10));
+            logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 20));
             xPos += 200;
         }
     }

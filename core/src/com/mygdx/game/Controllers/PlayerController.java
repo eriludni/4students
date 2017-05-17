@@ -56,7 +56,7 @@ public class PlayerController {
     }
 
     public boolean checkMouseButtonPressed() {
-        return Gdx.input.isTouched(Input.Buttons.LEFT);
+        return Gdx.input.isTouched();
     }
 
     public void handleMouseInput(){

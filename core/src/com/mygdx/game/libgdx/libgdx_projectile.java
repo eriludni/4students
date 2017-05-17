@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -15,7 +16,8 @@ import java.awt.*;
 /**
  * Created by Niklas on 2017-05-08.
  */
-public class libgdx_projectile {
+public class libgdx_projectile implements TextureObject{
+    private Texture texture = new Texture("projectile.png");
     private Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
     private Projectile projectileModel;
@@ -25,9 +27,17 @@ public class libgdx_projectile {
         Vector2 projectileVector = getDirectionVector(startPosition, targetPosition);
         projectileVector.setLength(this.projectileModel.getSpeed());
 
-        Point projectileLaunchPoint = projectileModel.getLaunchPosition(startPosition, targetPosition, 14);
+        Point projectileLaunchPoint = projectileModel.getLaunchPosition(startPosition, targetPosition, 23);
         Body projectileBody = initiateProjectileBody(projectileLaunchPoint);
         projectileBody.setLinearVelocity(projectileVector);
+    }
+
+    public Texture getTexture(){
+        return texture;
+    }
+
+    public float getSize(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius();
     }
 
     private Vector2 getDirectionVector(Point startPosition, Point targetPosition){
