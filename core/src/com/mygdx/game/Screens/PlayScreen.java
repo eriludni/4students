@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Dash;
+import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Model.Player;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
@@ -43,6 +44,24 @@ public class PlayScreen implements Screen {
     public PlayScreen(Dash game, libgdx_world gameWorld) {
         this.game = game;
         this.gameWorld = gameWorld;
+        gameCam = new OrthographicCamera();
+        hud = new Hud(game.batch);
+        gamePort = new FitViewport(Dash.WIDTH/Dash.PPM, Dash.HEIGHT /Dash.PPM, gameCam);
+        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+
+        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / Dash.PPM);
+        b2dr = new Box2DDebugRenderer();
+
+        enemies = gameWorld.getEnemyCharacters();
+
+        PC = new PlayerController(gameWorld, gameCam, gamePort);//handle mouseinput kan ske här istället
+        EB = gameWorld.getEB();
+        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av Dash.width istället.
+    }
+
+    public PlayScreen(Dash game) {
+        this.game = game;
+        this.gameWorld = new libgdx_world(game, new GameWorld());
         gameCam = new OrthographicCamera();
         hud = new Hud(game.batch);
         gamePort = new FitViewport(Dash.WIDTH/Dash.PPM, Dash.HEIGHT /Dash.PPM, gameCam);
@@ -117,7 +136,6 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-
     }
 
 }

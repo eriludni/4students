@@ -35,6 +35,10 @@ public class Dash extends Game {
 
     }
 
+    public libgdx_world getGameWorld() {
+        return gameWorld;
+    }
+
     @Override
     public void render() {
         super.render();
