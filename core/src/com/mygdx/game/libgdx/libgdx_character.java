@@ -17,7 +17,7 @@ public abstract class libgdx_character{
     private libgdx_world world = libgdx_world.getlgdxWorld();
     private Fixture fixture;
 
-    private float maxVelocity = 4;
+    private float maxVelocity = 2;
     private float horizontalAcceleration = 0.1f;
     private float verticalAcceleration = 4f;
 
@@ -52,16 +52,15 @@ public abstract class libgdx_character{
     Move the character upwards with a force specified by the variable verticalAcceleration.
      */
     public void moveUp() {
-       if(abs(getLinearYVelocity()) <= 0 ) {
-           b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(),true);
-       }
+        if(getLinearYVelocity() == 0 )
+        b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(),true);
     }
 
     /*
     Move the character rightwards with a force specified by the variable horizontalAcceleration.
      */
     public void moveRight() {
-        if(b2Body != null && abs(getLinearXVelocity()) <= maxVelocity) {
+        if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
             b2Body.applyLinearImpulse(new Vector2(horizontalAcceleration, 0), b2Body.getWorldCenter(), true);
         }
     }
@@ -70,7 +69,7 @@ public abstract class libgdx_character{
     Move the character leftwards with a force specified by the variable horizontalAcceleration.
      */
     public void moveLeft() {
-        if(b2Body != null && abs(getLinearXVelocity()) <= maxVelocity) {
+        if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
             b2Body.applyLinearImpulse(new Vector2(-horizontalAcceleration, 0), b2Body.getWorldCenter(), true);
         }
     }
