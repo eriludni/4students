@@ -68,7 +68,7 @@ public class PlayScreen implements Screen {
         gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
 
         if(gameWorld.getPlayerCharacter().getPlayerModel().isDead()) {
-            game.setScreen(new MainMenuScreen(game, gameWorld));
+            game.setScreen(new GameOverScreen(game, gameWorld));
         }
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
