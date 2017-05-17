@@ -58,6 +58,7 @@ public class libgdx_enemy extends libgdx_character{
      */
     public void update(float dt) {
         enemyModel.checkDead();
+        enemyModel.checkOutOfBounds();
         moveEnemyX(this.brainModel.updateVelocity());
         if(enemyModel.isDead()) {
             //System.out.println("Enemy died");

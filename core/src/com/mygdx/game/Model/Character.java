@@ -117,6 +117,13 @@ public abstract class Character implements ICharacter, IKillable{
     }
 
     @Override
+    public void checkOutOfBounds() {
+        if(yPos <= -5) {
+            setDead(true);
+        }
+    }
+
+    @Override
     public void setToBeRemoved(boolean toBeRemoved) {
         this.toBeRemoved = toBeRemoved;
     }
@@ -125,4 +132,6 @@ public abstract class Character implements ICharacter, IKillable{
     public boolean getToBeRemoved() {
         return toBeRemoved;
     }
+
+
 }
