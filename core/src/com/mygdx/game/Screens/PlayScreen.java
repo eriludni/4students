@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Dash;
+import com.mygdx.game.Model.Player;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
 
@@ -65,7 +66,9 @@ public class PlayScreen implements Screen {
 
         gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
 
-
+        if(gameWorld.getPlayerCharacter().getPlayerModel().isDead()) {
+            game.setScreen(new MainMenuScreen(game, gameWorld));
+        }
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
 
