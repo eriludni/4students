@@ -38,4 +38,8 @@ public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
         System.out.println("NÅGOT ÄR FEL");
         return 0;
     }
+    @Override
+    public float UpdateY_Velocity(float currentYV) {
+        return 0;
+    }
 }
