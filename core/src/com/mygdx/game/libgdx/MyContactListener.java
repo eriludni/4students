@@ -65,6 +65,8 @@ public class MyContactListener implements ContactListener {
                 lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
 
             }
+            lgdxEnemy.getEnemyModel().setX_velocity(0);
+
 
         }
         if(fixtureA.getBody().isBullet() || fixtureB.getBody().isBullet()) {
