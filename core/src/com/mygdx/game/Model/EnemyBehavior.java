@@ -21,6 +21,7 @@ public class EnemyBehavior implements IEnemyBehavior {
                 this.behavior = new ChasingBehavior();
                 break;
             case 2:
+                this.behavior = new PacingBehavior();
                 break;
         }
 
