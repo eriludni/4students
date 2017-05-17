@@ -6,36 +6,34 @@ package com.mygdx.game.Model;
 public class ChasingBehavior extends EnemyBehavior implements IEnemyBehavior {
 
 
-        float X_Velocity;
-        float Y_Velocity;
+    float X_Velocity;
+    float Y_Velocity;
 
 
+    public ChasingBehavior() {
 
-        public ChasingBehavior(){
-
-            this.X_Velocity = 0;
-            this.Y_Velocity = 0;
-        }
-
-
-        public float getVelocity() {
-            return X_Velocity;
-        }
+        this.X_Velocity = 0;
+        this.Y_Velocity = 0;
+    }
 
 
-        @Override
-        public float UpdateX_Velocity(float currentXV){
-            if(currentXV <= 0){
-                return 3f;
-            }
-            System.out.println("NÅGOT ÄR FEL");
-            return 0;
-        }
+    public float getX_Velocity() {
+        return X_Velocity;
+    }
 
-        public float UpdateY_Velocity(float currentYV, float currentXV ){
-            if(currentXV == 0){
-                return 4f;
-            }
-            return 0;
-        }
+    public float getY_Velocity() {
+        return Y_Velocity;
+    }
+
+
+    @Override
+    public float ApplyX_Velocity(float currentXV, float currentYV) {
+
+            return -2f;
+
+    }
+
+    public float ApplyY_Velocity(float currentXV, float currentYV) {
+        return 2f;
+    }
 }

@@ -31,7 +31,7 @@ public class Generator {
         }
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
-        createPitfalls(numberOfPitfalls, pittfallLength);
+        //createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
     public void setNextMapStructure(){
@@ -43,7 +43,7 @@ public class Generator {
         }
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
-        createPitfalls(numberOfPitfalls, pittfallLength);
+        //createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
     public void clear(int[][] array){

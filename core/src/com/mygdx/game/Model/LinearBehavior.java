@@ -15,31 +15,12 @@ public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
         this.X_Velocity = 0;
     }
 
-
-    public float getVelocity() {
-         return X_Velocity;
-    }
-
-
     @Override
-    public float UpdateX_Velocity(float currentXV){
-        if (currentXV == 0 ){
-            //System.out.println(currentXV);
-            return 0;
-        }
-        else if (currentXV >= 3){
-            //System.out.println(currentXV);
-            return  0;
-        }
-        else if (currentXV <= -3){
-            //System.out.println(currentXV);
-           return  0;
-        }
-        System.out.println("NÅGOT ÄR FEL");
-        return 0;
+    public float ApplyX_Velocity(float currentXV, float currentYV){
+           return 2f;
     }
     @Override
-    public float UpdateY_Velocity(float currentYV) {
+    public float ApplyY_Velocity(float currentXV, float currnetYV) {
         return 0;
     }
 }
