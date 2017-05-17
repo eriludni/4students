@@ -78,7 +78,7 @@ public class libgdx_world {
         this.world.setContactListener(MCL);
     }
 
-    public void update(){
+    public void update(float dt){
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
         boolean hasReachedTriggerPos = playerCharacter.getB2Body().getPosition().x > triggerPos;
@@ -94,6 +94,14 @@ public class libgdx_world {
             segmentCounter = 0;
         }
         //respawnEnemies();
+        if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
+            respawnAllEnemies();
+            playerCharacter.getPlayerModel().setRespawnEnemies(false);
+        }
+        for(int i = 0; i < enemyCharacters.size(); i++) {
+            enemyCharacters.get(i).update(dt);
+        }
+        respawnEnemies();
     }
 
     private void goBack(){
