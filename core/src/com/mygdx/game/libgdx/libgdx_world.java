@@ -65,7 +65,7 @@ public class libgdx_world {
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
         createGroundHitbox(mapList.get(0), 0);
-        triggerPos = getxPositionOfLastBody();
+        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);;
         logicalEnemies = logicalWorld.getLogicalEnemies();
 
         this.lgdxWorld = this;
