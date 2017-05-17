@@ -38,10 +38,10 @@ public class EnemyBehavior implements IEnemyBehavior {
 
 
 
-    public float UpdateX_Velocity(float currentXV) {
-        return behavior.UpdateX_Velocity(currentXV);
+    public float ApplyX_Velocity(float currentXV, float currentYV) {
+        return behavior.ApplyX_Velocity(currentXV, currentYV);
     }
-    public float UpdateY_Velocity(float currentYV) {
-        return behavior.UpdateX_Velocity(currentYV);
+    public float ApplyY_Velocity(float currentXV, float currentYV) {
+        return behavior.ApplyY_Velocity(currentXV, currentYV );
     }
 }
