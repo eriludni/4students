@@ -215,7 +215,7 @@ public class libgdx_world {
                 logicalWorld.getLogicalPlayerCharacter().setHighscore(
                         logicalWorld.getLogicalPlayerCharacter().getHighscore() + 100);
 
-                int distance = (rand.nextInt(3) + 3) * 100;
+                int distance = (rand.nextInt(7) + 5) * 100;
 
                 enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0,
                         logicalWorld.getLogicalPlayerCharacter().getXPos() * Dash.PPM + distance,

@@ -52,7 +52,7 @@ public abstract class libgdx_character{
     Move the character upwards with a force specified by the variable verticalAcceleration.
      */
     public void moveUp() {
-        if(abs(getLinearYVelocity()) <= 1 )
+        if(getLinearYVelocity() == 0 )
         b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(),true);
     }
 

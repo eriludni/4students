@@ -49,7 +49,7 @@ public class libgdx_player extends libgdx_character{
 
         if(playerModel.getXPos() >= playerModel.getxSpawnPos()){
             playerModel.setRespawnEnemies(true);
-            playerModel.setxSpawnPos(this.getB2Body().getPosition().x + 10);
+            playerModel.setxSpawnPos(this.getB2Body().getPosition().x + 20);
         }
         //System.out.println(playerModel.getXPos() + " : " + playerModel.getYPos());
     }
