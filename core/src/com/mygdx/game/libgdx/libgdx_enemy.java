@@ -44,8 +44,8 @@ public class libgdx_enemy extends libgdx_character{
     /*
     Move the enemy rightwards with a specified force
      */
-    public void moveEnemy(float[] v) {
-        getB2Body().setLinearVelocity(v[0], v[1]);
+    public void moveEnemyX(float x) {
+        getB2Body().setLinearVelocity(x, getLinearYVelocity());
     }
 
 
@@ -58,7 +58,8 @@ public class libgdx_enemy extends libgdx_character{
      */
     public void update(float dt) {
         enemyModel.checkDead();
-        moveEnemy(this.brainModel.updateVelocity());
+        enemyModel.checkOutOfBounds();
+        moveEnemyX(this.brainModel.updateVelocity());
         if(enemyModel.isDead()) {
             //System.out.println("Enemy died");
         }

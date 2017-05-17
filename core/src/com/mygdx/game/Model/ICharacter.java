@@ -18,4 +18,5 @@ public interface ICharacter {
     void reverseXVelocity();
     boolean isAirBorn();
     void setAirBorn(boolean airBorn);
+    void checkOutOfBounds();
 }

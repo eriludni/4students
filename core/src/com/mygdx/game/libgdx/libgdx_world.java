@@ -267,8 +267,7 @@ public class libgdx_world {
         enemies = getEnemyCharacters();
 
         for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).getEnemyModel().isDead()||
-                    enemies.get(i).getB2Body().getPosition().y <= 0) {
+            if (enemies.get(i).getEnemyModel().isDead()) {
                 libgdx_enemy enemy = enemies.get(i);
                 enemies.remove(enemy);
                 world.destroyBody(enemy.getB2Body());
