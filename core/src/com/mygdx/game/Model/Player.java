@@ -46,4 +46,15 @@ public class Player extends Character implements ICharacter{
     public void setRespawnEnemies(boolean respawn) {
         this.respawnEnemies = respawn;
     }
+
+    public void updatexSpawnPos(float xSpawnPos) {
+        this.xSpawnPos = xSpawnPos;
+    }
+
+    public void checkxSpawnPosCrossed() {
+        if(xPos >= xSpawnPos) {
+            setRespawnEnemies(true);
+            updatexSpawnPos(xSpawnPos + 20);
+        }
+    }
 }

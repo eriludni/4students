@@ -19,7 +19,7 @@ public abstract class libgdx_character{
 
     private float maxVelocity = 2;
     private float horizontalAcceleration = 0.1f;
-    private float verticalAcceleration = 4f;
+    private float verticalAcceleration = 5f;
 
     /*
     Applies a Body to the specified character
@@ -52,7 +52,7 @@ public abstract class libgdx_character{
     Move the character upwards with a force specified by the variable verticalAcceleration.
      */
     public void moveUp() {
-        if(getLinearYVelocity() == 0 )
+        if(getLinearYVelocity() <= 0.2  && getLinearYVelocity() >= -0.2)
         b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(),true);
     }
 

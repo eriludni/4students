@@ -56,9 +56,8 @@ public class libgdx_enemy extends libgdx_character {
 
         moveEnemy();
 
-        if (enemyModel.isDead()) {
-            //System.out.println("Enemy died");
-        }
+        enemyModel.checkOutOfBounds();
+
     }
 
     public Enemy getEnemyModel() {
