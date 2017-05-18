@@ -7,10 +7,12 @@ public class PowerUp implements IItem{
     private float xPos;
     private float yPos;
     private boolean toBeRemoved = false;
+    private int modifier;
 
     public PowerUp(float xPos, float yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
+        this.modifier = 0;
     }
 
     @Override
