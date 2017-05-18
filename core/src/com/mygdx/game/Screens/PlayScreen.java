@@ -33,6 +33,7 @@ public class PlayScreen implements Screen {
     private PlayerController PC;
 
     private float limit;
+    private int timeStep = 0;
 
     private Hud hud;
 
@@ -92,7 +93,13 @@ public class PlayScreen implements Screen {
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
         hud.setHealth(gameWorld.getPlayerCharacter().getPlayerModel().getHealth());
-        hud.stepWorldTimer();
+
+        if(timeStep >= 60) {
+            hud.stepWorldTimer();
+            timeStep = 0;
+        }
+
+        timeStep++;
 
         gameCam.update();//PlayScreen
         renderer.setView(gameCam);//PlayScreen
