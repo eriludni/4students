@@ -90,7 +90,8 @@ public class MyContactListener implements ContactListener {
         if(fixtureA.getBody().getUserData() instanceof libgdx_projectile || fixtureB.getBody().getUserData() instanceof libgdx_powerUp) {
             if(fixtureA.getBody().getUserData() instanceof libgdx_player && fixtureB.getBody().getUserData() instanceof libgdx_powerUp) {
                 System.out.println("Contact_powerUp");
-                ((libgdx_powerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp().setToBeRemoved(true);
+                //((libgdx_powerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp().setyPos(100);
+
             }
             else {
                 System.out.println("Contact_powerUp2");
