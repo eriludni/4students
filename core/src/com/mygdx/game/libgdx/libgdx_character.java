@@ -63,8 +63,9 @@ public abstract class libgdx_character implements TextureObject{
     Move the character upwards with a force specified by the variable verticalAcceleration.
      */
     public void moveUp() {
-        if(getLinearYVelocity() <= 0.2  && getLinearYVelocity() >= -0.2)
-        b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(),true);
+        if(getLinearYVelocity() == 0) {
+            b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(), true);
+        }
     }
 
     /*

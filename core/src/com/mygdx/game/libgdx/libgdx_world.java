@@ -93,11 +93,12 @@ public class libgdx_world {
             goBack();
             segmentCounter = 0;
         }
-        //respawnEnemies();
+        /*
         if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
             respawnAllEnemies();
             playerCharacter.getPlayerModel().setRespawnEnemies(false);
         }
+        */
         for(int i = 0; i < enemyCharacters.size(); i++) {
             enemyCharacters.get(i).update(dt);
         }
@@ -153,6 +154,7 @@ public class libgdx_world {
     private void triggerGeneration(){
         generateNewWorldSection();
         triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
+        respawnAllEnemies();
     }
 
     public void createLibgdxEnemies() {
