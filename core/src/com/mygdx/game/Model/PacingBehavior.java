@@ -29,12 +29,12 @@ public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
            direction = !direction;
        }
        if(direction){
-           if(currentXV > -1){
+           if(currentXV > -1.5){
                return -0.2f;
            }
        }
        else{
-           if(currentXV < 1){
+           if(currentXV < 1.5){
                return 0.2f;
            }
        }
