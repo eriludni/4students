@@ -99,7 +99,6 @@ public class PlayScreen implements Screen {
         stepTime();
 
 
-
         gameCam.update();//PlayScreen
         renderer.setView(gameCam);//PlayScreen
     }

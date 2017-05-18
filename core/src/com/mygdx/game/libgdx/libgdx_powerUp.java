@@ -46,4 +46,8 @@ public class libgdx_powerUp {
     public Body getB2Body() {
         return b2Body;
     }
+
+    public void dispose() {
+        this.dispose();
+    }
 }

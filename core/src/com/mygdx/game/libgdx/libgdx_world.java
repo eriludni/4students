@@ -40,7 +40,7 @@ public class libgdx_world {
     private ArrayList<Enemy> logicalEnemies;
     private ArrayList<libgdx_enemy> enemyCharacters = new ArrayList<libgdx_enemy>();
     private ArrayList<libgdx_enemyBrain> EB = new ArrayList<libgdx_enemyBrain>();
-    private libgdx_powerUp powerUp;
+    private ArrayList<libgdx_powerUp> lgdxPowerUps = new ArrayList<libgdx_powerUp>();
 
     private libgdx_map mapCreator;
     private ArrayList<libgdx_map> mapList;
@@ -70,10 +70,9 @@ public class libgdx_world {
 
         this.lgdxWorld = this;
         this.playerCharacter = new libgdx_player(logicalWorld.getLogicalPlayerCharacter());
-        this.powerUp = new libgdx_powerUp(new PowerUp(100, 100));
 
         createLibgdxEnemies();
-        //createEnemyBrains();
+        createLibgdxPowerUps();
 
         MCL = new MyContactListener(world);
         this.world.setContactListener(MCL);
@@ -189,9 +188,10 @@ public class libgdx_world {
         }
     }
 
-    public void createEnemyBrains() {
-        for(int i = 0; i < logicalWorld.getEnemyCount(); i++) {
-            EB.add(new libgdx_enemyBrain(enemyCharacters.get(i)));
+    public void createLibgdxPowerUps() {
+        for(int i = 0; i < logicalWorld.getPowerUpCount(); i++) {
+            PowerUp powerup = logicalWorld.getLogicalPowerUps().get(i);
+            lgdxPowerUps.add(new libgdx_powerUp(powerup));
         }
     }
 
@@ -246,6 +246,13 @@ public class libgdx_world {
         enemyCharacters = new ArrayList<libgdx_enemy>();
     }
 
+    public void removeAllLibgdxPowerUps() {
+        for(int i = 0; i < lgdxPowerUps.size(); i++) {
+            lgdxPowerUps.remove(i);
+        }
+        lgdxPowerUps = new ArrayList<libgdx_powerUp>();
+    }
+
     public void removeAllLibgdxEnemyBrains() {
         for(int i = 0; i < EB.size(); i++) {
             EB.remove(i);
@@ -265,11 +272,15 @@ public class libgdx_world {
     public void respawnAllEnemies() {
         //lgdxWorld.removeAllLibgdxEnemyBrains();
         System.out.println("respawn");
+        removeAllLibgdxPowerUps();
         removeAllLibgdxEnemies();
+        lgdxWorld.getLogicalWorld().removeAllLogicalPowerUps();
         lgdxWorld.getLogicalWorld().removeAllLogicalEnemyBrains();
         lgdxWorld.getLogicalWorld().removeAllLogicalEnemies();
+        lgdxWorld.getLogicalWorld().createLogicalPowerUps();
         lgdxWorld.getLogicalWorld().createLogicalEnemies();
         lgdxWorld.getLogicalWorld().createLogicalEnemyBrains();
+        createLibgdxPowerUps();
         createLibgdxEnemies();
         MCL.setLgdxEnemies(getEnemyCharacters());
         //lgdxWorld.createEnemyBrains();
@@ -349,9 +360,5 @@ public class libgdx_world {
 
     public ArrayList<libgdx_enemyBrain> getEB() {
         return EB;
-    }
-
-    public libgdx_powerUp getlgdxPowerUp() {
-        return powerUp;
     }
 }
