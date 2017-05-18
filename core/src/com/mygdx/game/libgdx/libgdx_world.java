@@ -156,7 +156,7 @@ public class libgdx_world {
     private void triggerGeneration(){
         generateNewWorldSection();
         triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
-        respawnAllEnemies();
+        respawnEverything();
     }
 
     public void createLibgdxEnemies() {
@@ -247,10 +247,14 @@ public class libgdx_world {
         createGroundHitbox(mapList.get(0), offsetX);
     }
 
+    public void respawnEverything() {
+        respawnAllEnemies();
+        respawnAllPowerUps();
+    }
+
     public void respawnAllEnemies() {
         //lgdxWorld.removeAllLibgdxEnemyBrains();
-        System.out.println("respawn");
-        removeAllLibgdxPowerUps();
+        System.out.println("respawn_enemies");
         removeAllLibgdxEnemies();
         lgdxWorld.getLogicalWorld().removeAllLogicalPowerUps();
         lgdxWorld.getLogicalWorld().removeAllLogicalEnemyBrains();
@@ -258,10 +262,15 @@ public class libgdx_world {
         lgdxWorld.getLogicalWorld().createLogicalPowerUps();
         lgdxWorld.getLogicalWorld().createLogicalEnemies();
         lgdxWorld.getLogicalWorld().createLogicalEnemyBrains();
-        createLibgdxPowerUps();
         createLibgdxEnemies();
         MCL.setLgdxEnemies(getEnemyCharacters());
         //lgdxWorld.createEnemyBrains();
+    }
+
+    public void respawnAllPowerUps() {
+        System.out.println("respawn_powerUps");
+        removeAllLibgdxPowerUps();
+        createLibgdxPowerUps();
     }
 
     public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {//world
