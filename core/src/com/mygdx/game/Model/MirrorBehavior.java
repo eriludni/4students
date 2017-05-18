@@ -5,14 +5,22 @@ package com.mygdx.game.Model;
  */
 public class MirrorBehavior extends EnemyBehavior implements IEnemyBehavior {
     float velocity;
-    public MirrorBehavior(){
-    this.velocity = 0;
+
+    public MirrorBehavior() {
     }
 
     public float getVelocity() {
         return this.getVelocity();
     }
 
-    public void setVelocity(){
+
+    @Override
+    public float ApplyX_Velocity(float currentXV, float currentYV) {
+        return 0;
+    }
+
+    @Override
+    public float ApplyY_Velocity(float currentXV, float currnetYV) {
+        return currnetYV;
     }
 }

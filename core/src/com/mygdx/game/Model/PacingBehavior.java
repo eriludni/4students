@@ -25,7 +25,7 @@ public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
     @Override
     public float ApplyX_Velocity(float currentXV, float currentYV) {
 
-       if(currentYV != 0){
+       if(currentXV == 0){
            direction = !direction;
        }
        if(direction){
@@ -33,7 +33,7 @@ public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
                return -0.2f;
            }
        }
-        else{
+       else{
            if(currentXV < 1){
                return 0.2f;
            }

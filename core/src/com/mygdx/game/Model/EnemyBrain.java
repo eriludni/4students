@@ -12,7 +12,7 @@ public class EnemyBrain {
 
     public EnemyBrain(Enemy enemy) {
         this.enemy = enemy;
-        this.behavior = new EnemyBehavior(0);
+        this.behavior = new EnemyBehavior(enemy, rand.nextInt(1));
         enemy.dead = false;
         enemy.toBeRemoved = false;
         enemy.airBorn = false;
