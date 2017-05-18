@@ -91,6 +91,8 @@ public class PlayScreen implements Screen {
         }
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
+        hud.setHealth(gameWorld.getPlayerCharacter().getPlayerModel().getHealth());
+        hud.stepWorldTimer();
 
         gameCam.update();//PlayScreen
         renderer.setView(gameCam);//PlayScreen
