@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Model.Player;
+import com.mygdx.game.Model.PowerUp;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
 
@@ -88,21 +90,28 @@ public class PlayScreen implements Screen {
         gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());// sätt i kontroller.
 
         if(gameWorld.getPlayerCharacter().getModel().isDead()) {
-            game.setScreen(new GameOverScreen(game, gameWorld));
+            createNewGameOverScreen();
         }
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
         hud.setHealth(gameWorld.getPlayerCharacter().getPlayerModel().getHealth());
 
+
+
+        gameCam.update();//PlayScreen
+        renderer.setView(gameCam);//PlayScreen
+    }
+
+    public void stepTime() {
         if(timeStep >= 60) {
             hud.stepWorldTimer();
             timeStep = 0;
         }
-
         timeStep++;
+    }
 
-        gameCam.update();//PlayScreen
-        renderer.setView(gameCam);//PlayScreen
+    public void createNewGameOverScreen() {
+        game.setScreen(new GameOverScreen(game, gameWorld));
     }
 
     @Override
