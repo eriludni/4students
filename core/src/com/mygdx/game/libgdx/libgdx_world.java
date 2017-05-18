@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -84,24 +85,18 @@ public class libgdx_world {
             triggerGeneration();
             segmentCounter++;
             System.out.println("segmentCounter" + segmentCounter);
-            //if(playerCharacter.getModel().getRespawnEnemies()) {
-            //    respawnAllEnemies();
-            //    playerCharacter.getModel().setRespawnEnemies(false);
-            //}
-            //for(int i = 0; i < enemyCharacters.size(); i++) {
-            //    enemyCharacters.get(i).update(dt);
-            //}
-            //respawnEnemies();
         }
         if(playerCharacter.getB2Body().getPosition().x > xPositionOfFirstBody + 6.5 && segmentCounter >= maxSegmentCount ){
             System.out.println("goBack()");
             goBack();
             segmentCounter = 0;
         }
+        /*
         if(playerCharacter.getModel().getRespawnEnemies()) {
             respawnAllEnemies();
             playerCharacter.getModel().setRespawnEnemies(false);
         }
+        */
         for(int i = 0; i < enemyCharacters.size(); i++) {
             enemyCharacters.get(i).update(dt);
         }
@@ -119,10 +114,6 @@ public class libgdx_world {
         generateGoBackSections();
         createCloneBody();
         triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
-    }
-
-    private void saveDynamicBodyData(){
-
     }
 
     private void createCloneBody(){
@@ -185,6 +176,7 @@ public class libgdx_world {
     private void triggerGeneration(){
         generateNewWorldSection();
         triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
+        respawnAllEnemies();
     }
 
     public void createLibgdxEnemies() {
