@@ -6,22 +6,28 @@ package com.mygdx.game.Model;
 public class EnemyBehavior implements IEnemyBehavior {
 
     IEnemyBehavior behavior;
+    Enemy enemy;
 
 
     public EnemyBehavior() {
     }
 
 
-    public EnemyBehavior(int id) {
+    public EnemyBehavior(Enemy enemy, int id) {
+        this.enemy = enemy;
+
         switch (id) {
             case 0:
                 this.behavior = new LinearBehavior();
                 break;
             case 1:
-                this.behavior = new ChasingBehavior();
+                this.behavior = new PacingBehavior();
                 break;
             case 2:
-                this.behavior = new PacingBehavior();
+                this.behavior = new ChasingBehavior();
+                break;
+            case 3:
+                this.behavior = new MirrorBehavior();
                 break;
         }
 
@@ -38,11 +44,11 @@ public class EnemyBehavior implements IEnemyBehavior {
     }
 
 
-
     public float ApplyX_Velocity(float currentXV, float currentYV) {
         return behavior.ApplyX_Velocity(currentXV, currentYV);
     }
+
     public float ApplyY_Velocity(float currentXV, float currentYV) {
-        return behavior.ApplyY_Velocity(currentXV, currentYV );
+        return behavior.ApplyY_Velocity(currentXV, currentYV);
     }
 }
