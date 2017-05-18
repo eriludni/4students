@@ -40,7 +40,7 @@ public class libgdx_enemy extends libgdx_character {
         float x = enemyModel.getBrain().updateX_Velocity();
         float y  = enemyModel.getBrain().updateY_Velocity();
         getB2Body().applyLinearImpulse(new Vector2(x,y),getB2Body().getWorldCenter(),true);
-        System.out.println(this.enemyModel.getX_velocity() + " " + this.enemyModel.getY_velocity());
+        //System.out.println(this.enemyModel.getX_velocity() + " " + this.enemyModel.getY_velocity());
     }
 
 

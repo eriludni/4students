@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Model.PowerUp;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -41,6 +42,7 @@ public class libgdx_world {
     private ArrayList<Enemy> logicalEnemies;
     private ArrayList<libgdx_enemy> enemyCharacters = new ArrayList<libgdx_enemy>();
     private ArrayList<libgdx_enemyBrain> EB = new ArrayList<libgdx_enemyBrain>();
+    private libgdx_powerUp powerUp;
 
     private libgdx_map mapCreator;
     private ArrayList<libgdx_map> mapList;
@@ -70,6 +72,7 @@ public class libgdx_world {
 
         this.lgdxWorld = this;
         this.playerCharacter = new libgdx_player(logicalWorld.getLogicalPlayerCharacter());
+        this.powerUp = new libgdx_powerUp(new PowerUp(100, 100));
 
         createLibgdxEnemies();
         //createEnemyBrains();
@@ -324,5 +327,9 @@ public class libgdx_world {
 
     public ArrayList<libgdx_enemyBrain> getEB() {
         return EB;
+    }
+
+    public libgdx_powerUp getlgdxPowerUp() {
+        return powerUp;
     }
 }
