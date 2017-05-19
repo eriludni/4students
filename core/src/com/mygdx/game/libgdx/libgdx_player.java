@@ -36,6 +36,7 @@ public class libgdx_player extends libgdx_character{
         fdef.shape = sensor;
 
         getB2Body().createFixture(fdef);
+        getB2Body().setGravityScale(0);
 
         getB2Body().setUserData(this);
     }
