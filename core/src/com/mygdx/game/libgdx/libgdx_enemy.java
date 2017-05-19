@@ -1,18 +1,21 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.EnemyBrain;
 import com.mygdx.game.Model.ICharacter;
+import com.mygdx.game.Model.IKillable;
 
 /**
  * Created by Lucas on 2017-05-05.
  */
-public class Libgdx_enemy extends Libgdx_character {
+public class libgdx_enemy extends libgdx_character {
     private Enemy enemyModel;
     private EnemyBrain brainModel;
 
-    public Libgdx_enemy(Enemy enemy) {
+    public libgdx_enemy(Enemy enemy) {
         enemyModel = enemy;
         brainModel = enemy.getBrain();
         defineCharacter(enemyModel);

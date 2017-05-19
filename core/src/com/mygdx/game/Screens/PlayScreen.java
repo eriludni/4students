@@ -16,6 +16,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Model.Player;
+import com.mygdx.game.Model.PowerUp;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
 
@@ -29,7 +31,7 @@ public class PlayScreen implements Screen {
     private Dash game;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
-    private Libgdx_world gameWorld;
+    private libgdx_world gameWorld;
     private PlayerController PC;
 
     private float limit;
@@ -37,13 +39,13 @@ public class PlayScreen implements Screen {
 
     private Hud hud;
 
-    private ArrayList<Libgdx_enemyBrain> EB;
-    private ArrayList<Libgdx_enemy> enemies;
+    private ArrayList<libgdx_enemyBrain> EB;
+    private ArrayList<libgdx_enemy> enemies;
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
 
-    public PlayScreen(Dash game, Libgdx_world gameWorld) {
+    public PlayScreen(Dash game, libgdx_world gameWorld) {
         this.game = game;
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
@@ -63,7 +65,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(Dash game) {
         this.game = game;
-        this.gameWorld = new Libgdx_world(game, new GameWorld());
+        this.gameWorld = new libgdx_world(game, new GameWorld());
         gameCam = new OrthographicCamera();
         hud = new Hud(game.batch);
         gamePort = new FitViewport(Dash.WIDTH/Dash.PPM, Dash.HEIGHT /Dash.PPM, gameCam);

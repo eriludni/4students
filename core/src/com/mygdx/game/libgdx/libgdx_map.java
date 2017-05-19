@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by Erik on 08/05/2017.
  */
-public class Libgdx_map {
+public class libgdx_map {
 
     private Generator arrayGenerator;
     private TiledMap map;
@@ -47,7 +47,7 @@ public class Libgdx_map {
         return offsetX;
     }
 
-    public Libgdx_map() {
+    public libgdx_map() {
         offsetX = 0;
 
         arrayGenerator = Generator.getGeneratorInstance();

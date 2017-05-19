@@ -2,18 +2,22 @@ package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.mygdx.game.Model.Enemy;
+import com.mygdx.game.Model.EnemyBrain;
+
+import java.util.Random;
 
 /**
  * Created by Lucas on 2017-05-06.
  */
-public class Libgdx_enemyBrain {
-    private Libgdx_enemy lgdxEnemy;
+public class libgdx_enemyBrain {
+    private libgdx_enemy lgdxEnemy;
     private final int BEHAVIOUR;
 
 
 
 
-    public Libgdx_enemyBrain(Libgdx_enemy lgdxEnemy) {
+    public libgdx_enemyBrain(libgdx_enemy lgdxEnemy) {
         this.lgdxEnemy = lgdxEnemy;
         this.BEHAVIOUR = 2;
     }

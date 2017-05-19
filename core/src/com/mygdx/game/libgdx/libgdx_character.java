@@ -13,9 +13,9 @@ import static java.lang.Math.abs;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class Libgdx_character implements TextureObject, Libgdx_dynamic{
+public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
     private Body b2Body;
-    private Libgdx_world world = Libgdx_world.getlgdxWorld();
+    private libgdx_world world = libgdx_world.getlgdxWorld();
     private Fixture fixture;
 
     private Texture texture = new Texture("player.png");
@@ -56,7 +56,7 @@ public abstract class Libgdx_character implements TextureObject, Libgdx_dynamic{
             int x = (int) (getB2Body().getWorldCenter().x * 100);
             int y = (int) (getB2Body().getWorldCenter().y * 100);
             Point playerPosition = new Point(x, y);
-            new Libgdx_projectile(playerPosition, targetPosition, new Projectile(5,20));
+            new libgdx_projectile(playerPosition, targetPosition, new Projectile(5,20));
     }
 
     /*

@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Dash;
-import com.mygdx.game.libgdx.Libgdx_player;
-import com.mygdx.game.libgdx.Libgdx_world;
+import com.mygdx.game.libgdx.libgdx_player;
+import com.mygdx.game.libgdx.libgdx_world;
 
 import java.awt.*;
 
@@ -17,11 +17,11 @@ import java.awt.*;
 public class PlayerController {
 
     private World world;
-    private Libgdx_player player;
+    private libgdx_player player;
     private OrthographicCamera gameCam;
     private Viewport viewPort;
 
-    public PlayerController(Libgdx_world gameWorld, OrthographicCamera gameCam, Viewport viewPort){
+    public PlayerController(libgdx_world gameWorld, OrthographicCamera gameCam, Viewport viewPort){
         this.world = gameWorld.getWorld();
         this.player = gameWorld.getPlayerCharacter();
         this.gameCam = gameCam;
