@@ -1,11 +1,12 @@
 package com.mygdx.game.libgdx;
 
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Dash;
+import com.mygdx.game.Model.Character;
+import com.mygdx.game.Model.DynamicalBody;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
 
@@ -26,13 +27,9 @@ public class libgdx_world {
     private float xPositionOfFirstBody;
     private Vector2 playerCharacterVector;
 
-    private int maxSegmentCount = 5;
+    private ArrayList<Libgdx_dynamic> dynamicalBodies = new ArrayList<Libgdx_dynamic>();
 
-    private float teleportPos;
-
-    private boolean hasReachedTeleportPos = false;
-
-    private boolean playerSetToGoBack = false;
+    private int maxSegmentCount = 3;
 
     private int segmentCounter = 0;
 
@@ -87,16 +84,23 @@ public class libgdx_world {
             triggerGeneration();
             segmentCounter++;
             System.out.println("segmentCounter" + segmentCounter);
+            //if(playerCharacter.getModel().getRespawnEnemies()) {
+            //    respawnAllEnemies();
+            //    playerCharacter.getModel().setRespawnEnemies(false);
+            //}
+            //for(int i = 0; i < enemyCharacters.size(); i++) {
+            //    enemyCharacters.get(i).update(dt);
+            //}
+            //respawnEnemies();
         }
         if(playerCharacter.getB2Body().getPosition().x > xPositionOfFirstBody + 6.5 && segmentCounter >= maxSegmentCount ){
             System.out.println("goBack()");
             goBack();
             segmentCounter = 0;
         }
-        //respawnEnemies();
-        if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
+        if(playerCharacter.getModel().getRespawnEnemies()) {
             respawnAllEnemies();
-            playerCharacter.getPlayerModel().setRespawnEnemies(false);
+            playerCharacter.getModel().setRespawnEnemies(false);
         }
         for(int i = 0; i < enemyCharacters.size(); i++) {
             enemyCharacters.get(i).update(dt);
@@ -117,17 +121,45 @@ public class libgdx_world {
         triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
     }
 
+    private void saveDynamicBodyData(){
+
+    }
+
     private void createCloneBody(){
-        playerCharacter.getPlayerModel().setxPos(playerCharacterXPos * Dash.PPM);
-        playerCharacter.getPlayerModel().setyPos(playerCharacterYPos * Dash.PPM);
-        playerCharacter.defineCharacter(playerCharacter.getPlayerModel());
-        playerCharacter.getB2Body().setLinearVelocity(playerCharacterVector);
+        Libgdx_dynamic dynamicalBody;
+        for(int i = 0; i < dynamicalBodies.size(); i++){
+            dynamicalBody = dynamicalBodies.get(i);
+            System.out.println("dynamicalBody.getModel().getXPos(): " + dynamicalBody.getModel().getXPos());
+            //dynamicalBody.getModel().getXPos();
+            dynamicalBody.defineBody();
+        }
+        dynamicalBodies.clear();
+        //playerCharacter.getModel().setxPos(playerCharacterXPos * Dash.PPM);
+        //playerCharacter.getModel().setyPos(playerCharacterYPos * Dash.PPM);
+        //playerCharacter.defineCharacter(playerCharacter.getModel());
+        //playerCharacter.getB2Body().setLinearVelocity(playerCharacterVector);
     }
 
     private void savePlayerBodyData(){
-        playerCharacterXPos = playerCharacter.getB2Body().getPosition().x - xPositionOfFirstBody;
-        playerCharacterYPos = playerCharacter.getB2Body().getPosition().y;
-        playerCharacterVector = playerCharacter.getB2Body().getLinearVelocity();
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        Body body;
+        int j = 0;
+        for(int i = 0; i < bodies.size; i++){
+            if(bodies.get(i).getType().getValue() == 2){
+                body = bodies.get(i);
+                System.out.println("(body.getPosition().x - xPositionOfFirstBody) * Dash.PPM: " + ((body.getPosition().x - xPositionOfFirstBody) * Dash.PPM));
+                dynamicalBodies.add((Libgdx_dynamic) (body.getUserData()));
+                dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * Dash.PPM);
+                dynamicalBodies.get(j).getModel().setyPos(body.getPosition().y * Dash.PPM);
+                dynamicalBodies.get(j).getModel().setX_velocity(body.getLinearVelocity().x);
+                dynamicalBodies.get(j).getModel().setY_velocity(body.getLinearVelocity().y);
+                j++;
+            }
+        }
+        //playerCharacterXPos = playerCharacter.getB2Body().getPosition().x - xPositionOfFirstBody;
+        //playerCharacterYPos = playerCharacter.getB2Body().getPosition().y;
+        //playerCharacterVector = playerCharacter.getB2Body().getLinearVelocity();
     }
 
     private void generateGoBackSections(){
@@ -136,7 +168,7 @@ public class libgdx_world {
         createGroundHitbox(mapList.get(0), offsetX);
     }
 
-    public void removeBodiesFrom0To(int x)
+    private void removeBodiesFrom0To(int x)
     {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
@@ -214,7 +246,7 @@ public class libgdx_world {
             enemy = enemyCharacters.get(i);
             enemyCharacters.remove(enemy);
             getWorld().destroyBody(enemy.getB2Body());
-            //enemyCharacters.get(i).getEnemyModel().setDead(true);
+            //enemyCharacters.get(i).getModel().setDead(true);
         }
         enemyCharacters = new ArrayList<libgdx_enemy>();
     }
@@ -275,7 +307,7 @@ public class libgdx_world {
         enemies = getEnemyCharacters();
 
         for (int i = 0; i < enemies.size(); i++) {
-            if (enemies.get(i).getEnemyModel().isDead()) {
+            if (enemies.get(i).getModel().isDead()) {
                 libgdx_enemy enemy = enemies.get(i);
                 enemies.remove(enemy);
                 world.destroyBody(enemy.getB2Body());

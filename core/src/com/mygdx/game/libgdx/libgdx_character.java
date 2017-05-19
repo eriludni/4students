@@ -13,7 +13,7 @@ import static java.lang.Math.abs;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class libgdx_character implements TextureObject{
+public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
     private Body b2Body;
     private libgdx_world world = libgdx_world.getlgdxWorld();
     private Fixture fixture;

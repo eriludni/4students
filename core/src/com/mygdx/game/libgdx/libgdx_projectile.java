@@ -16,7 +16,7 @@ import java.awt.*;
 /**
  * Created by Niklas on 2017-05-08.
  */
-public class libgdx_projectile implements TextureObject{
+public class libgdx_projectile implements TextureObject, Libgdx_dynamic{
     private Texture texture = new Texture("projectile.png");
     private Body b2Body;
     protected libgdx_world world = libgdx_world.getlgdxWorld();
@@ -46,8 +46,9 @@ public class libgdx_projectile implements TextureObject{
         return new Vector2(velocityX, velocityY);
     }
 
+
     private Body initiateProjectileBody(Point startPosition){
-        Body b2Body = defineBody(startPosition);
+        Body b2Body = makeBody(startPosition);
 
         //libgdx_body_userdata userdata = new libgdx_body_userdata();
         //b2Body.setUserData(userdata);
@@ -59,7 +60,7 @@ public class libgdx_projectile implements TextureObject{
         return b2Body;
     }
 
-    private Body defineBody(Point startPosition){
+    private Body makeBody(Point startPosition){
         BodyDef bdef = new BodyDef();
         bdef.position.set( startPosition.x / Dash.PPM, startPosition.y / Dash.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
@@ -81,6 +82,20 @@ public class libgdx_projectile implements TextureObject{
         b2Body.createFixture(fdef);
 
         return b2Body;
+    }
+
+    public void defineBody(){
+        int x = (int)projectileModel.getXPos();
+        int y = (int)projectileModel.getYPos();
+        initiateProjectileBody(new Point(x,y));
+        float vectorX = projectileModel.getX_velocity();
+        float vectorY = projectileModel.getY_velocity();
+        Vector2 vector2 = new Vector2(vectorX,vectorY);
+        b2Body.setLinearVelocity(vector2);
+    }
+
+    public Projectile getModel(){
+        return projectileModel;
     }
 
     public boolean isSetForRemoval() {

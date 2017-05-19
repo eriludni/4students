@@ -1,5 +1,6 @@
 package com.mygdx.game.libgdx;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.ICharacter;
@@ -39,6 +40,16 @@ public class libgdx_player extends libgdx_character{
         getB2Body().setUserData(this);
     }
 
+    public void defineBody(){
+        System.out.println("playerPosition: " + playerModel.getXPos());
+        this.defineCharacter(playerModel);
+
+        float vectorX = playerModel.getX_velocity();
+        float vectorY = playerModel.getY_velocity();
+        Vector2 vector2 = new Vector2(vectorX,vectorY);
+        getB2Body().setLinearVelocity(vector2);
+    }
+
     /*
     Checks if the player has died
      */
@@ -50,7 +61,7 @@ public class libgdx_player extends libgdx_character{
         playerModel.checkxSpawnPosCrossed();
     }
 
-    public Player getPlayerModel() {
+    public Player getModel() {
         return playerModel;
     }
 

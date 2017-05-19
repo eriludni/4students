@@ -33,6 +33,14 @@ public class libgdx_enemy extends libgdx_character {
         getB2Body().setUserData(this);
     }
 
+    public void defineBody(){
+        defineCharacter(enemyModel);
+        float vectorX = enemyModel.getX_velocity();
+        float vectorY = enemyModel.getY_velocity();
+        Vector2 vector2 = new Vector2(vectorX,vectorY);
+        getB2Body().setLinearVelocity(vector2);
+    }
+
     /**
      * Move the enemy rightwards with a specified force
      */
@@ -40,7 +48,7 @@ public class libgdx_enemy extends libgdx_character {
         float x = enemyModel.getBrain().updateX_Velocity();
         float y  = enemyModel.getBrain().updateY_Velocity();
         getB2Body().applyLinearImpulse(new Vector2(x,y),getB2Body().getWorldCenter(),true);
-        System.out.println(this.enemyModel.getX_velocity() + " " + this.enemyModel.getY_velocity());
+        //System.out.println(this.enemyModel.getX_velocity() + " " + this.enemyModel.getY_velocity());
     }
 
 
@@ -61,7 +69,7 @@ public class libgdx_enemy extends libgdx_character {
 
     }
 
-    public Enemy getEnemyModel() {
+    public Enemy getModel() {
         return enemyModel;
     }
 }

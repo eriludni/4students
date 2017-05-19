@@ -3,7 +3,7 @@ package com.mygdx.game.Model;
 /**
  * Created by Lucas on 2017-04-27.
  */
-public abstract class Character implements ICharacter, IKillable{
+public abstract class Character implements ICharacter, IKillable, DynamicalBody{
     protected int health;
     protected float xPos;
     protected float yPos;

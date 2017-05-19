@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Model.Player;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.libgdx.*;
 
@@ -80,14 +79,14 @@ public class PlayScreen implements Screen {
     }
 
     public void update(float dt) {
-        PC.handleInput(dt);//dash
-        gameWorld.update(dt);//dash
+        PC.handleInput(dt);//sätt i kontroller
+        gameWorld.update(dt);//sätt i kontroller
 
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
-        gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
+        gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());// sätt i kontroller.
 
-        if(gameWorld.getPlayerCharacter().getPlayerModel().isDead()) {
+        if(gameWorld.getPlayerCharacter().getModel().isDead()) {
             game.setScreen(new GameOverScreen(game, gameWorld));
         }
 
@@ -109,8 +108,6 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-
-
 
 
         renderer.render();
