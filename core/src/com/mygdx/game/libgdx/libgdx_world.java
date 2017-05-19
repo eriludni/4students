@@ -94,7 +94,7 @@ public class libgdx_world {
             goBack();
             segmentCounter = 0;
         }
-        if(playerCharacter.getPlayerModel().isDead()) {
+        if(playerCharacter.getModel().isDead()) {
             Generator.resetGeneratorInstance();
         }
         /*
