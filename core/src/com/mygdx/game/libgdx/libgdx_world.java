@@ -107,6 +107,7 @@ public class libgdx_world {
             enemyCharacters.get(i).update(dt);
         }
         respawnEnemies();
+        removePowerUp();
     }
 
     private void goBack(){
@@ -297,6 +298,17 @@ public class libgdx_world {
         System.out.println("respawn_powerUps");
         removeAllLibgdxPowerUps();
         createLibgdxPowerUps();
+    }
+
+    public void removePowerUp() {
+        libgdx_powerUp powerUp;
+        for(int i = 0; i < lgdxPowerUps.size(); i++) {
+            if(lgdxPowerUps.get(i).getLogicalPowerUp().getToBeRemoved()) {
+                powerUp = lgdxPowerUps.get(i);
+                lgdxPowerUps.remove(powerUp);
+                lgdxWorld.getWorld().destroyBody(powerUp.getB2Body());
+            }
+        }
     }
 
     public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {//world
