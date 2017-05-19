@@ -13,15 +13,19 @@ public class PowerUpModifier implements IPowerUpModifier{
         switch(id) {
             case 0:
                 modifier = new DefaultMap();
+                System.out.println("Default map");
                 break;
             case 1:
                 modifier = new PlainMap();
+                System.out.println("Plain map");
                 break;
             case 2:
                 modifier = new PlatformMap();
+                System.out.println("Platform map");
                 break;
             default:
                 modifier = new DefaultMap();
+                System.out.println("Default map");
                 break;
         }
     }
