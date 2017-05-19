@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.MenuController;
-import com.mygdx.game.Dash;
+import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Screens.MenuSkins.MainMenuSkins;
 import com.mygdx.game.libgdx.libgdx_world;
 

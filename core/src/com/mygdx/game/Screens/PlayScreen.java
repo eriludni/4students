@@ -14,10 +14,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 //>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
-import com.mygdx.game.Dash;
+import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Model.Player;
-import com.mygdx.game.Model.PowerUp;
 import com.mygdx.game.Scenes.Hud;
 import com.mygdx.game.Utils.CONSTANTS;
 import com.mygdx.game.libgdx.*;

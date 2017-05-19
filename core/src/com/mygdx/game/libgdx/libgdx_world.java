@@ -1,13 +1,10 @@
 package com.mygdx.game.libgdx;
 
-import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.Dash;
-import com.mygdx.game.Model.Character;
-import com.mygdx.game.Model.DynamicalBody;
+import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Model.Generator;

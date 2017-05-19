@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.mygdx.game.Dash;
 import com.mygdx.game.Utils.CONSTANTS;
+
 
 /**
  * Created by lucasr on 5/17/17.

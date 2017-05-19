@@ -1,14 +1,15 @@
 package com.mygdx.game.Screens.MenuSkins;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.mygdx.game.Dash;
+
 import com.mygdx.game.Utils.CONSTANTS;
+
+
 
 /**
  * Created by Erik on 16/05/2017.

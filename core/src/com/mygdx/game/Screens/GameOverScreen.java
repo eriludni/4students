@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.GameOverController;
-import com.mygdx.game.Dash;
+import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Screens.MenuSkins.GameOverSkins;
 import com.mygdx.game.Utils.CONSTANTS;
 import com.mygdx.game.libgdx.libgdx_world;
