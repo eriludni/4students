@@ -36,6 +36,8 @@ public class libgdx_world {
 
     private int segmentCounter = 0;
 
+    private float counter = 0;
+
     private libgdx_player playerCharacter;
 
     private ArrayList<Enemy> logicalEnemies;
@@ -50,6 +52,8 @@ public class libgdx_world {
     private GameWorld logicalWorld;
 
     private int xPositionOfLastBody = 0;
+
+    private int furthestPositionReached = 0;
 
     private MyContactListener MCL;
     private Random rand = new Random();
@@ -80,6 +84,7 @@ public class libgdx_world {
     }
 
     public void update(float dt){
+        counter += dt*1.6;
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
         boolean hasReachedTriggerPos = playerCharacter.getB2Body().getPosition().x > triggerPos;
@@ -89,20 +94,29 @@ public class libgdx_world {
             segmentCounter++;
             System.out.println("segmentCounter" + segmentCounter);
         }
-        if(playerCharacter.getB2Body().getPosition().x > xPositionOfFirstBody + 6.5 && segmentCounter >= maxSegmentCount ){
+        if(playerCharacter.getB2Body().getPosition().x > xPositionOfFirstBody + 6.2 && segmentCounter >= maxSegmentCount ){
+            counter -= xPositionOfFirstBody;
             System.out.println("goBack()");
             goBack();
             segmentCounter = 0;
+            furthestPositionReached = (int) playerCharacter.getB2Body().getPosition().x;
         }
         if(playerCharacter.getModel().isDead()) {
             Generator.resetGeneratorInstance();
         }
+        removeStaticBodiesFrom0To(counter);
+
         /*
         if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
             respawnAllEnemies();
             playerCharacter.getModel().setRespawnEnemies(false);
         }
         */
+        if((int)playerCharacter.getB2Body().getPosition().x > furthestPositionReached){
+            logicalWorld.getLogicalPlayerCharacter().setHighscore(
+                    logicalWorld.getLogicalPlayerCharacter().getHighscore() + ((int)playerCharacter.getB2Body().getPosition().x - furthestPositionReached) * 10);
+            furthestPositionReached = (int)playerCharacter.getB2Body().getPosition().x;
+        }
         for(int i = 0; i < enemyCharacters.size(); i++) {
             enemyCharacters.get(i).update(dt);
         }
@@ -172,6 +186,20 @@ public class libgdx_world {
         world.getBodies(bodies);
         for(Body body: bodies){
             if(body.getPosition().x < x){
+                world.destroyBody(body);
+                body.setUserData(null);
+                body = null;
+            }
+        }
+
+    }
+
+    private void removeStaticBodiesFrom0To(float x)
+    {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for(Body body: bodies){
+            if(body.getPosition().x < x && body.getType().getValue() == 0){
                 world.destroyBody(body);
                 body.setUserData(null);
                 body = null;
