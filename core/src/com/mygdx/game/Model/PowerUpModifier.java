@@ -12,10 +12,16 @@ public class PowerUpModifier implements IPowerUpModifier{
 
         switch(id) {
             case 0:
-                modifier = new PlainMap();
+                modifier = new DefaultMap();
                 break;
             case 1:
+                modifier = new PlainMap();
+                break;
+            case 2:
                 modifier = new PlatformMap();
+                break;
+            default:
+                modifier = new DefaultMap();
                 break;
         }
     }
