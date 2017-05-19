@@ -9,6 +9,10 @@ public interface IPowerUpModifier {
     int getMountainDiff();
     int getNumberOfPlatforms();
     int getPlatformLength();
+    int getMinPlatformRow();
+    int getMaxPlatformRow();
     int getNumberOfPitfalls();
     int getPitfallLength();
+    int getMinPitfallRow();
+    int getMaxPitfallRow();
 }

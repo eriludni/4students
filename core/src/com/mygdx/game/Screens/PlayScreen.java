@@ -112,6 +112,7 @@ public class PlayScreen implements Screen {
     }
 
     public void createNewGameOverScreen() {
+
         game.setScreen(new GameOverScreen(game, gameWorld));
     }
 

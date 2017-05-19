@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Model.Generator;
 import com.mygdx.game.Model.PowerUp;
 
 import java.util.ArrayList;
@@ -94,6 +95,9 @@ public class libgdx_world {
             System.out.println("goBack()");
             goBack();
             segmentCounter = 0;
+        }
+        if(playerCharacter.getPlayerModel().isDead()) {
+            Generator.resetGeneratorInstance();
         }
         /*
         if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
