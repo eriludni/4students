@@ -10,6 +10,7 @@ import com.mygdx.game.Model.Character;
 import com.mygdx.game.Model.DynamicalBody;
 import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Model.Generator;
 import com.mygdx.game.Model.PowerUp;
 
 import java.util.ArrayList;
@@ -93,8 +94,11 @@ public class libgdx_world {
             goBack();
             segmentCounter = 0;
         }
+        if(playerCharacter.getPlayerModel().isDead()) {
+            Generator.resetGeneratorInstance();
+        }
         /*
-        if(playerCharacter.getModel().getRespawnEnemies()) {
+        if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
             respawnAllEnemies();
             playerCharacter.getModel().setRespawnEnemies(false);
         }

@@ -48,14 +48,14 @@ public class MyContactListener implements ContactListener {
 
         if(fixtureA.getBody().getUserData() instanceof libgdx_player || fixtureB.getBody().getUserData() instanceof libgdx_player) {
             if(fixtureA.getBody().getUserData() instanceof libgdx_player && fixtureB.getBody().getUserData() instanceof libgdx_enemy) {
-                //lgdxPlayer.getModel().reduceHealth(1);
-                //System.out.println(lgdxPlayer.getModel().getHealth());
-                //System.out.println("contact_1");
+                lgdxPlayer.getPlayerModel().reduceHealth(1);
+                System.out.println(lgdxPlayer.getPlayerModel().getHealth());
+                System.out.println("contact_1");
             }
             else if(fixtureA.getBody().getUserData() instanceof  libgdx_enemy && fixtureB.getBody().getUserData() instanceof libgdx_player) {
-                //lgdxPlayer.getModel().reduceHealth(1);
-                //System.out.println(lgdxPlayer.getModel().getHealth());
-                //.out.println("contact_2");
+                lgdxPlayer.getPlayerModel().reduceHealth(1);
+                System.out.println(lgdxPlayer.getPlayerModel().getHealth());
+                System.out.println("contact_2");
             }
         }
 
@@ -67,7 +67,7 @@ public class MyContactListener implements ContactListener {
                 lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
 
             }
-            lgdxEnemy.getModel().setX_velocity(0);
+            lgdxEnemy.getEnemyModel().setX_velocity(0);
 
 
         }
@@ -81,11 +81,11 @@ public class MyContactListener implements ContactListener {
                     lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
                 }
 
-                lgdxEnemy.getModel().reduceHealth(1);
+                lgdxEnemy.getEnemyModel().reduceHealth(1);
 
-                //System.out.println(lgdxEnemy.getModel().getHealth());
-                //System.out.println(lgdxEnemy.getB2Body().getUserData());
-                //System.out.println("contact_3");
+                System.out.println(lgdxEnemy.getEnemyModel().getHealth());
+                System.out.println(lgdxEnemy.getB2Body().getUserData());
+                System.out.println("contact_3");
             }
 
         }
@@ -94,8 +94,9 @@ public class MyContactListener implements ContactListener {
                 System.out.println("Contact_powerUp");
                 generator.setPowerUp(((libgdx_powerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp());
             }
-            else {
+            else if(fixtureB.getBody().getUserData() instanceof libgdx_player && fixtureA.getBody().getUserData() instanceof libgdx_powerUp){
                 System.out.println("Contact_powerUp2");
+                generator.setPowerUp(((libgdx_powerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp());
             }
         }
 

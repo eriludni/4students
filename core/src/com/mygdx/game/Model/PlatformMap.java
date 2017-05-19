@@ -1,22 +1,20 @@
 package com.mygdx.game.Model;
 
 /**
- * Created by lucasr on 5/18/17.
+ * Created by lucasr on 5/19/17.
  */
-public class PlainMap implements IPowerUpModifier{
+public class PlatformMap implements IPowerUpModifier {
     private int pointsDistance = 4;
     private int mountainTop = 17;
-    private int mountainDiff = 1;
-    private int numberOfPlatforms = 0;
-    private int platformLength = 0;
+    private int mountainDiff = 3;
+    private int numberOfPlatforms = 3;
+    private int platformLength = 6;
     private int minPlatformRow = 12; //Min 0
-    private int maxPlatformRow = 15; //Max 20
-    private int numberOfPitfalls = 0;
-    private int pittfallLength = 0;
+    private int maxPlatformRow = 15; //Max 19
+    private int numberOfPitfalls = 3;
+    private int pittfallLength = 6;
     private int minPitfallRow = 0; //Min 0
     private int maxPitfallRow = 20; //Max 20
-
-
 
     @Override
     public int getPoinsDistance() {
@@ -45,12 +43,12 @@ public class PlainMap implements IPowerUpModifier{
 
     @Override
     public int getMinPlatformRow() {
-        return this.minPlatformRow;
+        return minPlatformRow;
     }
 
     @Override
     public int getMaxPlatformRow() {
-        return this.maxPlatformRow;
+        return maxPlatformRow;
     }
 
     @Override
@@ -65,11 +63,11 @@ public class PlainMap implements IPowerUpModifier{
 
     @Override
     public int getMinPitfallRow() {
-        return this.minPitfallRow;
+        return minPitfallRow;
     }
 
     @Override
     public int getMaxPitfallRow() {
-        return this.maxPitfallRow;
+        return maxPitfallRow;
     }
 }

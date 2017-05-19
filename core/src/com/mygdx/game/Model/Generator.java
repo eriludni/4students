@@ -19,8 +19,12 @@ public class Generator {
     private int mountainDiff = 3;
     private int numberOfPlatforms = 3;
     private int platformLength = 3;
+    private int minPlatformRow = 12; //Min 0
+    private int maxPlatformRow = 15; //Max 19
     private int numberOfPitfalls = 2;
     private int pittfallLength = 2;
+    private int minPitfallRow = 0; //Min 0
+    private int maxPitfallRow = 20; //Max 20
     private PowerUp powerUp;
     private static Generator generatorInstance = null;
 
@@ -152,7 +156,7 @@ public class Generator {
 
     public void setPlatformStartPoints(int startPoints) {
         int i = 0;
-        for(int row = 12; row <= 15; row++) {
+        for(int row = minPlatformRow; row <= maxPlatformRow; row++) {
             if(i < startPoints) {
                 int c = random.nextInt(this.col - 7);
                 this.mapArray[row][c] = 3;
@@ -184,7 +188,7 @@ public class Generator {
     }
 
     public void setPitfallStartPoints(int startPoints) {
-        for(int row = 0; row < startPoints; row++) {
+        for(int row = minPitfallRow; row < startPoints; row++) {
                 int c = random.nextInt(this.col - 7);
                 this.mapArray[mountainTop][c] = 0;
                 pitfallStartPoints[row][0] = row;
@@ -201,6 +205,10 @@ public class Generator {
             generatorInstance = new Generator();
         }
         return generatorInstance;
+    }
+
+    public static void resetGeneratorInstance() {
+        generatorInstance = null;
     }
 
     public int getRow() {

@@ -82,14 +82,14 @@ public class PlayScreen implements Screen {
     }
 
     public void update(float dt) {
-        PC.handleInput(dt);//sätt i kontroller
-        gameWorld.update(dt);//sätt i kontroller
+        PC.handleInput(dt);//dash
+        gameWorld.update(dt);//dash
 
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
 
-        gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());// sätt i kontroller.
+        gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
 
-        if(gameWorld.getPlayerCharacter().getModel().isDead()) {
+        if(gameWorld.getPlayerCharacter().getPlayerModel().isDead()) {
             createNewGameOverScreen();
         }
 
@@ -112,6 +112,7 @@ public class PlayScreen implements Screen {
     }
 
     public void createNewGameOverScreen() {
+
         game.setScreen(new GameOverScreen(game, gameWorld));
     }
 
@@ -127,6 +128,8 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
+
 
 
         renderer.render();

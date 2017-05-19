@@ -12,7 +12,17 @@ public class PowerUpModifier implements IPowerUpModifier{
 
         switch(id) {
             case 0:
+                modifier = new DefaultMap();
+                break;
+            case 1:
                 modifier = new PlainMap();
+                break;
+            case 2:
+                modifier = new PlatformMap();
+                break;
+            default:
+                modifier = new DefaultMap();
+                break;
         }
     }
 
@@ -42,6 +52,16 @@ public class PowerUpModifier implements IPowerUpModifier{
     }
 
     @Override
+    public int getMinPlatformRow() {
+        return modifier.getMinPlatformRow();
+    }
+
+    @Override
+    public int getMaxPlatformRow() {
+        return modifier.getMaxPlatformRow();
+    }
+
+    @Override
     public int getNumberOfPitfalls() {
         return modifier.getNumberOfPitfalls();
     }
@@ -49,5 +69,15 @@ public class PowerUpModifier implements IPowerUpModifier{
     @Override
     public int getPitfallLength() {
         return modifier.getPitfallLength();
+    }
+
+    @Override
+    public int getMinPitfallRow() {
+        return modifier.getMinPitfallRow();
+    }
+
+    @Override
+    public int getMaxPitfallRow() {
+        return modifier.getMaxPitfallRow();
     }
 }
