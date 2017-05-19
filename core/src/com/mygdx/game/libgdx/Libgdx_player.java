@@ -9,10 +9,10 @@ import com.mygdx.game.Model.Player;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public class libgdx_player extends libgdx_character{
+public class Libgdx_player extends Libgdx_character {
     private Player playerModel;
 
-    public libgdx_player(Player player) {
+    public Libgdx_player(Player player) {
         playerModel = player;
 
         defineCharacter(playerModel);
