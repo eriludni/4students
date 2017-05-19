@@ -1,18 +1,21 @@
 package com.mygdx.game.Model;
 
+import java.util.Random;
+
 /**
  * Created by lucasr on 5/18/17.
  */
 public class PowerUp implements IItem{
+    private Random rand = new Random();
     private float xPos;
     private float yPos;
     private boolean toBeRemoved = false;
-    private int modifier;
+    private PowerUpModifier modifier;
 
     public PowerUp(float xPos, float yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
-        this.modifier = 0;
+        this.modifier = new PowerUpModifier(this, rand.nextInt(1));
     }
 
     @Override
@@ -43,5 +46,9 @@ public class PowerUp implements IItem{
     @Override
     public boolean getToBeRemoved() {
         return toBeRemoved;
+    }
+
+    public PowerUpModifier getModifier() {
+        return modifier;
     }
 }

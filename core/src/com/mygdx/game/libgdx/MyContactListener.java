@@ -1,6 +1,7 @@
 package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.Model.Generator;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class MyContactListener implements ContactListener {
     private libgdx_player lgdxPlayer = lgdxWorld.getPlayerCharacter();
     private ArrayList<libgdx_enemy> lgdxEnemies = lgdxWorld.getEnemyCharacters();
     private libgdx_enemy lgdxEnemy;
+    private Generator generator = Generator.getGeneratorInstance();
 
     public MyContactListener(World world){
         this.world = world;
@@ -90,8 +92,7 @@ public class MyContactListener implements ContactListener {
         if(fixtureA.getBody().getUserData() instanceof libgdx_projectile || fixtureB.getBody().getUserData() instanceof libgdx_powerUp) {
             if(fixtureA.getBody().getUserData() instanceof libgdx_player && fixtureB.getBody().getUserData() instanceof libgdx_powerUp) {
                 System.out.println("Contact_powerUp");
-                //((libgdx_powerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp().setyPos(100);
-
+                generator.setPowerUp(((libgdx_powerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp());
             }
             else {
                 System.out.println("Contact_powerUp2");

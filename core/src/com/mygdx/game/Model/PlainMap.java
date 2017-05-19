@@ -8,9 +8,9 @@ public class PlainMap implements IPowerUpModifier{
     private int mountainTop = 17;
     private int mountainDiff = 1;
     private int numberOfPlatforms = 0;
-    private int platformLength = 3;
+    private int platformLength = 0;
     private int numberOfPitfalls = 0;
-    private int pittfallLength = 2;
+    private int pittfallLength = 0;
 
 
     @Override

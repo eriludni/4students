@@ -8,22 +8,24 @@ import java.util.Random;
  */
 public class Generator {
 
+    private Random random = new Random();
     private int[][] mapArray;
     private final int row =20;
     private final int col = 40;
-    private Random random = new Random();
+    private int[][] platformStartPoints = new int[3][2];
+    private int[][] pitfallStartPoints = new int[3][2];
     private int pointsDistance = 4;
     private int mountainTop = 17;
     private int mountainDiff = 3;
-    private int[][] platformStartPoints = new int[3][2];
-    private int[][] pitfallStartPoints = new int[3][2];
     private int numberOfPlatforms = 3;
     private int platformLength = 3;
     private int numberOfPitfalls = 2;
     private int pittfallLength = 2;
+    private PowerUp powerUp;
+    private static Generator generatorInstance = null;
 
 
-    public Generator() {
+    private Generator() {
         this.mapArray = new int[row][col];
         setBasePoints();
         for (int x = 0; x < col - 1; x++) {
@@ -34,16 +36,29 @@ public class Generator {
         //createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
+    public void applyModifier() {
+        if(powerUp != null) {
+            pointsDistance = powerUp.getModifier().getPoinsDistance();
+            mountainTop = powerUp.getModifier().getMountainTop();
+            mountainDiff = powerUp.getModifier().getMountainDiff();
+            numberOfPlatforms = powerUp.getModifier().getNumberOfPlatforms();
+            platformLength = powerUp.getModifier().getPlatformLength();
+            numberOfPitfalls = powerUp.getModifier().getNumberOfPitfalls();
+            pittfallLength = powerUp.getModifier().getPitfallLength();
+        }
+    }
+
     public void setNextMapStructure(){
         int lastBasePoint = findRow(col - 1);
         clear(mapArray);
+        applyModifier();
         setBasePointsFrom(lastBasePoint);
         for (int x = 0; x < col - 1; x++) {
             growFromPoints(x);
         }
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
-        //createPitfalls(numberOfPitfalls, pittfallLength);
+        createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
     public void clear(int[][] array){
@@ -168,19 +183,6 @@ public class Generator {
         }
     }
 
-    /*
-    for(int depth = this.row - row; depth <= this.row; depth++) {
-        int row = pitfallStartPoints[i][0];
-        int startCol = pitfallStartPoints[i][1];
-        for (int start = 0; start < width; start++) {
-            mapArray[row][startCol] = 0;
-            if (startCol < this.col - 7) {
-                startCol++;
-            }
-        }
-    }
-    */
-
     public void setPitfallStartPoints(int startPoints) {
         for(int row = 0; row < startPoints; row++) {
                 int c = random.nextInt(this.col - 7);
@@ -188,6 +190,17 @@ public class Generator {
                 pitfallStartPoints[row][0] = row;
                 pitfallStartPoints[row][1] = c;
         }
+    }
+
+    public void setPowerUp(PowerUp powerUp) {
+        this.powerUp = powerUp;
+    }
+
+    public static Generator getGeneratorInstance() {
+        if(generatorInstance == null) {
+            generatorInstance = new Generator();
+        }
+        return generatorInstance;
     }
 
     public int getRow() {

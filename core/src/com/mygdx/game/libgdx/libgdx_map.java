@@ -50,7 +50,7 @@ public class libgdx_map {
     public libgdx_map() {
         offsetX = 0;
 
-        arrayGenerator = new Generator();
+        arrayGenerator = Generator.getGeneratorInstance();
 
 
         texture = new Texture(Gdx.files.internal("tiles/Tiles_32x32.png"));
