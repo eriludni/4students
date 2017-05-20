@@ -16,56 +16,89 @@ public class PlatformMap implements IPowerUpModifier {
     private int minPitfallRow = 0; //Min 0
     private int maxPitfallRow = 20; //Max 20
 
+    /**
+     *Getter
+     */
     @Override
     public int getPoinsDistance() {
         return this.pointsDistance;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMountainTop() {
         return this.mountainTop;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMountainDiff() {
         return this.mountainDiff;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getNumberOfPlatforms() {
         return this.numberOfPlatforms;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getPlatformLength() {
         return this.platformLength;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMinPlatformRow() {
         return minPlatformRow;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMaxPlatformRow() {
         return maxPlatformRow;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getNumberOfPitfalls() {
         return this.numberOfPitfalls;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getPitfallLength() {
         return this.pittfallLength;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMinPitfallRow() {
         return minPitfallRow;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMaxPitfallRow() {
         return maxPitfallRow;

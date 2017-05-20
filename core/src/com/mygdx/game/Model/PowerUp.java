@@ -18,36 +18,57 @@ public class PowerUp implements IItem{
         this.modifier = new PowerUpModifier(this, rand.nextInt(3));
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getxPos() {
         return xPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public void setxPos(float xPos) {
         this.xPos = xPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getyPos() {
         return yPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public void setyPos(float yPos) {
         this.yPos = yPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public void setToBeRemoved(boolean toBeRemoved) {
         this.toBeRemoved = toBeRemoved;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public boolean getToBeRemoved() {
         return toBeRemoved;
     }
 
+    /**
+     *Getter
+     */
     public PowerUpModifier getModifier() {
         return modifier;
     }

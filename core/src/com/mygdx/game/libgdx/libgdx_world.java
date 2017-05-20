@@ -384,34 +384,58 @@ public class libgdx_world {
         }
     }
 
+    /**
+     *Getter
+     */
     public int getxPositionOfLastBody() {
         return xPositionOfLastBody;
     }
 
+    /**
+     *Getter
+     */
     public static libgdx_world getlgdxWorld() {
         return lgdxWorld;
     }
 
+    /**
+     *Getter
+     */
     public GameWorld getLogicalWorld() {
         return logicalWorld;
     }
 
+    /**
+     *Getter
+     */
     public libgdx_player getPlayerCharacter() {
         return playerCharacter;
     }
 
+    /**
+     *Getter
+     */
     public ArrayList<libgdx_enemy> getEnemyCharacters() {
         return enemyCharacters;
     }
 
+    /**
+     *Getter
+     */
     public World getWorld() {
         return world;
     }
 
+    /**
+     *Getter
+     */
     public TiledMap getMap() {
         return map;
     }
 
+    /**
+     *Getter
+     */
     public ArrayList<libgdx_enemyBrain> getEB() {
         return EB;
     }

@@ -12,11 +12,17 @@ public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
 
 
 
+    /**
+     *Getter
+     */
     @Override
     public float getX_Velocity() {
         return super.getX_Velocity();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getY_Velocity() {
         return super.getY_Velocity();

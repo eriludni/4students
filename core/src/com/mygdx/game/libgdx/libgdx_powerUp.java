@@ -36,6 +36,9 @@ public class libgdx_powerUp {
         b2Body.setUserData(this);
     }
 
+    /**
+     *Getter
+     */
     public PowerUp getLogicalPowerUp() {
         return powerUp;
     }
@@ -44,6 +47,9 @@ public class libgdx_powerUp {
         this.powerUp = powerUp;
     }
 
+    /**
+     *Getter
+     */
     public Body getB2Body() {
         return b2Body;
     }

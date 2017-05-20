@@ -16,11 +16,16 @@ public class ChasingBehavior extends EnemyBehavior implements IEnemyBehavior {
         this.Y_Velocity = 0;
     }
 
-
+    /**
+     *Getter
+     */
     public float getX_Velocity() {
         return X_Velocity;
     }
 
+    /**
+     *Getter
+     */
     public float getY_Velocity() {
         return Y_Velocity;
     }

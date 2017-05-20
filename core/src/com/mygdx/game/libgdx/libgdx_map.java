@@ -124,18 +124,30 @@ public class libgdx_map {
         }
     }
 
+    /**
+     *Getter
+     */
     public TiledMap getMap() {
         return this.map;
     }
 
+    /**
+     *Getter
+     */
     public int getMapWidth() {
         return arrayGenerator.getCol();
     }
 
+    /**
+     *Getter
+     */
     public int getMapHeight() {
         return arrayGenerator.getRow();
     }
 
+    /**
+     *Getter
+     */
     public int getArrayId(int x, int y) {
         return arrayGenerator.getMapArray(x, y);
     }

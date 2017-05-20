@@ -87,20 +87,23 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
         }
     }
 
-    /*
-    Get the linear velocity in the x-axis for the character
+    /**
+     *Getter
      */
     public float getLinearXVelocity() {
         return b2Body.getLinearVelocity().x;
     }
 
-    /*
-    Get the linear velocity in the y-axis for the character
+    /**
+     *Getter
      */
     public float getLinearYVelocity() {
         return b2Body.getLinearVelocity().y;
     }
 
+    /**
+     *Getter
+     */
     public Body getB2Body() {
         return b2Body;
     }

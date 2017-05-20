@@ -27,10 +27,16 @@ public class Player extends Character implements ICharacter{
         this.highscore = highscore;
     }
 
+    /**
+     *Getter
+     */
     public int getHighscore() {
         return highscore;
     }
 
+    /**
+     *Getter
+     */
     public float getxSpawnPos(){
         return xSpawnPos;
     }
@@ -39,6 +45,9 @@ public class Player extends Character implements ICharacter{
         this.xSpawnPos = spawn;
     }
 
+    /**
+     *Getter
+     */
     public boolean getRespawnEnemies() {
         return respawnEnemies;
     }

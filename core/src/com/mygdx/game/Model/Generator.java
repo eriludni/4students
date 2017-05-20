@@ -211,14 +211,23 @@ public class Generator {
         generatorInstance = null;
     }
 
+    /**
+     *Getter
+     */
     public int getRow() {
         return row;
     }
 
+    /**
+     *Getter
+     */
     public int getCol() {
         return col;
     }
 
+    /**
+     *Getter
+     */
     public int getMapArray(int x, int y) {
         return this.mapArray[y][x];
     }

@@ -69,6 +69,9 @@ public class libgdx_enemy extends libgdx_character {
 
     }
 
+    /**
+     *Getter
+     */
     public Enemy getModel() {
         return enemyModel;
     }

@@ -74,26 +74,48 @@ public class GameWorld {
         }
         logicalPowerUps = new ArrayList<PowerUp>();
     }
-
     public void setLogicalEnemies(ArrayList<Enemy> logicalEnemies) {
         this.logicalEnemies = logicalEnemies;
     }
 
+    /**
+     *Getter
+     */
    public Player getLogicalPlayerCharacter(){
        return logicalPlayer;
    }
+
+    /**
+     *Getter
+     */
    public ArrayList<Enemy> getLogicalEnemies() {
        return logicalEnemies;
    }
+
+    /**
+     *Getter
+     */
    public ArrayList<PowerUp> getLogicalPowerUps() {
        return logicalPowerUps;
    }
+
+    /**
+     *Getter
+     */
    public ArrayList<EnemyBrain> getLogicalEnemyBrains() {
        return logicalEnemyBrains;
    }
+
+    /**
+     *Getter
+     */
    public int getEnemyCount() {
        return enemyCount;
    }
+
+    /**
+     *Getter
+     */
    public int getPowerUpCount() {
        return powerUpCount;
    }

@@ -62,6 +62,9 @@ public class libgdx_player extends libgdx_character{
         playerModel.checkxSpawnPosCrossed();
     }
 
+    /**
+     *Getter
+     */
     public Player getModel() {
         return playerModel;
     }

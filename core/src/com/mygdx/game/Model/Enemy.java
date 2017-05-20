@@ -19,6 +19,10 @@ public class Enemy extends Character implements ICharacter{
         this.dead = false;
 
     }
+
+    /**
+     *Getter
+     */
     public EnemyBrain getBrain(){
         return this.brain;
     }

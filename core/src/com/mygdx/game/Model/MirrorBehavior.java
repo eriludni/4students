@@ -9,6 +9,9 @@ public class MirrorBehavior extends EnemyBehavior implements IEnemyBehavior {
     public MirrorBehavior() {
     }
 
+    /**
+     *Getter
+     */
     public float getVelocity() {
         return this.getVelocity();
     }

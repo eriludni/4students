@@ -14,6 +14,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
     protected boolean airBorn;
     protected boolean toBeRemoved;
 
+    /**
+     *Getter
+     */
     @Override
     public float getXPos() {
         return xPos;
@@ -24,6 +27,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.xPos = xPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getYPos() {
         return yPos;
@@ -34,6 +40,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.yPos = yPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getRadius() {
         return radius;
@@ -44,6 +53,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.radius = radius;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getY_velocity() {
         return y_velocity;
@@ -59,6 +71,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         setY_velocity(-y_velocity);
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getX_velocity() {
         return x_velocity;
@@ -74,6 +89,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         setX_velocity(-x_velocity);
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getHealth() {
         return health;
@@ -106,6 +124,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.dead = dead;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public boolean isAirBorn() {
         return airBorn;
@@ -128,10 +149,11 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.toBeRemoved = toBeRemoved;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public boolean getToBeRemoved() {
         return toBeRemoved;
     }
-
-
 }

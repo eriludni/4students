@@ -35,10 +35,16 @@ public class EnemyBehavior implements IEnemyBehavior {
     }
 
 
+    /**
+     *Getter
+     */
     public float getX_Velocity() {
         return 0;
     }
 
+    /**
+     *Getter
+     */
     public float getY_Velocity() {
         return 0;
     }

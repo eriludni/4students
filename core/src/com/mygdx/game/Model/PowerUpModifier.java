@@ -30,56 +30,89 @@ public class PowerUpModifier implements IPowerUpModifier{
         }
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getPoinsDistance() {
         return modifier.getPoinsDistance();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMountainTop() {
         return modifier.getMountainTop();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMountainDiff() {
         return modifier.getMountainDiff();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getNumberOfPlatforms() {
         return modifier.getNumberOfPlatforms();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getPlatformLength() {
         return modifier.getPlatformLength();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMinPlatformRow() {
         return modifier.getMinPlatformRow();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMaxPlatformRow() {
         return modifier.getMaxPlatformRow();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getNumberOfPitfalls() {
         return modifier.getNumberOfPitfalls();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getPitfallLength() {
         return modifier.getPitfallLength();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMinPitfallRow() {
         return modifier.getMinPitfallRow();
     }
 
+    /**
+     *Getter
+     */
     @Override
     public int getMaxPitfallRow() {
         return modifier.getMaxPitfallRow();

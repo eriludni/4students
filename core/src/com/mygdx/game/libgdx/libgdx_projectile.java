@@ -95,6 +95,9 @@ public class libgdx_projectile implements TextureObject, Libgdx_dynamic{
         b2Body.setLinearVelocity(vector2);
     }
 
+    /**
+     *Getter
+     */
     public Projectile getModel(){
         return projectileModel;
     }
