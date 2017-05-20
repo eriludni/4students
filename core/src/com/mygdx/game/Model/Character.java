@@ -22,6 +22,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return xPos;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setxPos(float xPos) {
         this.xPos = xPos;
@@ -35,6 +38,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return yPos;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setyPos(float yPos) {
         this.yPos = yPos;
@@ -48,6 +54,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return radius;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setRadius(float radius) {
         this.radius = radius;
@@ -61,6 +70,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return y_velocity;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setY_velocity(float y_velocity) {
         this.y_velocity = y_velocity;
@@ -79,6 +91,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return x_velocity;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setX_velocity(float x_velocity) {
         this.x_velocity =x_velocity;
@@ -97,6 +112,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return health;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setHealth(int health) {
         this.health = health;
@@ -107,6 +125,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         setHealth(health - damageValue);
     }
 
+    /**
+     *Getter
+     */
     @Override
     public boolean isDead() {
         return dead;
@@ -119,6 +140,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         }
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setDead(boolean dead) {
         this.dead = dead;
@@ -132,6 +156,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return airBorn;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setAirBorn(boolean airBorn) {
         this.airBorn = airBorn;
@@ -144,6 +171,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         }
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setToBeRemoved(boolean toBeRemoved) {
         this.toBeRemoved = toBeRemoved;

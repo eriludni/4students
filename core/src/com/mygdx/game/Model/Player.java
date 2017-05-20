@@ -23,6 +23,9 @@ public class Player extends Character implements ICharacter{
         System.out.println("logical player created");
     }
 
+    /**
+     *Setter
+     */
     public void setHighscore(int highscore) {
         this.highscore = highscore;
     }
@@ -41,6 +44,9 @@ public class Player extends Character implements ICharacter{
         return xSpawnPos;
     }
 
+    /**
+     *Setter
+     */
     public void setxSpawnPos(float spawn) {
         this.xSpawnPos = spawn;
     }
@@ -52,10 +58,16 @@ public class Player extends Character implements ICharacter{
         return respawnEnemies;
     }
 
+    /**
+     *Setter
+     */
     public void setRespawnEnemies(boolean respawn) {
         this.respawnEnemies = respawn;
     }
 
+    /**
+     *Setter
+     */
     public void updatexSpawnPos(float xSpawnPos) {
         this.xSpawnPos = xSpawnPos;
     }

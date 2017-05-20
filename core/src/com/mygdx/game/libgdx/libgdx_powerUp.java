@@ -43,6 +43,9 @@ public class libgdx_powerUp {
         return powerUp;
     }
 
+    /**
+     *Setter
+     */
     public void setPowerUp(PowerUp powerUp) {
         this.powerUp = powerUp;
     }

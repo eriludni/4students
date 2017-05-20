@@ -196,6 +196,9 @@ public class Generator {
         }
     }
 
+    /**
+     *Setter
+     */
     public void setPowerUp(PowerUp powerUp) {
         this.powerUp = powerUp;
     }

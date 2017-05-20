@@ -24,6 +24,9 @@ public class Projectile implements DynamicalBody{
         hasCollided = false;
     }
 
+    /**
+     *Getter
+     */
     public static Point getLaunchPosition(Point characterPosition, Point targetPosition, float hitBoxRadius)
     {
         double yDelta = targetPosition.y - characterPosition.y;
@@ -41,53 +44,86 @@ public class Projectile implements DynamicalBody{
         character.reduceHealth(damage);
     }
 
+    /**
+     *Getter
+     */
     public float getSpeed(){
         return speed;
     }
 
+    /**
+     *Setter
+     */
     public void JustCollided(){
         hasCollided = true;
     }
 
+    /**
+     *Getter
+     */
     public boolean hasCollided(){
         return hasCollided;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setxPos(float x) {
         xPos = x;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setyPos(float y) {
         yPos = y;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setX_velocity(float xVelocity) {
         x_velocity = xVelocity;
     }
 
+    /**
+     *Setter
+     */
     @Override
     public void setY_velocity(float yVelocity) {
         y_velocity = yVelocity;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getXPos() {
         return xPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getYPos() {
         return yPos;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getX_velocity() {
         return x_velocity;
     }
 
+    /**
+     *Getter
+     */
     @Override
     public float getY_velocity() {
         return y_velocity;

@@ -102,10 +102,16 @@ public class libgdx_projectile implements TextureObject, Libgdx_dynamic{
         return projectileModel;
     }
 
+    /**
+     *Getter
+     */
     public boolean isSetForRemoval() {
         return projectileModel.hasCollided();
     }
 
+    /**
+     *Setter
+     */
     public void setForRemoval() {
         projectileModel.JustCollided();
     }

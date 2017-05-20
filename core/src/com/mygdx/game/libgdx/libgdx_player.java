@@ -73,6 +73,9 @@ public class libgdx_player extends libgdx_character{
         this.dispose();
     }
 
+    /**
+     *Setter
+     */
     public void setPlayerModel(Player player) {
         this.playerModel = player;
     }

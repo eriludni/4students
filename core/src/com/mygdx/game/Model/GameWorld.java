@@ -74,9 +74,6 @@ public class GameWorld {
         }
         logicalPowerUps = new ArrayList<PowerUp>();
     }
-    public void setLogicalEnemies(ArrayList<Enemy> logicalEnemies) {
-        this.logicalEnemies = logicalEnemies;
-    }
 
     /**
      *Getter
