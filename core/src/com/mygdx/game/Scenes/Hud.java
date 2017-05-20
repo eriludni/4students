@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Dash;
+import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by Niklas on 2017-05-14.
@@ -38,7 +39,7 @@ public class Hud {
         score = 0;
         health = 0;
 
-        viewPort = new FitViewport(Dash.WIDTH, Dash.HEIGHT, new OrthographicCamera());
+        viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewPort, sb);
 
         Table table = new  Table();

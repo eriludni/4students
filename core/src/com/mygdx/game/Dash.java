@@ -33,11 +33,13 @@ public class Dash extends Game {
         batch = new SpriteBatch();
         logicalWorld = new GameWorld();
         gameWorld = new libgdx_world(this, logicalWorld);
+        /*
         //musicPlaceHolder
         music = Gdx.audio.newMusic(Gdx.files.internal("The Proclaimers - I'm Gonna Be (500 Miles) Lyrics.mp3"));
         music.setLooping(true);
         music.setVolume(0.1f);
         music.play();//musicPlaceHolder
+        */
 
 
         setScreen(new MainMenuScreen(this, gameWorld));

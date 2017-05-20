@@ -19,6 +19,7 @@ import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Model.Player;
 import com.mygdx.game.Model.PowerUp;
 import com.mygdx.game.Scenes.Hud;
+import com.mygdx.game.Utils.CONSTANTS;
 import com.mygdx.game.libgdx.*;
 
 import java.util.ArrayList;
@@ -50,17 +51,17 @@ public class PlayScreen implements Screen {
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
         hud = new Hud(game.batch);
-        gamePort = new FitViewport(Dash.WIDTH/Dash.PPM, Dash.HEIGHT /Dash.PPM, gameCam);
+        gamePort = new FitViewport(CONSTANTS.WIDTH/CONSTANTS.PPM, CONSTANTS.HEIGHT /CONSTANTS.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / Dash.PPM);
+        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
         b2dr = new Box2DDebugRenderer();
 
         enemies = gameWorld.getEnemyCharacters();
 
         PC = new PlayerController(gameWorld, gameCam, gamePort);//handle mouseinput kan ske här istället
         EB = gameWorld.getEB();
-        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av Dash.width istället.
+        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av CONSTANTS.WIDTH istället.
     }
 
     public PlayScreen(Dash game) {
@@ -68,17 +69,17 @@ public class PlayScreen implements Screen {
         this.gameWorld = new libgdx_world(game, new GameWorld());
         gameCam = new OrthographicCamera();
         hud = new Hud(game.batch);
-        gamePort = new FitViewport(Dash.WIDTH/Dash.PPM, Dash.HEIGHT /Dash.PPM, gameCam);
+        gamePort = new FitViewport(CONSTANTS.WIDTH/CONSTANTS.PPM, CONSTANTS.HEIGHT /CONSTANTS.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / Dash.PPM);
+        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
         b2dr = new Box2DDebugRenderer();
 
         enemies = gameWorld.getEnemyCharacters();
 
         PC = new PlayerController(gameWorld, gameCam, gamePort);//handle mouseinput kan ske här istället
         EB = gameWorld.getEB();
-        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av Dash.width istället.
+        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av CONSTANTS.WIDTH istället.
     }
 
     public void update(float dt) {
@@ -149,11 +150,11 @@ public class PlayScreen implements Screen {
             if(body.getType().getValue() == 2) {
                 if(!body.isBullet()){
                 game.batch.begin();
-                game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + Dash.WIDTH/2 - ((TextureObject) body.getUserData()).getSize() * 100, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getSize() * 100);
+                game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + CONSTANTS.WIDTH/2 - ((TextureObject) body.getUserData()).getSize() * 100, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getSize() * 100);
                 game.batch.end();}
                 else{
                     game.batch.begin();
-                    game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + Dash.WIDTH/2 - ((TextureObject) body.getUserData()).getTexture().getWidth()/2, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getTexture().getHeight()/2);
+                    game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + CONSTANTS.WIDTH/2 - ((TextureObject) body.getUserData()).getTexture().getWidth()/2, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getTexture().getHeight()/2);
                     game.batch.end();
                 }
             }

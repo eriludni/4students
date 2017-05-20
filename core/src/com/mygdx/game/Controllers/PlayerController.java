@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Dash;
+import com.mygdx.game.Utils.CONSTANTS;
 import com.mygdx.game.libgdx.libgdx_player;
 import com.mygdx.game.libgdx.libgdx_world;
 
@@ -60,7 +61,7 @@ public class PlayerController {
     }
 
     public void handleMouseInput(){
-        int gameCamRightPos = (int)(gameCam.position.x * Dash.PPM);
+        int gameCamRightPos = (int)(gameCam.position.x * CONSTANTS.PPM);
         int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth()/2;
         int x = currentPlayerPos + Gdx.input.getX();
 

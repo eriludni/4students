@@ -1,6 +1,7 @@
 package com.mygdx.game.Model;
 
 import com.mygdx.game.Dash;
+import com.mygdx.game.Utils.CONSTANTS;
 
 import java.util.ArrayList;
 
@@ -26,8 +27,8 @@ public class GameWorld {
     }
 
     public void createLogicalEnemies() {
-        float xPos = logicalPlayer.getXPos() * Dash.PPM + 500;
-        float yPos = logicalPlayer.getYPos() * Dash.PPM + 50;
+        float xPos = logicalPlayer.getXPos() * CONSTANTS.PPM + 500;
+        float yPos = logicalPlayer.getYPos() * CONSTANTS.PPM + 50;
 
         for(int i = 0; i < enemyCount; i++) {
             System.out.println(logicalPlayer.getXPos());
@@ -45,8 +46,8 @@ public class GameWorld {
     }
 
     public void createLogicalPowerUps() {
-        float offsetX = logicalPlayer.getXPos() * Dash.PPM + 200;
-        float offsetY = logicalPlayer.getYPos() * Dash.PPM + 50;
+        float offsetX = logicalPlayer.getXPos() * CONSTANTS.PPM + 200;
+        float offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + 50;
         for(int i = 0; i < powerUpCount; i++) {
             logicalPowerUps.add(new PowerUp(offsetX, offsetY));
             offsetX += 200;

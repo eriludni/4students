@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.Dash;
+import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by lucasr on 5/17/17.
@@ -26,7 +27,7 @@ public class GameOverSkins {
         /**
          * MainMenu Textures
          */
-        Pixmap pixmap = new Pixmap( Dash.WIDTH/ 4,Dash.HEIGHT / 10, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap( CONSTANTS.WIDTH/ 4, CONSTANTS.HEIGHT / 10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
         skin.add("background", new Texture(pixmap));

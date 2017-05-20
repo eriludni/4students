@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.ICharacter;
 import com.mygdx.game.Model.Player;
+import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by Lucas on 2017-05-05.
@@ -30,7 +31,7 @@ public class libgdx_player extends libgdx_character{
         FixtureDef fdef = new FixtureDef();
 
         CircleShape sensor = new CircleShape();
-        sensor.setRadius(character.getRadius() / Dash.PPM);
+        sensor.setRadius(character.getRadius() / CONSTANTS.PPM);
 
         fdef.isSensor = true;
         fdef.shape = sensor;

@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.Projectile;
+import com.mygdx.game.Utils.CONSTANTS;
 
 import java.awt.*;
 
@@ -62,19 +63,19 @@ public class libgdx_projectile implements TextureObject, Libgdx_dynamic{
 
     private Body makeBody(Point startPosition){
         BodyDef bdef = new BodyDef();
-        bdef.position.set( startPosition.x / Dash.PPM, startPosition.y / Dash.PPM);
+        bdef.position.set( startPosition.x / CONSTANTS.PPM, startPosition.y / CONSTANTS.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2Body = world.getWorld().createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(1 / Dash.PPM);
+        shape.setRadius(1 / CONSTANTS.PPM);
         fdef.shape = shape;
 
         b2Body.createFixture(fdef);
 
         CircleShape sensor = new CircleShape();
-        sensor.setRadius(1 / Dash.PPM);
+        sensor.setRadius(1 / CONSTANTS.PPM);
 
         fdef.isSensor = true;
         fdef.shape = sensor;

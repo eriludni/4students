@@ -12,6 +12,7 @@ import com.mygdx.game.Model.Enemy;
 import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.Model.Generator;
 import com.mygdx.game.Model.PowerUp;
+import com.mygdx.game.Utils.CONSTANTS;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -70,7 +71,7 @@ public class libgdx_world {
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
         createGroundHitbox(mapList.get(0), 0);
-        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);;
+        triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
         logicalEnemies = logicalWorld.getLogicalEnemies();
 
         this.lgdxWorld = this;
@@ -134,7 +135,7 @@ public class libgdx_world {
         removeBodiesFrom0To(getxPositionOfLastBody());
         generateGoBackSections();
         createCloneBody();
-        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
+        triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
     }
 
     private void createCloneBody(){
@@ -146,8 +147,8 @@ public class libgdx_world {
             dynamicalBody.defineBody();
         }
         dynamicalBodies.clear();
-        //playerCharacter.getModel().setxPos(playerCharacterXPos * Dash.PPM);
-        //playerCharacter.getModel().setyPos(playerCharacterYPos * Dash.PPM);
+        //playerCharacter.getModel().setxPos(playerCharacterXPos * CONSTANTS.PPM);
+        //playerCharacter.getModel().setyPos(playerCharacterYPos * CONSTANTS.PPM);
         //playerCharacter.defineCharacter(playerCharacter.getModel());
         //playerCharacter.getB2Body().setLinearVelocity(playerCharacterVector);
     }
@@ -160,10 +161,10 @@ public class libgdx_world {
         for(int i = 0; i < bodies.size; i++){
             if(bodies.get(i).getType().getValue() == 2){
                 body = bodies.get(i);
-                System.out.println("(body.getPosition().x - xPositionOfFirstBody) * Dash.PPM: " + ((body.getPosition().x - xPositionOfFirstBody) * Dash.PPM));
+                System.out.println("(body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM: " + ((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM));
                 dynamicalBodies.add((Libgdx_dynamic) (body.getUserData()));
-                dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * Dash.PPM);
-                dynamicalBodies.get(j).getModel().setyPos(body.getPosition().y * Dash.PPM);
+                dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM);
+                dynamicalBodies.get(j).getModel().setyPos(body.getPosition().y * CONSTANTS.PPM);
                 dynamicalBodies.get(j).getModel().setX_velocity(body.getLinearVelocity().x);
                 dynamicalBodies.get(j).getModel().setY_velocity(body.getLinearVelocity().y);
                 j++;
@@ -210,7 +211,7 @@ public class libgdx_world {
 
     private void triggerGeneration(){
         generateNewWorldSection();
-        triggerPos = getxPositionOfLastBody() - Dash.WIDTH / (2 * Dash.PPM);
+        triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
         respawnEverything();
     }
 
@@ -229,9 +230,9 @@ public class libgdx_world {
     }
 
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
-        xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / Dash.PPM);
+        xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / CONSTANTS.PPM);
         if(segmentCounter == maxSegmentCount - 1) {
-            xPositionOfFirstBody = (offsetX * 32 + 16) / Dash.PPM;
+            xPositionOfFirstBody = (offsetX * 32 + 16) / CONSTANTS.PPM;
         }
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
@@ -242,22 +243,22 @@ public class libgdx_world {
             for (int y = 0; y < currentMap.getMapHeight(); y++) {
                 if (y == 0){
                     bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set(((x + offsetX) * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
+                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / CONSTANTS.PPM);
 
                     body = world.createBody(bdf);
 
-                    shape.setAsBox(16 / Dash.PPM, 16 / Dash.PPM);
+                    shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
                     fdef.shape = shape;
                     body.createFixture(fdef);
 
                 }
                 if (currentMap.getArrayId(x, y) == 1 ||currentMap.getArrayId(x, y) == 3  ) {
                     bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set(((x + offsetX) * 32 + 16) / Dash.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / Dash.PPM);
+                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / CONSTANTS.PPM);
 
                     body = world.createBody(bdf);
 
-                    shape.setAsBox(16 / Dash.PPM, 16 / Dash.PPM);
+                    shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
                     fdef.shape = shape;
                     body.createFixture(fdef);
 
@@ -347,10 +348,10 @@ public class libgdx_world {
             if (body != null && body.isBullet()) {
                 //libgdx_body_userdata data = (libgdx_body_userdata) body.getUserData();
                 libgdx_projectile data = (libgdx_projectile) body.getUserData();
-                boolean bulletOutOfBounds = body.getPosition().x < gameCamPositionX - screenWidth / (2 * Dash.PPM) ||
-                        body.getPosition().x > gameCamPositionX + screenWidth / (2 * Dash.PPM) ||
+                boolean bulletOutOfBounds = body.getPosition().x < gameCamPositionX - screenWidth / (2 * CONSTANTS.PPM) ||
+                        body.getPosition().x > gameCamPositionX + screenWidth / (2 * CONSTANTS.PPM) ||
                         body.getPosition().y < 0 ||
-                        body.getPosition().y > gameCamPositionY + screenHeight / (2 * Dash.PPM);
+                        body.getPosition().y > gameCamPositionY + screenHeight / (2 * CONSTANTS.PPM);
 
                 if (data.isSetForRemoval() || bulletOutOfBounds) {
                     world.destroyBody(body);
@@ -376,8 +377,8 @@ public class libgdx_world {
                 int distance = (rand.nextInt(7) + 5) * 100;
 
                 enemies.add(new libgdx_enemy(new Enemy(3, 0.1f, 0,
-                        logicalWorld.getLogicalPlayerCharacter().getXPos() * Dash.PPM + distance,
-                        logicalWorld.getLogicalPlayerCharacter().getYPos() * Dash.PPM + 50,
+                        logicalWorld.getLogicalPlayerCharacter().getXPos() * CONSTANTS.PPM + distance,
+                        logicalWorld.getLogicalPlayerCharacter().getYPos() * CONSTANTS.PPM + 50,
                         10)));
             }
         }

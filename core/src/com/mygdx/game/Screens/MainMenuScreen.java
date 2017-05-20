@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Controllers.MenuController;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Screens.MenuSkins.MainMenuSkins;
+import com.mygdx.game.Utils.CONSTANTS;
 import com.mygdx.game.libgdx.libgdx_world;
 
 
@@ -36,7 +37,7 @@ public class MainMenuScreen implements Screen {
         this.game = game;
         this.gameWorld = gameWorld;
 
-        viewPort = new FitViewport(Dash.WIDTH, Dash.HEIGHT, new OrthographicCamera());
+        viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewPort, game.batch);
         MC = new MenuController(viewPort, this);
 
@@ -53,10 +54,10 @@ public class MainMenuScreen implements Screen {
         mainTable.top();
 
         TextButton newGameButton = new TextButton("New game", menuSkins.getSkins());
-        newGameButton.setPosition(Dash.WIDTH / 2 - Dash.WIDTH / 8, Dash.HEIGHT / 2);
+        newGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2);
 
         TextButton quitGameButton = new TextButton("Quit game", menuSkins.getSkins());
-        quitGameButton.setPosition(Dash.WIDTH / 2 - Dash.WIDTH / 8, Dash.HEIGHT / 2 - Dash.HEIGHT / 10);
+        quitGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 10);
 
         newGameButton.addListener(new ClickListener() {
             @Override

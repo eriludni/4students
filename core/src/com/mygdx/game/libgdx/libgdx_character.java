@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.*;
+import com.mygdx.game.Utils.CONSTANTS;
 
 import java.awt.*;
 
@@ -30,13 +31,13 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
      */
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();
-        bdef.position.set( character.getXPos() / Dash.PPM, character.getYPos() / Dash.PPM);
+        bdef.position.set( character.getXPos() / CONSTANTS.PPM, character.getYPos() / CONSTANTS.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2Body = world.getWorld().createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(character.getRadius() / Dash.PPM);
+        shape.setRadius(character.getRadius() / CONSTANTS.PPM);
         fdef.shape = shape;
 
         fixture = b2Body.createFixture(fdef);

@@ -3,6 +3,7 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Dash;
 import com.mygdx.game.Model.PowerUp;
+import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by lucasr on 5/18/17.
@@ -21,13 +22,13 @@ public class libgdx_powerUp {
 
     public void definePowerUp() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set( powerUp.getxPos() / Dash.PPM, powerUp.getyPos() / Dash.PPM);
+        bdef.position.set( powerUp.getxPos() / CONSTANTS.PPM, powerUp.getyPos() / CONSTANTS.PPM);
         bdef.type = BodyDef.BodyType.StaticBody;
         b2Body = world.getWorld().createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(radius / Dash.PPM);
+        shape.setRadius(radius / CONSTANTS.PPM);
         fdef.isSensor = true;
         fdef.shape = shape;
         b2Body.createFixture(fdef);
