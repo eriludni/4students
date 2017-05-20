@@ -218,26 +218,44 @@ public class dashTest {
     public void testGameWorldRemoveAllLogicalEnemyBrains() {
         GameWorld world = new GameWorld();
         world.removeAllLogicalEnemyBrains();
-        assertTrue(world.get);
+        assertTrue(world.getLogicalEnemyBrains().size() == 0);
     }
 
     @Test
     public void testGameWorldRemoveAllLogicalPowerUps() {
         GameWorld world = new GameWorld();
+        world.removeAllLogicalPowerUps();
+        assertTrue(world.getLogicalPowerUps().size() == 0);
     }
 
     @Test
     public void testGameWorldCreateLogicalEnemies() {
         GameWorld world = new GameWorld();
+        world.removeAllLogicalEnemies();
+        world.createLogicalEnemies();
+        assertTrue(world.getLogicalEnemies().size() == world.getEnemyCount());
     }
 
     @Test
     public void testGameWorldCreateLogicalEnemyBrains() {
         GameWorld world = new GameWorld();
+        world.removeAllLogicalEnemyBrains();
+        world.createLogicalEnemyBrains();
+        assertTrue(world.getLogicalEnemyBrains().size() == world.getEnemyCount());
     }
 
     @Test
     public void testGameWorldCreateLogicalPowerUps() {
         GameWorld world = new GameWorld();
+        world.removeAllLogicalPowerUps();
+        world.createLogicalPowerUps();
+        assertTrue(world.getLogicalPowerUps().size() == 2);
+    }
+
+    @Test
+    public void testProjectileJustCollided() {
+        Projectile projectile = new Projectile(5, 5);
+        projectile.JustCollided();
+        assertTrue(projectile.hasCollided() == true);
     }
 }
