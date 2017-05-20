@@ -78,6 +78,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.y_velocity = y_velocity;
     }
 
+    /**
+     *Sets the Y velocity to be negative of its current value
+     */
     @Override
     public void reverseYVelocity() {
         setY_velocity(-y_velocity);
@@ -99,6 +102,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.x_velocity =x_velocity;
     }
 
+    /**
+     *Sets the X velocity to be negative of its current value
+     */
     @Override
     public void reverseXVelocity() {
         setX_velocity(-x_velocity);
@@ -120,6 +126,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.health = health;
     }
 
+    /**
+     *Reduces the health of a character by 1
+     */
     @Override
     public void reduceHealth(int damageValue) {
         setHealth(health - damageValue);
@@ -133,6 +142,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         return dead;
     }
 
+    /**
+     *Checks if a characters health is less than or equal to 0 and sets the dead variable to true if it is
+     */
     @Override
     public void checkDead() {
         if (health <= 0) {
@@ -164,6 +176,9 @@ public abstract class Character implements ICharacter, IKillable, DynamicalBody{
         this.airBorn = airBorn;
     }
 
+    /**
+     *Checks if a characters Y position is less than or equal to -5 and sets the dead variable to true if it is
+     */
     @Override
     public void checkOutOfBounds() {
         if(yPos <= -5) {

@@ -21,8 +21,8 @@ public class libgdx_player extends libgdx_character{
         System.out.println("libgdx player created");
     }
 
-    /*
-    Applies a Body to the player, by using the method defineCharacter() in its super class and sets its userdata to itself, so it can be identified later
+    /**
+     * Applies a body to the libgdx player according to libgdx and sets its userdata to itself so it can be identified later
      */
     @Override
     public void defineCharacter(ICharacter character) {

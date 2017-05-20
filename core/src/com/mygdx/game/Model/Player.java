@@ -72,6 +72,9 @@ public class Player extends Character implements ICharacter{
         this.xSpawnPos = xSpawnPos;
     }
 
+    /**
+     *Checks if the player has moved a certain distance to the right, sets enemies to respawn and sets a new xSpawnPos further ahead
+     */
     public void checkxSpawnPosCrossed() {
         if(xPos >= xSpawnPos) {
             setRespawnEnemies(true);

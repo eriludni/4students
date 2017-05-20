@@ -26,8 +26,8 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
     private float horizontalAcceleration = 0.1f;
     private float verticalAcceleration = 5f;
 
-    /*
-    Applies a Body to the specified character
+    /**
+     * Applies a body to the character according to libgdx
      */
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();
@@ -43,15 +43,22 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
         fixture = b2Body.createFixture(fdef);
     }
 
+    /**
+     * Getter
+     */
     public Texture getTexture(){
         return texture;
     }
 
+    /**
+     * Getter
+     */
     public float getSize(){
         return b2Body.getFixtureList().get(0).getShape().getRadius();
     }
-    /*
-    Creates a projectile and launches it towards a point indicated by the mouse
+
+    /**
+     * Creates a projectile and launches it towards a point indicated by the mouse
      */
     public void shootProjectile(Point targetPosition) {
             int x = (int) (getB2Body().getWorldCenter().x * 100);
@@ -60,8 +67,8 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
             new libgdx_projectile(playerPosition, targetPosition, new Projectile(5,20));
     }
 
-    /*
-    Move the character upwards with a force specified by the variable verticalAcceleration.
+    /**
+     * Move the character upwards with a force specified by the variable verticalAcceleration.
      */
     public void moveUp() {
         if(getLinearYVelocity() == 0) {
@@ -69,8 +76,8 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
         }
     }
 
-    /*
-    Move the character rightwards with a force specified by the variable horizontalAcceleration.
+    /**
+     * Move the character rightwards with a force specified by the variable horizontalAcceleration.
      */
     public void moveRight() {
         if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
@@ -78,8 +85,8 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
         }
     }
 
-    /*
-    Move the character leftwards with a force specified by the variable horizontalAcceleration.
+    /**
+     * Move the character leftwards with a force specified by the variable horizontalAcceleration.
      */
     public void moveLeft() {
         if(b2Body != null && getLinearXVelocity() >= minVelocity) {

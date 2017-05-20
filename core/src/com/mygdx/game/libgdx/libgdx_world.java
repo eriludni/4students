@@ -215,6 +215,9 @@ public class libgdx_world {
         respawnEverything();
     }
 
+    /**
+     *Creates Libgdx enemies from the logical enemies
+     */
     public void createLibgdxEnemies() {
         for(int i = 0; i < logicalWorld.getEnemyCount(); i++) {
             Enemy logicalEnemy = logicalWorld.getLogicalEnemies().get(i);
@@ -222,6 +225,9 @@ public class libgdx_world {
         }
     }
 
+    /**
+     *Creates Libgdx powerups from the logical powerups
+     */
     public void createLibgdxPowerUps() {
         for(int i = 0; i < logicalWorld.getPowerUpCount(); i++) {
             PowerUp powerup = logicalWorld.getLogicalPowerUps().get(i);
@@ -269,6 +275,9 @@ public class libgdx_world {
         }
     }
 
+    /**
+     *Removes all Libgdx enemies and creates a new array for libgdx enemies
+     */
     public void removeAllLibgdxEnemies() {
         libgdx_enemy enemy;
         for(int i = 0; i < enemyCharacters.size(); i++) {
@@ -280,6 +289,9 @@ public class libgdx_world {
         enemyCharacters = new ArrayList<libgdx_enemy>();
     }
 
+    /**
+     *Removes all Libgdx powerups and creates a new array for libgdx powerups
+     */
     public void removeAllLibgdxPowerUps() {
         for(int i = 0; i < lgdxPowerUps.size(); i++) {
             lgdxPowerUps.remove(i);
@@ -303,11 +315,17 @@ public class libgdx_world {
         createGroundHitbox(mapList.get(0), offsetX);
     }
 
+    /**
+     *Removes all logical and libgdx enemies and powerups and recreates them at new positions
+     */
     public void respawnEverything() {
         respawnAllEnemies();
         respawnAllPowerUps();
     }
 
+    /**
+     *Removes all libgdx and logical enemies and recreates them at new positions
+     */
     public void respawnAllEnemies() {
         //lgdxWorld.removeAllLibgdxEnemyBrains();
         System.out.println("respawn_enemies");
@@ -323,12 +341,18 @@ public class libgdx_world {
         //lgdxWorld.createEnemyBrains();
     }
 
+    /**
+     *Removes all libgdx and logical powerups and recreates them at new positions
+     */
     public void respawnAllPowerUps() {
         System.out.println("respawn_powerUps");
         removeAllLibgdxPowerUps();
         createLibgdxPowerUps();
     }
 
+    /**
+     *Removes a specific libgdx powerup that has been used
+     */
     public void removePowerUp() {
         libgdx_powerUp powerUp;
         for(int i = 0; i < lgdxPowerUps.size(); i++) {
@@ -362,6 +386,9 @@ public class libgdx_world {
         }
     }
 
+    /**
+     *Removes an enemy that is dead and respawns it at a new position
+     */
     public void respawnEnemies() {//world
         ArrayList<libgdx_enemy> enemies;
         enemies = getEnemyCharacters();

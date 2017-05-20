@@ -20,6 +20,9 @@ public class libgdx_powerUp {
         System.out.println("PowerUp");
     }
 
+    /**
+     * Applies a body to the libgdx powerup according to ligdx and sets its userdata to itself so it can be identified later
+     */
     public void definePowerUp() {
         BodyDef bdef = new BodyDef();
         bdef.position.set( powerUp.getxPos() / CONSTANTS.PPM, powerUp.getyPos() / CONSTANTS.PPM);

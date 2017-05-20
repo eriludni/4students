@@ -40,6 +40,9 @@ public class Generator {
         //createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
+    /**
+     *Modifies the Generator variables according to the last PowerUp collected
+     */
     public void applyModifier() {
         if(powerUp != null) {
             pointsDistance = powerUp.getModifier().getPoinsDistance();
@@ -65,6 +68,9 @@ public class Generator {
         createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
+    /**
+     *Clears the entire map array by setting all cells in the array to 0
+     */
     public void clear(int[][] array){
         for(int i = 0; i < col; i ++){
             for(int j = 0; j < row; j ++){
@@ -140,6 +146,9 @@ public class Generator {
         }
     }
 
+    /**
+     *Sets the amount of platforms to be created on a map and the length of them
+     */
     public void createPlatforms(int platforms, int length) {
         setPlatformStartPoints(platforms);
         for(int i = 0; i < platformStartPoints.length; i++) {
@@ -154,6 +163,9 @@ public class Generator {
         }
     }
 
+    /**
+     *Sets the startpoints for each platform from which they may be expanded
+     */
     public void setPlatformStartPoints(int startPoints) {
         int i = 0;
         for(int row = minPlatformRow; row <= maxPlatformRow; row++) {
@@ -167,6 +179,9 @@ public class Generator {
         }
     }
 
+    /**
+     *Sets the amount of pitfalls to be created on a map and the length of them
+     */
     public void createPitfalls(int pitfalls, int width) {
         setPitfallStartPoints(pitfalls);
         for(int i = 0; i < pitfallStartPoints.length; i++) {
@@ -187,6 +202,9 @@ public class Generator {
         }
     }
 
+    /**
+     *Sets the startpoints for each pitfall from which they may be expanded
+     */
     public void setPitfallStartPoints(int startPoints) {
         for(int row = minPitfallRow; row < startPoints; row++) {
                 int c = random.nextInt(this.col - 7);
@@ -203,6 +221,9 @@ public class Generator {
         this.powerUp = powerUp;
     }
 
+    /**
+     *Returns the same instance of the Generator every time it is called, or creats a new instance of Generator if none exists
+     */
     public static Generator getGeneratorInstance() {
         if(generatorInstance == null) {
             generatorInstance = new Generator();
@@ -210,6 +231,9 @@ public class Generator {
         return generatorInstance;
     }
 
+    /**
+     *Sets the Generator instance to null
+     */
     public static void resetGeneratorInstance() {
         generatorInstance = null;
     }

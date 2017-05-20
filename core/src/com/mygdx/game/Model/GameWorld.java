@@ -26,6 +26,9 @@ public class GameWorld {
         createLogicalPowerUps();
     }
 
+    /**
+     *Creates logical enemies at positions relative to the player
+     */
     public void createLogicalEnemies() {
         float xPos = logicalPlayer.getXPos() * CONSTANTS.PPM + 500;
         float yPos = logicalPlayer.getYPos() * CONSTANTS.PPM + 50;
@@ -39,12 +42,19 @@ public class GameWorld {
             xPos += 200;
         }
     }
+
+    /**
+     *Creates logical enemy brains for each logical enemy
+     */
     public void createLogicalEnemyBrains(){
         for(int i  = 0; i < enemyCount; i++){
             logicalEnemyBrains.add(new EnemyBrain(logicalEnemies.get(i)));
         }
     }
 
+    /**
+     *Creates logical powerups at positions relative to the player
+     */
     public void createLogicalPowerUps() {
         float offsetX = logicalPlayer.getXPos() * CONSTANTS.PPM + 200;
         float offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + 50;
@@ -54,6 +64,9 @@ public class GameWorld {
         }
     }
 
+    /**
+     *Removes all logical enemies and creates a new array for logical enemies
+     */
     public void removeAllLogicalEnemies() {
         for(int i = 0; i < logicalEnemies.size(); i++) {
             logicalEnemies.remove(i);
@@ -61,6 +74,9 @@ public class GameWorld {
         logicalEnemies = new ArrayList<Enemy>();
     }
 
+    /**
+     *Removes all logical enemy brains and creates a new array for logical enemy brains
+     */
     public void removeAllLogicalEnemyBrains() {
         for(int i  = 0; i < logicalEnemyBrains.size(); i++){
             logicalEnemyBrains.remove(i);
@@ -68,6 +84,9 @@ public class GameWorld {
         logicalEnemyBrains = new ArrayList<EnemyBrain>();
     }
 
+    /**
+     *Removes all logical powerups and creates a new array for logical powerups
+     */
     public void removeAllLogicalPowerUps() {
         for(int i = 0; i < logicalPowerUps.size(); i++) {
             logicalPowerUps.remove(i);
