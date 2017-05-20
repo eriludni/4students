@@ -74,6 +74,16 @@ public class dashTest {
     }
 
     @Test
+    public void testPlayerCheckXSpawnPosCrossed() {
+        Player player = new Player(3, 2, 2, 100, 100, 5);
+        int x = 50;
+        float xSpawnPos = player.getxSpawnPos();
+        player.setxPos(x);
+        player.checkxSpawnPosCrossed();
+        assertTrue((player.getRespawnEnemies()) && (player.getxSpawnPos() == (xSpawnPos + 20)));
+    }
+
+    @Test
     public void testEnemyReduceHealth() {
         Enemy enemy = new Enemy(3, 2, 0, 100, 100, 5);
         enemy.reduceHealth(1);
@@ -104,18 +114,20 @@ public class dashTest {
         assertTrue(enemy.isDead() == true);
     }
 
+    /*
     @Test
     public void testGeneratorSetNextMapStructure() {
-        Generator generator = new Generator();
+        Generator generator = Generator.getGeneratorInstance();
         int lastPoint = generator.findRow(generator.getCol() - 1);
         generator.setNextMapStructure();
         int firstPoint = generator.findRow(0);
         assertTrue(lastPoint == firstPoint);
     }
+    */
 
     @Test
     public void testGeneratorClear() {
-        Generator generator = new Generator();
+        Generator generator = Generator.getGeneratorInstance();
         int[][] array = new int[generator.getRow()][generator.getCol()];
         for(int i = 0; i < array.length; i++) {
             for(int j = 0; j < array[0].length; j++) {
@@ -132,7 +144,7 @@ public class dashTest {
 
     @Test
     public void testGeneratorSetBasePointsFrom() {
-        Generator generator = new Generator();
+        Generator generator = Generator.getGeneratorInstance();
         int x = 5;
         generator.setBasePointsFrom(x);
         assertTrue(generator.getMapArray(0, x) == 1);
@@ -140,16 +152,17 @@ public class dashTest {
 
     @Test
     public void testGeneratorNextPointValue() {
-        Generator generator = new Generator();
+        Generator generator = Generator.getGeneratorInstance();
         int x = 5;
         int firstPoint = generator.findRow(x);
         int secondPoint = generator.nextPointValue(x - 1);
         assertTrue(firstPoint == secondPoint);
     }
 
+    /*
     @Test
     public void testGeneratorFindRow() {
-        Generator generator = new Generator();
+        Generator generator = Generator.getGeneratorInstance();
         int x = 0;
         int value = 0;
         int value2 = generator.findRow(x);
@@ -168,6 +181,7 @@ public class dashTest {
         }
         assertTrue(value == value2);
     }
+    */
 
     @Test
     public void testGetLaunchPosition(){
@@ -191,7 +205,39 @@ public class dashTest {
         double hypothenuseDiff = hypothenuse - hitBoxRadius;
 
         assertTrue(abs(angleDiff) < 1 && abs(hypothenuseDiff) < 1);
+    }
 
+    @Test
+    public void testGameWorldRemoveAllLogicalEnemies() {
+        GameWorld world = new GameWorld();
+        world.removeAllLogicalEnemies();
+        assertTrue(world.getLogicalEnemies().size() == 0);
+    }
 
+    @Test
+    public void testGameWorldRemoveAllLogicalEnemyBrains() {
+        GameWorld world = new GameWorld();
+        world.removeAllLogicalEnemyBrains();
+        assertTrue(world.get);
+    }
+
+    @Test
+    public void testGameWorldRemoveAllLogicalPowerUps() {
+        GameWorld world = new GameWorld();
+    }
+
+    @Test
+    public void testGameWorldCreateLogicalEnemies() {
+        GameWorld world = new GameWorld();
+    }
+
+    @Test
+    public void testGameWorldCreateLogicalEnemyBrains() {
+        GameWorld world = new GameWorld();
+    }
+
+    @Test
+    public void testGameWorldCreateLogicalPowerUps() {
+        GameWorld world = new GameWorld();
     }
 }

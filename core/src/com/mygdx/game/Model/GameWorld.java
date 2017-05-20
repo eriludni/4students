@@ -88,6 +88,9 @@ public class GameWorld {
    public ArrayList<PowerUp> getLogicalPowerUps() {
        return logicalPowerUps;
    }
+   public ArrayList<EnemyBrain> getLogicalEnemyBrains() {
+       return logicalEnemyBrains;
+   }
    public int getEnemyCount() {
        return enemyCount;
    }

@@ -6,7 +6,7 @@ package com.mygdx.game.Model;
 public class PlainMap implements IPowerUpModifier{
     private int pointsDistance = 4;
     private int mountainTop = 17;
-    private int mountainDiff = 1;
+    private int mountainDiff = 2;
     private int numberOfPlatforms = 0;
     private int platformLength = 0;
     private int minPlatformRow = 12; //Min 0
