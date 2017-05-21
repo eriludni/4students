@@ -45,10 +45,11 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
 
-
+        /*
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.top();
+        */
 
         TextButton newGameButton = new TextButton("New game", menuSkins.getSkins());
         newGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2);
@@ -62,19 +63,15 @@ public class MainMenuScreen implements Screen {
                 ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game, gameWorld));
             }
         }); */
-        quitGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
 
-
+        /*
         mainTable.add(newGameButton);
         mainTable.row();
         mainTable.add(quitGameButton);
+        */
 
-        stage.addActor(mainTable);
+        stage.addActor(newGameButton);
+        stage.addActor(quitGameButton);
 
     }
 

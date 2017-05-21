@@ -22,10 +22,16 @@ public class MenuController {
     }
     public void handleInput(float dt){
         Gdx.input.setInputProcessor(menu.getStage());
-        menu.getStage().getActors().get(1).addListener(new ClickListener() {
+        menu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(menu.getGame(), menu.GetWorld()));
+            }
+        });
+        menu.getStage().getActors().get(1).addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
             }
         });
 
