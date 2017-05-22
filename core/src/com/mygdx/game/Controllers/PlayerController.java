@@ -45,7 +45,10 @@ public class PlayerController implements IController {
     public void handleInput(float dt){
 
         if(gameWorld.getPlayerCharacter().getModel().isDead()) {
-            createNewGameOverScreen();
+            game.setController(game.getGameOverController());
+        }
+        if(checkEscKeyPressed()){
+            game.setController(game.getPauseController());
         }
 
         if(checkUpKeyPressed()) {
@@ -60,6 +63,7 @@ public class PlayerController implements IController {
         if (checkMouseButtonPressed()){
             handleMouseInput();
         }
+        gameWorld.update(dt);
         playScreen.update(dt);
     }
 
@@ -78,9 +82,11 @@ public class PlayerController implements IController {
     private boolean checkMouseButtonPressed() {
         return Gdx.input.justTouched();
     }
+    private boolean checkEscKeyPressed(){
+        return Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
+    }
 
     private void createNewGameOverScreen() {
-
         game.setController(game.getGameOverController());
     }
 

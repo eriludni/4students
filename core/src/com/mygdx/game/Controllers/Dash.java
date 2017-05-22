@@ -16,6 +16,7 @@ public class Dash extends Game {
     private MenuController mainMenuController;
     private GameOverController gameOverController;
     private PlayerController playerController;
+    private PauseController pauseController;
 
 
     //width of the window
@@ -44,6 +45,7 @@ public class Dash extends Game {
         mainMenuController = new MenuController(this);
         playerController = new PlayerController(this);
         gameOverController = new GameOverController(this);
+        pauseController = new PauseController(this);
 
         currentController = mainMenuController;
 
@@ -55,6 +57,7 @@ public class Dash extends Game {
     public MenuController getMainMenuController() {return mainMenuController;}
     public PlayerController getPlayerController(){return playerController;}
     public GameOverController getGameOverController(){return  gameOverController;}
+    public PauseController getPauseController(){return pauseController;}
 
     @Override
     public void render() {

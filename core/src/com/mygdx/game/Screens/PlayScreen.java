@@ -11,14 +11,9 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.Controllers.PlayerController;
-import com.mygdx.game.Controllers.Dash;
-import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Scenes.Hud;
+import com.mygdx.game.Screens.Scenes.Hud;
 import com.mygdx.game.Utils.CONSTANTS;
 import com.mygdx.game.libgdx.*;
-
-import java.util.ArrayList;
 
 /**
  * Created by Erik on 05/04/2017.
@@ -35,9 +30,6 @@ public class PlayScreen implements Screen {
     private int timeStep = 0;
 
     private Hud hud;
-
-    private ArrayList<libgdx_enemyBrain> EB;
-    private ArrayList<libgdx_enemy> enemies;
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
@@ -57,15 +49,11 @@ public class PlayScreen implements Screen {
 
         this.gameWorld = gameWorld;
 
-        EB = gameWorld.getEB();
         limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av CONSTANTS.WIDTH istället.
     }
 
 
     public void update(float dt) {
-
-        gameWorld.update(dt);//dash
-
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
         gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
 
@@ -149,6 +137,7 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
+
     }
 
     public OrthographicCamera getCam() {

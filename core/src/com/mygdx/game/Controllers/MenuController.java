@@ -19,15 +19,20 @@ public class MenuController implements IController {
     public MenuController(Dash game){
         this.game = game;
         this.menu = new MainMenuScreen();
+
+        setListeners(game, menu);
+
     }
     public void handleInput(float dt){
         Gdx.input.setInputProcessor(menu.getStage());
+        menu.update(dt);
+    }
 
+    private void setListeners(final Dash game, MainMenuScreen menu){
         menu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setController(game.getPlayerController());
-
             }
         });
         menu.getStage().getActors().get(1).addListener(new ClickListener() {
@@ -36,7 +41,6 @@ public class MenuController implements IController {
                 Gdx.app.exit();
             }
         });
-        menu.update(dt);
     }
     public void setScreen(){
         game.setScreen(menu);

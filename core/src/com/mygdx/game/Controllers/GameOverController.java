@@ -19,16 +19,18 @@ public class GameOverController implements IController {
     public GameOverController(Dash game){
         this.game = game;
         this.gameOverScreen = new GameOverScreen(game.getPlayerController().getGameWorld());
+        setListeners();
     }
     public void handleInput(float dt){
         Gdx.input.setInputProcessor(gameOverScreen.getStage());
+        gameOverScreen.update(dt);
+    }
 
+    private void setListeners(){
         gameOverScreen.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("alksdlkasdj");
                 game.setController(new PlayerController(game));
-
             }
         });
         gameOverScreen.getStage().getActors().get(1).addListener(new ClickListener() {
@@ -37,7 +39,7 @@ public class GameOverController implements IController {
                 Gdx.app.exit();
             }
         });
-        gameOverScreen.update(dt);
+
     }
     public void setScreen(){
         game.setScreen(gameOverScreen);

@@ -52,7 +52,7 @@ public class GameOverScreen implements Screen {
     private void createMenu(){
         Table mainTable = new Table();
         mainTable.setFillParent(true);
-        mainTable.center();
+        mainTable.top().padTop(100);
         gameOverLabel = new Label("GAME OVER", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label("Highscore: ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         highscoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -76,15 +76,14 @@ public class GameOverScreen implements Screen {
     }
 
     public void update(float dt) {
-        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
         render(dt);
+        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
     }
 
     @Override
     public void render(float delta) {
-
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClearColor(0, 0, 0, 1);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
     }
