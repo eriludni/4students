@@ -8,11 +8,11 @@ public class PlatformMap implements IPowerUpModifier {
     private int mountainTop = 17;
     private int mountainDiff = 3;
     private int numberOfPlatforms = 3;
-    private int platformLength = 6;
+    private int platformLength = 7;
     private int minPlatformRow = 12; //Min 0
     private int maxPlatformRow = 15; //Max 19
     private int numberOfPitfalls = 3;
-    private int pittfallLength = 6;
+    private int pittfallLength = 4;
     private int minPitfallRow = 0; //Min 0
     private int maxPitfallRow = 20; //Max 20
 
