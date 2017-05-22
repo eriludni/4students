@@ -60,26 +60,41 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fixtureA.getBody().getUserData() instanceof libgdx_enemy || fixtureB.getBody().getUserData() instanceof libgdx_enemy) {
+            if(fixtureA.getBody().getUserData() instanceof libgdx_enemy && lgdxEnemies.contains(fixtureA.getBody().getUserData())) {
+                lgdxEnemy = (libgdx_enemy) fixtureA.getBody().getUserData();
+            }
+            else if(fixtureB.getBody().getUserData() instanceof libgdx_enemy && lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
+                lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
+            }
+            /*
             if(lgdxEnemies.contains(fixtureA.getBody().getUserData())) {
                 lgdxEnemy = (libgdx_enemy) fixtureA.getBody().getUserData();
             }
             else if(lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
                 lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
-
             }
+            */
+
             lgdxEnemy.getModel().setX_velocity(0);
 
 
         }
         if(fixtureA.getBody().isBullet() || fixtureB.getBody().isBullet()) {
             if((fixtureA.getBody().isBullet() && fixtureB.getBody().getUserData() instanceof libgdx_enemy) || (fixtureA.getBody().getUserData() instanceof libgdx_enemy && fixtureB.getBody().isBullet())) {
-
+                if(fixtureA.getBody().getUserData() instanceof libgdx_enemy && fixtureB.getBody().isBullet()) {
+                    lgdxEnemy = (libgdx_enemy) fixtureA.getBody().getUserData();
+                }
+                else if(fixtureB.getBody().getUserData() instanceof libgdx_enemy && fixtureA.getBody().isBullet()) {
+                    lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
+                }
+                /*
                 if(lgdxEnemies.contains(fixtureA.getBody().getUserData())) {
                     lgdxEnemy = (libgdx_enemy) fixtureA.getBody().getUserData();
                 }
                 else if(lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
                     lgdxEnemy = (libgdx_enemy) fixtureB.getBody().getUserData();
                 }
+                */
 
                 lgdxEnemy.getModel().reduceHealth(1);
 
