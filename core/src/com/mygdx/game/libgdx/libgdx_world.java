@@ -82,7 +82,7 @@ public class libgdx_world {
     }
 
     public void update(float dt){
-        counter += dt*1.6;
+        counter += dt*1.5;
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
         boolean hasReachedTriggerPos = playerCharacter.getB2Body().getPosition().x > triggerPos;

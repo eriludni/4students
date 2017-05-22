@@ -24,7 +24,7 @@ public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
     private float maxVelocity = 2;
     private float minVelocity = -2;
     private float horizontalAcceleration = 0.1f;
-    private float verticalAcceleration = 5.8f;
+    private float verticalAcceleration = 5.9f;
 
     /**
      * Applies a body to the character according to libgdx
