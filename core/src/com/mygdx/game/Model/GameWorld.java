@@ -2,6 +2,7 @@ package com.mygdx.game.Model;
 
 import com.mygdx.game.Utils.CONSTANTS;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  */
 public class GameWorld {
     private Player logicalPlayer;
+    private Random rand = new Random();
     private int enemyCount = 5;
     private int powerUpCount = 2;
     private ArrayList<Enemy> logicalEnemies = new ArrayList<Enemy>();
@@ -54,11 +56,16 @@ public class GameWorld {
      *Creates logical powerups at positions relative to the player
      */
     public void createLogicalPowerUps() {
-        float offsetX = logicalPlayer.getXPos() * CONSTANTS.PPM + 200;
-        float offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + 50;
+        int x = 200;
+        int y = 50;
+        float offsetX = logicalPlayer.getXPos() * CONSTANTS.PPM + x;
+        float offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + y;
         for(int i = 0; i < powerUpCount; i++) {
+            x = (rand.nextInt(5) + 1) * 100;
+            y = rand.nextInt(26) + 25;
             logicalPowerUps.add(new PowerUp(offsetX, offsetY));
-            offsetX += 200;
+            offsetX += x;
+            offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + y;
         }
     }
 
