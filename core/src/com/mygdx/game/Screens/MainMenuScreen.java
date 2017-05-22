@@ -28,7 +28,6 @@ public class MainMenuScreen implements Screen {
     private libgdx_world gameWorld;
     private Dash game;
     private MainMenuSkins menuSkins;
-    private MenuController MC;
 
     public MainMenuScreen(Dash game, libgdx_world gameWorld) {
         this.game = game;
@@ -36,7 +35,6 @@ public class MainMenuScreen implements Screen {
 
         viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewPort, game.batch);
-        MC = new MenuController(viewPort, this);
 
         menuSkins = new MainMenuSkins();
 
@@ -45,11 +43,6 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
 
-        /*
-        Table mainTable = new Table();
-        mainTable.setFillParent(true);
-        mainTable.top();
-        */
 
         TextButton newGameButton = new TextButton("New game", menuSkins.getSkins());
         newGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2);
@@ -57,26 +50,13 @@ public class MainMenuScreen implements Screen {
         TextButton quitGameButton = new TextButton("Quit game", menuSkins.getSkins());
         quitGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 10);
 
-      /*  newGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game, gameWorld));
-            }
-        }); */
-
-        /*
-        mainTable.add(newGameButton);
-        mainTable.row();
-        mainTable.add(quitGameButton);
-        */
-
         stage.addActor(newGameButton);
         stage.addActor(quitGameButton);
 
     }
 
     public void update(float delta) {
-        MC.handleInput(delta);
+        game.getMC().handleInput(delta);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class PlayerController {
     private Viewport viewPort;
 
     public PlayerController(libgdx_world gameWorld, OrthographicCamera gameCam, Viewport viewPort){
-        this.world = gameWorld.getWorld();
+        //this.world = gameWorld.getWorld();
         this.player = gameWorld.getPlayerCharacter();
         this.gameCam = gameCam;
         this.viewPort = viewPort;

@@ -6,18 +6,20 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Screens.MainMenuScreen;
 import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.libgdx.libgdx_world;
 
 /**
  * Created by Erik on 16/05/2017.
  */
 public class MenuController {
 
-    private Viewport viewPort;
-    MainMenuScreen menu;
+    private MainMenuScreen menu;
 
-    public MenuController( Viewport viewPort, MainMenuScreen menu){
-        this.menu = menu;
-        this.viewPort = viewPort;
+    public MenuController(Dash game, libgdx_world world){
+        this.menu = new MainMenuScreen(game, world);
+        game.setScreen(menu);
+
+
 
     }
     public void handleInput(float dt){

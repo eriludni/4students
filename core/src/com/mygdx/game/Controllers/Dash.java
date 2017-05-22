@@ -14,7 +14,7 @@ public class Dash extends Game {
     public SpriteBatch batch;
     private libgdx_world gameWorld;
     private GameWorld logicalWorld;
-    private PlayerController PC;
+    private MenuController MC;
 
     //width of the window
     public static final int WIDTH = 1240;
@@ -41,14 +41,14 @@ public class Dash extends Game {
         music.play();//musicPlaceHolder
         */
 
-
-        setScreen(new MainMenuScreen(this, gameWorld));
+        MC = new MenuController(this, gameWorld);
 
     }
 
     public libgdx_world getGameWorld() {
         return gameWorld;
     }
+    public MenuController getMC() {return MC;}
 
     @Override
     public void render() {
