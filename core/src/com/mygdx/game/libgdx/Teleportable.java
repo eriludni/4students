@@ -6,7 +6,7 @@ import com.mygdx.game.Model.DynamicalBody;
 /**
  * Created by Niklas on 2017-05-18.
  */
-public interface Libgdx_dynamic {
+public interface Teleportable {
     public DynamicalBody getModel();
     public void createBodyFromModel();
 }

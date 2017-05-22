@@ -25,7 +25,7 @@ public class libgdx_world {
 
     private float xPositionOfFirstBody;
 
-    private ArrayList<Libgdx_dynamic> dynamicalBodies = new ArrayList<Libgdx_dynamic>();
+    private ArrayList<Teleportable> dynamicalBodies = new ArrayList<Teleportable>();
 
     private int maxSegmentCount = 3;
 
@@ -199,7 +199,7 @@ public class libgdx_world {
             if(bodies.get(i).getType().getValue() == 2){
                 body = bodies.get(i);
                 System.out.println("(body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM: " + ((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM));
-                dynamicalBodies.add((Libgdx_dynamic) (body.getUserData()));
+                dynamicalBodies.add((Teleportable) (body.getUserData()));
                 dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM);
                 dynamicalBodies.get(j).getModel().setyPos(body.getPosition().y * CONSTANTS.PPM);
                 dynamicalBodies.get(j).getModel().setX_velocity(body.getLinearVelocity().x);
@@ -237,13 +237,13 @@ public class libgdx_world {
      * Creates clone bodies of all saved dynamical bodies. These bodies have the same vector as the old bodies.
      */
     private void createCloneBodies(){
-       // Libgdx_dynamic dynamicalBody;
+       // Teleportable dynamicalBody;
        // for(int i = 0; i < dynamicalBodies.size(); i++){
        //     dynamicalBody = dynamicalBodies.get(i);
        //     System.out.println("dynamicalBody.getModel().getXPos(): " + dynamicalBody.getModel().getXPos());
        //     dynamicalBody.createBodyFromModel();
        // }
-        for(Libgdx_dynamic dynamicalBody: dynamicalBodies){
+        for(Teleportable dynamicalBody: dynamicalBodies){
             dynamicalBody.createBodyFromModel();
         }
         dynamicalBodies.clear();

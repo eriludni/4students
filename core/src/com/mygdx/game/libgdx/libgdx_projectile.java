@@ -16,7 +16,7 @@ import java.awt.*;
 /**
  * Created by Niklas on 2017-05-08.
  */
-public class libgdx_projectile implements TextureObject, Libgdx_dynamic{
+public class libgdx_projectile implements TextureObject, Teleportable {
     private Texture texture = new Texture("projectile.png");
     private Body b2Body;
     private libgdx_world world = libgdx_world.getlgdxWorld();
