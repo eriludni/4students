@@ -32,7 +32,7 @@ public class Dash extends Game {
     public void create() {
         batch = new SpriteBatch();
         logicalWorld = new GameWorld();
-        gameWorld = new libgdx_world(this, logicalWorld);
+        gameWorld = new libgdx_world(logicalWorld);
         /*
         //musicPlaceHolder
         music = Gdx.audio.newMusic(Gdx.files.internal("The Proclaimers - I'm Gonna Be (500 Miles) Lyrics.mp3"));

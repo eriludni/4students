@@ -64,7 +64,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(Dash game) {
         this.game = game;
-        this.gameWorld = new libgdx_world(game, new GameWorld());
+        this.gameWorld = new libgdx_world(new GameWorld());
         gameCam = new OrthographicCamera();
         hud = new Hud(game.batch);
         gamePort = new FitViewport(CONSTANTS.WIDTH/CONSTANTS.PPM, CONSTANTS.HEIGHT /CONSTANTS.PPM, gameCam);

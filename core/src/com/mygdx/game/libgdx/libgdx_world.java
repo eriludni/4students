@@ -21,12 +21,11 @@ public class libgdx_world {
     private Dash game;
     private World world;
 
+    private float currentPlayerXPos;
+
     private float triggerPos;
 
-    private float playerCharacterXPos;
-    private float playerCharacterYPos;
     private float xPositionOfFirstBody;
-    private Vector2 playerCharacterVector;
 
     private ArrayList<Libgdx_dynamic> dynamicalBodies = new ArrayList<Libgdx_dynamic>();
 
@@ -58,12 +57,9 @@ public class libgdx_world {
 
     private TiledMap map;
 
-    public libgdx_world(Dash game, GameWorld logicalWorld) {
-
-        this.game = game;
+    public libgdx_world(GameWorld logicalWorld) {
         this.world = new World(new Vector2(0, -10), true);
         this.logicalWorld = logicalWorld;
-        //this.mapCreator = new libgdx_map();
         mapList = new ArrayList<libgdx_map>();
         mapList.add(new libgdx_map());
         this.map = mapList.get(0).getMap();
@@ -82,75 +78,82 @@ public class libgdx_world {
     }
 
     public void update(float dt){
+        currentPlayerXPos = playerCharacter.getB2Body().getPosition().x;
         counter += dt*1.6;
+
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
-        boolean hasReachedTriggerPos = playerCharacter.getB2Body().getPosition().x > triggerPos;
-        //System.out.println("hasReachedTriggerPos: " + hasReachedTriggerPos);
-        if (hasReachedTriggerPos && segmentCounter < maxSegmentCount) {
-            triggerGeneration();
-            segmentCounter++;
-            System.out.println("segmentCounter" + segmentCounter);
-        }
-        if(playerCharacter.getB2Body().getPosition().x > xPositionOfFirstBody + 6.2 && segmentCounter >= maxSegmentCount ){
-            counter -= xPositionOfFirstBody;
-            System.out.println("goBack()");
-            goBack();
-            segmentCounter = 0;
-            furthestPositionReached = (int) playerCharacter.getB2Body().getPosition().x;
-        }
-        if(playerCharacter.getModel().isDead()) {
-            Generator.resetGeneratorInstance();
-        }
-        removeStaticBodiesFrom0To(counter);
 
-        /*
-        if(playerCharacter.getPlayerModel().getRespawnEnemies()) {
-            respawnAllEnemies();
-            playerCharacter.getModel().setRespawnEnemies(false);
-        }
-        */
-        if((int)playerCharacter.getB2Body().getPosition().x > furthestPositionReached){
-            logicalWorld.getLogicalPlayerCharacter().setHighscore(
-                    logicalWorld.getLogicalPlayerCharacter().getHighscore() + ((int)playerCharacter.getB2Body().getPosition().x - furthestPositionReached) * 10);
-            furthestPositionReached = (int)playerCharacter.getB2Body().getPosition().x;
-        }
         for(int i = 0; i < enemyCharacters.size(); i++) {
             enemyCharacters.get(i).update(dt);
         }
+
+        boolean hasReachedNormalTriggerPos = currentPlayerXPos > triggerPos && segmentCounter < maxSegmentCount;
+        if (hasReachedNormalTriggerPos) {
+            handleNewWorldSection();
+            System.out.println("segmentCounter" + segmentCounter);
+        }
+
+        boolean hasReachedLoopTriggerPos = currentPlayerXPos > xPositionOfFirstBody + 6.2 && segmentCounter >= maxSegmentCount ;
+        if(hasReachedLoopTriggerPos){
+            System.out.println("goBack()");
+            handleLoopBack();
+        }
+
+        if(playerCharacter.getModel().isDead()) {
+            Generator.resetGeneratorInstance();
+        }
+
+        boolean hasBoldlyGoneWhereNoOneHasGoneBefore = (int)currentPlayerXPos > furthestPositionReached;
+        if(hasBoldlyGoneWhereNoOneHasGoneBefore){
+            updateHighscore();
+        }
+
+        removeStaticBodiesFromStartTo(counter);
         respawnEnemies();
         removePowerUp();
     }
 
-    private void goBack(){
-        triggerGoBackGeneration();
+    /**
+     * Updates the score with points for having progressed forward in the game.
+     */
+    private void updateHighscore(){
+        int updatedHighscore = logicalWorld.getLogicalPlayerCharacter().getHighscore() + ((int)currentPlayerXPos - furthestPositionReached) * 10;
+        logicalWorld.getLogicalPlayerCharacter().setHighscore(updatedHighscore);
+        furthestPositionReached = (int)currentPlayerXPos;
     }
 
-    private void triggerGoBackGeneration(){
-        savePlayerBodyData();
-        world.destroyBody(playerCharacter.getB2Body());
-        removeBodiesFrom0To(getxPositionOfLastBody());
-        generateGoBackSections();
-        createCloneBody();
+    /**
+     * Puts the game back to the start position, thus completing the "loop".
+     */
+    private void handleLoopBack(){
+        counter -= xPositionOfFirstBody;
+        saveDynamicBodiesData();
+        removeBodiesFromStartTo(getxPositionOfLastBody());
+        generateLoopBackSection();
+        createCloneBodies();
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
+        segmentCounter = 0;
+        furthestPositionReached = (int) currentPlayerXPos;
     }
 
-    private void createCloneBody(){
+    /**
+     * Creates clone bodies of all saved dynamical bodies. These bodies have the same vector as the old bodies.
+     */
+    private void createCloneBodies(){
         Libgdx_dynamic dynamicalBody;
         for(int i = 0; i < dynamicalBodies.size(); i++){
             dynamicalBody = dynamicalBodies.get(i);
             System.out.println("dynamicalBody.getModel().getXPos(): " + dynamicalBody.getModel().getXPos());
-            //dynamicalBody.getModel().getXPos();
             dynamicalBody.defineBody();
         }
         dynamicalBodies.clear();
-        //playerCharacter.getModel().setxPos(playerCharacterXPos * CONSTANTS.PPM);
-        //playerCharacter.getModel().setyPos(playerCharacterYPos * CONSTANTS.PPM);
-        //playerCharacter.defineCharacter(playerCharacter.getModel());
-        //playerCharacter.getB2Body().setLinearVelocity(playerCharacterVector);
     }
 
-    private void savePlayerBodyData(){
+    /**
+     * Saves the data of the dynamic bodies. Including vector, y-position and x-position relative to the beginning of the world section.
+     */
+    private void saveDynamicBodiesData(){
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         Body body;
@@ -167,18 +170,21 @@ public class libgdx_world {
                 j++;
             }
         }
-        //playerCharacterXPos = playerCharacter.getB2Body().getPosition().x - xPositionOfFirstBody;
-        //playerCharacterYPos = playerCharacter.getB2Body().getPosition().y;
-        //playerCharacterVector = playerCharacter.getB2Body().getLinearVelocity();
     }
 
-    private void generateGoBackSections(){
+    /**
+     * Creates a copy of the current world segment at the start of the world.
+     */
+    private void generateLoopBackSection(){
         mapList.get(0).setGoBacklibgdx_mapSegment();
         int offsetX = mapList.get(0).getOffsetX();
         createGroundHitbox(mapList.get(0), offsetX);
     }
 
-    private void removeBodiesFrom0To(int x)
+    /**
+     * Removes all the physical bodies from the start of the world to x.
+     */
+    private void removeBodiesFromStartTo(float x)
     {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
@@ -192,7 +198,10 @@ public class libgdx_world {
 
     }
 
-    private void removeStaticBodiesFrom0To(float x)
+    /**
+     * Removes all the static physical bodies from the start of the world to x. I.e. the bodies that make up the environment.
+     */
+    private void removeStaticBodiesFromStartTo(float x)
     {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
@@ -206,10 +215,14 @@ public class libgdx_world {
 
     }
 
-    private void triggerGeneration(){
+    /**
+     * Adds a new world section to the game.
+     */
+    private void handleNewWorldSection(){
         generateNewWorldSection();
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
         respawnEverything();
+        segmentCounter++;
     }
 
     /**
@@ -232,6 +245,9 @@ public class libgdx_world {
         }
     }
 
+    /**
+     * Creates hitboxes based on the map model provided by currentMap.
+     */
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
         xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / CONSTANTS.PPM);
         if(segmentCounter == maxSegmentCount - 1) {
@@ -306,6 +322,10 @@ public class libgdx_world {
 
     }
 
+    /**
+     * Generates the terrain of a new world section of the game.
+     */
+
     public void generateNewWorldSection(){
         mapList.get(0).setNextlibgdx_mapSegment();
         int offsetX = mapList.get(0).getOffsetX();
@@ -360,6 +380,10 @@ public class libgdx_world {
             }
         }
     }
+
+    /**
+     * Removes the bullets that has gone outside the screen.
+     */
 
     public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {//world
         Array<Body> bodies = new Array<Body>(10);
