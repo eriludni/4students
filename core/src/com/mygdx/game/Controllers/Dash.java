@@ -11,8 +11,7 @@ import com.mygdx.game.libgdx.libgdx_world;
 
 
 public class Dash extends Game {
-    public SpriteBatch batch;
-
+   
     private IController currentController;
     private MenuController mainMenuController;
     private GameOverController gameOverController;

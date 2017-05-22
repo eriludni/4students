@@ -48,20 +48,13 @@ public class PlayScreen implements Screen {
 
         batch = new SpriteBatch();
 
+
         this.gameWorld = gameWorld;
-        gameCam = new OrthographicCamera();
-        hud = new Hud();
-        gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT / CONSTANTS.PPM, gameCam);
-        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
-
-        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
-        b2dr = new Box2DDebugRenderer();
-
-        enemies = gameWorld.getEnemyCharacters();
 
         EB = gameWorld.getEB();
         limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av CONSTANTS.WIDTH istället.
     }
+
 
     public void update(float dt) {
 

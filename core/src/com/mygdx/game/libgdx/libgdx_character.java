@@ -3,7 +3,6 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Model.*;
 import com.mygdx.game.Utils.CONSTANTS;
 
@@ -14,7 +13,7 @@ import static java.lang.Math.abs;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class libgdx_character implements TextureObject, Libgdx_dynamic{
+public abstract class libgdx_character implements TextureObject, Teleportable {
     private Body b2Body;
     private libgdx_world world = libgdx_world.getlgdxWorld();
     private Fixture fixture;
