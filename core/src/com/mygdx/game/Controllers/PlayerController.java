@@ -32,7 +32,7 @@ public class PlayerController implements IController {
 
     public PlayerController(Dash game){
         this.game = game;
-        this.gameWorld = new libgdx_world(game, new GameWorld());
+        this.gameWorld = new libgdx_world(new GameWorld());
         this.playScreen = new PlayScreen( gameWorld);
         this.player = gameWorld.getPlayerCharacter();
 
