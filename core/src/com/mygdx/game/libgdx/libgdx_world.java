@@ -134,7 +134,7 @@ public class libgdx_world {
      * Creates hitboxes based on the map model provided by currentMap.
      */
     private void createGroundHitbox(libgdx_map currentMap, int offsetX){
-        xPositionOfLastBody = (int)(((currentMap.getMapWidth() + offsetX) * 32 + 16) / CONSTANTS.PPM);
+        xPositionOfLastBody = (int)(((currentMap.getMapModelCols() + offsetX) * 32 + 16) / CONSTANTS.PPM);
         if(segmentCounter == maxSegmentCount - 1) {
             xPositionOfFirstBody = (offsetX * 32 + 16) / CONSTANTS.PPM;
         }
@@ -143,11 +143,11 @@ public class libgdx_world {
         FixtureDef fdef = new FixtureDef();
         Body body;
 
-        for (int x = 0; x < currentMap.getMapWidth(); x++) {
-            for (int y = 0; y < currentMap.getMapHeight(); y++) {
+        for (int x = 0; x < currentMap.getMapModelCols(); x++) {
+            for (int y = 0; y < currentMap.getMapModelRows(); y++) {
                 if (y == 0){
                     bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / CONSTANTS.PPM);
+                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
 
                     body = world.createBody(bdf);
 
@@ -158,7 +158,7 @@ public class libgdx_world {
                 }
                 if (currentMap.getArrayId(x, y) == 1 ||currentMap.getArrayId(x, y) == 3  ) {
                     bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapHeight() - y) * 32 + 16) / CONSTANTS.PPM);
+                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
 
                     body = world.createBody(bdf);
 
@@ -228,7 +228,7 @@ public class libgdx_world {
      * Creates a copy of the current world segment at the start of the world.
      */
     private void generateLoopBackSection(){
-        mapCreator.setGoBacklibgdx_mapSegment();
+        mapCreator.setLoopBacklibgdx_mapSegment();
         int offsetX = mapCreator.getOffsetX();
         createGroundHitbox(mapCreator, offsetX);
     }

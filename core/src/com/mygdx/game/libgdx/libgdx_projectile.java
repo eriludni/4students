@@ -49,16 +49,6 @@ public class libgdx_projectile implements TextureObject, Libgdx_dynamic{
         return new Vector2(velocityX, velocityY);
     }
 
-
-    //private Body initiateProjectileBody(Point startPosition){
-    //    Body b2Body = makeBody(startPosition);
-//
-    //    //libgdx_body_userdata userdata = new libgdx_body_userdata();
-    //    //b2Body.setUserData(userdata);
-    //
-    //    return b2Body;
-    //}
-
     /**
      *Creates the physical body of the projectile
      */

@@ -2,7 +2,6 @@ package com.mygdx.game.libgdx;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Model.ICharacter;
 import com.mygdx.game.Model.Player;
 import com.mygdx.game.Utils.CONSTANTS;
@@ -52,7 +51,7 @@ public class libgdx_player extends libgdx_character{
     }
 
     /*
-    Checks if the player has died
+    Checks if the player has died and updates model.
      */
     public void update() {
         playerModel.checkDead();

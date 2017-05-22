@@ -4,20 +4,13 @@ package com.mygdx.game.libgdx;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapImageLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.Generator;
-
-import java.util.List;
-
 
 /**
  * Created by Erik on 08/05/2017.
@@ -43,10 +36,6 @@ public class libgdx_map {
 
     private TextureRegion[][] splitTiles;
 
-    public int getOffsetX() {
-        return offsetX;
-    }
-
     public libgdx_map() {
         offsetX = 0;
 
@@ -71,20 +60,27 @@ public class libgdx_map {
 
     }
 
+    /**
+     *place the next groundlayer based on a new generated model matrix.
+     */
     public void setNextlibgdx_mapSegment() {
         offsetX += arrayGenerator.getCol();
         arrayGenerator.setNextMapStructure();
-        if(layers.getCount() > 2) {
-            layers.remove(0);
-        }
-        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + offsetX, arrayGenerator.getRow(), 32, 32);
-        placeTexture();
-        layers.add(groundLayer);
-
+        addNewGroundlayer();
     }
 
-    public void setGoBacklibgdx_mapSegment() {
+    /**
+     *place the next groundlayer at the start based on the current generated model matrix.
+     */
+    public void setLoopBacklibgdx_mapSegment() {
         offsetX = 0;
+        addNewGroundlayer();
+    }
+
+    /**
+     *place texture based on the map model matrix.
+     */
+    private void addNewGroundlayer() {
         if(layers.getCount() > 2) {
             layers.remove(0);
         }
@@ -93,6 +89,9 @@ public class libgdx_map {
         layers.add(groundLayer);
     }
 
+    /**
+     *place texture based on the map model matrix.
+     */
     private void placeTexture() {
         groundEdge.setId(1);
         ground.setId(0);
@@ -134,14 +133,14 @@ public class libgdx_map {
     /**
      *Getter
      */
-    public int getMapWidth() {
+    public int getMapModelCols() {
         return arrayGenerator.getCol();
     }
 
     /**
      *Getter
      */
-    public int getMapHeight() {
+    public int getMapModelRows() {
         return arrayGenerator.getRow();
     }
 
@@ -150,6 +149,13 @@ public class libgdx_map {
      */
     public int getArrayId(int x, int y) {
         return arrayGenerator.getMapArray(x, y);
+    }
+
+    /**
+     *Getter
+     */
+    public int getOffsetX() {
+        return offsetX;
     }
 
 }
