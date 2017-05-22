@@ -15,7 +15,7 @@ public class PowerUp implements IItem{
     public PowerUp(float xPos, float yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
-        this.modifier = new PowerUpModifier(this, rand.nextInt(3));
+        this.modifier = new PowerUpModifier(this, 2);
     }
 
     /**
