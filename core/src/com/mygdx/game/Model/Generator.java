@@ -12,6 +12,7 @@ public class Generator {
     private int[][] mapArray;
     private final int row =20;
     private final int col = 40;
+    private final int lastCol = col - 1;
     private int[][] platformStartPoints = new int[3][2];
     private int[][] pitfallStartPoints = new int[3][2];
     private int pointsDistance = 4;
@@ -32,7 +33,7 @@ public class Generator {
     private Generator() {
         this.mapArray = new int[row][col];
         setBasePoints();
-        for (int x = 0; x < col - 1; x++) {
+        for (int x = 0; x < lastCol; x++) {
             growFromPoints(x);
         }
         placeGround();
@@ -43,6 +44,7 @@ public class Generator {
     /**
      *Modifies the Generator variables according to the last PowerUp collected
      */
+
     public void applyModifier() {
         if(powerUp != null) {
             pointsDistance = powerUp.getModifier().getPoinsDistance();
@@ -55,12 +57,16 @@ public class Generator {
         }
     }
 
+    /**
+     * Generates a new mapmodel for the next structuresegment in the game
+     */
+
     public void setNextMapStructure(){
-        int lastBasePoint = findRow(col - 1);
+        int lastBasePoint = findRow(lastCol);
         clear(mapArray);
         applyModifier();
         setBasePointsFrom(lastBasePoint);
-        for (int x = 0; x < col - 1; x++) {
+        for (int x = 0; x < lastCol; x++) {
             growFromPoints(x);
         }
         placeGround();
@@ -79,6 +85,23 @@ public class Generator {
         }
     }
 
+    /**
+     * Sets basepoints in the matrix with the distance pointsDistance apart.
+     */
+
+    public void setBasePoints() {
+        for (int c = 0; c < col - pointsDistance; c = c + pointsDistance) {
+            this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
+        }
+        if(findRow(col-1) == 0){
+            this.mapArray[random.nextInt(mountainDiff) + mountainTop][col-1] = 1;
+        }
+    }
+
+    /**
+     * Sets basepoints with the last basepoints of the last model as the first basepoints of the new model.
+     */
+
     public void setBasePointsFrom(int lastBasePoint) {
 
         this.mapArray[lastBasePoint][0] = 1;
@@ -91,14 +114,9 @@ public class Generator {
         }
     }
 
-    public void setBasePoints() {
-        for (int c = 0; c < col - pointsDistance; c = c + pointsDistance) {
-            this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
-        }
-        if(findRow(col-1) == 0){
-            this.mapArray[random.nextInt(mountainDiff) + mountainTop][col-1] = 1;
-        }
-    }
+    /**
+     * Binds the basepoints in the matrix together.
+     */
 
     public void growFromPoints(int initValue) {
         int endValue = nextPointValue(initValue);
@@ -116,6 +134,10 @@ public class Generator {
         }
     }
 
+    /**
+     * Finds the row for the next point after currentColumn.
+     */
+
     public int nextPointValue(int currentColum) {
         for (int c = currentColum + 1; c < col; c++) {
             for (int r = 0; r < row; r++) {
@@ -127,6 +149,10 @@ public class Generator {
         return 0;
     }
 
+    /**
+     * Finds the row for a point in a column.
+     */
+
     public int findRow(int colum) {
         for (int x = 0; x < row; x++) {
             if (this.mapArray[x][colum] == 1)
@@ -134,6 +160,10 @@ public class Generator {
         }
         return 0;
     }
+
+    /**
+     * Place the points which represents the ground texture in the model.
+     */
 
     public void placeGround(){
         for(int c = 0; c < col; c++){
@@ -149,6 +179,7 @@ public class Generator {
     /**
      *Sets the amount of platforms to be created on a map and the length of them
      */
+
     public void createPlatforms(int platforms, int length) {
         setPlatformStartPoints(platforms);
         for(int i = 0; i < platformStartPoints.length; i++) {
@@ -166,6 +197,7 @@ public class Generator {
     /**
      *Sets the startpoints for each platform from which they may be expanded
      */
+
     public void setPlatformStartPoints(int startPoints) {
         int i = 0;
         for(int row = minPlatformRow; row <= maxPlatformRow; row++) {
@@ -182,6 +214,7 @@ public class Generator {
     /**
      *Sets the amount of pitfalls to be created on a map and the length of them
      */
+
     public void createPitfalls(int pitfalls, int width) {
         setPitfallStartPoints(pitfalls);
         for(int i = 0; i < pitfallStartPoints.length; i++) {
@@ -195,7 +228,7 @@ public class Generator {
                     }
                 }
                 startRow = pitfallStartPoints[i][0];
-                if(startCol < this.col - 1) {
+                if(startCol < this.lastCol) {
                     startCol++;
                 }
             }
