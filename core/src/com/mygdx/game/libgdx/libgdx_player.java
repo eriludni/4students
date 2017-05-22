@@ -41,7 +41,7 @@ public class libgdx_player extends libgdx_character{
         getB2Body().setUserData(this);
     }
 
-    public void defineBody(){
+    public void createBodyFromModel(){
         System.out.println("playerPosition: " + playerModel.getXPos());
         this.defineCharacter(playerModel);
 

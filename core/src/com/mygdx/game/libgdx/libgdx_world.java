@@ -241,10 +241,10 @@ public class libgdx_world {
        // for(int i = 0; i < dynamicalBodies.size(); i++){
        //     dynamicalBody = dynamicalBodies.get(i);
        //     System.out.println("dynamicalBody.getModel().getXPos(): " + dynamicalBody.getModel().getXPos());
-       //     dynamicalBody.defineBody();
+       //     dynamicalBody.createBodyFromModel();
        // }
         for(Libgdx_dynamic dynamicalBody: dynamicalBodies){
-            dynamicalBody.defineBody();
+            dynamicalBody.createBodyFromModel();
         }
         dynamicalBodies.clear();
     }

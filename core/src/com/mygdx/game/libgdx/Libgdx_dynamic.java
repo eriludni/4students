@@ -8,5 +8,5 @@ import com.mygdx.game.Model.DynamicalBody;
  */
 public interface Libgdx_dynamic {
     public DynamicalBody getModel();
-    public void defineBody();
+    public void createBodyFromModel();
 }

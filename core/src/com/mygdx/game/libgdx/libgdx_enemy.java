@@ -33,7 +33,7 @@ public class libgdx_enemy extends libgdx_character {
         getB2Body().setUserData(this);
     }
 
-    public void defineBody(){
+    public void createBodyFromModel(){
         defineCharacter(enemyModel);
         float vectorX = enemyModel.getX_velocity();
         float vectorY = enemyModel.getY_velocity();
