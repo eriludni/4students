@@ -7,12 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.*;
-//<<<<<<< Updated upstream
-//=======
+
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-//>>>>>>> Stashed changes
 import com.mygdx.game.Controllers.PlayerController;
 import com.mygdx.game.Controllers.Dash;
 import com.mygdx.game.Model.GameWorld;
@@ -53,6 +51,8 @@ public class PlayScreen implements Screen {
         hud = new Hud();
         gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT / CONSTANTS.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
+        b2dr = new Box2DDebugRenderer();
 
 
         this.gameWorld = gameWorld;
@@ -93,7 +93,6 @@ public class PlayScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //game.batch.setProjectionMatrix(gameCam.combined);
