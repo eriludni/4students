@@ -25,25 +25,19 @@ public class MainMenuScreen implements Screen {
 
     private Viewport viewPort;
     private Stage stage;
-    private libgdx_world gameWorld;
-    private Dash game;
     private MainMenuSkins menuSkins;
 
-    public MainMenuScreen(Dash game, libgdx_world gameWorld) {
-        this.game = game;
-        this.gameWorld = gameWorld;
+    public MainMenuScreen() {
 
         viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
-        stage = new Stage(viewPort, game.batch);
+        stage = new Stage(viewPort);
 
         menuSkins = new MainMenuSkins();
+        createMenu();
 
     }
 
-    @Override
-    public void show() {
-
-
+    private void createMenu(){
         TextButton newGameButton = new TextButton("New game", menuSkins.getSkins());
         newGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2);
 
@@ -52,16 +46,19 @@ public class MainMenuScreen implements Screen {
 
         stage.addActor(newGameButton);
         stage.addActor(quitGameButton);
+    }
 
+    @Override
+    public void show() {
     }
 
     public void update(float delta) {
-        game.getMC().handleInput(delta);
+        render(delta);
     }
 
     @Override
     public void render(float delta) {
-        update(delta);
+
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -97,10 +94,5 @@ public class MainMenuScreen implements Screen {
     public Stage getStage() {
         return this.stage;
     }
-    public libgdx_world GetWorld(){
-        return this.gameWorld;
-    }
-    public Dash getGame(){
-        return this.game;
-    }
+
 }

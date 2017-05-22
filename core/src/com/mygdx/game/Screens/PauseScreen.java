@@ -21,17 +21,16 @@ import com.mygdx.game.libgdx.libgdx_world;
 public class PauseScreen implements Screen {
     private Viewport viewPort;
     private Stage stage;
-    private libgdx_world gameWorld;
-    private Dash game;
+
+
     private MainMenuSkins menuSkins;
     private MenuController MC;
 
     public PauseScreen(){
-        this.game = game;
-        this.gameWorld = gameWorld;
+
 
         viewPort = new FitViewport(Dash.WIDTH, Dash.HEIGHT, new OrthographicCamera());
-        stage = new Stage(viewPort, game.batch);
+        stage = new Stage(viewPort);
 
 
         menuSkins = new MainMenuSkins();
@@ -45,29 +44,6 @@ public class PauseScreen implements Screen {
         mainTable.setFillParent(true);
         mainTable.top();
 
-        TextButton newGameButton = new TextButton("Resume game", menuSkins.getSkins());
-        newGameButton.setPosition(Dash.WIDTH / 2 - Dash.WIDTH / 8, Dash.HEIGHT / 2);
-
-        TextButton quitGameButton = new TextButton("Quit to Main menu", menuSkins.getSkins());
-        quitGameButton.setPosition(Dash.WIDTH / 2 - Dash.WIDTH / 8, Dash.HEIGHT / 2 - Dash.HEIGHT / 10);
-
-        newGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game, gameWorld));
-            }
-        });
-        quitGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
-
-
-        mainTable.add(newGameButton);
-        mainTable.row();
-        mainTable.add(quitGameButton);
 
         stage.addActor(mainTable);
     }

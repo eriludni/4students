@@ -5,6 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Model.GameWorld;
+import com.mygdx.game.Screens.GameOverScreen;
+import com.mygdx.game.Screens.PlayScreen;
 import com.mygdx.game.Utils.CONSTANTS;
 
 import com.mygdx.game.libgdx.libgdx_player;
@@ -15,21 +18,36 @@ import java.awt.*;
 /**
  * Created by Erik on 26/04/2017.
  */
-public class PlayerController {
+public class PlayerController implements IController {
 
-    private World world;
+    private libgdx_world gameWorld;
     private libgdx_player player;
+
     private OrthographicCamera gameCam;
     private Viewport viewPort;
+    private PlayScreen playScreen;
+    private Dash game;
 
-    public PlayerController(libgdx_world gameWorld, OrthographicCamera gameCam, Viewport viewPort){
-        //this.world = gameWorld.getWorld();
+
+
+    public PlayerController(Dash game){
+        this.game = game;
+        this.gameWorld = new libgdx_world(game, new GameWorld());
+        this.playScreen = new PlayScreen( gameWorld);
         this.player = gameWorld.getPlayerCharacter();
-        this.gameCam = gameCam;
-        this.viewPort = viewPort;
+
+        this.gameCam = playScreen.getCam();
+        this.viewPort = playScreen.getViewport();
+
+        System.out.println("NU SKAPAS JAG");
     }
     
     public void handleInput(float dt){
+
+        if(gameWorld.getPlayerCharacter().getModel().isDead()) {
+            createNewGameOverScreen();
+        }
+
         if(checkUpKeyPressed()) {
             player.moveUp();
         }
@@ -42,25 +60,31 @@ public class PlayerController {
         if (checkMouseButtonPressed()){
             handleMouseInput();
         }
+        playScreen.update(dt);
     }
 
-    public boolean checkUpKeyPressed() {
+    private boolean checkUpKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.W);
     }
 
-    public boolean checkRightKeyPressed() {
+    private boolean checkRightKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.D);
     }
 
-    public boolean checkLeftKeyPressed() {
+    private boolean checkLeftKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.A);
     }
 
-    public boolean checkMouseButtonPressed() {
+    private boolean checkMouseButtonPressed() {
         return Gdx.input.justTouched();
     }
 
-    public void handleMouseInput(){
+    private void createNewGameOverScreen() {
+
+        game.setController(game.getGameOverController());
+    }
+
+    private void handleMouseInput(){
         int gameCamRightPos = (int)(gameCam.position.x * CONSTANTS.PPM);
         int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth()/2;
         int x = currentPlayerPos + Gdx.input.getX();
@@ -69,5 +93,13 @@ public class PlayerController {
 
         Point cursorPosition = new Point(x,y);
         player.shootProjectile(cursorPosition);
+
+
+    }
+    public void setScreen(){
+        game.setScreen(playScreen);
+    }
+    public libgdx_world getGameWorld(){
+        return gameWorld;
     }
 }

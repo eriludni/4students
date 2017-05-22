@@ -27,11 +27,11 @@ import java.util.ArrayList;
  */
 public class PlayScreen implements Screen {
 
-    private Dash game;
+
+    private SpriteBatch batch;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
     private libgdx_world gameWorld;
-    private PlayerController PC;
 
     private float limit;
     private int timeStep = 0;
@@ -44,12 +44,14 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
 
-    public PlayScreen(Dash game, libgdx_world gameWorld) {
-        this.game = game;
+    public PlayScreen( libgdx_world gameWorld) {
+
+        batch = new SpriteBatch();
+
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
-        hud = new Hud(game.batch);
-        gamePort = new FitViewport(CONSTANTS.WIDTH/CONSTANTS.PPM, CONSTANTS.HEIGHT /CONSTANTS.PPM, gameCam);
+        hud = new Hud();
+        gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT / CONSTANTS.PPM, gameCam);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
         renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
@@ -57,63 +59,33 @@ public class PlayScreen implements Screen {
 
         enemies = gameWorld.getEnemyCharacters();
 
-        PC = new PlayerController(gameWorld, gameCam, gamePort);//handle mouseinput kan ske här istället
-        EB = gameWorld.getEB();
-        limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av CONSTANTS.WIDTH istället.
-    }
-
-    public PlayScreen(Dash game) {
-        this.game = game;
-        this.gameWorld = new libgdx_world(game, new GameWorld());
-        gameCam = new OrthographicCamera();
-        hud = new Hud(game.batch);
-        gamePort = new FitViewport(CONSTANTS.WIDTH/CONSTANTS.PPM, CONSTANTS.HEIGHT /CONSTANTS.PPM, gameCam);
-        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
-
-        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
-        b2dr = new Box2DDebugRenderer();
-
-        enemies = gameWorld.getEnemyCharacters();
-
-        PC = new PlayerController(gameWorld, gameCam, gamePort);//handle mouseinput kan ske här istället
         EB = gameWorld.getEB();
         limit = gameWorld.getxPositionOfLastBody() - gamePort.getScreenWidth() / 200 - 40;// kan ske i world med hjälp av CONSTANTS.WIDTH istället.
     }
 
     public void update(float dt) {
-        PC.handleInput(dt);//dash
+
         gameWorld.update(dt);//dash
 
         gameCam.position.x = gameWorld.getPlayerCharacter().getB2Body().getPosition().x;
-
         gameWorld.removeBulletsOutSideScreen(gameCam.position.x, gameCam.position.y, gamePort.getScreenWidth(), gamePort.getScreenHeight());
-
-        if(gameWorld.getPlayerCharacter().getModel().isDead()) {
-            createNewGameOverScreen();
-        }
 
         hud.setScore(gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore());
         hud.setHealth(gameWorld.getPlayerCharacter().getModel().getHealth());
 
         stepTime();
-
-
         gameCam.update();//PlayScreen
         renderer.setView(gameCam);//PlayScreen
     }
 
     public void stepTime() {
-        if(timeStep >= 60) {
+        if (timeStep >= 60) {
             hud.stepWorldTimer();
             timeStep = 0;
         }
         timeStep++;
     }
 
-    public void createNewGameOverScreen() {
-
-        game.setScreen(new GameOverScreen(game, gameWorld));
-    }
 
     @Override
     public void show() {
@@ -125,35 +97,32 @@ public class PlayScreen implements Screen {
         update(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.batch.setProjectionMatrix(gameCam.combined);
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-
-
-
+        //game.batch.setProjectionMatrix(gameCam.combined);
+        //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
         renderer.render();
-
         b2dr.render(gameWorld.getWorld(), gameCam.combined);
-
         renderDynamicBodies();
-        
         hud.stage.draw();
     }
 
-    private void renderDynamicBodies(){
-        SpriteBatch batch = new SpriteBatch();
+    private void renderDynamicBodies() {
         Array<Body> bodies = new Array<Body>();
         gameWorld.getWorld().getBodies(bodies);
-        for(Body body : bodies){
-            if(body.getType().getValue() == 2) {
-                if(!body.isBullet()){
-                game.batch.begin();
-                game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + CONSTANTS.WIDTH/2 - ((TextureObject) body.getUserData()).getSize() * 100, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getSize() * 100);
-                game.batch.end();}
-                else{
-                    game.batch.begin();
-                    game.batch.draw(((TextureObject) body.getUserData()).getTexture(), (body.getPosition().x - gameCam.position.x) * 100 + CONSTANTS.WIDTH/2 - ((TextureObject) body.getUserData()).getTexture().getWidth()/2, body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getTexture().getHeight()/2);
-                    game.batch.end();
+        for (Body body : bodies) {
+            if (body.getType().getValue() == 2) {
+                if (!body.isBullet()) {
+                    batch.begin();
+                    batch.draw(((TextureObject) body.getUserData()).getTexture(),
+                            (body.getPosition().x - gameCam.position.x) * 100 + CONSTANTS.WIDTH / 2 - ((TextureObject) body.getUserData()).getSize() * 100,
+                            body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getSize() * 100);
+                    batch.end();
+                } else {
+                    batch.begin();
+                    batch.draw(((TextureObject) body.getUserData()).getTexture(),
+                            (body.getPosition().x - gameCam.position.x) * 100 + CONSTANTS.WIDTH / 2 - ((TextureObject) body.getUserData()).getTexture().getWidth() / 2,
+                            body.getPosition().y * 100 - ((TextureObject) body.getUserData()).getTexture().getHeight() / 2);
+                    batch.end();
                 }
             }
         }
@@ -182,6 +151,14 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
+    }
+
+    public OrthographicCamera getCam() {
+        return gameCam;
+    }
+
+    public Viewport getViewport() {
+        return gamePort;
     }
 
 }

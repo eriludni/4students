@@ -12,9 +12,12 @@ import com.mygdx.game.libgdx.libgdx_world;
 
 public class Dash extends Game {
     public SpriteBatch batch;
-    private libgdx_world gameWorld;
-    private GameWorld logicalWorld;
-    private MenuController MC;
+
+    private IController currentController;
+    private MenuController mainMenuController;
+    private GameOverController gameOverController;
+    private PlayerController playerController;
+
 
     //width of the window
     public static final int WIDTH = 1240;
@@ -30,9 +33,7 @@ public class Dash extends Game {
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        logicalWorld = new GameWorld();
-        gameWorld = new libgdx_world(this, logicalWorld);
+
         /*
         //musicPlaceHolder
         music = Gdx.audio.newMusic(Gdx.files.internal("The Proclaimers - I'm Gonna Be (500 Miles) Lyrics.mp3"));
@@ -41,25 +42,37 @@ public class Dash extends Game {
         music.play();//musicPlaceHolder
         */
 
-        MC = new MenuController(this, gameWorld);
+        mainMenuController = new MenuController(this);
+        playerController = new PlayerController(this);
+        gameOverController = new GameOverController(this);
+
+        currentController = mainMenuController;
 
     }
 
-    public libgdx_world getGameWorld() {
-        return gameWorld;
-    }
-    public MenuController getMC() {return MC;}
+    //public libgdx_world getGameWorld() {
+    //    return gameWorld;
+    //}
+    public MenuController getMainMenuController() {return mainMenuController;}
+    public PlayerController getPlayerController(){return playerController;}
+    public GameOverController getGameOverController(){return  gameOverController;}
 
     @Override
     public void render() {
-        super.render();
 
+        super.render();
+        this.currentController.handleInput(Gdx.graphics.getDeltaTime());
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        //img.dispose();
     }
 
+    public void setController(IController currentController){
+
+        this.currentController = currentController;
+        this.currentController.setScreen();
+
+
+    }
 }

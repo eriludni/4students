@@ -11,7 +11,7 @@ import com.mygdx.game.libgdx.libgdx_world;
 /**
  * Created by Erik on 2017-05-22.
  */
-public class PauseController {
+public class PauseController implements IController {
     private PauseScreen pauseScreen;
 
     public PauseController(Dash game, libgdx_world world){
@@ -23,7 +23,8 @@ public class PauseController {
     }
     public void handleInput(float dt){
 
-
+    }
+    public void setScreen(){
 
     }
 }

@@ -33,14 +33,14 @@ public class Hud {
     private Label scoreLabel;
     private Label healthLabel;
 
-    public Hud(SpriteBatch sb){
+    public Hud(){
         worldTimer = 0;
         timeCount = 0;
         score = 0;
         health = 0;
 
         viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
-        stage = new Stage(viewPort, sb);
+        stage = new Stage(viewPort);
 
         Table table = new  Table();
         table.top();

@@ -28,34 +28,31 @@ public class GameOverScreen implements Screen {
     private Viewport viewPort;
     private Stage stage;
     private libgdx_world gameWorld;
-    private Dash game;
     private GameOverSkins gameOverSkin;
-    private GameOverController GOC;
     private int score;
 
     private Label gameOverLabel;
     private Label highscoreLabel;
     private Label scoreLabel;
 
-    public GameOverScreen(Dash game, libgdx_world gameWorld) {
-        this.game = game;
+    public GameOverScreen(libgdx_world gameWorld) {
         this.gameWorld = gameWorld;
 
         viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
-        stage = new Stage(viewPort, game.batch);
-        GOC = new GameOverController(viewPort, this);
-
+        stage = new Stage(viewPort);
         gameOverSkin = new GameOverSkins();
+        createMenu();
     }
 
     @Override
     public void show() {
+
+    }
+
+    private void createMenu(){
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.center();
-
-        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
-
         gameOverLabel = new Label("GAME OVER", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreLabel = new Label("Highscore: ", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         highscoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -66,41 +63,25 @@ public class GameOverScreen implements Screen {
         TextButton quitGameButton = new TextButton("Quit game", gameOverSkin.getSkins());
         quitGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 10);
 
-        newGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(game));
-                dispose();
-            }
-        });
-        quitGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
+        stage.addActor(newGameButton);
+        stage.addActor(quitGameButton);
 
         mainTable.add(gameOverLabel);
         mainTable.row();
         mainTable.add(scoreLabel);
         mainTable.row();
         mainTable.add(highscoreLabel);
-        mainTable.row();
-        mainTable.add(newGameButton);
-        mainTable.row();
-        mainTable.add(quitGameButton);
-
         stage.addActor(mainTable);
 
     }
 
     public void update(float dt) {
-        GOC.handleInput(dt);
+        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
+        render(dt);
     }
 
     @Override
     public void render(float delta) {
-        update(delta);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

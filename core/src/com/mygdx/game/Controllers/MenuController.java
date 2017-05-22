@@ -11,23 +11,23 @@ import com.mygdx.game.libgdx.libgdx_world;
 /**
  * Created by Erik on 16/05/2017.
  */
-public class MenuController {
+public class MenuController implements IController {
 
     private MainMenuScreen menu;
+    private Dash game;
 
-    public MenuController(Dash game, libgdx_world world){
-        this.menu = new MainMenuScreen(game, world);
-        game.setScreen(menu);
-
-
-
+    public MenuController(Dash game){
+        this.game = game;
+        this.menu = new MainMenuScreen();
     }
     public void handleInput(float dt){
         Gdx.input.setInputProcessor(menu.getStage());
+
         menu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Dash) Gdx.app.getApplicationListener()).setScreen(new PlayScreen(menu.getGame(), menu.GetWorld()));
+                game.setController(game.getPlayerController());
+
             }
         });
         menu.getStage().getActors().get(1).addListener(new ClickListener() {
@@ -36,8 +36,10 @@ public class MenuController {
                 Gdx.app.exit();
             }
         });
-
-
+        menu.update(dt);
+    }
+    public void setScreen(){
+        game.setScreen(menu);
     }
 
 
