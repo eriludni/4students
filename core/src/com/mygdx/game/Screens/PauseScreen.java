@@ -24,7 +24,6 @@ public class PauseScreen implements Screen {
 
 
     private MainMenuSkins menuSkins;
-    private MenuController MC;
 
     public PauseScreen(){
 
