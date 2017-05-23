@@ -30,7 +30,7 @@ public class GameOverController implements IController {
         gameOverScreen.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setController(new PlayerController(game));
+                game.setController(game.getNewPlayerController());
             }
         });
         gameOverScreen.getStage().getActors().get(1).addListener(new ClickListener() {

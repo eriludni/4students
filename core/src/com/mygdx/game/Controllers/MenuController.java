@@ -32,7 +32,7 @@ public class MenuController implements IController {
         menu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setController(game.getPlayerController());
+                game.setController(game.getNewPlayerController());
             }
         });
         menu.getStage().getActors().get(1).addListener(new ClickListener() {

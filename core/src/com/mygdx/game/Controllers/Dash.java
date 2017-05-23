@@ -22,7 +22,7 @@ public class Dash extends Game {
     //width of the window
     public static final int WIDTH = 1240;
     //Height of the window
-    public static final int HEIGHT = 32*20;
+    public static final int HEIGHT = 32 * 20;
     //Pixels per meter in game
     public static final float PPM = 100;
 
@@ -54,10 +54,26 @@ public class Dash extends Game {
     //public libgdx_world getGameWorld() {
     //    return gameWorld;
     //}
-    public MenuController getMainMenuController() {return mainMenuController;}
-    public PlayerController getPlayerController(){return playerController;}
-    public GameOverController getGameOverController(){return  gameOverController;}
-    public PauseController getPauseController(){return pauseController;}
+    public MenuController getMainMenuController() {
+        return mainMenuController;
+    }
+
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
+
+    public GameOverController getGameOverController() {
+        return gameOverController;
+    }
+
+    public PauseController getPauseController() {
+        return pauseController;
+    }
+
+    public PlayerController getNewPlayerController() {
+        this.playerController = new PlayerController(this);
+        return playerController;
+    }
 
     @Override
     public void render() {
@@ -70,7 +86,7 @@ public class Dash extends Game {
     public void dispose() {
     }
 
-    public void setController(IController currentController){
+    public void setController(IController currentController) {
 
         this.currentController = currentController;
         this.currentController.setScreen();

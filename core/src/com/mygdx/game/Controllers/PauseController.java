@@ -32,6 +32,7 @@ public class PauseController implements IController {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setController(game.getPlayerController());
+                System.out.println("Yolololol");
             }
         });
         menu.getStage().getActors().get(1).addListener(new ClickListener() {

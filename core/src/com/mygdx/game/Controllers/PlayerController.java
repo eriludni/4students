@@ -86,10 +86,6 @@ public class PlayerController implements IController {
         return Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
     }
 
-    private void createNewGameOverScreen() {
-        game.setController(game.getGameOverController());
-    }
-
     private void handleMouseInput(){
         int gameCamRightPos = (int)(gameCam.position.x * CONSTANTS.PPM);
         int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth()/2;
