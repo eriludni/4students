@@ -50,6 +50,7 @@ public class GameOverScreen implements Screen {
     }
 
     private void createMenu(){
+        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.top().padTop(100);

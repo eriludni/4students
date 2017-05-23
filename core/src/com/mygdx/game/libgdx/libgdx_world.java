@@ -75,7 +75,7 @@ public class libgdx_world {
     public void update(float dt){
 
         currentPlayerXPos = playerCharacter.getB2Body().getPosition().x;
-        counter += dt*1.6;
+        counter += dt*1.3;
 
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);

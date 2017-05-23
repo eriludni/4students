@@ -12,7 +12,7 @@ public class GameWorld {
     private Player logicalPlayer;
     private Random rand = new Random();
     private int enemyCount = 5;
-    private int powerUpCount = 2;
+    private int powerUpCount = 1;
     private ArrayList<Enemy> logicalEnemies = new ArrayList<Enemy>();
     private ArrayList<EnemyBrain> logicalEnemyBrains = new ArrayList<EnemyBrain>();
     private ArrayList<PowerUp> logicalPowerUps = new ArrayList<PowerUp>();
