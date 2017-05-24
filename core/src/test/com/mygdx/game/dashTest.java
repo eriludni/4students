@@ -249,13 +249,25 @@ public class dashTest {
         GameWorld world = new GameWorld();
         world.removeAllLogicalPowerUps();
         world.createLogicalPowerUps();
-        assertTrue(world.getLogicalPowerUps().size() == 2);
+        assertTrue(world.getLogicalPowerUps().size() == world.getPowerUpCount());
     }
 
     @Test
     public void testProjectileJustCollided() {
         Projectile projectile = new Projectile(5, 5);
         projectile.JustCollided();
-        assertTrue(projectile.hasCollided() == true);
+        assertTrue(projectile.hasCollided());
+    }
+
+    @Test
+    public void testUCPlayerMovesAndDies() {
+        int startHealth = 3;
+        float startXPos = 2;
+        int dmg = 3;
+        Player player = new Player(startHealth, startXPos, 2, 100, 200, 5);
+        player.setxPos(startXPos + 2);
+        player.reduceHealth(dmg);
+        player.checkDead();
+        assertTrue(player.getXPos() > startXPos && player.getHealth() == startHealth - dmg && player.isDead());
     }
 }
