@@ -3,15 +3,13 @@ package com.mygdx.game.Controllers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Screens.GameOverScreen;
-import com.mygdx.game.Screens.PlayScreen;
+import com.mygdx.game.View.PlayScreen;
 import com.mygdx.game.Utils.CONSTANTS;
 
-import com.mygdx.game.libgdx.libgdx_player;
-import com.mygdx.game.libgdx.libgdx_world;
+import com.mygdx.game.LibgdxWrapper.LibgdxPlayer;
+import com.mygdx.game.LibgdxWrapper.LibgdxWorld;
 
 import java.awt.*;
 
@@ -20,8 +18,8 @@ import java.awt.*;
  */
 public class PlayerController implements IController {
 
-    private libgdx_world gameWorld;
-    private libgdx_player player;
+    private LibgdxWorld gameWorld;
+    private LibgdxPlayer player;
 
     private OrthographicCamera gameCam;
     private Viewport viewPort;
@@ -32,7 +30,7 @@ public class PlayerController implements IController {
 
     public PlayerController(Dash game){
         this.game = game;
-        this.gameWorld = new libgdx_world(new GameWorld());
+        this.gameWorld = new LibgdxWorld(new GameWorld());
         this.playScreen = new PlayScreen( gameWorld);
         this.player = gameWorld.getPlayerCharacter();
 
@@ -101,7 +99,7 @@ public class PlayerController implements IController {
     public void setScreen(){
         game.setScreen(playScreen);
     }
-    public libgdx_world getGameWorld(){
+    public LibgdxWorld getGameWorld(){
         return gameWorld;
     }
 }

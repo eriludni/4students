@@ -3,11 +3,6 @@ package com.mygdx.game.Controllers;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Controllers.PlayerController;
-import com.mygdx.game.Model.GameWorld;
-import com.mygdx.game.Screens.MainMenuScreen;
-import com.mygdx.game.libgdx.libgdx_world;
 
 
 public class Dash extends Game {
@@ -51,7 +46,7 @@ public class Dash extends Game {
 
     }
 
-    //public libgdx_world getGameWorld() {
+    //public LibgdxWorld getGameWorld() {
     //    return gameWorld;
     //}
     public MenuController getMainMenuController() {
