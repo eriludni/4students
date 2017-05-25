@@ -448,4 +448,11 @@ public class LibgdxWorld {
         return map;
     }
 
+    /**
+     *Getter
+     */
+    public float getCounter() {
+        return counter;
+    }
+
 }

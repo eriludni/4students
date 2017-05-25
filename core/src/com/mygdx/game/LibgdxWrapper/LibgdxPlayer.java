@@ -11,6 +11,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  */
 public class LibgdxPlayer extends LibgdxCharacter {
     private Player playerModel;
+    private int textureKey = 1;
 
     public LibgdxPlayer(Player player) {
         playerModel = player;
@@ -63,6 +64,13 @@ public class LibgdxPlayer extends LibgdxCharacter {
      */
     public Player getModel() {
         return playerModel;
+    }
+
+    /**
+     *Getter
+     */
+    public int getTextureKey() {
+        return textureKey;
     }
 
 }

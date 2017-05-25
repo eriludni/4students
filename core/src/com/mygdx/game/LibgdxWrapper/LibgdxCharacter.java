@@ -10,12 +10,10 @@ import java.awt.*;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class LibgdxCharacter implements TextureObject, Teleportable {
+public abstract class LibgdxCharacter implements Drawable, Teleportable {
     private Body b2Body;
     private LibgdxWorld world = LibgdxWorld.getlgdxWorld();
     private Fixture fixture;
-
-    private Texture texture = new Texture("player.png");
 
     private float maxVelocity = 2;
     private float minVelocity = -2;
@@ -42,15 +40,15 @@ public abstract class LibgdxCharacter implements TextureObject, Teleportable {
     /**
      * Getter
      */
-    public Texture getTexture(){
-        return texture;
+    public float getFixtureWidth(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
     /**
      * Getter
      */
-    public float getSize(){
-        return b2Body.getFixtureList().get(0).getShape().getRadius();
+    public float getFixtureHeight(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
     /**

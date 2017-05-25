@@ -16,28 +16,34 @@ import java.awt.*;
 /**
  * Created by Niklas on 2017-05-08.
  */
-public class LibgdxProjectile implements TextureObject, Teleportable {
-    private Texture texture = new Texture("projectile.png");
+public class LibgdxProjectile implements Drawable, Teleportable {
     private Body b2Body;
     private LibgdxWorld world = LibgdxWorld.getlgdxWorld();
     private Projectile projectileModel;
+    private int textureKey = 3;
 
     LibgdxProjectile(Point startPosition, Point targetPosition, Projectile projectileModel){
         this.projectileModel = projectileModel;
         Vector2 projectileVector = getDirectionVector(startPosition, targetPosition);
         projectileVector.setLength(this.projectileModel.getSpeed());
 
-        Point projectileLaunchPoint = Projectile.getLaunchPosition(startPosition, targetPosition, 23);
+        Point projectileLaunchPoint = Projectile.getLaunchPosition(startPosition, targetPosition, 40);
         Body projectileBody = makeBody(projectileLaunchPoint);
         projectileBody.setLinearVelocity(projectileVector);
     }
 
-    public Texture getTexture(){
-        return texture;
+    /**
+     * Getter
+     */
+    public float getFixtureWidth(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
-    public float getSize(){
-        return b2Body.getFixtureList().get(0).getShape().getRadius();
+    /**
+     * Getter
+     */
+    public float getFixtureHeight(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
     /**
@@ -60,7 +66,7 @@ public class LibgdxProjectile implements TextureObject, Teleportable {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(1 / CONSTANTS.PPM);
+        shape.setRadius(10 / CONSTANTS.PPM);
         fdef.shape = shape;
 
         b2Body.createFixture(fdef);
@@ -113,5 +119,12 @@ public class LibgdxProjectile implements TextureObject, Teleportable {
      */
     void setForRemoval() {
         projectileModel.JustCollided();
+    }
+
+    /**
+     *Getter
+     */
+    public int getTextureKey() {
+        return textureKey;
     }
 }
