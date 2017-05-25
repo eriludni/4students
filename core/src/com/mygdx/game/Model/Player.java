@@ -6,7 +6,7 @@ import com.mygdx.game.Model.ICharacter;
 /**
  * Created by Erik on 03/04/2017.
  */
-public class Player extends Character implements ICharacter{
+public class Player extends Character {
     private int highscore = 0;
     private float xSpawnPos = 10;
     private boolean respawnEnemies = false;
