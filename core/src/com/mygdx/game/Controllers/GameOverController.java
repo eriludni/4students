@@ -15,7 +15,7 @@ public class GameOverController implements IController {
 
     public GameOverController(Dash game){
         this.game = game;
-        this.gameOverScreen = new GameOverScreen(game.getPlayerController().getGameWorld());
+        this.gameOverScreen = new GameOverScreen(game.getPlayerController().getGameWorld().getLogicalWorld());
         setListeners();
     }
     public void handleInput(float dt){

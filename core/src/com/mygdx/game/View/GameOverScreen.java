@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.LibgdxWrapper.LibgdxWorld;
+import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.View.MenuSkins.GameOverSkins;
 import com.mygdx.game.Utils.CONSTANTS;
 
@@ -21,7 +22,7 @@ public class GameOverScreen implements Screen {
 
     private Viewport viewPort;
     private Stage stage;
-    private LibgdxWorld gameWorld;
+    private GameWorld gameWorld;
     private GameOverSkins gameOverSkin;
     private int score;
 
@@ -29,9 +30,8 @@ public class GameOverScreen implements Screen {
     private Label highscoreLabel;
     private Label scoreLabel;
 
-    public GameOverScreen(LibgdxWorld gameWorld) {
+    public GameOverScreen(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
-
         viewPort = new FitViewport(CONSTANTS.WIDTH, CONSTANTS.HEIGHT, new OrthographicCamera());
         stage = new Stage(viewPort);
         gameOverSkin = new GameOverSkins();
@@ -44,7 +44,7 @@ public class GameOverScreen implements Screen {
     }
 
     private void createMenu(){
-        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
+        score = gameWorld.getLogicalPlayerCharacter().getHighscore();
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.top().padTop(100);
@@ -72,7 +72,7 @@ public class GameOverScreen implements Screen {
 
     public void update(float dt) {
         render(dt);
-        score = gameWorld.getLogicalWorld().getLogicalPlayerCharacter().getHighscore();
+        score = gameWorld.getLogicalPlayerCharacter().getHighscore();
     }
 
     @Override

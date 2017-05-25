@@ -34,8 +34,12 @@ public class PauseScreen implements Screen {
         TextButton quitToMenuButton = new TextButton("Quit to Menu", menuSkins.getSkins());
         quitToMenuButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 10);
 
+        TextButton restartGameButton = new TextButton("Restart game", menuSkins.getSkins());
+        quitToMenuButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 5);
+
         stage.addActor(resumeGame);
         stage.addActor(quitToMenuButton);
+        stage.addActor(restartGameButton);
     }
 
     @Override

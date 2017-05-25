@@ -17,7 +17,7 @@ public class MenuController implements IController {
         this.game = game;
         this.menu = new MainMenuScreen();
 
-        setListeners(game, menu);
+        setListeners();
 
     }
     public void handleInput(float dt){
@@ -25,7 +25,7 @@ public class MenuController implements IController {
         menu.update(dt);
     }
 
-    private void setListeners(final Dash game, MainMenuScreen menu){
+    private void setListeners(){
         menu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

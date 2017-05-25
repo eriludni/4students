@@ -16,7 +16,7 @@ public class PauseController implements IController {
         this.game = game;
         this.pauseMenu = new PauseScreen();
 
-        setListeners(game, pauseMenu);
+        setListeners();
 
     }
     public void handleInput(float dt){
@@ -24,18 +24,24 @@ public class PauseController implements IController {
         pauseMenu.update(dt);
     }
 
-    private void setListeners(final Dash game, PauseScreen menu){
-        menu.getStage().getActors().get(0).addListener(new ClickListener() {
+    private void setListeners(){
+        pauseMenu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setController(game.getPlayerController());
                 System.out.println("Yolololol");
             }
         });
-        menu.getStage().getActors().get(1).addListener(new ClickListener() {
+        pauseMenu.getStage().getActors().get(1).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setController(game.getMainMenuController());
+            }
+        });
+        pauseMenu.getStage().getActors().get(2).addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setController(game.getNewPlayerController());
             }
         });
     }
