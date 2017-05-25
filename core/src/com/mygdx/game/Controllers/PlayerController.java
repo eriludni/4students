@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.View.PlayScreen;
 import com.mygdx.game.Utils.CONSTANTS;
-
 import com.mygdx.game.LibgdxWrapper.LibgdxPlayer;
 import com.mygdx.game.LibgdxWrapper.LibgdxWorld;
 
@@ -36,8 +35,6 @@ public class PlayerController implements IController {
 
         this.gameCam = playScreen.getCam();
         this.viewPort = playScreen.getViewport();
-
-        System.out.println("NU SKAPAS JAG");
     }
     
     public void handleInput(float dt){
@@ -80,6 +77,7 @@ public class PlayerController implements IController {
     private boolean checkMouseButtonPressed() {
         return Gdx.input.justTouched();
     }
+    
     private boolean checkEscKeyPressed(){
         return Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
     }

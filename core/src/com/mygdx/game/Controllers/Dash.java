@@ -2,8 +2,6 @@ package com.mygdx.game.Controllers;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-
 
 public class Dash extends Game {
 
@@ -13,30 +11,8 @@ public class Dash extends Game {
     private PlayerController playerController;
     private PauseController pauseController;
 
-
-    //width of the window
-    public static final int WIDTH = 1240;
-    //Height of the window
-    public static final int HEIGHT = 32 * 20;
-    //Pixels per meter in game
-    public static final float PPM = 100;
-
-    public static final String TITLE = "DASH";
-
-    private Music music;
-
-
     @Override
     public void create() {
-
-        /*
-        //musicPlaceHolder
-        music = Gdx.audio.newMusic(Gdx.files.internal("The Proclaimers - I'm Gonna Be (500 Miles) Lyrics.mp3"));
-        music.setLooping(true);
-        music.setVolume(0.1f);
-        music.play();//musicPlaceHolder
-        */
-
         mainMenuController = new MenuController(this);
         playerController = new PlayerController(this);
         gameOverController = new GameOverController(this);
@@ -46,9 +22,6 @@ public class Dash extends Game {
 
     }
 
-    //public LibgdxWorld getGameWorld() {
-    //    return gameWorld;
-    //}
     public MenuController getMainMenuController() {
         return mainMenuController;
     }
@@ -85,7 +58,5 @@ public class Dash extends Game {
 
         this.currentController = currentController;
         this.currentController.setScreen();
-
-
     }
 }
