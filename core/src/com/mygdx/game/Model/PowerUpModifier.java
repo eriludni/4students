@@ -4,28 +4,22 @@ package com.mygdx.game.Model;
  * Created by lucasr on 5/18/17.
  */
 public class PowerUpModifier implements IPowerUpModifier{
-    private PowerUp powerUp;
     private IPowerUpModifier modifier;
 
-    public PowerUpModifier(PowerUp powerUp, int id) {
-        this.powerUp = powerUp;
+    public PowerUpModifier(int id) {
 
         switch(id) {
             case 0:
                 modifier = new DefaultMap();
-                System.out.println("Default map");
                 break;
             case 1:
                 modifier = new PlainMap();
-                System.out.println("Plain map");
                 break;
             case 2:
                 modifier = new PlatformMap();
-                System.out.println("Platform map");
                 break;
             default:
                 modifier = new DefaultMap();
-                System.out.println("Default map");
                 break;
         }
     }

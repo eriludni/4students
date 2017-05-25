@@ -4,7 +4,7 @@ package com.mygdx.game.Model;
  * Created by Erik on 12/05/2017.
  */
 public class MirrorBehavior extends EnemyBehavior implements IEnemyBehavior {
-    float velocity;
+    private float velocity;
 
     public MirrorBehavior() {
     }

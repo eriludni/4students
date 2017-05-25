@@ -6,8 +6,8 @@ package com.mygdx.game.Model;
 public class ChasingBehavior extends EnemyBehavior implements IEnemyBehavior {
 
 
-    float X_Velocity;
-    float Y_Velocity;
+    private float X_Velocity;
+    private float Y_Velocity;
 
 
     public ChasingBehavior() {

@@ -3,9 +3,9 @@ package com.mygdx.game.Model;
 /**
  * Created by Lucas on 2017-04-27.
  */
-public class Enemy extends Character implements ICharacter{
+public class Enemy extends Character {
 
-    EnemyBrain brain;
+    private EnemyBrain brain;
 
     public Enemy(int health, float x_velocity, float y_velocity, float xPos, float yPos, float radius){
         this.brain = new EnemyBrain(this);

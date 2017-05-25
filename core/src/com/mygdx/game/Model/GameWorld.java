@@ -34,10 +34,6 @@ public class GameWorld {
         float yPos = logicalPlayer.getYPos() * CONSTANTS.PPM + 50;
 
         for(int i = 0; i < enemyCount; i++) {
-            System.out.println(logicalPlayer.getXPos());
-            System.out.println(logicalPlayer.getYPos());
-            System.out.println(xPos);
-            System.out.println(yPos);
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 20));
             xPos += 200;
         }

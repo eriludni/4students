@@ -8,11 +8,11 @@ import java.util.Random;
 public class EnemyBrain {
     private Enemy enemy;
     private EnemyBehavior behavior;
-    Random rand = new Random();
+    private Random rand = new Random();
 
     public EnemyBrain(Enemy enemy) {
         this.enemy = enemy;
-        this.behavior = new EnemyBehavior(enemy, rand.nextInt(2));
+        this.behavior = new EnemyBehavior(rand.nextInt(2));
         enemy.dead = false;
         enemy.toBeRemoved = false;
         enemy.airBorn = false;

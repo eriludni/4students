@@ -6,7 +6,7 @@ import com.mygdx.game.Model.ICharacter;
 /**
  * Created by Erik on 03/04/2017.
  */
-public class Player extends Character implements ICharacter{
+public class Player extends Character {
     private int highscore = 0;
     private float xSpawnPos = 10;
     private boolean respawnEnemies = false;
@@ -19,8 +19,6 @@ public class Player extends Character implements ICharacter{
         this.yPos = yPos;
         this.radius = radius;
         this.dead = false;
-
-        System.out.println("logical player created");
     }
 
     /**
@@ -42,13 +40,6 @@ public class Player extends Character implements ICharacter{
      */
     public float getxSpawnPos(){
         return xSpawnPos;
-    }
-
-    /**
-     *Setter
-     */
-    public void setxSpawnPos(float spawn) {
-        this.xSpawnPos = spawn;
     }
 
     /**

@@ -12,7 +12,6 @@ public class Projectile implements DynamicalBody{
     private float speed;
     private int damage;
     private boolean hasCollided;
-    private double angle;
     private float xPos;
     private float yPos;
     private float x_velocity;

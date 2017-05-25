@@ -5,16 +5,14 @@ package com.mygdx.game.Model;
  */
 public class EnemyBehavior implements IEnemyBehavior {
 
-    IEnemyBehavior behavior;
-    Enemy enemy;
+    private IEnemyBehavior behavior;
 
 
     public EnemyBehavior() {
     }
 
 
-    public EnemyBehavior(Enemy enemy, int id) {
-        this.enemy = enemy;
+    public EnemyBehavior(int id) {
 
         switch (id) {
             case 0:
