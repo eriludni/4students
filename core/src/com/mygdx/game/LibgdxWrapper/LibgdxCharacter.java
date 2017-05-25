@@ -38,27 +38,13 @@ public abstract class LibgdxCharacter implements Drawable, Teleportable {
     }
 
     /**
-     * Getter
-     */
-    public float getFixtureWidth(){
-        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
-    }
-
-    /**
-     * Getter
-     */
-    public float getFixtureHeight(){
-        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
-    }
-
-    /**
      * Creates a projectile and launches it towards a point indicated by the mouse
      */
     public void shootProjectile(Point targetPosition) {
             int x = (int) (getB2Body().getWorldCenter().x * 100);
             int y = (int) (getB2Body().getWorldCenter().y * 100);
             Point playerPosition = new Point(x, y);
-            new LibgdxProjectile(playerPosition, targetPosition, new Projectile(5,20));
+            new LibgdxProjectile(playerPosition, targetPosition, new Projectile(5,20),getFixtureWidth());
     }
 
     /**
@@ -107,5 +93,19 @@ public abstract class LibgdxCharacter implements Drawable, Teleportable {
      */
     public Body getB2Body() {
         return b2Body;
+    }
+
+    /**
+     * Getter
+     */
+    public float getFixtureWidth(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
+    }
+
+    /**
+     * Getter
+     */
+    public float getFixtureHeight(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 }

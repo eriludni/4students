@@ -117,7 +117,7 @@ public class PlayScreen implements Screen {
         for (Body body : bodies) {
             if (body.getType().getValue() == 2) {
                 Drawable drawableobject = (Drawable) body.getUserData();
-                int textureKey = drawableobject.getTextureKey();
+                int textureKey = drawableobject.getDynamicBodyID();
                 float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;
                 float yPosition = body.getPosition().y * CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
                 batch.begin();

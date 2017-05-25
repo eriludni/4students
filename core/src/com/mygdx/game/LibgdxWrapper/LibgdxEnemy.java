@@ -69,7 +69,7 @@ public class LibgdxEnemy extends LibgdxCharacter {
     /**
      *Getter
      */
-    public int getTextureKey() {
+    public int getDynamicBodyID() {
         return textureKey;
     }
 }

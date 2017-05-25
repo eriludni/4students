@@ -21,29 +21,16 @@ public class LibgdxProjectile implements Drawable, Teleportable {
     private LibgdxWorld world = LibgdxWorld.getlgdxWorld();
     private Projectile projectileModel;
     private int textureKey = 3;
+    private int fixtureRadius = 10;
 
-    LibgdxProjectile(Point startPosition, Point targetPosition, Projectile projectileModel){
+    LibgdxProjectile(Point startPosition, Point targetPosition, Projectile projectileModel, float shooterWidth){
         this.projectileModel = projectileModel;
         Vector2 projectileVector = getDirectionVector(startPosition, targetPosition);
         projectileVector.setLength(this.projectileModel.getSpeed());
 
-        Point projectileLaunchPoint = Projectile.getLaunchPosition(startPosition, targetPosition, 40);
+        Point projectileLaunchPoint = Projectile.getLaunchPosition(startPosition, targetPosition, shooterWidth * 50 + fixtureRadius + 2);
         Body projectileBody = makeBody(projectileLaunchPoint);
         projectileBody.setLinearVelocity(projectileVector);
-    }
-
-    /**
-     * Getter
-     */
-    public float getFixtureWidth(){
-        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
-    }
-
-    /**
-     * Getter
-     */
-    public float getFixtureHeight(){
-        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
     /**
@@ -72,7 +59,7 @@ public class LibgdxProjectile implements Drawable, Teleportable {
         b2Body.createFixture(fdef);
 
         CircleShape sensor = new CircleShape();
-        sensor.setRadius(1 / CONSTANTS.PPM);
+        sensor.setRadius(10 / CONSTANTS.PPM);
 
         fdef.isSensor = true;
         fdef.shape = sensor;
@@ -124,7 +111,22 @@ public class LibgdxProjectile implements Drawable, Teleportable {
     /**
      *Getter
      */
-    public int getTextureKey() {
+    public int getDynamicBodyID() {
         return textureKey;
+    }
+
+
+    /**
+     * Getter
+     */
+    public float getFixtureWidth(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
+    }
+
+    /**
+     * Getter
+     */
+    public float getFixtureHeight(){
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 }

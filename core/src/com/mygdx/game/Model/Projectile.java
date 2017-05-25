@@ -26,15 +26,15 @@ public class Projectile implements DynamicalBody{
     /**
      * Calculates the launchpoint of the projectile so that it appears that the it is shot from the center of the player character.
      */
-    public static Point getLaunchPosition(Point characterPosition, Point targetPosition, float hitBoxRadius)
+    public static Point getLaunchPosition(Point characterPosition, Point targetPosition, float distanceFromShooterBody)
     {
         double yDelta = targetPosition.y - characterPosition.y;
         double xDelta = targetPosition.x - characterPosition.x;
 
         double angle = atan(yDelta / xDelta);
 
-        int xLaunchPosition = characterPosition.x + (int)(abs(cos(angle) * hitBoxRadius) * signum(xDelta));
-        int yLaunchPosition = characterPosition.y + (int)(abs(sin(angle) * hitBoxRadius) * signum(yDelta));
+        int xLaunchPosition = characterPosition.x + (int)(abs(cos(angle) * distanceFromShooterBody) * signum(xDelta));
+        int yLaunchPosition = characterPosition.y + (int)(abs(sin(angle) * distanceFromShooterBody) * signum(yDelta));
 
         return new Point(xLaunchPosition, yLaunchPosition);
     }

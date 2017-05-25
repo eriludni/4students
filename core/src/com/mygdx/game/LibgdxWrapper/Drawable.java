@@ -8,5 +8,5 @@ import com.badlogic.gdx.graphics.Texture;
 public interface Drawable {
     float getFixtureWidth();
     float getFixtureHeight();
-    int getTextureKey();
+    int getDynamicBodyID();
 }

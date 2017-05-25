@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class MyContactListener implements ContactListener {
     private World world;
 
+    private LibgdxProjectile lgdxProjectile;
     private LibgdxWorld lgdxWorld = LibgdxWorld.getlgdxWorld();
     private LibgdxPlayer lgdxPlayer = lgdxWorld.getPlayerCharacter();
     private ArrayList<LibgdxEnemy> lgdxEnemies = lgdxWorld.getEnemyCharacters();
@@ -63,12 +64,13 @@ public class MyContactListener implements ContactListener {
             if((fixtureA.getBody().isBullet() && fixtureB.getBody().getUserData() instanceof LibgdxEnemy) || (fixtureA.getBody().getUserData() instanceof LibgdxEnemy && fixtureB.getBody().isBullet())) {
                 if(fixtureA.getBody().getUserData() instanceof LibgdxEnemy && fixtureB.getBody().isBullet()) {
                     lgdxEnemy = (LibgdxEnemy) fixtureA.getBody().getUserData();
+                    lgdxProjectile = (LibgdxProjectile) fixtureB.getBody().getUserData();
                 }
                 else if(fixtureB.getBody().getUserData() instanceof LibgdxEnemy && fixtureA.getBody().isBullet()) {
                     lgdxEnemy = (LibgdxEnemy) fixtureB.getBody().getUserData();
+                    lgdxProjectile = (LibgdxProjectile) fixtureA.getBody().getUserData();
                 }
-
-                lgdxEnemy.getModel().reduceHealth(1);
+                lgdxProjectile.getModel().dealDamage(lgdxEnemy.getModel());
             }
 
         }
