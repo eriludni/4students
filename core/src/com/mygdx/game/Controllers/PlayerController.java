@@ -83,6 +83,7 @@ public class PlayerController implements IController {
     }
 
     private void handleMouseInput(){
+        Gdx.input.setInputProcessor(playScreen.getStage());
         int gameCamRightPos = (int)(gameCam.position.x * CONSTANTS.PPM);
         int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth()/2;
         int x = currentPlayerPos + Gdx.input.getX();
