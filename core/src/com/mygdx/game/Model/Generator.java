@@ -38,6 +38,7 @@ public class Generator {
         }
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
+        creatCloud(2,2);
     }
 
     /**
@@ -71,6 +72,7 @@ public class Generator {
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
         createPitfalls(numberOfPitfalls, pittfallLength);
+        creatCloud(3,2);
     }
 
     /**
@@ -209,6 +211,35 @@ public class Generator {
             }
         }
     }
+
+    public void setCloudStartPoints(int startPoints) {
+        int i = 0;
+        for(int row = 2; row <= 6; row++) {
+            if(i < startPoints) {
+                int c = random.nextInt(this.col-7);
+                this.mapArray[row][c] = 3;
+                platformStartPoints[i][0] = row;
+                platformStartPoints[i][1] = c;
+                i++;
+            }
+        }
+    }
+
+    public void creatCloud(int clouds, int length) {
+        setCloudStartPoints(clouds);
+        for(int i = 0; i < platformStartPoints.length; i++) {
+            int row = platformStartPoints[i][0];
+            int startCol = platformStartPoints[i][1];
+            for (int start = 0; start < length; start++) {
+                mapArray[row][startCol] = 4;
+                if(startCol < this.col - 7) {
+                    startCol++;
+                }
+            }
+        }
+    }
+
+
 
     /**
      *Sets the amount of pitfalls to be created on a map and the length of them

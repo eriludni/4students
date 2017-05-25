@@ -29,6 +29,10 @@ public class LibgdxMap {
     private TiledMapTile ground;
     private TiledMapTile sky;
     private TiledMapTile platform;
+    private TiledMapTile cloudLeft;
+    private TiledMapTile cloudRight;
+
+    private boolean turnCloud = false;
 
     private MapLayers layers;
     private int offsetX;
@@ -53,6 +57,8 @@ public class LibgdxMap {
         ground = new StaticTiledMapTile(splitTiles[0][4]);
         sky = new StaticTiledMapTile(splitTiles[5][7]);
         platform = new StaticTiledMapTile(splitTiles[0][6]);
+        cloudLeft = new StaticTiledMapTile(splitTiles[4][5]);
+        cloudRight = new StaticTiledMapTile(splitTiles[4][6]);
 
         placeTexture();
         layers.add(groundLayer);
@@ -117,6 +123,18 @@ public class LibgdxMap {
                         cell.setTile(platform);
                         groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
                         break;
+                    case 4:
+                        if(!turnCloud) {
+                            cell.setTile(cloudLeft);
+                            groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                            turnCloud = true;
+                        }else{
+                            cell.setTile(cloudRight);
+                            groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                            turnCloud = false;
+                        }
+                        break;
+
                 }
             }
         }
