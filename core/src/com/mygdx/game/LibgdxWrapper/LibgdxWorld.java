@@ -36,7 +36,6 @@ public class LibgdxWorld {
     private LibgdxPlayer playerCharacter;
 
     private ArrayList<LibgdxEnemy> enemyCharacters = new ArrayList<LibgdxEnemy>();
-    private ArrayList<LibgdxEnemyBrain> EB = new ArrayList<LibgdxEnemyBrain>();
     private ArrayList<LibgdxPowerUp> lgdxPowerUps = new ArrayList<LibgdxPowerUp>();
 
     private LibgdxMap mapCreator;
@@ -477,10 +476,4 @@ public class LibgdxWorld {
         return map;
     }
 
-    /**
-     *Getter
-     */
-    public ArrayList<LibgdxEnemyBrain> getEB() {
-        return EB;
-    }
 }

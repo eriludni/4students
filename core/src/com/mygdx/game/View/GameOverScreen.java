@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.LibgdxWrapper.LibgdxWorld;
 import com.mygdx.game.Model.GameWorld;
 import com.mygdx.game.View.MenuSkins.GameOverSkins;
 import com.mygdx.game.Utils.CONSTANTS;
