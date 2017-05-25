@@ -59,7 +59,6 @@ public class LibgdxWorld {
         this.map = mapCreator.getMap();
         createGroundHitbox(mapCreator, 0);
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
-        //logicalEnemies = logicalWorld.getLogicalEnemies();
 
         lgdxWorld = this;
         this.playerCharacter = new LibgdxPlayer(logicalWorld.getLogicalPlayerCharacter());
@@ -86,12 +85,10 @@ public class LibgdxWorld {
         boolean hasReachedNormalTriggerPos = currentPlayerXPos > triggerPos && segmentCounter < maxSegmentCount;
         if (hasReachedNormalTriggerPos) {
             handleNewWorldSection();
-            System.out.println("segmentCounter" + segmentCounter);
         }
 
         boolean hasReachedLoopTriggerPos = currentPlayerXPos > xPositionOfFirstBody + 6.2 && segmentCounter >= maxSegmentCount ;
         if(hasReachedLoopTriggerPos){
-            System.out.println("goBack()");
             handleLoopBack();
         }
 
@@ -165,8 +162,6 @@ public class LibgdxWorld {
                     shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
                     fdef.shape = shape;
                     body.createFixture(fdef);
-
-                    //body.setUserData("GroundEdge");
                     body.setUserData(this);
                 }
             }
@@ -198,7 +193,6 @@ public class LibgdxWorld {
         for(int i = 0; i < bodies.size; i++){
             if(bodies.get(i).getType().getValue() == 2){
                 body = bodies.get(i);
-                System.out.println("(body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM: " + ((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM));
                 dynamicalBodies.add((Teleportable) (body.getUserData()));
                 dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM);
                 dynamicalBodies.get(j).getModel().setyPos(body.getPosition().y * CONSTANTS.PPM);
@@ -237,12 +231,6 @@ public class LibgdxWorld {
      * Creates clone bodies of all saved dynamical bodies. These bodies have the same vector as the old bodies.
      */
     private void createCloneBodies(){
-       // Teleportable dynamicalBody;
-       // for(int i = 0; i < dynamicalBodies.size(); i++){
-       //     dynamicalBody = dynamicalBodies.get(i);
-       //     System.out.println("dynamicalBody.getModel().getXPos(): " + dynamicalBody.getModel().getXPos());
-       //     dynamicalBody.createBodyFromModel();
-       // }
         for(Teleportable dynamicalBody: dynamicalBodies){
             dynamicalBody.createBodyFromModel();
         }
@@ -303,7 +291,6 @@ public class LibgdxWorld {
             enemy = enemyCharacters.get(i);
             enemyCharacters.remove(enemy);
             getWorld().destroyBody(enemy.getB2Body());
-            //enemyCharacters.get(i).getModel().setDead(true);
         }
         enemyCharacters = new ArrayList<LibgdxEnemy>();
     }
@@ -318,16 +305,6 @@ public class LibgdxWorld {
         lgdxPowerUps = new ArrayList<LibgdxPowerUp>();
     }
 
-    //private void removeAllLibgdxEnemyBrains() {
-    //    for(int i = 0; i < EB.size(); i++) {
-    //        EB.remove(i);
-    //    }
-    //}
-//
-    //private void mapListManager(){
-//
-    //}
-
     /**
      *Removes all logical and LibgdxWrapper enemies and powerups and recreates them at new positions
      */
@@ -340,8 +317,6 @@ public class LibgdxWorld {
      *Removes all LibgdxWrapper and logical enemies and recreates them at new positions
      */
     private void respawnAllEnemies() {
-        //lgdxWorld.removeAllLibgdxEnemyBrains();
-        System.out.println("respawn_enemies");
         removeAllLibgdxEnemies();
         logicalWorld.removeAllLogicalPowerUps();
         logicalWorld.removeAllLogicalEnemyBrains();
@@ -351,14 +326,12 @@ public class LibgdxWorld {
         logicalWorld.createLogicalEnemyBrains();
         createLibgdxEnemies();
         MCL.setLgdxEnemies(getEnemyCharacters());
-        //lgdxWorld.createEnemyBrains();
     }
 
     /**
      *Removes all LibgdxWrapper and logical powerups and recreates them at new positions
      */
     private void respawnAllPowerUps() {
-        System.out.println("respawn_powerUps");
         removeAllLibgdxPowerUps();
         createLibgdxPowerUps();
     }
@@ -381,13 +354,12 @@ public class LibgdxWorld {
      * Removes the bullets that has gone outside the screen.
      */
 
-    public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {//world
+    public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {
         Array<Body> bodies = new Array<Body>(10);
         world.getBodies(bodies);
         for (int i = 0; i < bodies.size; i++) {
             Body body = bodies.get(i);
             if (body != null && body.isBullet()) {
-                //LibgdxBodyUserdata data = (LibgdxBodyUserdata) body.getUserData();
                 LibgdxProjectile data = (LibgdxProjectile) body.getUserData();
                 boolean bulletOutOfBounds = body.getPosition().x < gameCamPositionX - screenWidth / (2 * CONSTANTS.PPM) ||
                         body.getPosition().x > gameCamPositionX + screenWidth / (2 * CONSTANTS.PPM) ||
@@ -405,7 +377,7 @@ public class LibgdxWorld {
     /**
      *Removes an enemy that is dead and respawns it at a new position.
      */
-    private void respawnEnemies() {//world
+    private void respawnEnemies() {
         ArrayList<LibgdxEnemy> enemies;
         enemies = getEnemyCharacters();
 

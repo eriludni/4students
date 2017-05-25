@@ -114,8 +114,4 @@ public class LibgdxProjectile implements TextureObject, Teleportable {
     void setForRemoval() {
         projectileModel.JustCollided();
     }
-
-    //public void dispose() {
-    //
-    //}
 }

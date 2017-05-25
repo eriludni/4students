@@ -16,8 +16,6 @@ public class LibgdxEnemy extends LibgdxCharacter {
         enemyModel = enemy;
         brainModel = enemy.getBrain();
         defineCharacter(enemyModel);
-
-        System.out.println("LibgdxWrapper enemy created");
     }
 
     /**
@@ -45,12 +43,6 @@ public class LibgdxEnemy extends LibgdxCharacter {
         float x = enemyModel.getBrain().updateX_Velocity();
         float y  = enemyModel.getBrain().updateY_Velocity();
         getB2Body().applyLinearImpulse(new Vector2(x,y),getB2Body().getWorldCenter(),true);
-        //System.out.println(this.enemyModel.getX_velocity() + " " + this.enemyModel.getY_velocity());
-    }
-
-
-    public void dispose() {
-        this.dispose();
     }
 
     /**

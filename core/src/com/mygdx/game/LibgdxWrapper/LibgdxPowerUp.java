@@ -16,13 +16,12 @@ public class LibgdxPowerUp {
     LibgdxPowerUp(PowerUp powerUp) {
         this.powerUp = powerUp;
         definePowerUp();
-        System.out.println("PowerUp");
     }
 
     /**
      * Applies a body to the LibgdxWrapper powerup according to ligdx and sets its userdata to itself so it can be identified later
      */
-    public void definePowerUp() {
+    private void definePowerUp() {
         BodyDef bdef = new BodyDef();
         bdef.position.set( powerUp.getxPos() / CONSTANTS.PPM, powerUp.getyPos() / CONSTANTS.PPM);
         bdef.type = BodyDef.BodyType.StaticBody;
@@ -46,20 +45,9 @@ public class LibgdxPowerUp {
     }
 
     /**
-     *Setter
-     */
-    public void setPowerUp(PowerUp powerUp) {
-        this.powerUp = powerUp;
-    }
-
-    /**
      *Getter
      */
     public Body getB2Body() {
         return b2Body;
-    }
-
-    public void dispose() {
-        this.dispose();
     }
 }

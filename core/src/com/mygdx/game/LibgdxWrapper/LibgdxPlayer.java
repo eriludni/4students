@@ -16,8 +16,6 @@ public class LibgdxPlayer extends LibgdxCharacter {
         playerModel = player;
 
         defineCharacter(playerModel);
-
-        System.out.println("LibgdxWrapper player created");
     }
 
     /**
@@ -41,7 +39,6 @@ public class LibgdxPlayer extends LibgdxCharacter {
     }
 
     public void createBodyFromModel(){
-        System.out.println("playerPosition: " + playerModel.getXPos());
         this.defineCharacter(playerModel);
 
         float vectorX = playerModel.getX_velocity();
@@ -68,14 +65,4 @@ public class LibgdxPlayer extends LibgdxCharacter {
         return playerModel;
     }
 
-    public void dispose() {
-        this.dispose();
-    }
-
-    /**
-     *Setter
-     */
-    public void setPlayerModel(Player player) {
-        this.playerModel = player;
-    }
 }

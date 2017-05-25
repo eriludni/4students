@@ -28,20 +28,12 @@ public class MyContactListener implements ContactListener {
     public void beginContact(Contact contact) {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
-        Body body = fixtureA.getBody();
 
-        //System.out.println(fixtureA.getShape().getType().equals(fixtureB.getShape().getType()));
         if(fixtureA.getBody().isBullet()){
-            //LibgdxBodyUserdata userdata = (LibgdxBodyUserdata) fixtureA.getBody().getUserData();
-            //userdata.isSetForRemoval = true;
-
             LibgdxProjectile userdata = (LibgdxProjectile) fixtureA.getBody().getUserData();
             userdata.setForRemoval();
         }
         if(fixtureB.getBody().isBullet()){
-            //LibgdxBodyUserdata userdata = (LibgdxBodyUserdata) fixtureB.getBody().getUserData();
-            //userdata.isSetForRemoval = true;
-
             LibgdxProjectile userdata = (LibgdxProjectile) fixtureB.getBody().getUserData();
             userdata.setForRemoval();
         }
@@ -49,13 +41,9 @@ public class MyContactListener implements ContactListener {
         if(fixtureA.getBody().getUserData() instanceof LibgdxPlayer || fixtureB.getBody().getUserData() instanceof LibgdxPlayer) {
             if(fixtureA.getBody().getUserData() instanceof LibgdxPlayer && fixtureB.getBody().getUserData() instanceof LibgdxEnemy) {
                 lgdxPlayer.getModel().reduceHealth(1);
-                System.out.println(lgdxPlayer.getModel().getHealth());
-                System.out.println("contact_1");
             }
             else if(fixtureA.getBody().getUserData() instanceof LibgdxEnemy && fixtureB.getBody().getUserData() instanceof LibgdxPlayer) {
                 lgdxPlayer.getModel().reduceHealth(1);
-                System.out.println(lgdxPlayer.getModel().getHealth());
-                System.out.println("contact_2");
             }
         }
 
@@ -66,14 +54,6 @@ public class MyContactListener implements ContactListener {
             else if(fixtureB.getBody().getUserData() instanceof LibgdxEnemy && lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
                 lgdxEnemy = (LibgdxEnemy) fixtureB.getBody().getUserData();
             }
-            /*
-            if(lgdxEnemies.contains(fixtureA.getBody().getUserData())) {
-                lgdxEnemy = (LibgdxEnemy) fixtureA.getBody().getUserData();
-            }
-            else if(lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
-                lgdxEnemy = (LibgdxEnemy) fixtureB.getBody().getUserData();
-            }
-            */
 
             lgdxEnemy.getModel().setX_velocity(0);
 
@@ -87,31 +67,17 @@ public class MyContactListener implements ContactListener {
                 else if(fixtureB.getBody().getUserData() instanceof LibgdxEnemy && fixtureA.getBody().isBullet()) {
                     lgdxEnemy = (LibgdxEnemy) fixtureB.getBody().getUserData();
                 }
-                /*
-                if(lgdxEnemies.contains(fixtureA.getBody().getUserData())) {
-                    lgdxEnemy = (LibgdxEnemy) fixtureA.getBody().getUserData();
-                }
-                else if(lgdxEnemies.contains(fixtureB.getBody().getUserData())) {
-                    lgdxEnemy = (LibgdxEnemy) fixtureB.getBody().getUserData();
-                }
-                */
 
                 lgdxEnemy.getModel().reduceHealth(1);
-
-                System.out.println(lgdxEnemy.getModel().getHealth());
-                System.out.println(lgdxEnemy.getB2Body().getUserData());
-                System.out.println("contact_3");
             }
 
         }
         if(fixtureA.getBody().getUserData() instanceof LibgdxProjectile || fixtureB.getBody().getUserData() instanceof LibgdxPowerUp) {
             if(fixtureA.getBody().getUserData() instanceof LibgdxPlayer && fixtureB.getBody().getUserData() instanceof LibgdxPowerUp) {
-                System.out.println("Contact_powerUp");
                 generator.setPowerUp(((LibgdxPowerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp());
                 ((LibgdxPowerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp().setToBeRemoved(true);
             }
             else if(fixtureB.getBody().getUserData() instanceof LibgdxPlayer && fixtureA.getBody().getUserData() instanceof LibgdxPowerUp){
-                System.out.println("Contact_powerUp2");
                 generator.setPowerUp(((LibgdxPowerUp) fixtureB.getBody().getUserData()).getLogicalPowerUp());
                 ((LibgdxPowerUp) fixtureA.getBody().getUserData()).getLogicalPowerUp().setToBeRemoved(true);
             }

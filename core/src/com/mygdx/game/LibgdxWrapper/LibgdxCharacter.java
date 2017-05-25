@@ -5,10 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Model.*;
 import com.mygdx.game.Utils.CONSTANTS;
-
 import java.awt.*;
-
-import static java.lang.Math.abs;
 
 /**
  * Created by Lucas on 2017-05-05.

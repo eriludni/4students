@@ -21,7 +21,6 @@ public class LibgdxMap {
     private TiledMap map;
 
     private Texture texture;
-    private Texture backgroundimg;
 
     private TiledMapTileLayer groundLayer;
 
