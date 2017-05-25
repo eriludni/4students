@@ -11,6 +11,7 @@ buildscript {
     }
 }
 
+
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
@@ -44,7 +45,7 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     }
 }
-
+/*
 project(":ios") {
     apply plugin: "java"
     apply plugin: "robovm"
@@ -59,8 +60,8 @@ project(":ios") {
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-ios"
     }
 }
-
-project(":html") {
+*/
+/*project(":html") {
     apply plugin: "gwt"
     apply plugin: "war"
 
@@ -74,19 +75,29 @@ project(":html") {
         compile "com.badlogicgames.gdx:gdx-box2d-gwt:$gdxVersion:sources"
     }
 }
+*/
 
 project(":core") {
     apply plugin: "java"
 
+    sourceSets.test.java.srcDirs = ["test/com.mygdx.game/"]
 
     dependencies {
         compile "org.projectlombok:lombok:1.16.16"
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile fileTree(dir: 'libs', include: '*.jar') // Have removed what i pasted here except that which seemed to have with JUnit to do.
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        compile 'junit:junit:+'
+        compile fileTree(dir: 'libs', include: '*.jar')
 
         testCompile "junit:junit:+"
+        testCompile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        testCompile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        testCompile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
     }
+
 }
 
 tasks.eclipse.doLast {

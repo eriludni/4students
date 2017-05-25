@@ -1,4 +1,4 @@
-package test.com.mygdx.game.Dash;
+package com.mygdx.game;
 
 import com.mygdx.game.Model.*;
 import org.junit.Test;
@@ -7,7 +7,7 @@ import org.junit.After;
 
 import java.awt.*;
 
-import static java.lang.Math.*;
+import static java.lang.Math.*; 
 import static org.junit.Assert.assertTrue;
 
 /** 
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 * @since <pre>mar 29, 2017</pre> 
 * @version 1.0 
 */ 
-public class dashTest {
+public class DashTest {
 
     @Before
     public void before() throws Exception {
