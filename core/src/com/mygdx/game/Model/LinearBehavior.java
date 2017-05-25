@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
 
-    float X_Velocity;
+    private float X_Velocity;
 
 
     public LinearBehavior(){

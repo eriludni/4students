@@ -38,7 +38,6 @@ public class Generator {
         }
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
-        //createPitfalls(numberOfPitfalls, pittfallLength);
     }
 
     /**

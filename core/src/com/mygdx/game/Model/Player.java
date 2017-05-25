@@ -19,8 +19,6 @@ public class Player extends Character {
         this.yPos = yPos;
         this.radius = radius;
         this.dead = false;
-
-        System.out.println("logical player created");
     }
 
     /**
@@ -42,13 +40,6 @@ public class Player extends Character {
      */
     public float getxSpawnPos(){
         return xSpawnPos;
-    }
-
-    /**
-     *Setter
-     */
-    public void setxSpawnPos(float spawn) {
-        this.xSpawnPos = spawn;
     }
 
     /**
