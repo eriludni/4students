@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.*;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -33,6 +34,7 @@ public class PlayScreen implements Screen {
 
     private Box2DDebugRenderer b2dr;
     private OrthogonalTiledMapRenderer renderer;
+    private Stage stage;
 
     public PlayScreen( LibgdxWorld gameWorld) {
 
@@ -42,6 +44,7 @@ public class PlayScreen implements Screen {
         gameCam = new OrthographicCamera();
         hud = new Hud();
         gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT / CONSTANTS.PPM, gameCam);
+        stage = new Stage(gamePort);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
         renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
         b2dr = new Box2DDebugRenderer();
@@ -83,8 +86,6 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //game.batch.setProjectionMatrix(gameCam.combined);
-        //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
         renderer.render();
         b2dr.render(gameWorld.getWorld(), gameCam.combined);
@@ -147,5 +148,7 @@ public class PlayScreen implements Screen {
     public Viewport getViewport() {
         return gamePort;
     }
+
+    public Stage getStage(){return stage;}
 
 }
