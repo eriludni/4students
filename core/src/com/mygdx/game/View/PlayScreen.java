@@ -76,6 +76,11 @@ public class PlayScreen implements Screen {
         renderer.setView(gameCam);
     }
 
+    /**
+     * Checks if the timeStep variable is greater than or equal to 60 and if it is it increases the worldTimer by 1 and resets the stepTime variable to 0,
+     * then it increases the stepTime variable by 1
+     * This is done to get the time to correctly update.
+     */
     public void stepTime() {
         if (timeStep >= 60) {
             hud.stepWorldTimer();
@@ -153,14 +158,23 @@ public class PlayScreen implements Screen {
 
     }
 
+    /**
+     * Getter
+     */
     public OrthographicCamera getCam() {
         return gameCam;
     }
 
+    /**
+     * Getter
+     */
     public Viewport getViewport() {
         return gamePort;
     }
 
+    /**
+     * Getter
+     */
     public Stage getStage(){return stage;}
 
 }
