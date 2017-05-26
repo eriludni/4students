@@ -296,7 +296,7 @@ public class Generator {
     }
 
     /**
-     *Returns the same instance of the Generator every time it is called, or creats a new instance of Generator if none exists
+     *Returns the same instance of the Generator every time it is called, or creates a new instance of Generator if none exists
      */
     public static Generator getGeneratorInstance() {
         if(generatorInstance == null) {

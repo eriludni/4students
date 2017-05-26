@@ -53,16 +53,25 @@ public class LibgdxPowerUp implements Drawable {
         return b2Body;
     }
 
+    /**
+     * Getter
+     */
     @Override
     public float getFixtureWidth() {
         return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
+    /**
+     * Getter
+     */
     @Override
     public float getFixtureHeight() {
         return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
     }
 
+    /**
+     * Getter
+     */
     @Override
     public int getDynamicBodyID() {
         return textureKey;

@@ -74,14 +74,23 @@ public class Hud {
         stage.addActor(table);
     }
 
+    /**
+     * Setter
+     */
     public void setScore(int score) {
         scoreCountLabel.setText(String.format("%06d", score));
     }
 
+    /**
+     * Setter
+     */
     public void setHealth(int health) {
         healthCountLabel.setText(String.format("%01d", health));
     }
 
+    /**
+     * Increases the worldTimer variable by 1 and updates the worldTimeLabel with the new value
+     */
     public void stepWorldTimer() {
         worldTimer++;
         worldTimeLabel.setText(String.format("%04d", worldTimer));
