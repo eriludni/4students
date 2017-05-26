@@ -38,8 +38,6 @@ public class PlayerController implements IController {
     }
     
     public void handleInput(float dt){
-        gameWorld.update(dt);
-        playScreen.update(dt);
 
         if(gameWorld.getPlayerCharacter().getModel().isDead()) {
             game.setController(game.getGameOverController());
@@ -60,6 +58,9 @@ public class PlayerController implements IController {
         if (checkMouseButtonPressed()){
             handleMouseInput();
         }
+        gameWorld.update(dt);
+        playScreen.update(dt);
+
     }
 
     private boolean checkUpKeyPressed() {
