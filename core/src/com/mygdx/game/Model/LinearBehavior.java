@@ -5,16 +5,20 @@ package com.mygdx.game.Model;
  */
 public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
 
-    private float X_Velocity;
+    private float x_Velocity;
 
 
     public LinearBehavior(){
 
-        this.X_Velocity = 0;
+        this.x_Velocity = 0;
     }
 
+
+    /**
+     * updates the x-velocity
+     */
     @Override
-    public float ApplyX_Velocity(float currentXV, float currentYV){
+    public float applyX_Velocity(float currentXV, float currentYV){
         if(currentXV > -2) {
             return -0.2f;
         }
@@ -22,8 +26,11 @@ public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
             return 0;
         }
     }
+    /**
+     * updates the y-velocity
+     */
     @Override
-    public float ApplyY_Velocity(float currentXV, float currnetYV) {
+    public float applyY_Velocity(float currentXV, float currnetYV) {
         if( currentXV >= 0){
             return 0.5f;
         }
