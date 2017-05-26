@@ -85,6 +85,9 @@ public class PauseScreen implements Screen {
         stage.dispose();
     }
 
+    /**
+     * Getter
+     */
     public Stage getStage() {
         return this.stage;
     }

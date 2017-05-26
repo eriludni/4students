@@ -47,6 +47,9 @@ public class MainMenuSkins {
         skin.add("default", textButtonStyle);
     }
 
+    /**
+     * Getter
+     */
     public Skin getSkins(){
         return skin;
     }

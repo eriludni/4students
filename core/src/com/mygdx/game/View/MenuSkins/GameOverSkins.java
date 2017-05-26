@@ -18,14 +18,14 @@ public class GameOverSkins {
     public GameOverSkins() {
 
         /**
-         * MainMenu font
+         * GameOver font
          */
         BitmapFont font = new BitmapFont();
         skin = new Skin();
         skin.add("default", font);
 
         /**
-         * MainMenu Textures
+         * GameOver Textures
          */
         Pixmap pixmap = new Pixmap( CONSTANTS.WIDTH/ 4, CONSTANTS.HEIGHT / 10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.WHITE);
@@ -33,7 +33,7 @@ public class GameOverSkins {
         skin.add("background", new Texture(pixmap));
 
         /**
-         * MainMenu ButtonStyle
+         * GameOver ButtonStyle
          */
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
 
@@ -45,6 +45,9 @@ public class GameOverSkins {
         skin.add("default", textButtonStyle);
     }
 
+    /**
+     * Getter
+     */
     public Skin getSkins(){
         return skin;
     }

@@ -85,6 +85,9 @@ public class MainMenuScreen implements Screen {
         stage.dispose();
     }
 
+    /**
+     * Getter
+     */
     public Stage getStage() {
         return this.stage;
     }

@@ -107,6 +107,9 @@ public class GameOverScreen implements Screen {
         stage.dispose();
     }
 
+    /**
+     * Getter
+     */
     public Stage getStage() {
         return stage;
     }
