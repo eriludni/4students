@@ -53,6 +53,7 @@ public class LibgdxWorld {
     private TiledMap map;
 
     public LibgdxWorld(GameWorld logicalWorld) {
+        lgdxWorld = this;
         this.world = new World(new Vector2(0, -10), true);
         this.logicalWorld = logicalWorld;
         mapCreator = new LibgdxMap();
@@ -60,7 +61,7 @@ public class LibgdxWorld {
         createGroundHitbox(mapCreator, 0);
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
 
-        lgdxWorld = this;
+
         this.playerCharacter = new LibgdxPlayer(logicalWorld.getLogicalPlayerCharacter());
 
         createLibgdxEnemies();
@@ -73,7 +74,7 @@ public class LibgdxWorld {
     public void update(float dt){
 
         currentPlayerXPos = playerCharacter.getB2Body().getPosition().x;
-        counter += dt*1.3;
+        counter += dt*1.7;
 
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
@@ -142,27 +143,47 @@ public class LibgdxWorld {
 
         for (int x = 0; x < currentMap.getMapModelCols(); x++) {
             for (int y = 0; y < currentMap.getMapModelRows(); y++) {
-                if (y == 0){
-                    bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
+                //if (y == 0){
+                //    bdf.type = BodyDef.BodyType.StaticBody;
+                //    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
+//
+                //    body = world.createBody(bdf);
+//
+                //    shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
+                //    fdef.shape = shape;
+                //    body.createFixture(fdef);
+//
+                //}
+                if (currentMap.getArrayId(x, y) == 1 ) {
 
-                    body = world.createBody(bdf);
-
-                    shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
-                    fdef.shape = shape;
-                    body.createFixture(fdef);
-
+                    //bdf.type = BodyDef.BodyType.StaticBody;
+                    //bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
+//
+                   // body = world.createBody(bdf);
+//
+                    //shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
+                    //fdef.shape = shape;
+                    //body.createFixture(fdef);
+                    //body.setUserData(this);
+                    float xPos = ((x + offsetX) * 32 + 16) / CONSTANTS.PPM;
+                    float yPos = ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM;
+                    new LibgdxGround(xPos, yPos, bdf, shape, fdef);
                 }
-                if (currentMap.getArrayId(x, y) == 1 ||currentMap.getArrayId(x, y) == 3  ) {
-                    bdf.type = BodyDef.BodyType.StaticBody;
-                    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
 
-                    body = world.createBody(bdf);
+                if (currentMap.getArrayId(x, y) == 3 ) {
 
-                    shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
-                    fdef.shape = shape;
-                    body.createFixture(fdef);
-                    body.setUserData(this);
+                    //bdf.type = BodyDef.BodyType.StaticBody;
+                    //bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
+//
+                    // body = world.createBody(bdf);
+//
+                    //shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
+                    //fdef.shape = shape;
+                    //body.createFixture(fdef);
+                    //body.setUserData(this);
+                    float xPos = ((x + offsetX) * 32 + 16) / CONSTANTS.PPM;
+                    float yPos = ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM;
+                    new LibgdxPlatform(xPos, yPos, bdf, shape, fdef);
                 }
             }
         }
@@ -255,8 +276,9 @@ public class LibgdxWorld {
         world.getBodies(bodies);
         for(Body body: bodies){
             if(body.getPosition().x < x && body.getType().getValue() == 0){
-                world.destroyBody(body);
-                body.setUserData(null);
+                body.setType(BodyDef.BodyType.DynamicBody);
+                //world.destroyBody(body);
+                //body.setUserData(null);
             }
         }
 

@@ -58,8 +58,8 @@ public class LibgdxMap {
         cloudLeft = new StaticTiledMapTile(splitTiles[4][5]);
         cloudRight = new StaticTiledMapTile(splitTiles[4][6]);
 
-        placeTexture();
-        layers.add(groundLayer);
+        //placeTexture();
+        //layers.add(groundLayer);
 
     }
 
@@ -88,8 +88,8 @@ public class LibgdxMap {
             layers.remove(0);
         }
         groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + offsetX, arrayGenerator.getRow(), 32, 32);
-        placeTexture();
-        layers.add(groundLayer);
+        //placeTexture();
+        //layers.add(groundLayer);
     }
 
     /**
