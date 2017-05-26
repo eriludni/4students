@@ -129,7 +129,7 @@ public class PlayScreen implements Screen {
         Array<Body> bodies = new Array<Body>();
         gameWorld.getWorld().getBodies(bodies);
         for (Body body : bodies) {
-            if (body.getType().getValue() == 2 || (body.getType().getValue() == 0 && body.getUserData() instanceof LibgdxPowerUp)) {
+            //if (body.getType().getValue() == 2 || (body.getType().getValue() == 0 && body.getUserData() instanceof LibgdxPowerUp)) {
 
                 Drawable drawableobject = (Drawable) body.getUserData();
                 int textureKey = drawableobject.getDynamicBodyID();
@@ -145,7 +145,7 @@ public class PlayScreen implements Screen {
             }
 
         }
-    }
+
 
     @Override
     public void resize(int width, int height) {
