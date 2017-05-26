@@ -29,7 +29,7 @@ public class PlayScreen implements Screen {
     private Viewport gamePort;
     private LibgdxWorld gameWorld;
     private int timeStep = 0;
-    private Texture deletingTexture = new Texture("tiles\\DeletingTexture.png");
+    private Texture deletingTexture = new Texture("tiles/DeletingTexture.png");
 
     private Hud hud;
 

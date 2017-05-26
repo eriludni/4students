@@ -29,19 +29,9 @@ public class DashTest {
 
     }
 
-    /*
-    @Test
-    public void gen() {
-        Generator gen = new Generator();
-        for(int i = 0; i < gen.getRow(); i++) {
-            for(int j = 0; j < gen.getCol(); j++) {
-                System.out.print(gen.getMapArray(j, i));
-            }
-            System.out.println("");
-        }
-    }
-    */
-
+    /**
+     * Tests if the player health is reduced correctly
+     */
     @Test
     public void testPlayerReduceHealth() {
         Player player = new Player(3, 2, 0, 100, 100, 5);
@@ -50,6 +40,9 @@ public class DashTest {
         assertTrue(health == 2);
     }
 
+    /**
+     * Tests if the player x velocity is reversed correctly
+     */
     @Test
     public void testReversePlayerXVelocity() {
         Player player = new Player(3, 2, 2, 100, 100, 5);
@@ -58,6 +51,9 @@ public class DashTest {
         assertTrue(player.getX_velocity() == -xVelocity);
     }
 
+    /**
+     * Tests if the player y velocity is reversed correctly
+     */
     @Test
     public void testReversePlayerYVelocity() {
         Player player = new Player(3, 2, 2, 100, 100, 5);
@@ -66,6 +62,9 @@ public class DashTest {
         assertTrue(player.getY_velocity() == -yVelocity);
     }
 
+    /**
+     * Tests if the player is dead when its health is less than or equal to 0
+     */
     @Test
     public void testPlayerCheckDead() {
         Player player = new Player(0, 2, 2, 100, 100, 5);
@@ -73,6 +72,9 @@ public class DashTest {
         assertTrue(player.isDead() == true);
     }
 
+    /**
+     * Tests if when the player crosses a certain x position, enemies are set to respawn and that the x position to be crossed is moved forward
+     */
     @Test
     public void testPlayerCheckXSpawnPosCrossed() {
         Player player = new Player(3, 2, 2, 100, 100, 5);
@@ -83,6 +85,9 @@ public class DashTest {
         assertTrue((player.getRespawnEnemies()) && (player.getxSpawnPos() == (xSpawnPos + 20)));
     }
 
+    /**
+     * Tests if the enemy health is reduced correctly
+     */
     @Test
     public void testEnemyReduceHealth() {
         Enemy enemy = new Enemy(3, 2, 0, 100, 100, 5);
@@ -91,6 +96,9 @@ public class DashTest {
         assertTrue(health == 2);
     }
 
+    /**
+     * Tests if the enemy x velocity is reversed correctly
+     */
     @Test
     public void testReverseEnemyXVelocity() {
         Enemy enemy = new Enemy(3, 2, 2, 100, 100, 5);
@@ -99,6 +107,9 @@ public class DashTest {
         assertTrue(enemy.getX_velocity() == -xVelocity);
     }
 
+    /**
+     * Tests if the enemy y velocity is reversed correctly
+     */
     @Test
     public void testReverseEnemyYVelocity() {
         Enemy enemy = new Enemy(3, 2, 2, 100, 100, 5);
@@ -107,6 +118,9 @@ public class DashTest {
         assertTrue(enemy.getY_velocity() == -yVelocity);
     }
 
+    /**
+     * Tests if the enemy is dead when its health is less than or equal to 0
+     */
     @Test
     public void testEnemyCheckDead() {
         Enemy enemy = new Enemy(0, 2, 2, 100, 100, 5);
@@ -114,17 +128,9 @@ public class DashTest {
         assertTrue(enemy.isDead() == true);
     }
 
-    /*
-    @Test
-    public void testGeneratorSetNextMapStructure() {
-        Generator generator = Generator.getGeneratorInstance();
-        int lastPoint = generator.findRow(generator.getCol() - 1);
-        generator.setNextMapStructure();
-        int firstPoint = generator.findRow(0);
-        assertTrue(lastPoint == firstPoint);
-    }
-    */
-
+    /**
+     * Tests if the array in the Generator can be cleared by setting all of the cells in the array to 0
+     */
     @Test
     public void testGeneratorClear() {
         Generator generator = Generator.getGeneratorInstance();
@@ -142,6 +148,9 @@ public class DashTest {
         }
     }
 
+    /**
+     * Tests if the Generator sets the first basepoint in a new array to 1 at the specified column
+     */
     @Test
     public void testGeneratorSetBasePointsFrom() {
         Generator generator = Generator.getGeneratorInstance();
@@ -150,6 +159,9 @@ public class DashTest {
         assertTrue(generator.getMapArray(0, x) == 1);
     }
 
+    /**
+     * Tests if the nextPointValue() function finds the correct value
+     */
     @Test
     public void testGeneratorNextPointValue() {
         Generator generator = Generator.getGeneratorInstance();
@@ -158,30 +170,6 @@ public class DashTest {
         int secondPoint = generator.nextPointValue(x - 1);
         assertTrue(firstPoint == secondPoint);
     }
-
-    /*
-    @Test
-    public void testGeneratorFindRow() {
-        Generator generator = Generator.getGeneratorInstance();
-        int x = 0;
-        int value = 0;
-        int value2 = generator.findRow(x);
-        int[][] array = new int[generator.getRow()][generator.getCol()];
-        for(int i = 0; i < array.length; i++) {
-            for(int j = 0; j < array[0].length; j++) {
-                array[i][j] = generator.getMapArray(j, i);
-            }
-        }
-        for(int i = 0; i < array.length; i++) {
-            for(int j = x; j <= x; j++) {
-                if(array[i][j] == 1) {
-                    value = i;
-                }
-            }
-        }
-        assertTrue(value == value2);
-    }
-    */
 
     @Test
     public void testGetLaunchPosition(){
@@ -207,6 +195,9 @@ public class DashTest {
         assertTrue(abs(angleDiff) < 1 && abs(hypothenuseDiff) < 1);
     }
 
+    /**
+     * Tests if all of the logical enemies are removed correctly
+     */
     @Test
     public void testGameWorldRemoveAllLogicalEnemies() {
         GameWorld world = new GameWorld();
@@ -214,6 +205,9 @@ public class DashTest {
         assertTrue(world.getLogicalEnemies().size() == 0);
     }
 
+    /**
+     * Tests if all of the logical enemy brains are removed correctly
+     */
     @Test
     public void testGameWorldRemoveAllLogicalEnemyBrains() {
         GameWorld world = new GameWorld();
@@ -221,6 +215,9 @@ public class DashTest {
         assertTrue(world.getLogicalEnemyBrains().size() == 0);
     }
 
+    /**
+     * Tests if all of the logical powerups are removed correctly
+     */
     @Test
     public void testGameWorldRemoveAllLogicalPowerUps() {
         GameWorld world = new GameWorld();
@@ -228,6 +225,9 @@ public class DashTest {
         assertTrue(world.getLogicalPowerUps().size() == 0);
     }
 
+    /**
+     * Tests if the logical enemies are created correctly
+     */
     @Test
     public void testGameWorldCreateLogicalEnemies() {
         GameWorld world = new GameWorld();
@@ -236,6 +236,9 @@ public class DashTest {
         assertTrue(world.getLogicalEnemies().size() == world.getEnemyCount());
     }
 
+    /**
+     * Tests if the logical enemy brains are created correctly
+     */
     @Test
     public void testGameWorldCreateLogicalEnemyBrains() {
         GameWorld world = new GameWorld();
@@ -244,6 +247,9 @@ public class DashTest {
         assertTrue(world.getLogicalEnemyBrains().size() == world.getEnemyCount());
     }
 
+    /**
+     * Tests if the logical powerups are created correctly
+     */
     @Test
     public void testGameWorldCreateLogicalPowerUps() {
         GameWorld world = new GameWorld();
@@ -252,6 +258,9 @@ public class DashTest {
         assertTrue(world.getLogicalPowerUps().size() == world.getPowerUpCount());
     }
 
+    /**
+     * Tests if a projectile collides correctly with objects
+     */
     @Test
     public void testProjectileJustCollided() {
         Projectile projectile = new Projectile(5, 5);
@@ -259,8 +268,11 @@ public class DashTest {
         assertTrue(projectile.hasCollided());
     }
 
+    /**
+     * Tests the Use Case The player moves takes damage and dies
+     */
     @Test
-    public void testUCPlayerMovesAndDies() {
+    public void testUCPlayerMovesTakesDamageAndDies() {
         int startHealth = 3;
         float startXPos = 2;
         int dmg = 3;
@@ -269,5 +281,21 @@ public class DashTest {
         player.reduceHealth(dmg);
         player.checkDead();
         assertTrue(player.getXPos() > startXPos && player.getHealth() == startHealth - dmg && player.isDead());
+    }
+
+    /**
+     * Tests the Use Case The player moves takes damage and survives
+     */
+    @Test
+    public void testUCPlayerMovesTakesDamageAndSurvives(){
+        int startHealth = 3;
+        float startXPos = 2;
+        float startYPos = 2;
+        int dmg = 1;
+        Player player = new Player(startHealth, startXPos, startYPos, 100, 200, 5);
+        player.setxPos(startXPos + 5);
+        player.reduceHealth(dmg);
+        player.checkDead();
+        assertTrue(player.getXPos() > startXPos && player.getHealth() == startHealth - dmg && !player.isDead());
     }
 }
