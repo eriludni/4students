@@ -47,7 +47,7 @@ public class LibgdxEnemy extends LibgdxCharacter {
     }
 
     /**
-     * Checks if the enemy has died
+     * Checks if the enemy has died, updates the velocity. checks if it's out of bounds and moves it
      */
     public void update(float dt) {
         enemyModel.checkDead();
@@ -69,7 +69,7 @@ public class LibgdxEnemy extends LibgdxCharacter {
     /**
      *Getter
      */
-    public int getDynamicBodyID() {
+    public int getBodyID() {
         return textureKey;
     }
 }

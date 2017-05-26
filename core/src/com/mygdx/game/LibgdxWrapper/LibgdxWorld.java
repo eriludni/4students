@@ -20,9 +20,9 @@ public class LibgdxWorld {
     private World world;
 
     private float currentPlayerXPos;
-    
+
     private int offsetX;
-    
+
     private Generator matrixGenerator;
 
     private float triggerPos;
@@ -52,16 +52,15 @@ public class LibgdxWorld {
     private MyContactListener MCL;
     private Random rand = new Random();
 
-    private TiledMap map;
 
     public LibgdxWorld(GameWorld logicalWorld) {
         lgdxWorld = this;
-        
+
         matrixGenerator = Generator.getGeneratorInstance();
-        
+
         this.world = new World(new Vector2(0, -10), true);
         this.logicalWorld = logicalWorld;
-        createGroundHitbox();
+        createHitbox();
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
 
 
@@ -74,15 +73,15 @@ public class LibgdxWorld {
         this.world.setContactListener(MCL);
     }
 
-    public void update(float dt){
+    public void update(float dt) {
 
         currentPlayerXPos = playerCharacter.getB2Body().getPosition().x;
-        counter += dt*1.3;
+        counter += dt * 1.3;
 
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
 
-        for(LibgdxEnemy enemy: enemyCharacters){
+        for (LibgdxEnemy enemy : enemyCharacters) {
             enemy.update(dt);
         }
 
@@ -91,17 +90,17 @@ public class LibgdxWorld {
             handleNewWorldSection();
         }
 
-        boolean hasReachedLoopTriggerPos = currentPlayerXPos > xPositionOfFirstBody + 6.2 && segmentCounter >= maxSegmentCount ;
-        if(hasReachedLoopTriggerPos){
+        boolean hasReachedLoopTriggerPos = currentPlayerXPos > xPositionOfFirstBody + 6.2 && segmentCounter >= maxSegmentCount;
+        if (hasReachedLoopTriggerPos) {
             handleLoopBack();
         }
 
-        if(playerCharacter.getModel().isDead()) {
+        if (playerCharacter.getModel().isDead()) {
             Generator.resetGeneratorInstance();
         }
 
-        boolean hasBoldlyGoneWhereNoOneHasGoneBefore = (int)currentPlayerXPos > furthestPositionReached;
-        if(hasBoldlyGoneWhereNoOneHasGoneBefore){
+        boolean hasBoldlyGoneWhereNoOneHasGoneBefore = (int) currentPlayerXPos > furthestPositionReached;
+        if (hasBoldlyGoneWhereNoOneHasGoneBefore) {
             updateHighscore();
         }
 
@@ -113,7 +112,7 @@ public class LibgdxWorld {
     /**
      * Adds a new world section to the game.
      */
-    private void handleNewWorldSection(){
+    private void handleNewWorldSection() {
         generateNewWorldSection();
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
         respawnEverything();
@@ -124,18 +123,18 @@ public class LibgdxWorld {
      * Generates the terrain of a new world section of the game.
      */
 
-    private void generateNewWorldSection(){
+    private void generateNewWorldSection() {
         offsetX += matrixGenerator.getnCol();
         matrixGenerator.setNextMapStructure();
-        createGroundHitbox();
+        createHitbox();
     }
 
     /**
      * Creates hitboxes based on the map model provided by currentMap.
      */
-    private void createGroundHitbox(){
-        xPositionOfLastBody = (int)(((matrixGenerator.getnCol() + offsetX) * 32 + 16) / CONSTANTS.PPM);
-        if(segmentCounter == maxSegmentCount - 1) {
+    private void createHitbox() {
+        xPositionOfLastBody = (int) (((matrixGenerator.getnCol() + offsetX) * 32 + 16) / CONSTANTS.PPM);
+        if (segmentCounter == maxSegmentCount - 1) {
             xPositionOfFirstBody = (offsetX * 32 + 16) / CONSTANTS.PPM;
         }
         BodyDef bdf = new BodyDef();
@@ -146,14 +145,14 @@ public class LibgdxWorld {
             for (int y = 0; y < matrixGenerator.getnRow(); y++) {
                 float xPos = ((x + offsetX) * 32 + 16) / CONSTANTS.PPM;
                 float yPos = ((matrixGenerator.getnRow() - y) * 32 + 16) / CONSTANTS.PPM;
-                if (matrixGenerator.getContentAt(x, y) == 1 ) {
+                if (matrixGenerator.getContentAt(x, y) == 1) {
                     new LibgdxGround(xPos, yPos, bdf, shape, fdef);
                 }
 
-                if (matrixGenerator.getContentAt(x, y) == 3 ) {
+                if (matrixGenerator.getContentAt(x, y) == 3) {
                     new LibgdxPlatform(xPos, yPos, bdf, shape, fdef);
                 }
-                if(matrixGenerator.getContentAt(x,y) == 4 ){
+                if (matrixGenerator.getContentAt(x, y) == 4) {
                     new LibgdxCloud(xPos, yPos, bdf, shape, fdef);
                 }
             }
@@ -163,7 +162,7 @@ public class LibgdxWorld {
     /**
      * Puts the game back to the start position, thus completing the "loop".
      */
-    private void handleLoopBack(){
+    private void handleLoopBack() {
         counter -= xPositionOfFirstBody;
         saveDynamicBodiesData();
         removeBodiesFromStartTo(getxPositionOfLastBody());
@@ -177,13 +176,13 @@ public class LibgdxWorld {
     /**
      * Saves the data of the dynamic bodies. Including vector, y-position and x-position relative to the beginning of the world section.
      */
-    private void saveDynamicBodiesData(){
+    private void saveDynamicBodiesData() {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         Body body;
         int j = 0;
-        for(int i = 0; i < bodies.size; i++){
-            if(bodies.get(i).getType().getValue() == 2){
+        for (int i = 0; i < bodies.size; i++) {
+            if (bodies.get(i).getType().getValue() == 2) {
                 body = bodies.get(i);
                 dynamicalBodies.add((LibgdxTeleportable) (body.getUserData()));
                 dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM);
@@ -198,12 +197,11 @@ public class LibgdxWorld {
     /**
      * Removes all the physical bodies from the start of the world to x.
      */
-    private void removeBodiesFromStartTo(float x)
-    {
+    private void removeBodiesFromStartTo(float x) {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
-        for(Body body: bodies){
-            if(body.getPosition().x < x){
+        for (Body body : bodies) {
+            if (body.getPosition().x < x) {
                 world.destroyBody(body);
                 body.setUserData(null);
             }
@@ -213,16 +211,16 @@ public class LibgdxWorld {
     /**
      * Creates a copy of the current world segment at the start of the world.
      */
-    private void generateLoopBackSection(){
+    private void generateLoopBackSection() {
         offsetX = 0;
-        createGroundHitbox();
+        createHitbox();
     }
 
     /**
      * Creates clone bodies of all saved dynamical bodies. These bodies have the same vector as the old bodies.
      */
-    private void createCloneBodies(){
-        for(LibgdxTeleportable dynamicalBody: dynamicalBodies){
+    private void createCloneBodies() {
+        for (LibgdxTeleportable dynamicalBody : dynamicalBodies) {
             dynamicalBody.createBodyFromModel();
         }
         dynamicalBodies.clear();
@@ -231,21 +229,20 @@ public class LibgdxWorld {
     /**
      * Updates the score with points for having progressed forward in the game.
      */
-    private void updateHighscore(){
-        int updatedHighscore = logicalWorld.getLogicalPlayerCharacter().getHighscore() + ((int)currentPlayerXPos - furthestPositionReached) * 10;
+    private void updateHighscore() {
+        int updatedHighscore = logicalWorld.getLogicalPlayerCharacter().getHighscore() + ((int) currentPlayerXPos - furthestPositionReached) * 10;
         logicalWorld.getLogicalPlayerCharacter().setHighscore(updatedHighscore);
-        furthestPositionReached = (int)currentPlayerXPos;
+        furthestPositionReached = (int) currentPlayerXPos;
     }
 
     /**
      * Removes all the static physical bodies from the start of the world to x. I.e. the bodies that make up the environment.
      */
-    private void removeStaticBodiesFromStartTo(float x)
-    {
+    private void removeStaticBodiesFromStartTo(float x) {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
-        for(Body body: bodies){
-            if(body.getPosition().x < x && body.getType().getValue() == 0){
+        for (Body body : bodies) {
+            if (body.getPosition().x < x && body.getType().getValue() == 0) {
                 world.destroyBody(body);
                 body.setUserData(null);
             }
@@ -254,31 +251,31 @@ public class LibgdxWorld {
     }
 
     /**
-     *Creates Libgdx enemies from the logical enemies
+     * Creates Libgdx enemies from the logical enemies
      */
     private void createLibgdxEnemies() {
-        for(int i = 0; i < logicalWorld.getEnemyCount(); i++) {
+        for (int i = 0; i < logicalWorld.getEnemyCount(); i++) {
             Enemy logicalEnemy = logicalWorld.getLogicalEnemies().get(i);
             enemyCharacters.add(new LibgdxEnemy(logicalEnemy));
         }
     }
 
     /**
-     *Creates Libgdx powerups from the logical powerups
+     * Creates Libgdx powerups from the logical powerups
      */
     private void createLibgdxPowerUps() {
-        for(int i = 0; i < logicalWorld.getPowerUpCount(); i++) {
+        for (int i = 0; i < logicalWorld.getPowerUpCount(); i++) {
             PowerUp powerup = logicalWorld.getLogicalPowerUps().get(i);
             lgdxPowerUps.add(new LibgdxPowerUp(powerup));
         }
     }
 
     /**
-     *Removes all Libgdx enemies and creates a new array for Libgdx enemies
+     * Removes all Libgdx enemies and creates a new array for Libgdx enemies
      */
     private void removeAllLibgdxEnemies() {
         LibgdxEnemy enemy;
-        for(int i = 0; i < enemyCharacters.size(); i++) {
+        for (int i = 0; i < enemyCharacters.size(); i++) {
             enemy = enemyCharacters.get(i);
             enemyCharacters.remove(enemy);
             getWorld().destroyBody(enemy.getB2Body());
@@ -287,17 +284,17 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all Libgdx powerups and creates a new array for Libgdx powerups
+     * Removes all Libgdx powerups and creates a new array for Libgdx powerups
      */
     private void removeAllLibgdxPowerUps() {
-        for(int i = 0; i < lgdxPowerUps.size(); i++) {
+        for (int i = 0; i < lgdxPowerUps.size(); i++) {
             lgdxPowerUps.remove(i);
         }
         lgdxPowerUps = new ArrayList<LibgdxPowerUp>();
     }
 
     /**
-     *Removes all logical and Libgdx enemies and powerups and recreates them at new positions
+     * Removes all logical and Libgdx enemies and powerups and recreates them at new positions
      */
     private void respawnEverything() {
         respawnAllEnemies();
@@ -305,7 +302,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all Libgdx and logical enemies and recreates them at new positions
+     * Removes all Libgdx and logical enemies and recreates them at new positions
      */
     private void respawnAllEnemies() {
         removeAllLibgdxEnemies();
@@ -320,7 +317,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all Libgdx and logical powerups and recreates them at new positions
+     * Removes all Libgdx and logical powerups and recreates them at new positions
      */
     private void respawnAllPowerUps() {
         removeAllLibgdxPowerUps();
@@ -328,12 +325,12 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes a specific Libgdx powerup that has been used
+     * Removes a specific Libgdx powerup that has been used
      */
     private void removePowerUp() {
         LibgdxPowerUp powerUp;
-        for(int i = 0; i < lgdxPowerUps.size(); i++) {
-            if(lgdxPowerUps.get(i).getLogicalPowerUp().getToBeRemoved()) {
+        for (int i = 0; i < lgdxPowerUps.size(); i++) {
+            if (lgdxPowerUps.get(i).getLogicalPowerUp().getToBeRemoved()) {
                 powerUp = lgdxPowerUps.get(i);
                 lgdxPowerUps.remove(powerUp);
                 world.destroyBody(powerUp.getB2Body());
@@ -365,7 +362,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes an enemy that is dead and respawns it at a new position.
+     * Removes an enemy that is dead and respawns it at a new position.
      */
     private void respawnEnemies() {
         ArrayList<LibgdxEnemy> enemies;
@@ -390,56 +387,49 @@ public class LibgdxWorld {
     }
 
     /**
-     *Getter
+     * Getter
      */
     public int getxPositionOfLastBody() {
         return xPositionOfLastBody;
     }
 
     /**
-     *Getter
+     * Getter
      */
     static LibgdxWorld getlgdxWorld() {
         return lgdxWorld;
     }
 
     /**
-     *Getter
+     * Getter
      */
     public GameWorld getLogicalWorld() {
         return logicalWorld;
     }
 
     /**
-     *Getter
+     * Getter
      */
     public LibgdxPlayer getPlayerCharacter() {
         return playerCharacter;
     }
 
     /**
-     *Getter
+     * Getter
      */
     public ArrayList<LibgdxEnemy> getEnemyCharacters() {
         return enemyCharacters;
     }
 
     /**
-     *Getter
+     * Getter
      */
     public World getWorld() {
         return world;
     }
 
     /**
-     *Getter
-     */
-    public TiledMap getMap() {
-        return map;
-    }
-
-    /**
-     *Getter
+     * Getter
      */
     public float getCounter() {
         return counter;

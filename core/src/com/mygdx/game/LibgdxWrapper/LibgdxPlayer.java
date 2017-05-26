@@ -72,7 +72,7 @@ public class LibgdxPlayer extends LibgdxCharacter {
     /**
      *Getter
      */
-    public int getDynamicBodyID() {
+    public int getBodyID() {
         return textureKey;
     }
 

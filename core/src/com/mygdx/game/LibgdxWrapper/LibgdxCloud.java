@@ -46,7 +46,7 @@ public class LibgdxCloud implements Drawable {
      * Getter
      */
     @Override
-    public int getDynamicBodyID() {
+    public int getBodyID() {
         return dynamicBodyID;
     }
 
