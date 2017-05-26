@@ -42,6 +42,7 @@ public class GameOverSkins {
         textButtonStyle.checked = skin.newDrawable("background", Color.DARK_GRAY);
         textButtonStyle.over = skin.newDrawable("background", Color.LIGHT_GRAY);
         textButtonStyle.font = skin.getFont("default");
+
         skin.add("default", textButtonStyle);
     }
 

@@ -22,27 +22,53 @@ public class Dash extends Game {
 
     }
 
+    /**
+     *
+     * Getter
+     */
+
     public MenuController getMainMenuController() {
         return mainMenuController;
     }
+    /**
+     *
+     * Getter
+     */
 
     public PlayerController getPlayerController() {
         return playerController;
     }
+    /**
+     *
+     * Getter
+     */
 
-    public GameOverController getGameOverController() {
+    public GameOverController getGameOverController()
+    {    this.gameOverController = new GameOverController(this);
         return gameOverController;
     }
+    /**
+     *
+     * Getter
+     */
 
     public PauseController getPauseController() {
         return pauseController;
     }
+    /**
+     *
+     * Getter for a new game
+     */
 
     public PlayerController getNewPlayerController() {
         this.playerController = new PlayerController(this);
         return playerController;
     }
 
+    /**
+     *
+     * Mainloop
+     */
     @Override
     public void render() {
 
@@ -58,7 +84,6 @@ public class Dash extends Game {
      * Setter
      */
     public void setController(IController currentController) {
-
         this.currentController = currentController;
         this.currentController.setScreen();
     }

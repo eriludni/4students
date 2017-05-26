@@ -29,13 +29,13 @@ public class PauseScreen implements Screen {
 
     private void createMenu(){
         TextButton resumeGame = new TextButton("Resume", menuSkins.getSkins());
-        resumeGame.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2);
+        resumeGame.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 );
 
         TextButton quitToMenuButton = new TextButton("Quit to Menu", menuSkins.getSkins());
-        quitToMenuButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 10);
+        quitToMenuButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT/5);
 
         TextButton restartGameButton = new TextButton("Restart game", menuSkins.getSkins());
-        quitToMenuButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2 - CONSTANTS.HEIGHT / 5);
+        restartGameButton.setPosition(CONSTANTS.WIDTH / 2 - CONSTANTS.WIDTH / 8, CONSTANTS.HEIGHT / 2  - CONSTANTS.HEIGHT/10);
 
         stage.addActor(resumeGame);
         stage.addActor(quitToMenuButton);

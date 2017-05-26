@@ -18,19 +18,25 @@ public class GameOverController implements IController {
         this.gameOverScreen = new GameOverScreen(game.getPlayerController().getGameWorld().getLogicalWorld());
         setListeners();
     }
+    /**
+     * Update method for controller
+     */
     public void handleInput(float dt){
-        Gdx.input.setInputProcessor(gameOverScreen.getStage());
-        gameOverScreen.update(dt);
+        Gdx.input.setInputProcessor(this.gameOverScreen.getStage());
+        this.gameOverScreen.update(dt);
     }
 
+    /**
+     *apply listeners for menubuttons
+     */
     private void setListeners(){
-        gameOverScreen.getStage().getActors().get(0).addListener(new ClickListener() {
+        this.gameOverScreen.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setController(game.getNewPlayerController());
             }
         });
-        gameOverScreen.getStage().getActors().get(1).addListener(new ClickListener() {
+        this.gameOverScreen.getStage().getActors().get(1).addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
@@ -43,6 +49,6 @@ public class GameOverController implements IController {
      * Setter
      */
     public void setScreen(){
-        game.setScreen(gameOverScreen);
+        game.setScreen(this.gameOverScreen);
     }
 }
