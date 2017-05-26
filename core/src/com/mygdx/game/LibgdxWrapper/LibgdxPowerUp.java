@@ -20,7 +20,7 @@ public class LibgdxPowerUp implements Drawable {
     }
 
     /**
-     * Applies a body to the LibgdxWrapper powerup according to ligdx and sets its userdata to itself so it can be identified later
+     * Applies a body to the Libgdx powerup according to ligdx and sets its userdata to itself so it can be identified later
      */
     private void definePowerUp() {
         BodyDef bdef = new BodyDef();
