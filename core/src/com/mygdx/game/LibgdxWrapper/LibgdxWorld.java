@@ -74,7 +74,7 @@ public class LibgdxWorld {
     public void update(float dt){
 
         currentPlayerXPos = playerCharacter.getB2Body().getPosition().x;
-        counter += dt*1.7;
+        counter += dt*1.3;
 
         playerCharacter.update();
         world.step(1 / 60f, 6, 2);
@@ -276,9 +276,9 @@ public class LibgdxWorld {
         world.getBodies(bodies);
         for(Body body: bodies){
             if(body.getPosition().x < x && body.getType().getValue() == 0){
-                body.setType(BodyDef.BodyType.DynamicBody);
-                //world.destroyBody(body);
-                //body.setUserData(null);
+                //body.setType(BodyDef.BodyType.DynamicBody);
+                world.destroyBody(body);
+                body.setUserData(null);
             }
         }
 
