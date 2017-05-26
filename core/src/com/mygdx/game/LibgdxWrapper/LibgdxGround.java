@@ -26,16 +26,25 @@ public class LibgdxGround implements Drawable {
         body.setUserData(this);
     }
 
+    /**
+     * Getter
+     */
     @Override
     public float getFixtureWidth() {
         return 32 / CONSTANTS.PPM;
     }
 
+    /**
+     * Getter
+     */
     @Override
     public float getFixtureHeight() {
         return 128 / CONSTANTS.PPM;
     }
 
+    /**
+     * Getter
+     */
     @Override
     public int getDynamicBodyID() {
         return dynamicBodyID;

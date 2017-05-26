@@ -127,7 +127,7 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     }
 
     /**
-     *Reduces the health of a character by 1
+     *Reduces the health of a character by the specified damage
      */
     @Override
     public void reduceHealth(int damageValue) {

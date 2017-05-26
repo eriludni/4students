@@ -105,6 +105,9 @@ public class MyContactListener implements ContactListener {
 
     }
 
+    /**
+     * Setter
+     */
     public void setLgdxEnemies(ArrayList<LibgdxEnemy> lgdxEnemies) {
         this.lgdxEnemies = lgdxEnemies;
     }

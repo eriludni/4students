@@ -63,22 +63,37 @@ public class PlayerController implements IController {
 
     }
 
+    /**
+     * Keyboardlistener, returns true or false
+     */
     private boolean checkUpKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.W);
     }
 
+    /**
+     * Keyboardlistener, returns true or false
+     */
     private boolean checkRightKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.D);
     }
 
+    /**
+     * Keyboardlistener, returns true or false
+     */
     private boolean checkLeftKeyPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.A);
     }
 
+    /**
+     * Keyboardlistener, returns true or false
+     */
     private boolean checkMouseButtonPressed() {
         return Gdx.input.justTouched();
     }
-    
+
+    /**
+     * Keyboardlistener, returns true or false
+     */
     private boolean checkEscKeyPressed(){
         return Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
     }
