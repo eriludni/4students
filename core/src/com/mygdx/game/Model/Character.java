@@ -3,7 +3,7 @@ package com.mygdx.game.Model;
 /**
  * Created by Lucas on 2017-04-27.
  */
-public abstract class Character implements ICharacter, IKillable, Teleportable {
+public abstract class Character implements IKillable, Teleportable {
     protected int health;
     protected float xPos;
     protected float yPos;
@@ -13,6 +13,11 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     protected boolean dead;
     protected boolean airBorn;
     protected boolean toBeRemoved;
+
+    private float maxVelocity = 2;
+    private float minVelocity = -2;
+    private float horizontalAcceleration = 0.1f;
+    private float verticalAcceleration = 6f;
 
     /**
      *Getter
@@ -49,7 +54,6 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Getter
      */
-    @Override
     public float getRadius() {
         return radius;
     }
@@ -57,7 +61,6 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Setter
      */
-    @Override
     public void setRadius(float radius) {
         this.radius = radius;
     }
@@ -81,7 +84,6 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Sets the Y velocity to be negative of its current value
      */
-    @Override
     public void reverseYVelocity() {
         setY_velocity(-y_velocity);
     }
@@ -105,7 +107,6 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Sets the X velocity to be negative of its current value
      */
-    @Override
     public void reverseXVelocity() {
         setX_velocity(-x_velocity);
     }
@@ -163,7 +164,7 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Getter
      */
-    @Override
+
     public boolean isAirBorn() {
         return airBorn;
     }
@@ -171,7 +172,6 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Setter
      */
-    @Override
     public void setAirBorn(boolean airBorn) {
         this.airBorn = airBorn;
     }
@@ -179,7 +179,6 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     /**
      *Checks if a characters Y position is less than or equal to -5 and sets the dead variable to true if it is
      */
-    @Override
     public void checkOutOfBounds() {
         if(yPos <= -5) {
             setDead(true);
@@ -200,5 +199,33 @@ public abstract class Character implements ICharacter, IKillable, Teleportable {
     @Override
     public boolean getToBeRemoved() {
         return toBeRemoved;
+    }
+
+    /**
+     *Getter
+     */
+    public float getMaxVelocity() {
+        return maxVelocity;
+    }
+
+    /**
+     *Getter
+     */
+    public float getMinVelocity() {
+        return minVelocity;
+    }
+
+    /**
+     *Getter
+     */
+    public float getHorizontalAcceleration() {
+        return horizontalAcceleration;
+    }
+
+    /**
+     *Getter
+     */
+    public float getVerticalAcceleration() {
+        return verticalAcceleration;
     }
 }

@@ -2,7 +2,7 @@ package com.mygdx.game.LibgdxWrapper;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.mygdx.game.Model.ICharacter;
+import com.mygdx.game.Model.Character;
 import com.mygdx.game.Model.Player;
 import com.mygdx.game.Utils.CONSTANTS;
 
@@ -23,7 +23,7 @@ public class LibgdxPlayer extends LibgdxCharacter {
      * Applies a body to the Libgdx player according to Libgdx and sets its userdata to itself so it can be identified later
      */
     @Override
-    public void defineCharacter(ICharacter character) {
+    public void defineCharacter(Character character) {
         super.defineCharacter(character);
 
         FixtureDef fdef = new FixtureDef();

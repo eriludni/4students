@@ -1,8 +1,8 @@
 package com.mygdx.game.LibgdxWrapper;
 
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Model.Character;
 import com.mygdx.game.Model.Enemy;
-import com.mygdx.game.Model.ICharacter;
 
 /**
  * Created by Lucas on 2017-05-05.
@@ -21,7 +21,7 @@ public class LibgdxEnemy extends LibgdxCharacter {
      * so it can be identified later
      */
     @Override
-    public void defineCharacter(ICharacter character) {
+    public void defineCharacter(Character character) {
         super.defineCharacter(character);
         getB2Body().setUserData(this);
     }
