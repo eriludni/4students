@@ -271,7 +271,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all Libgdx enemies and creates a new array for LibgdxWrapper enemies
+     *Removes all Libgdx enemies and creates a new array for Libgdx enemies
      */
     private void removeAllLibgdxEnemies() {
         LibgdxEnemy enemy;
@@ -284,7 +284,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all Libgdx powerups and creates a new array for LibgdxWrapper powerups
+     *Removes all Libgdx powerups and creates a new array for Libgdx powerups
      */
     private void removeAllLibgdxPowerUps() {
         for(int i = 0; i < lgdxPowerUps.size(); i++) {
@@ -294,7 +294,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all logical and LibgdxWrapper enemies and powerups and recreates them at new positions
+     *Removes all logical and Libgdx enemies and powerups and recreates them at new positions
      */
     private void respawnEverything() {
         respawnAllEnemies();
@@ -302,7 +302,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all LibgdxWrapper and logical enemies and recreates them at new positions
+     *Removes all Libgdx and logical enemies and recreates them at new positions
      */
     private void respawnAllEnemies() {
         removeAllLibgdxEnemies();
@@ -317,7 +317,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes all LibgdxWrapper and logical powerups and recreates them at new positions
+     *Removes all Libgdx and logical powerups and recreates them at new positions
      */
     private void respawnAllPowerUps() {
         removeAllLibgdxPowerUps();
@@ -325,7 +325,7 @@ public class LibgdxWorld {
     }
 
     /**
-     *Removes a specific LibgdxWrapper powerup that has been used
+     *Removes a specific Libgdx powerup that has been used
      */
     private void removePowerUp() {
         LibgdxPowerUp powerUp;
