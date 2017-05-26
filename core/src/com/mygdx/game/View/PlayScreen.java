@@ -34,7 +34,7 @@ public class PlayScreen implements Screen {
     private Hud hud;
 
     private Box2DDebugRenderer b2dr;
-    private OrthogonalTiledMapRenderer renderer;
+    //private OrthogonalTiledMapRenderer renderer;
     private Stage stage;
 
     public PlayScreen( LibgdxWorld gameWorld) {
@@ -46,7 +46,7 @@ public class PlayScreen implements Screen {
         gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT/ CONSTANTS.PPM, gameCam);
         stage = new Stage(gamePort);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2+ 32f/CONSTANTS.PPM, 0);
-        renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
+        //renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
         b2dr = new Box2DDebugRenderer();
         initiateHashTable();
 
@@ -82,7 +82,7 @@ public class PlayScreen implements Screen {
 
         stepTime();
         gameCam.update();
-        renderer.setView(gameCam);
+        //renderer.setView(gameCam);
     }
 
     /**
@@ -110,7 +110,7 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(14/255f, 186/255f, 235/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        renderer.render();
+        //renderer.render();
         //b2dr.render(gameWorld.getWorld(), gameCam.combined);
         deletingTexture();
 

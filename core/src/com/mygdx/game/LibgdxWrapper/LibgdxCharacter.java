@@ -18,7 +18,7 @@ public abstract class LibgdxCharacter implements Drawable, Teleportable {
     private float maxVelocity = 2;
     private float minVelocity = -2;
     private float horizontalAcceleration = 0.1f;
-    private float verticalAcceleration = 5.9f;
+    private float verticalAcceleration = 1f;
 
     /**
      * Applies a body to the character according to LibgdxWrapper
@@ -51,18 +51,18 @@ public abstract class LibgdxCharacter implements Drawable, Teleportable {
      * Move the character upwards with a force specified by the variable verticalAcceleration.
      */
     public void moveUp() {
-        if(getLinearYVelocity() == 0) {
+
             b2Body.applyLinearImpulse(new Vector2(0, verticalAcceleration), b2Body.getWorldCenter(), true);
-        }
+
     }
 
     /**
      * Move the character rightwards with a force specified by the variable horizontalAcceleration.
      */
     public void moveRight() {
-        if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
+        //if(b2Body != null && getLinearXVelocity() <= maxVelocity) {
             b2Body.applyLinearImpulse(new Vector2(horizontalAcceleration, 0), b2Body.getWorldCenter(), true);
-        }
+        //wd}
     }
 
     /**

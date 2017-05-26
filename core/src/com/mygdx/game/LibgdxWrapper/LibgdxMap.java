@@ -47,7 +47,7 @@ public class LibgdxMap {
         texture = new Texture(Gdx.files.internal("tiles/Tiles_32x32.png"));
         splitTiles = TextureRegion.split(texture, 32, 32);
 
-        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + 500, arrayGenerator.getRow(), 32, 32);
+        groundLayer = new TiledMapTileLayer(arrayGenerator.getnCol() + 500, arrayGenerator.getnRow(), 32, 32);
 
         map = new TiledMap();
         layers = map.getLayers();
@@ -67,7 +67,7 @@ public class LibgdxMap {
      *place the next groundlayer based on a new generated model matrix.
      */
     public void setNextlibgdx_mapSegment() {
-        offsetX += arrayGenerator.getCol();
+        offsetX += arrayGenerator.getnCol();
         arrayGenerator.setNextMapStructure();
         addNewGroundlayer();
     }
@@ -87,7 +87,7 @@ public class LibgdxMap {
         if(layers.getCount() > 2) {
             layers.remove(0);
         }
-        groundLayer = new TiledMapTileLayer(arrayGenerator.getCol() + offsetX, arrayGenerator.getRow(), 32, 32);
+        groundLayer = new TiledMapTileLayer(arrayGenerator.getnCol() + offsetX, arrayGenerator.getnRow(), 32, 32);
         //placeTexture();
         //layers.add(groundLayer);
     }
@@ -100,31 +100,31 @@ public class LibgdxMap {
         ground.setId(0);
         platform.setId(3);
 
-        for (int x = 0; x < arrayGenerator.getCol(); x++) {
-            for (int y = arrayGenerator.getRow() - 1; y > 0; y--) {
+        for (int x = 0; x < arrayGenerator.getnCol(); x++) {
+            for (int y = arrayGenerator.getnRow() - 1; y > 0; y--) {
                 Cell cell = new Cell();
-                int id = arrayGenerator.getMapArray(x, y);
+                int id = arrayGenerator.getContentAt(x, y);
                 switch (id) {
                     case 1:
                         cell.setTile(groundEdge);
-                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getnRow() - y, cell);
                         break;
                     case 2:
                         cell.setTile(ground);
-                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getnRow() - y, cell);
                         break;
                     case 3:
                         cell.setTile(platform);
-                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                        groundLayer.setCell(x + offsetX, arrayGenerator.getnRow() - y, cell);
                         break;
                     case 4:
                         if(!turnCloud) {
                             cell.setTile(cloudLeft);
-                            groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                            groundLayer.setCell(x + offsetX, arrayGenerator.getnRow() - y, cell);
                             turnCloud = true;
                         }else{
                             cell.setTile(cloudRight);
-                            groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
+                            groundLayer.setCell(x + offsetX, arrayGenerator.getnRow() - y, cell);
                             turnCloud = false;
                         }
                         break;
@@ -145,21 +145,21 @@ public class LibgdxMap {
      *Getter
      */
     public int getMapModelCols() {
-        return arrayGenerator.getCol();
+        return arrayGenerator.getnCol();
     }
 
     /**
      *Getter
      */
     public int getMapModelRows() {
-        return arrayGenerator.getRow();
+        return arrayGenerator.getnRow();
     }
 
     /**
      *Getter
      */
     public int getArrayId(int x, int y) {
-        return arrayGenerator.getMapArray(x, y);
+        return arrayGenerator.getContentAt(x, y);
     }
 
     /**

@@ -20,6 +20,10 @@ public class LibgdxWorld {
     private World world;
 
     private float currentPlayerXPos;
+    
+    private int offsetX;
+    
+    private Generator matrixGenerator;
 
     private float triggerPos;
 
@@ -38,8 +42,6 @@ public class LibgdxWorld {
     private ArrayList<LibgdxEnemy> enemyCharacters = new ArrayList<LibgdxEnemy>();
     private ArrayList<LibgdxPowerUp> lgdxPowerUps = new ArrayList<LibgdxPowerUp>();
 
-    private LibgdxMap mapCreator;
-
     private static LibgdxWorld lgdxWorld;
     private GameWorld logicalWorld;
 
@@ -54,11 +56,12 @@ public class LibgdxWorld {
 
     public LibgdxWorld(GameWorld logicalWorld) {
         lgdxWorld = this;
+        
+        matrixGenerator = Generator.getGeneratorInstance();
+        
         this.world = new World(new Vector2(0, -10), true);
         this.logicalWorld = logicalWorld;
-        mapCreator = new LibgdxMap();
-        this.map = mapCreator.getMap();
-        createGroundHitbox(mapCreator, 0);
+        createGroundHitbox();
         triggerPos = getxPositionOfLastBody() - CONSTANTS.WIDTH / (2 * CONSTANTS.PPM);
 
 
@@ -122,67 +125,34 @@ public class LibgdxWorld {
      */
 
     private void generateNewWorldSection(){
-        mapCreator.setNextlibgdx_mapSegment();
-        int offsetX = mapCreator.getOffsetX();
-        createGroundHitbox(mapCreator, offsetX);
+        offsetX += matrixGenerator.getnCol();
+        matrixGenerator.setNextMapStructure();
+        //mapCreator.setNextlibgdx_mapSegment();
+        //int offsetX = mapCreator.getOffsetX();
+        createGroundHitbox();
     }
-
 
     /**
      * Creates hitboxes based on the map model provided by currentMap.
      */
-    private void createGroundHitbox(LibgdxMap currentMap, int offsetX){
-        xPositionOfLastBody = (int)(((currentMap.getMapModelCols() + offsetX) * 32 + 16) / CONSTANTS.PPM);
+    private void createGroundHitbox(){
+        xPositionOfLastBody = (int)(((matrixGenerator.getnCol() + offsetX) * 32 + 16) / CONSTANTS.PPM);
         if(segmentCounter == maxSegmentCount - 1) {
             xPositionOfFirstBody = (offsetX * 32 + 16) / CONSTANTS.PPM;
         }
         BodyDef bdf = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
-        Body body;
 
-        for (int x = 0; x < currentMap.getMapModelCols(); x++) {
-            for (int y = 0; y < currentMap.getMapModelRows(); y++) {
-                //if (y == 0){
-                //    bdf.type = BodyDef.BodyType.StaticBody;
-                //    bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
-//
-                //    body = world.createBody(bdf);
-//
-                //    shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
-                //    fdef.shape = shape;
-                //    body.createFixture(fdef);
-//
-                //}
-                if (currentMap.getArrayId(x, y) == 1 ) {
-
-                    //bdf.type = BodyDef.BodyType.StaticBody;
-                    //bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
-//
-                   // body = world.createBody(bdf);
-//
-                    //shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
-                    //fdef.shape = shape;
-                    //body.createFixture(fdef);
-                    //body.setUserData(this);
-                    float xPos = ((x + offsetX) * 32 + 16) / CONSTANTS.PPM;
-                    float yPos = ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM;
+        for (int x = 0; x < matrixGenerator.getnCol(); x++) {
+            for (int y = 0; y < matrixGenerator.getnRow(); y++) {
+                float xPos = ((x + offsetX) * 32 + 16) / CONSTANTS.PPM;
+                float yPos = ((matrixGenerator.getnRow() - y) * 32 + 16) / CONSTANTS.PPM;
+                if (matrixGenerator.getContentAt(x, y) == 1 ) {
                     new LibgdxGround(xPos, yPos, bdf, shape, fdef);
                 }
 
-                if (currentMap.getArrayId(x, y) == 3 ) {
-
-                    //bdf.type = BodyDef.BodyType.StaticBody;
-                    //bdf.position.set(((x + offsetX) * 32 + 16) / CONSTANTS.PPM, ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM);
-//
-                    // body = world.createBody(bdf);
-//
-                    //shape.setAsBox(16 / CONSTANTS.PPM, 16 / CONSTANTS.PPM);
-                    //fdef.shape = shape;
-                    //body.createFixture(fdef);
-                    //body.setUserData(this);
-                    float xPos = ((x + offsetX) * 32 + 16) / CONSTANTS.PPM;
-                    float yPos = ((currentMap.getMapModelRows() - y) * 32 + 16) / CONSTANTS.PPM;
+                if (matrixGenerator.getContentAt(x, y) == 3 ) {
                     new LibgdxPlatform(xPos, yPos, bdf, shape, fdef);
                 }
             }
@@ -243,9 +213,10 @@ public class LibgdxWorld {
      * Creates a copy of the current world segment at the start of the world.
      */
     private void generateLoopBackSection(){
-        mapCreator.setLoopBacklibgdx_mapSegment();
-        int offsetX = mapCreator.getOffsetX();
-        createGroundHitbox(mapCreator, offsetX);
+        //mapCreator.setLoopBacklibgdx_mapSegment();
+        //int offsetX = mapCreator.getOffsetX();
+        offsetX = 0;
+        createGroundHitbox();
     }
 
     /**
@@ -276,9 +247,9 @@ public class LibgdxWorld {
         world.getBodies(bodies);
         for(Body body: bodies){
             if(body.getPosition().x < x && body.getType().getValue() == 0){
-                body.setType(BodyDef.BodyType.DynamicBody);
-                //world.destroyBody(body);
-                //body.setUserData(null);
+                //body.setType(BodyDef.BodyType.DynamicBody);
+                world.destroyBody(body);
+                body.setUserData(null);
             }
         }
 
@@ -375,7 +346,6 @@ public class LibgdxWorld {
     /**
      * Removes the bullets that has gone outside the screen.
      */
-
     public void removeBulletsOutSideScreen(float gameCamPositionX, float gameCamPositionY, float screenWidth, float screenHeight) {
         Array<Body> bodies = new Array<Body>(10);
         world.getBodies(bodies);

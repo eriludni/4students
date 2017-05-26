@@ -134,7 +134,7 @@ public class DashTest {
     @Test
     public void testGeneratorClear() {
         Generator generator = Generator.getGeneratorInstance();
-        int[][] array = new int[generator.getRow()][generator.getCol()];
+        int[][] array = new int[generator.getnRow()][generator.getnCol()];
         for(int i = 0; i < array.length; i++) {
             for(int j = 0; j < array[0].length; j++) {
                 array[i][j] = 1;
@@ -156,7 +156,7 @@ public class DashTest {
         Generator generator = Generator.getGeneratorInstance();
         int x = 5;
         generator.setBasePointsFrom(x);
-        assertTrue(generator.getMapArray(0, x) == 1);
+        assertTrue(generator.getContentAt(0, x) == 1);
     }
 
     /**
