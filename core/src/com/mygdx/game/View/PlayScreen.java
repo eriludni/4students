@@ -61,6 +61,7 @@ public class PlayScreen implements Screen {
         Texture powerUpTexture = new Texture("pwrup.png");
         Texture groundTexture = new Texture("groundTexture.png");
         Texture platformTexture = new Texture("platformTexture.png");
+        Texture cloud = new Texture("cloud.png");
 
 
         textures.put(1,playerTexture);
@@ -69,6 +70,7 @@ public class PlayScreen implements Screen {
         textures.put(4,powerUpTexture);
         textures.put(5,groundTexture);
         textures.put(6,platformTexture);
+        textures.put(7,cloud);
 
     }
 

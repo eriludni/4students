@@ -153,6 +153,9 @@ public class LibgdxWorld {
                 if (matrixGenerator.getContentAt(x, y) == 3 ) {
                     new LibgdxPlatform(xPos, yPos, bdf, shape, fdef);
                 }
+                if(matrixGenerator.getContentAt(x,y) == 4 ){
+                    new LibgdxCloud(xPos, yPos, bdf, shape, fdef);
+                }
             }
         }
     }
