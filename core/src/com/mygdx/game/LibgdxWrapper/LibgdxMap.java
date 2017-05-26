@@ -27,7 +27,6 @@ public class LibgdxMap {
 
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
-    private TiledMapTile sky;
     private TiledMapTile platform;
     private TiledMapTile cloudLeft;
     private TiledMapTile cloudRight;
@@ -55,7 +54,6 @@ public class LibgdxMap {
 
         groundEdge = new StaticTiledMapTile(splitTiles[0][0]);
         ground = new StaticTiledMapTile(splitTiles[0][4]);
-        sky = new StaticTiledMapTile(splitTiles[5][7]);
         platform = new StaticTiledMapTile(splitTiles[0][6]);
         cloudLeft = new StaticTiledMapTile(splitTiles[4][5]);
         cloudRight = new StaticTiledMapTile(splitTiles[4][6]);
@@ -107,10 +105,6 @@ public class LibgdxMap {
                 Cell cell = new Cell();
                 int id = arrayGenerator.getMapArray(x, y);
                 switch (id) {
-                    case 0:
-                        cell.setTile(sky);
-                        groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);
-                        break;
                     case 1:
                         cell.setTile(groundEdge);
                         groundLayer.setCell(x + offsetX, arrayGenerator.getRow() - y, cell);

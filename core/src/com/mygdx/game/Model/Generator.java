@@ -1,6 +1,6 @@
 package com.mygdx.game.Model;
 
-import java.util.ArrayList;
+
 import java.util.Random;
 
 /**
@@ -217,6 +217,9 @@ public class Generator {
         }
     }
 
+    /**
+     *Sets the startpoints for each cloud from which they may be expanded
+     */
     public void setCloudStartPoints(int startPoints) {
         int i = 0;
         for(int row = 2; row <= 6; row++) {
@@ -229,6 +232,9 @@ public class Generator {
             }
         }
     }
+    /**
+     *Sets the amount of clouds to be created on a map and the length of them
+     */
 
     public void creatCloud(int clouds, int length) {
         setCloudStartPoints(clouds);

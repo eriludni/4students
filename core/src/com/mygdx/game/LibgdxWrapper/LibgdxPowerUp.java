@@ -7,11 +7,12 @@ import com.mygdx.game.Utils.CONSTANTS;
 /**
  * Created by lucasr on 5/18/17.
  */
-public class LibgdxPowerUp {
+public class LibgdxPowerUp implements Drawable {
     private PowerUp powerUp;
     private LibgdxWorld world = LibgdxWorld.getlgdxWorld();
     private Body b2Body;
     private float radius = 10;
+    private int textureKey = 4;
 
     LibgdxPowerUp(PowerUp powerUp) {
         this.powerUp = powerUp;
@@ -23,7 +24,7 @@ public class LibgdxPowerUp {
      */
     private void definePowerUp() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set( powerUp.getxPos() / CONSTANTS.PPM, powerUp.getyPos() / CONSTANTS.PPM);
+        bdef.position.set(powerUp.getxPos() / CONSTANTS.PPM, powerUp.getyPos() / CONSTANTS.PPM);
         bdef.type = BodyDef.BodyType.StaticBody;
         b2Body = world.getWorld().createBody(bdef);
 
@@ -34,20 +35,36 @@ public class LibgdxPowerUp {
         fdef.shape = shape;
         b2Body.createFixture(fdef);
 
+
         b2Body.setUserData(this);
     }
 
     /**
-     *Getter
+     * Getter
      */
     public PowerUp getLogicalPowerUp() {
         return powerUp;
     }
 
     /**
-     *Getter
+     * Getter
      */
     public Body getB2Body() {
         return b2Body;
+    }
+
+    @Override
+    public float getFixtureWidth() {
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
+    }
+
+    @Override
+    public float getFixtureHeight() {
+        return b2Body.getFixtureList().get(0).getShape().getRadius() * 2;
+    }
+
+    @Override
+    public int getDynamicBodyID() {
+        return textureKey;
     }
 }

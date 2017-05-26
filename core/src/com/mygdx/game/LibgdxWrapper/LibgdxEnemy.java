@@ -10,12 +10,10 @@ import com.mygdx.game.Model.ICharacter;
  */
 public class LibgdxEnemy extends LibgdxCharacter {
     private Enemy enemyModel;
-    private EnemyBrain brainModel;
     private int textureKey = 2;
 
     public LibgdxEnemy(Enemy enemy) {
         enemyModel = enemy;
-        brainModel = enemy.getBrain();
         defineCharacter(enemyModel);
     }
 

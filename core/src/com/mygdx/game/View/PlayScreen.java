@@ -43,9 +43,9 @@ public class PlayScreen implements Screen {
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
         hud = new Hud();
-        gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT / CONSTANTS.PPM, gameCam);
+        gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT/ CONSTANTS.PPM, gameCam);
         stage = new Stage(gamePort);
-        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2+ 32f/CONSTANTS.PPM, 0);
         renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
         b2dr = new Box2DDebugRenderer();
         initiateHashTable();
@@ -56,11 +56,15 @@ public class PlayScreen implements Screen {
     private void initiateHashTable(){
         textures = new Hashtable<Integer, Texture>();
         Texture playerTexture = new Texture("player.png");
-        Texture enemyTexture = new Texture("player.png");
+        Texture enemyTexture = new Texture("enemy.png");
         Texture projectileTexture = new Texture("projectile.png");
+        Texture powerUpTexture = new Texture("pwrup.png");
+
         textures.put(1,playerTexture);
         textures.put(2,enemyTexture);
         textures.put(3,projectileTexture);
+        textures.put(4,powerUpTexture);
+
     }
 
 
@@ -98,7 +102,7 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(14/255f, 186/255f, 235/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.render();
@@ -120,11 +124,11 @@ public class PlayScreen implements Screen {
         Array<Body> bodies = new Array<Body>();
         gameWorld.getWorld().getBodies(bodies);
         for (Body body : bodies) {
-            if (body.getType().getValue() == 2) {
+            if (body.getType().getValue() == 2 || (body.getType().getValue() == 0 && body.getUserData() instanceof LibgdxPowerUp ) ) {
                 Drawable drawableobject = (Drawable) body.getUserData();
                 int textureKey = drawableobject.getDynamicBodyID();
                 float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;
-                float yPosition = body.getPosition().y * CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
+                float yPosition = (body.getPosition().y-32f/CONSTANTS.PPM)* CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
                 batch.begin();
                 batch.draw(textures.get(textureKey), xPosition, yPosition, drawableobject.getFixtureWidth() * CONSTANTS.PPM, drawableobject.getFixtureHeight() * CONSTANTS.PPM);
                 batch.end();
