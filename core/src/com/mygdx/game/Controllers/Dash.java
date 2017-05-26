@@ -54,6 +54,9 @@ public class Dash extends Game {
     public void dispose() {
     }
 
+    /**
+     * Setter
+     */
     public void setController(IController currentController) {
 
         this.currentController = currentController;

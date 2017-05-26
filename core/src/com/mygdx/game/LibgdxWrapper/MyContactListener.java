@@ -22,8 +22,8 @@ public class MyContactListener implements ContactListener {
         this.world = world;
     }
 
-    /*
-    The method that is called whenever two objects begins to collide with each other
+    /**
+     * The method that is called whenever two objects begins to collide with each other
      */
     @Override
     public void beginContact(Contact contact) {
@@ -87,8 +87,8 @@ public class MyContactListener implements ContactListener {
 
     }
 
-    /*
-    The method that is called whenever two objects ends a collision with each other
+    /**
+     *  The method that is called whenever two objects ends a collision with each other
      */
     @Override
     public void endContact(Contact contact) {

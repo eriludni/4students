@@ -48,8 +48,8 @@ public class LibgdxPlayer extends LibgdxCharacter {
         getB2Body().setLinearVelocity(vector2);
     }
 
-    /*
-    Checks if the player has died and updates model.
+    /**
+     * Checks if the player has died and updates model.
      */
     public void update() {
         playerModel.checkDead();

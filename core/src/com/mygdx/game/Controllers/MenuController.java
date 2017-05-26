@@ -39,6 +39,10 @@ public class MenuController implements IController {
             }
         });
     }
+
+    /**
+     * Setter
+     */
     public void setScreen(){
         game.setScreen(menu);
     }

@@ -44,6 +44,10 @@ public class PauseController implements IController {
             }
         });
     }
+
+    /**
+     * Setter
+     */
     public void setScreen(){
         game.setScreen(pauseMenu);
     }

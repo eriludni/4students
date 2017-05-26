@@ -38,6 +38,10 @@ public class GameOverController implements IController {
         });
 
     }
+
+    /**
+     * Setter
+     */
     public void setScreen(){
         game.setScreen(gameOverScreen);
     }

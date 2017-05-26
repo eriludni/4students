@@ -95,9 +95,17 @@ public class PlayerController implements IController {
 
 
     }
+
+    /**
+     * Setter
+     */
     public void setScreen(){
         game.setScreen(playScreen);
     }
+
+    /**
+     * Getter
+     */
     public LibgdxWorld getGameWorld(){
         return gameWorld;
     }
