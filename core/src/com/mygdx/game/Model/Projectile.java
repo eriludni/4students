@@ -1,7 +1,6 @@
 package com.mygdx.game.Model;
 
 import java.awt.*;
-import java.awt.color.ICC_ColorSpace;
 
 import static java.lang.Math.*;
 
