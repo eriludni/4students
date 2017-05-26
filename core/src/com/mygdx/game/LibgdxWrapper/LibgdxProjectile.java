@@ -110,7 +110,7 @@ public class LibgdxProjectile implements Drawable, LibgdxTeleportable {
     /**
      *Getter
      */
-    public int getDynamicBodyID() {
+    public int getBodyID() {
         return textureKey;
     }
 

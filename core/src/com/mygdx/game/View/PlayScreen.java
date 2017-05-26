@@ -32,7 +32,6 @@ public class PlayScreen implements Screen {
 
     private Hud hud;
 
-    private Box2DDebugRenderer b2dr;
     private Stage stage;
 
     public PlayScreen( LibgdxWorld gameWorld) {
@@ -44,7 +43,6 @@ public class PlayScreen implements Screen {
         gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT/ CONSTANTS.PPM, gameCam);
         stage = new Stage(gamePort);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2+ 32f/CONSTANTS.PPM, 0);
-        b2dr = new Box2DDebugRenderer();
         initiateHashTable();
 
         this.gameWorld = gameWorld;
@@ -84,7 +82,6 @@ public class PlayScreen implements Screen {
 
         stepTime();
         gameCam.update();
-        //renderer.setView(gameCam);
     }
 
     /**
@@ -138,7 +135,7 @@ public class PlayScreen implements Screen {
         gameWorld.getWorld().getBodies(bodies);
         for (Body body : bodies) {
                 Drawable drawableobject = (Drawable) body.getUserData();
-                int textureKey = drawableobject.getDynamicBodyID();
+                int textureKey = drawableobject.getBodyID();
                 float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;
                 float yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
                 if (textureKey == 5) {

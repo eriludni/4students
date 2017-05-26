@@ -6,5 +6,5 @@ package com.mygdx.game.LibgdxWrapper;
 public interface Drawable {
     float getFixtureWidth();
     float getFixtureHeight();
-    int getDynamicBodyID();
+    int getBodyID();
 }
