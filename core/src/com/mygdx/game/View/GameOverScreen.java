@@ -43,7 +43,6 @@ public class GameOverScreen implements Screen {
     }
 
     private void createMenu(){
-        score = gameWorld.getLogicalPlayerCharacter().getHighscore();
         Table mainTable = new Table();
         mainTable.setFillParent(true);
         mainTable.top().padTop(100);
@@ -70,8 +69,9 @@ public class GameOverScreen implements Screen {
     }
 
     public void update(float dt) {
+        highscoreLabel.setText(String.format("%06d",gameWorld.getLogicalPlayerCharacter().getHighscore()));
         render(dt);
-        score = gameWorld.getLogicalPlayerCharacter().getHighscore();
+
     }
 
     @Override

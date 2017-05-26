@@ -129,19 +129,22 @@ public class PlayScreen implements Screen {
         Array<Body> bodies = new Array<Body>();
         gameWorld.getWorld().getBodies(bodies);
         for (Body body : bodies) {
+            if (body.getType().getValue() == 2 || (body.getType().getValue() == 0 && body.getUserData() instanceof LibgdxPowerUp)) {
+
                 Drawable drawableobject = (Drawable) body.getUserData();
                 int textureKey = drawableobject.getDynamicBodyID();
                 float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;
-                float yPosition = (body.getPosition().y - 32f/CONSTANTS.PPM)* CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
-                if(textureKey == 5) {
-                    yPosition = (body.getPosition().y - 32f/CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() * 88 ;
+                float yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
+                if (textureKey == 5) {
+                    yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() * 88;
                 }
 
                 batch.begin();
                 batch.draw(textures.get(textureKey), xPosition, yPosition, drawableobject.getFixtureWidth() * CONSTANTS.PPM, drawableobject.getFixtureHeight() * CONSTANTS.PPM);
                 batch.end();
-        }
+            }
 
+        }
     }
 
     @Override

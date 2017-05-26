@@ -19,11 +19,19 @@ public class PauseController implements IController {
         setListeners();
 
     }
+
+    /**
+     *Update method for controller
+     */
     public void handleInput(float dt){
         Gdx.input.setInputProcessor(pauseMenu.getStage());
         pauseMenu.update(dt);
     }
 
+
+    /**
+     * create Listeners for buttons
+     */
     private void setListeners(){
         pauseMenu.getStage().getActors().get(0).addListener(new ClickListener() {
             @Override
@@ -50,5 +58,6 @@ public class PauseController implements IController {
      */
     public void setScreen(){
         game.setScreen(pauseMenu);
+        Gdx.input.setInputProcessor(pauseMenu.getStage());
     }
 }
