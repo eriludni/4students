@@ -42,6 +42,10 @@ public class GameOverScreen implements Screen {
 
     }
 
+    /**
+     * Creats menubuttons
+     */
+
     private void createMenu(){
         Table mainTable = new Table();
         mainTable.setFillParent(true);
@@ -67,6 +71,9 @@ public class GameOverScreen implements Screen {
         stage.addActor(mainTable);
 
     }
+    /**
+     * updateloop
+     */
 
     public void update(float dt) {
         highscoreLabel.setText(String.format("%06d",gameWorld.getLogicalPlayerCharacter().getHighscore()));

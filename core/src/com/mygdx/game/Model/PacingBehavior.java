@@ -28,8 +28,12 @@ public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
         return super.getY_Velocity();
     }
 
+    /**
+     * updates the x-velocity
+     */
+
     @Override
-    public float ApplyX_Velocity(float currentXV, float currentYV) {
+    public float applyX_Velocity(float currentXV, float currentYV) {
 
        if(currentXV == 0){
            direction = !direction;
@@ -47,8 +51,12 @@ public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
        return 0;
     }
 
+    /**
+     * updates the y-velocity
+     */
+
     @Override
-    public float ApplyY_Velocity(float currentXV, float currentYV) {
+    public float applyY_Velocity(float currentXV, float currentYV) {
        return 0;
 
     }

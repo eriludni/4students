@@ -26,6 +26,9 @@ public class PauseScreen implements Screen {
         createMenu();
 
     }
+    /**
+     * Creats menubuttons
+     */
 
     private void createMenu(){
         TextButton resumeGame = new TextButton("Resume", menuSkins.getSkins());

@@ -30,6 +30,9 @@ public class MainMenuScreen implements Screen {
         createMenu();
 
     }
+    /**
+     * Creats menubuttons
+     */
 
     private void createMenu(){
         TextButton newGameButton = new TextButton("New game", menuSkins.getSkins());

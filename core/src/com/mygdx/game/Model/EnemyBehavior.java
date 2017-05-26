@@ -14,18 +14,20 @@ public class EnemyBehavior implements IEnemyBehavior {
 
     public EnemyBehavior(int id) {
 
+        /**
+         * Decides what behavior an enemy will have
+         */
+
         switch (id) {
+
             case 0:
                 this.behavior = new LinearBehavior();
                 break;
             case 1:
                 this.behavior = new PacingBehavior();
                 break;
-            case 2:
-                this.behavior = new ChasingBehavior();
-                break;
-            case 3:
-                this.behavior = new MirrorBehavior();
+            default:
+                this.behavior = new LinearBehavior();
                 break;
         }
 
@@ -34,25 +36,30 @@ public class EnemyBehavior implements IEnemyBehavior {
 
 
     /**
-     *Getter
+     * Getter
      */
     public float getX_Velocity() {
         return 0;
     }
 
     /**
-     *Getter
+     * Getter
      */
     public float getY_Velocity() {
         return 0;
     }
 
-
-    public float ApplyX_Velocity(float currentXV, float currentYV) {
-        return behavior.ApplyX_Velocity(currentXV, currentYV);
+    /**
+     * return updated velocity
+     */
+    public float applyX_Velocity(float currentXV, float currentYV) {
+        return behavior.applyX_Velocity(currentXV, currentYV);
     }
+    /**
+     * return updated velocity
+     */
 
-    public float ApplyY_Velocity(float currentXV, float currentYV) {
-        return behavior.ApplyY_Velocity(currentXV, currentYV);
+    public float applyY_Velocity(float currentXV, float currentYV) {
+        return behavior.applyY_Velocity(currentXV, currentYV);
     }
 }
