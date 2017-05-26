@@ -15,6 +15,7 @@ public class Generator {
     private final int lastCol = col - 1;
     private int[][] platformStartPoints = new int[3][2];
     private int[][] pitfallStartPoints = new int[3][2];
+    private int[][] cloudStartPoints = new int[5][2];
     private int pointsDistance = 4;
     private int mountainTop = 17;
     private int mountainDiff = 3;
@@ -26,6 +27,10 @@ public class Generator {
     private int pittfallLength = 2;
     private int minPitfallRow = 0; //Min 0
     private int maxPitfallRow = 20; //Max 20
+    private int minCloudRow = 1;
+    private int maxCloudRow = 6;
+    private int numberOfClouds = 5;
+    private int cloudLength = 2;
     private PowerUp powerUp;
     private static Generator generatorInstance = null;
 
@@ -38,7 +43,7 @@ public class Generator {
         }
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
-        creatCloud(2,2);
+        creatCloud(numberOfClouds,cloudLength);
     }
 
     /**
@@ -72,7 +77,7 @@ public class Generator {
         placeGround();
         createPlatforms(numberOfPlatforms, platformLength);
         createPitfalls(numberOfPitfalls, pittfallLength);
-        creatCloud(3,2);
+        creatCloud(numberOfClouds,cloudLength);
     }
 
     /**
@@ -218,8 +223,8 @@ public class Generator {
             if(i < startPoints) {
                 int c = random.nextInt(this.col-7);
                 this.mapArray[row][c] = 3;
-                platformStartPoints[i][0] = row;
-                platformStartPoints[i][1] = c;
+                cloudStartPoints[i][0] = row;
+                cloudStartPoints[i][1] = c;
                 i++;
             }
         }
@@ -227,9 +232,9 @@ public class Generator {
 
     public void creatCloud(int clouds, int length) {
         setCloudStartPoints(clouds);
-        for(int i = 0; i < platformStartPoints.length; i++) {
-            int row = platformStartPoints[i][0];
-            int startCol = platformStartPoints[i][1];
+        for(int i = 0; i < cloudStartPoints.length; i++) {
+            int row = cloudStartPoints[i][0];
+            int startCol = cloudStartPoints[i][1];
             for (int start = 0; start < length; start++) {
                 mapArray[row][startCol] = 4;
                 if(startCol < this.col - 7) {
