@@ -20,7 +20,7 @@ public abstract class LibgdxCharacter implements Drawable, Teleportable {
     private float verticalAcceleration = 6f;
 
     /**
-     * Applies a body to the character according to LibgdxWrapper
+     * Applies a body to the character according to Libgdx
      */
     public void defineCharacter(ICharacter character) {
         BodyDef bdef = new BodyDef();

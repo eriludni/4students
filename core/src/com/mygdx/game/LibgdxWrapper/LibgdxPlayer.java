@@ -20,7 +20,7 @@ public class LibgdxPlayer extends LibgdxCharacter {
     }
 
     /**
-     * Applies a body to the LibgdxWrapper player according to LibgdxWrapper and sets its userdata to itself so it can be identified later
+     * Applies a body to the Libgdx player according to Libgdx and sets its userdata to itself so it can be identified later
      */
     @Override
     public void defineCharacter(ICharacter character) {
