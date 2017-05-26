@@ -19,12 +19,12 @@ public class Generator {
     private int pointsDistance = 4;
     private int mountainTop = 17;
     private int mountainDiff = 3;
-    private int numberOfPlatforms = 3;
-    private int platformLength = 3;
+    private int numberOfPlatforms = 0;
+    private int platformLength = 0;
     private int minPlatformRow = 12; //Min 0
     private int maxPlatformRow = 15; //Max 19
-    private int numberOfPitfalls = 2;
-    private int pittfallLength = 2;
+    private int numberOfPitfalls = 0;
+    private int pittfallLength = 0;
     private int minPitfallRow = 0; //Min 0
     private int maxPitfallRow = 20; //Max 20
     private int minCloudRow = 1;
