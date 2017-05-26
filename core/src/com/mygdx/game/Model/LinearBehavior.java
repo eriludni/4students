@@ -1,7 +1,5 @@
 package com.mygdx.game.Model;
 
-import java.util.ArrayList;
-
 /**
  * Created by Erik on 12/05/2017.
  */

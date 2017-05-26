@@ -1,8 +1,5 @@
 package com.mygdx.game.Model;
 
-import com.mygdx.game.Model.Character;
-import com.mygdx.game.Model.ICharacter;
-
 /**
  * Created by Erik on 03/04/2017.
  */
