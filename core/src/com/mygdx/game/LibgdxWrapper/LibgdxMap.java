@@ -24,7 +24,6 @@ public class LibgdxMap {
 
     private TiledMapTileLayer groundLayer;
 
-
     private TiledMapTile groundEdge;
     private TiledMapTile ground;
     private TiledMapTile platform;

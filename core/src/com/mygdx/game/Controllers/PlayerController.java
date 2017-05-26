@@ -83,18 +83,19 @@ public class PlayerController implements IController {
         return Gdx.input.isKeyPressed(Input.Keys.ESCAPE);
     }
 
-    private void handleMouseInput(){
+    /**
+     * Translates the position of the mouse on the screen to the corresponding position in the game world and sends a projectile there.
+     */
+    private void handleMouseInput() {
         Gdx.input.setInputProcessor(playScreen.getStage());
-        int gameCamRightPos = (int)(gameCam.position.x * CONSTANTS.PPM);
-        int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth()/2;
+        int gameCamRightPos = (int) (gameCam.position.x * CONSTANTS.PPM);
+        int currentPlayerPos = gameCamRightPos - viewPort.getScreenWidth() / 2;
         int x = currentPlayerPos + Gdx.input.getX();
 
         int y = viewPort.getScreenHeight() - Gdx.input.getY();
 
-        Point cursorPosition = new Point(x,y);
+        Point cursorPosition = new Point(x, y);
         player.shootProjectile(cursorPosition);
-
-
     }
 
 

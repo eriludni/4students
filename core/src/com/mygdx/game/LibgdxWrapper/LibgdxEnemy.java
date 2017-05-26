@@ -26,6 +26,9 @@ public class LibgdxEnemy extends LibgdxCharacter {
         getB2Body().setUserData(this);
     }
 
+    /**
+     * Creates a body using data from the enemy model.
+     */
     public void createBodyFromModel(){
         defineCharacter(enemyModel);
         float vectorX = enemyModel.getX_velocity();

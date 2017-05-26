@@ -171,12 +171,15 @@ public class DashTest {
         assertTrue(firstPoint == secondPoint);
     }
 
+    /**
+     * Tests if the projectile is spawned in or near the correct spawnposition relative to the shooterbody.
+     */
     @Test
     public void testGetLaunchPosition(){
         Point characterPosition = new Point(1,3);
         Point targetPosition = new Point(4, 6);
-        float hitBoxRadius = 5f;
-        Point launchPoint = Projectile.getLaunchPosition(characterPosition,targetPosition,hitBoxRadius);
+        float distanceFromShooterBody = 5f;
+        Point launchPoint = Projectile.getLaunchPosition( characterPosition, targetPosition, distanceFromShooterBody);
 
         double deltaXlaunchPoint = launchPoint.x - characterPosition.x;
         double deltaYlaunchPoint = launchPoint.y - characterPosition.y;
@@ -190,7 +193,7 @@ public class DashTest {
         double angleDiff = angleLaunchPoint - angleTargetPosition;
 
         double hypothenuse = sqrt(pow(deltaYlaunchPoint, 2) + pow(deltaXlaunchPoint, 2));
-        double hypothenuseDiff = hypothenuse - hitBoxRadius;
+        double hypothenuseDiff = hypothenuse - distanceFromShooterBody;
 
         assertTrue(abs(angleDiff) < 1 && abs(hypothenuseDiff) < 1);
     }

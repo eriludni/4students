@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.physics.box2d.*;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -34,7 +33,6 @@ public class PlayScreen implements Screen {
     private Hud hud;
 
     private Box2DDebugRenderer b2dr;
-    //private OrthogonalTiledMapRenderer renderer;
     private Stage stage;
 
     public PlayScreen( LibgdxWorld gameWorld) {
@@ -46,13 +44,15 @@ public class PlayScreen implements Screen {
         gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT/ CONSTANTS.PPM, gameCam);
         stage = new Stage(gamePort);
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2+ 32f/CONSTANTS.PPM, 0);
-        //renderer = new OrthogonalTiledMapRenderer(gameWorld.getMap(), 1 / CONSTANTS.PPM);
         b2dr = new Box2DDebugRenderer();
         initiateHashTable();
 
         this.gameWorld = gameWorld;
     }
 
+    /**
+     * Initiates the hashtable with ID numbers for bodies and their corresponding texture.
+     */
     private void initiateHashTable(){
         textures = new Hashtable<Integer, Texture>();
         Texture playerTexture = new Texture("player.png");
@@ -112,25 +112,29 @@ public class PlayScreen implements Screen {
 
         //renderer.render();
         //b2dr.render(gameWorld.getWorld(), gameCam.combined);
-        deletingTexture();
+        dangerousTexture();
 
-        renderDynamicBodies();
+        renderBodies();
         hud.stage.draw();
     }
 
-    private void deletingTexture(){
+    /**
+     * Draws a texture that chases the player.
+     */
+    private void dangerousTexture(){
         float counterPos = gameWorld.getCounter();
         batch.begin();
         batch.draw(deletingTexture,counterPos * 100 - gameCam.position.x * 100 - CONSTANTS.WIDTH / 2,32,CONSTANTS.WIDTH,CONSTANTS.HEIGHT);
         batch.end();
     }
 
-    private void renderDynamicBodies() {
+    /**
+     * Draws a texture to the bodies of the world.
+     */
+    private void renderBodies() {
         Array<Body> bodies = new Array<Body>();
         gameWorld.getWorld().getBodies(bodies);
         for (Body body : bodies) {
-            //if (body.getType().getValue() == 2 || (body.getType().getValue() == 0 && body.getUserData() instanceof LibgdxPowerUp)) {
-
                 Drawable drawableobject = (Drawable) body.getUserData();
                 int textureKey = drawableobject.getDynamicBodyID();
                 float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;

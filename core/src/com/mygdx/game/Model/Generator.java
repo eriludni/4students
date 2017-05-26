@@ -9,7 +9,7 @@ import java.util.Random;
 public class Generator {
 
     private Random random = new Random();
-    private int[][] mapArray;
+    private int[][] mapMatrix;
     private final int rowNumber =20;
     private final int colNumber = 40;
     private final int lastCol = colNumber - 1;
@@ -36,7 +36,7 @@ public class Generator {
 
 
     private Generator() {
-        this.mapArray = new int[rowNumber][colNumber];
+        this.mapMatrix = new int[rowNumber][colNumber];
         setBasePoints();
         for (int x = 0; x < lastCol; x++) {
             growFromPoints(x);
@@ -68,7 +68,7 @@ public class Generator {
 
     public void setNextMapStructure(){
         int lastBasePoint = findRow(lastCol);
-        clear(mapArray);
+        clear(mapMatrix);
         applyModifier();
         setBasePointsFrom(lastBasePoint);
         for (int x = 0; x < lastCol; x++) {
@@ -97,10 +97,10 @@ public class Generator {
 
     public void setBasePoints() {
         for (int c = 0; c < colNumber - pointsDistance; c = c + pointsDistance) {
-            this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
+            this.mapMatrix[random.nextInt(mountainDiff) + mountainTop][c] = 1;
         }
         if(findRow(colNumber -1) == 0){
-            this.mapArray[random.nextInt(mountainDiff) + mountainTop][colNumber -1] = 1;
+            this.mapMatrix[random.nextInt(mountainDiff) + mountainTop][colNumber -1] = 1;
         }
     }
 
@@ -110,32 +110,31 @@ public class Generator {
 
     public void setBasePointsFrom(int lastBasePoint) {
 
-        this.mapArray[lastBasePoint][0] = 1;
+        this.mapMatrix[lastBasePoint][0] = 1;
 
         for (int c = pointsDistance; c < colNumber - pointsDistance; c = c + pointsDistance) {
-            this.mapArray[random.nextInt(mountainDiff) + mountainTop][c] = 1;
+            this.mapMatrix[random.nextInt(mountainDiff) + mountainTop][c] = 1;
         }
         if(findRow(colNumber -1) == 0){
-            this.mapArray[random.nextInt(mountainDiff) + mountainTop][colNumber -1] = 1;
+            this.mapMatrix[random.nextInt(mountainDiff) + mountainTop][colNumber -1] = 1;
         }
     }
 
     /**
      * Binds the basepoints in the matrix together.
      */
-
     public void growFromPoints(int initValue) {
         int endValue = nextPointValue(initValue);
         int rowStart = findRow(initValue);
         if (rowStart < endValue) {
             int growCord = random.nextInt(2) + findRow(initValue);
 
-            this.mapArray[growCord][initValue + 1] = 1;
+            this.mapMatrix[growCord][initValue + 1] = 1;
         } else if (rowStart > endValue) {
             int growCord = random.nextInt(2) * -1 + findRow(initValue);
-            this.mapArray[growCord][initValue + 1] = 1;
+            this.mapMatrix[growCord][initValue + 1] = 1;
         } else {
-            this.mapArray[findRow(initValue)][initValue+1] =1;
+            this.mapMatrix[findRow(initValue)][initValue+1] =1;
 
         }
     }
@@ -143,11 +142,10 @@ public class Generator {
     /**
      * Finds the rowNumber for the next point after currentColumn.
      */
-
     public int nextPointValue(int currentColum) {
         for (int c = currentColum + 1; c < colNumber; c++) {
             for (int r = 0; r < rowNumber; r++) {
-                if (this.mapArray[r][c] == 1) {
+                if (this.mapMatrix[r][c] == 1) {
                     return r;
                 }
             }
@@ -158,10 +156,9 @@ public class Generator {
     /**
      * Finds the rowNumber for a point in a column.
      */
-
     public int findRow(int colum) {
         for (int x = 0; x < rowNumber; x++) {
-            if (this.mapArray[x][colum] == 1)
+            if (this.mapMatrix[x][colum] == 1)
                 return x;
         }
         return 0;
@@ -170,14 +167,13 @@ public class Generator {
     /**
      * Place the points which represents the ground texture in the model.
      */
-
     public void placeGround(){
         for(int c = 0; c < colNumber; c++){
             for(int r = rowNumber -1; r >= 0; r--){
-                if(this.mapArray[r][c] == 1){
+                if(this.mapMatrix[r][c] == 1){
                     break;
                 }
-                mapArray[r][c] = 2;
+                mapMatrix[r][c] = 2;
             }
         }
     }
@@ -185,14 +181,13 @@ public class Generator {
     /**
      *Sets the amount of platforms to be created on a map and the length of them
      */
-
     public void createPlatforms(int platforms, int length) {
         setPlatformStartPoints(platforms);
         for(int i = 0; i < platformStartPoints.length; i++) {
             int row = platformStartPoints[i][0];
             int startCol = platformStartPoints[i][1];
             for (int start = 0; start < length; start++) {
-                mapArray[row][startCol] = 3;
+                mapMatrix[row][startCol] = 3;
                 if(startCol < this.colNumber - 7) {
                     startCol++;
                 }
@@ -203,13 +198,12 @@ public class Generator {
     /**
      *Sets the startpoints for each platform from which they may be expanded
      */
-
     public void setPlatformStartPoints(int startPoints) {
         int i = 0;
         for(int row = minPlatformRow; row <= maxPlatformRow; row++) {
             if(i < startPoints) {
                 int c = random.nextInt(this.colNumber - 7);
-                this.mapArray[row][c] = 3;
+                this.mapMatrix[row][c] = 3;
                 platformStartPoints[i][0] = row;
                 platformStartPoints[i][1] = c;
                 i++;
@@ -225,7 +219,7 @@ public class Generator {
         for(int row = 2; row <= 6; row++) {
             if(i < startPoints) {
                 int c = random.nextInt(this.colNumber -7);
-                this.mapArray[row][c] = 3;
+                this.mapMatrix[row][c] = 3;
                 cloudStartPoints[i][0] = row;
                 cloudStartPoints[i][1] = c;
                 i++;
@@ -235,14 +229,13 @@ public class Generator {
     /**
      *Sets the amount of clouds to be created on a map and the length of them
      */
-
     public void creatCloud(int clouds, int length) {
         setCloudStartPoints(clouds);
         for(int i = 0; i < cloudStartPoints.length; i++) {
             int row = cloudStartPoints[i][0];
             int startCol = cloudStartPoints[i][1];
             for (int start = 0; start < length; start++) {
-                mapArray[row][startCol] = 4;
+                mapMatrix[row][startCol] = 4;
                 if(startCol < this.colNumber - 7) {
                     startCol++;
                 }
@@ -255,7 +248,6 @@ public class Generator {
     /**
      *Sets the amount of pitfalls to be created on a map and the length of them
      */
-
     public void createPitfalls(int pitfalls, int width) {
         setPitfallStartPoints(pitfalls);
         for(int i = 0; i < pitfallStartPoints.length; i++) {
@@ -263,7 +255,7 @@ public class Generator {
             int startCol = pitfallStartPoints[i][1];
             for(int length = 0; length < width; length++) {
                 for(int depth = 0; depth < this.colNumber; depth++) {
-                    this.mapArray[startRow][startCol] = 0;
+                    this.mapMatrix[startRow][startCol] = 0;
                     if(startRow < this.rowNumber - 1) {
                         startRow++;
                     }
@@ -282,7 +274,7 @@ public class Generator {
     public void setPitfallStartPoints(int startPoints) {
         for(int row = minPitfallRow; row < startPoints; row++) {
                 int c = random.nextInt(this.colNumber - 7);
-                this.mapArray[mountainTop][c] = 0;
+                this.mapMatrix[mountainTop][c] = 0;
                 pitfallStartPoints[row][0] = row;
                 pitfallStartPoints[row][1] = c;
         }
@@ -330,7 +322,7 @@ public class Generator {
      *Getter
      */
     public int getContentAt(int x, int y) {
-        return this.mapArray[y][x];
+        return this.mapMatrix[y][x];
     }
 
 }

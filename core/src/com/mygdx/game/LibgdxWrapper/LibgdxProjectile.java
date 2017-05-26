@@ -15,7 +15,7 @@ import java.awt.*;
 /**
  * Created by Niklas on 2017-05-08.
  */
-public class LibgdxProjectile implements Drawable, Teleportable {
+public class LibgdxProjectile implements Drawable, LibgdxTeleportable {
     private Body b2Body;
     private LibgdxWorld world = LibgdxWorld.getlgdxWorld();
     private Projectile projectileModel;
@@ -74,7 +74,7 @@ public class LibgdxProjectile implements Drawable, Teleportable {
     }
 
     /**
-     *Defines the projectile based on the values in the projectile model.
+     * Creates a body using data from the projectile model.
      */
     public void createBodyFromModel(){
         int x = (int)projectileModel.getXPos();

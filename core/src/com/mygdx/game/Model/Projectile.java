@@ -7,7 +7,7 @@ import static java.lang.Math.*;
 /**
  * Created by Niklas on 2017-05-08.
  */
-public class Projectile implements DynamicalBody{
+public class Projectile implements Teleportable {
     private float speed;
     private int damage;
     private boolean hasCollided;

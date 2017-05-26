@@ -39,6 +39,9 @@ public class LibgdxPlayer extends LibgdxCharacter {
         getB2Body().setUserData(this);
     }
 
+    /**
+     * Creates a body using data from the player model.
+     */
     public void createBodyFromModel(){
         this.defineCharacter(playerModel);
 

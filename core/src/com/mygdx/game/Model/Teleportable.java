@@ -3,7 +3,7 @@ package com.mygdx.game.Model;
 /**
  * Created by Niklas on 2017-05-18.
  */
-public interface DynamicalBody {
+public interface Teleportable {
     void setxPos(float x);
     void setyPos(float y);
     void setX_velocity(float xVelocity);

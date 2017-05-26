@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  * Created by Lucas on 2017-05-05.
  */
-public abstract class LibgdxCharacter implements Drawable, Teleportable {
+public abstract class LibgdxCharacter implements Drawable, LibgdxTeleportable {
     private Body b2Body;
     private LibgdxWorld world = LibgdxWorld.getlgdxWorld();
     private Fixture fixture;

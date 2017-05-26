@@ -29,7 +29,7 @@ public class LibgdxWorld {
 
     private float xPositionOfFirstBody;
 
-    private ArrayList<Teleportable> dynamicalBodies = new ArrayList<Teleportable>();
+    private ArrayList<LibgdxTeleportable> dynamicalBodies = new ArrayList<LibgdxTeleportable>();
 
     private int maxSegmentCount = 3;
 
@@ -127,8 +127,6 @@ public class LibgdxWorld {
     private void generateNewWorldSection(){
         offsetX += matrixGenerator.getnCol();
         matrixGenerator.setNextMapStructure();
-        //mapCreator.setNextlibgdx_mapSegment();
-        //int offsetX = mapCreator.getOffsetX();
         createGroundHitbox();
     }
 
@@ -184,7 +182,7 @@ public class LibgdxWorld {
         for(int i = 0; i < bodies.size; i++){
             if(bodies.get(i).getType().getValue() == 2){
                 body = bodies.get(i);
-                dynamicalBodies.add((Teleportable) (body.getUserData()));
+                dynamicalBodies.add((LibgdxTeleportable) (body.getUserData()));
                 dynamicalBodies.get(j).getModel().setxPos((body.getPosition().x - xPositionOfFirstBody) * CONSTANTS.PPM);
                 dynamicalBodies.get(j).getModel().setyPos(body.getPosition().y * CONSTANTS.PPM);
                 dynamicalBodies.get(j).getModel().setX_velocity(body.getLinearVelocity().x);
@@ -213,8 +211,6 @@ public class LibgdxWorld {
      * Creates a copy of the current world segment at the start of the world.
      */
     private void generateLoopBackSection(){
-        //mapCreator.setLoopBacklibgdx_mapSegment();
-        //int offsetX = mapCreator.getOffsetX();
         offsetX = 0;
         createGroundHitbox();
     }
@@ -223,7 +219,7 @@ public class LibgdxWorld {
      * Creates clone bodies of all saved dynamical bodies. These bodies have the same vector as the old bodies.
      */
     private void createCloneBodies(){
-        for(Teleportable dynamicalBody: dynamicalBodies){
+        for(LibgdxTeleportable dynamicalBody: dynamicalBodies){
             dynamicalBody.createBodyFromModel();
         }
         dynamicalBodies.clear();
@@ -247,7 +243,6 @@ public class LibgdxWorld {
         world.getBodies(bodies);
         for(Body body: bodies){
             if(body.getPosition().x < x && body.getType().getValue() == 0){
-                //body.setType(BodyDef.BodyType.DynamicBody);
                 world.destroyBody(body);
                 body.setUserData(null);
             }
