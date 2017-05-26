@@ -58,7 +58,7 @@ public class GameWorld {
         float offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + y;
         for(int i = 0; i < powerUpCount; i++) {
             x = (rand.nextInt(5) + 1) * 100;
-            y = rand.nextInt(26) + 25;
+            y = rand.nextInt(26);
             logicalPowerUps.add(new PowerUp(offsetX, offsetY));
             offsetX += x;
             offsetY = logicalPlayer.getYPos() * CONSTANTS.PPM + y;
