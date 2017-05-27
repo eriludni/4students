@@ -6,7 +6,7 @@ package com.mygdx.game.Utils;
  * @author Lucas Ruud
  * Responsibility: Handles general constants used by classes
  * Uses:
- * Used by: PlayerController, LibgdxCharacter, LibgdxCloud, LibgdxGround, LibgdxPlatform, LibgdxPlayer, LibgdxPowerUp, LibgdxProjectile, LibgdxWorld, GameWorld, GameOverScreen, MainMenuScreen, PauseScreen, PlayScreen, GameOverSkins, MainMenuSkins, Hud, DesktopLauncher
+ * Used by: PlayerController, LibgdxCharacter, LibgdxCloud, LibgdxGround, LibgdxPlatform, LibgdxPlayer, LibgdxPowerUp, LibgdxProjectile, LibgdxWorld, GameWorld, GameOverScreen, MainMenuScreen, PauseScreen, PlayScreen, GameOverSkins, MainMenuSkins, Hud
  */
 public class CONSTANTS {
     //width of the window

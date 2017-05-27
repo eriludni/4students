@@ -11,7 +11,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  *
  * @author Lucas Ruud
  * Responsibility: Handles the Libgdx representation of the logical player character
- * Uses: LibgdxCharacter, Player
+ * Uses: LibgdxCharacter, Player, CONSTANTS
  * Used by: PlayerController, LibgdxWorld, MyContactListener
  */
 public class LibgdxPlayer extends LibgdxCharacter {

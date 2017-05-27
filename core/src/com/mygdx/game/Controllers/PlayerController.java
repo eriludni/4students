@@ -17,7 +17,7 @@ import java.awt.*;
  *
  * @author Erik Lundin
  * Responsibility: Handles how the player character responds to input from the user
- * Uses: IController, LibgdxWorld, LibgdxPlayer, Dash
+ * Uses: IController, LibgdxWorld, LibgdxPlayer, Dash, CONSTANTS
  * Used by: Dash
  */
 public class PlayerController implements IController {

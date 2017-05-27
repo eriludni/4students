@@ -17,7 +17,7 @@ import java.awt.*;
  *
  * @author Niklas Baerveldt
  * Responsibility: Handles the Libgdx representation of projectiles
- * Uses: LibgdxTeleportable, LibgdxWorld, Projectile
+ * Uses: LibgdxTeleportable, LibgdxWorld, Projectile, CONSTANTS
  * Used by: MyContactListener, LibgdxWorld, LibgdxCharacter
  */
 public class LibgdxProjectile implements Drawable, LibgdxTeleportable {

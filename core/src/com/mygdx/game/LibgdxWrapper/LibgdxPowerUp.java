@@ -9,7 +9,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  *
  * @author Lucas Ruud
  * Responsibility: Handles the Libgdx representation of powerups
- * Uses: LibgdxWorld, PowerUp
+ * Uses: LibgdxWorld, PowerUp, CONSTANTS
  * Used by: LibgdxWorld, MyContactListener
  */
 public class LibgdxPowerUp implements Drawable {

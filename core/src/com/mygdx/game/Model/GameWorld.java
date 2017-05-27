@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author Erik Lundin
  * Responsibility: Handles the data of things in the ligical game world
- * Uses: Player, Enemy, EnemyBrain, PowerUp
+ * Uses: Player, Enemy, EnemyBrain, PowerUp, CONSTANTS
  * Used by: LibgdxWorld, GameOverScreen, PlayerController
  */
 public class GameWorld {

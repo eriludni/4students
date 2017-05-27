@@ -11,7 +11,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  *
  * @author Niklas Baerveldt
  * Responsibility: Handles how ground should be created in the Libgdx world
- * Uses: LibgdxWorld
+ * Uses: LibgdxWorld, CONSTANTS
  * Used by: LibgdxWorld
  */
 public class LibgdxGround implements Drawable {

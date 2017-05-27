@@ -12,7 +12,7 @@ import java.awt.*;
  *
  * @author Lucas Ruud
  * Responsibility: Handles general functions that all Libgdx characters should have
- * Uses: LibgdxTeleportable
+ * Uses: LibgdxTeleportable, CONSTANTS
  * Used by: LibgdxEnemy, LibgdxPlayer
  */
 public abstract class LibgdxCharacter implements Drawable, LibgdxTeleportable {

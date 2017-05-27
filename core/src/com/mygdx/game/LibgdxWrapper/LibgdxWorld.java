@@ -18,7 +18,7 @@ import java.util.Random;
  *
  * @author Lucas Ruud
  * Responsibility: Handles the Libgdx representation of the logical world
- * Uses: LibgdxPlayer, LibgdxEnemy, LibgdxPowerUp, GameWorld, Generator, MyContactListener
+ * Uses: LibgdxPlayer, LibgdxEnemy, LibgdxPowerUp, GameWorld, Generator, MyContactListener, CONSTANTS
  * Used by: LibgdxCharacter, LibgdxCloud, LibgdxPlatform, LibgdxPowerUp, LibgdxProjectile, LibgdxWorld, MyContactListener, PlayerController, PlayScreen
  */
 public class LibgdxWorld {

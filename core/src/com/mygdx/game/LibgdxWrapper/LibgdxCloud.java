@@ -11,7 +11,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  *
  * @author Erik Lundin
  * Responsibility: Handles how clouds should be created in the Libgdx world
- * Uses: LibgdxWorld
+ * Uses: LibgdxWorld, CONSTANTS
  * Used by: LibgdxWorld
  */
 public class LibgdxCloud implements Drawable {
