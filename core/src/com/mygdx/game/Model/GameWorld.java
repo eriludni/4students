@@ -7,6 +7,10 @@ import java.util.Random;
 
 /**
  * Created by Erik on 26/04/2017.
+ *
+ * @author Erik Lundin
+ * Uses: Player, Enemy, EnemyBrain, PowerUp
+ * Used by: LibgdxWorld, GameOverScreen, PlayerController
  */
 public class GameWorld {
     private Player logicalPlayer;

@@ -2,6 +2,10 @@ package com.mygdx.game.Model;
 
 /**
  * Created by lucasr on 5/18/17.
+ *
+ * @author Lucas Ruud
+ * Uses:
+ * Used by: PowerUpModifier, DefaultMap, PlainMap, PlatformMap
  */
 public interface IPowerUpModifier {
     int getPoinsDistance();

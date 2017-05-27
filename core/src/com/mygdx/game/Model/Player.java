@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 /**
  * Created by Erik on 03/04/2017.
+ *
+ * @author Erik Lundin
+ * Responsibility:
+ * Uses: Character
+ * Used by: LibgdxPlayer, GameWorld
  */
 public class Player extends Character {
     private int highscore = 0;

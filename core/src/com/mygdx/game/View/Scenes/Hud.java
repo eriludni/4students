@@ -13,6 +13,11 @@ import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by Niklas on 2017-05-14.
+ *
+ * @author Niklas Baerveldt
+ * Responsibility:
+ * Uses:
+ * Used by: PlayScreen
  */
 public class Hud {
     public Stage stage;

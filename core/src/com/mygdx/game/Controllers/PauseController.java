@@ -7,6 +7,11 @@ import com.mygdx.game.View.PauseScreen;
 
 /**
  * Created by Erik on 2017-05-22.
+ *
+ * @author Erik Lundin
+ * Responsibility:
+ * Uses: IController, PauseScreen, Dash
+ * Used by: Dash
  */
 public class PauseController implements IController {
     private PauseScreen pauseMenu;

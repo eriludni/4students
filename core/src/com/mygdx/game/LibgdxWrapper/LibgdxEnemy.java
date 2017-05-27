@@ -6,6 +6,11 @@ import com.mygdx.game.Model.Enemy;
 
 /**
  * Created by Lucas on 2017-05-05.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: LibgdxCharacter, Enemy
+ * Used by: LibgdxWorld, MyContactListener
  */
 public class LibgdxEnemy extends LibgdxCharacter {
     private Enemy enemyModel;

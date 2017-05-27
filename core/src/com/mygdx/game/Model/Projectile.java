@@ -6,6 +6,11 @@ import static java.lang.Math.*;
 
 /**
  * Created by Niklas on 2017-05-08.
+ *
+ * @author Niklas Baerveldt
+ * Responsibility:
+ * Uses: Teleportable
+ * Used by: LibgdxProjectile, LibgdxCharacter
  */
 public class Projectile implements Teleportable {
     private float speed;

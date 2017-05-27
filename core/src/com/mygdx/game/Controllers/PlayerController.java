@@ -14,6 +14,11 @@ import java.awt.*;
 
 /**
  * Created by Erik on 26/04/2017.
+ *
+ * @author Erik Lundin
+ * Responsibility:
+ * Uses: IController, LibgdxWorld, LibgdxPlayer, Dash
+ * Used by: Dash
  */
 public class PlayerController implements IController {
 

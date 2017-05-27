@@ -2,6 +2,10 @@ package com.mygdx.game.Model;
 
 /**
  * Created by Lucas on 2017-04-27.
+ *
+ * @author Lucas Ruud
+ * Uses: IKillable, Teleportable
+ * Used by: Enemy, Player, LibgdxCharacter, LibgdxEnemy, LibgdxPlayer
  */
 public abstract class Character implements IKillable, Teleportable {
     protected int health;

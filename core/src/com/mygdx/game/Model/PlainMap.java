@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 /**
  * Created by lucasr on 5/18/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: IPowerUpModifier
+ * Used by: PowerUpModifier
  */
 public class PlainMap implements IPowerUpModifier{
     private int pointsDistance = 4;

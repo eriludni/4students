@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 /**
  * Created by lucasr on 5/19/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: IPowerUpModifier
+ * Used by: PowerUpModifier
  */
 public class PlatformMap implements IPowerUpModifier {
     private int pointsDistance = 4;
@@ -9,12 +14,12 @@ public class PlatformMap implements IPowerUpModifier {
     private int mountainDiff = 3;
     private int numberOfPlatforms = 3;
     private int platformLength = 7;
-    private int minPlatformRow = 12; //Min 0
-    private int maxPlatformRow = 15; //Max 19
+    private int minPlatformRow = 12;
+    private int maxPlatformRow = 15;
     private int numberOfPitfalls = 3;
     private int pittfallLength = 4;
-    private int minPitfallRow = 0; //Min 0
-    private int maxPitfallRow = 20; //Max 20
+    private int minPitfallRow = 0;
+    private int maxPitfallRow = 20;
 
     /**
      *Getter

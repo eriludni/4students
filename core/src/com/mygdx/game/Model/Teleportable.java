@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 /**
  * Created by Niklas on 2017-05-18.
+ *
+ * @author Niklas Baerveldt
+ * Responsibility:
+ * Uses:
+ * Used by: LibgdxTeleportable, Character, Projectile
  */
 public interface Teleportable {
     void setxPos(float x);

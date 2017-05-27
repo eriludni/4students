@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 /**
  * Created by Erik on 12/05/2017.
+ *
+ * @author Erik Lundin
+ * Responsibility:
+ * Uses: EnemyBehavior, IEnemyBehavior
+ * Used by: EnemyBehavior
  */
 public class LinearBehavior extends EnemyBehavior {
 

@@ -3,6 +3,13 @@ package com.mygdx.game.Controllers;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+/**
+ * @author
+ * Responsibility:
+ * Uses: IController, MenuController, GameOverController, PlayerController, PauseController
+ * Used by: GameOverController, MenuController, PauseController, PlayerController
+ */
+
 public class Dash extends Game {
 
     private IController currentController;

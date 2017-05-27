@@ -15,6 +15,11 @@ import java.util.Random;
 
 /**
  * Created by Lucas on 2017-05-05.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: LibgdxPlayer, LibgdxEnemy, LibgdxPowerUp, GameWorld, Generator, MyContactListener
+ * Used by: LibgdxCharacter, LibgdxCloud, LibgdxPlatform, LibgdxPowerUp, LibgdxProjectile, LibgdxWorld, MyContactListener, PlayerController, PlayScreen
  */
 public class LibgdxWorld {
     private World world;

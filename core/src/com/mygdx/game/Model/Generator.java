@@ -5,6 +5,10 @@ import java.util.Random;
 
 /**
  * Created by Erik on 2017-05-03.
+ *
+ * @author Erik Lundin
+ * Uses: PowerUp
+ * Used by: LibgdxWorld, MyContactListener
  */
 public class Generator {
 
@@ -21,12 +25,12 @@ public class Generator {
     private int mountainDiff = 3;
     private int numberOfPlatforms = 0;
     private int platformLength = 0;
-    private int minPlatformRow = 12; //Min 0
-    private int maxPlatformRow = 15; //Max 19
+    private int minPlatformRow = 12;
+    private int maxPlatformRow = 15;
     private int numberOfPitfalls = 0;
     private int pittfallLength = 0;
-    private int minPitfallRow = 0; //Min 0
-    private int maxPitfallRow = 20; //Max 20
+    private int minPitfallRow = 0;
+    private int maxPitfallRow = 20;
     private int minCloudRow = 1;
     private int maxCloudRow = 6;
     private int numberOfClouds = 5;
@@ -298,7 +302,7 @@ public class Generator {
     }
 
     /**
-     *Sets the Generator instance to null
+     *Sets the Generator instance to null, so a new generator instance can be created
      */
     public static void resetGeneratorInstance() {
         generatorInstance = null;

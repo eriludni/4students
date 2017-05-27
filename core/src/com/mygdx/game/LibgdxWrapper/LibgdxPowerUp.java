@@ -6,6 +6,11 @@ import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by lucasr on 5/18/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: LibgdxWorld, PowerUp
+ * Used by: LibgdxWorld, MyContactListener
  */
 public class LibgdxPowerUp implements Drawable {
     private PowerUp powerUp;

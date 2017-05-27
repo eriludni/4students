@@ -11,6 +11,11 @@ import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by lucasr on 5/17/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses:
+ * Used by: GameOverScreen
  */
 public class GameOverSkins {
     Skin skin;

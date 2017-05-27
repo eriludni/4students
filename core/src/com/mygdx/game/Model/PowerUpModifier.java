@@ -2,6 +2,11 @@ package com.mygdx.game.Model;
 
 /**
  * Created by lucasr on 5/18/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: IPowerUpModifier
+ * Used by: PowerUp
  */
 public class PowerUpModifier implements IPowerUpModifier{
     private IPowerUpModifier modifier;

@@ -8,6 +8,11 @@ import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by Niklas on 2017-05-26.
+ *
+ * @author Niklas Baerveldt
+ * Responsibility:
+ * Uses: LibgdxWorld, CONSTANTS
+ * Used by: LibgdxWorld
  */
 public class LibgdxPlatform implements Drawable {
     private int dynamicBodyID = 6;

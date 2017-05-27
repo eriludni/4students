@@ -7,6 +7,11 @@ import com.mygdx.game.View.GameOverScreen;
 
 /**
  * Created by lucasr on 5/17/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: IController, GameOverScreen, Dash
+ * Used by: Dash
  */
 public class GameOverController implements IController {
 

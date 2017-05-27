@@ -8,6 +8,11 @@ import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by Lucas on 2017-05-05.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: LibgdxCharacter, Player
+ * Used by: PlayerController, LibgdxWorld, MyContactListener
  */
 public class LibgdxPlayer extends LibgdxCharacter {
     private Player playerModel;

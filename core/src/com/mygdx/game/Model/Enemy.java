@@ -2,6 +2,10 @@ package com.mygdx.game.Model;
 
 /**
  * Created by Lucas on 2017-04-27.
+ *
+ * @author Lucas Ruud
+ * Uses: Character, EnemyBrain
+ * Used by: Generator, LibgdxEnemy, LibgdxWorld, EnemyBrain, GameWorld
  */
 public class Enemy extends Character {
 

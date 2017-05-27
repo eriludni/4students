@@ -4,6 +4,11 @@ import java.util.Random;
 
 /**
  * Created by lucasr on 5/18/17.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: IItem
+ * Used by: LibgdxPowerUp, Generator, GameWorld, LibgdxWorld
  */
 public class PowerUp implements IItem{
     private Random rand = new Random();

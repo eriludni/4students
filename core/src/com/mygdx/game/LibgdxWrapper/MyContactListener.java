@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 /**
  * Created by Niklas on 2017-05-09.
+ *
+ * @author Niklas Baerveldt
+ * Responsibility:
+ * Uses: LibgdxProjectile, LibgdxWorld, LibgdxPlayer, LibgdxEnemy, Generator
+ * Used by: LibgdxWorld
  */
 public class MyContactListener implements ContactListener {
     private World world;

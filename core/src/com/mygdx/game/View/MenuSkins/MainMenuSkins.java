@@ -13,6 +13,11 @@ import com.mygdx.game.Utils.CONSTANTS;
 
 /**
  * Created by Erik on 16/05/2017.
+ *
+ * @author Erik Lundin
+ * Responsibility:
+ * Uses:
+ * Used by: MainMenuScreen, PauseScreen
  */
 public class MainMenuSkins {
     Skin skin;

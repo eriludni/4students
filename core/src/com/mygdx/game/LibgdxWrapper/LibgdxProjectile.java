@@ -14,6 +14,11 @@ import java.awt.*;
 
 /**
  * Created by Niklas on 2017-05-08.
+ *
+ * @author Niklas Baerveldt
+ * Responsibility:
+ * Uses: LibgdxTeleportable, LibgdxWorld, Projectile
+ * Used by: MyContactListener, LibgdxWorld, LibgdxCharacter
  */
 public class LibgdxProjectile implements Drawable, LibgdxTeleportable {
     private Body b2Body;

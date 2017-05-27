@@ -2,6 +2,10 @@ package com.mygdx.game.Model;
 
 /**
  * Created by Erik on 12/05/2017.
+ *
+ * @author Erik Lundin
+ * Uses: IEnemyBehavior, LinearBehavior, PacingBehavior
+ * Used by: EnemyBrain, LinearBehavior, PacingBehavior
  */
 public class EnemyBehavior implements IEnemyBehavior {
 

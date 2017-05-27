@@ -9,6 +9,11 @@ import java.awt.*;
 
 /**
  * Created by Lucas on 2017-05-05.
+ *
+ * @author Lucas Ruud
+ * Responsibility:
+ * Uses: LibgdxTeleportable
+ * Used by: LibgdxEnemy, LibgdxPlayer
  */
 public abstract class LibgdxCharacter implements Drawable, LibgdxTeleportable {
     private Body b2Body;

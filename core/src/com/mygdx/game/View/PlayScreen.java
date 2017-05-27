@@ -20,6 +20,11 @@ import java.util.Hashtable;
 
 /**
  * Created by Erik on 05/04/2017.
+ *
+ * @author Erik Lundin
+ * Responsibility:
+ * Uses:
+ * Used by: PlayerController
  */
 public class PlayScreen implements Screen {
     private SpriteBatch batch;
