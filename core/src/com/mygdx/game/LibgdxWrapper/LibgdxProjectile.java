@@ -16,7 +16,7 @@ import java.awt.*;
  * Created by Niklas on 2017-05-08.
  *
  * @author Niklas Baerveldt
- * Responsibility:
+ * Responsibility: Handles the Libgdx representation of projectiles
  * Uses: LibgdxTeleportable, LibgdxWorld, Projectile
  * Used by: MyContactListener, LibgdxWorld, LibgdxCharacter
  */

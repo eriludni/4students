@@ -9,7 +9,7 @@ import com.mygdx.game.View.MainMenuScreen;
  * Created by Erik on 16/05/2017.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Handles how the menu screen responds to input from the user
  * Uses: IController, MainMenuScreen, Dash
  * Used by: Dash
  */

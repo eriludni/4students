@@ -22,8 +22,8 @@ import java.util.Hashtable;
  * Created by Erik on 05/04/2017.
  *
  * @author Erik Lundin
- * Responsibility:
- * Uses:
+ * Responsibility: Handles the view of the game when it is being played
+ * Uses: Hud, LibgdxWorld, CONSTANTS
  * Used by: PlayerController
  */
 public class PlayScreen implements Screen {

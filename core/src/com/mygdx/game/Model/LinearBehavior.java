@@ -4,7 +4,7 @@ package com.mygdx.game.Model;
  * Created by Erik on 12/05/2017.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Handles how enemies with the linear behavior should move
  * Uses: EnemyBehavior, IEnemyBehavior
  * Used by: EnemyBehavior
  */

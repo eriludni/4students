@@ -11,7 +11,7 @@ import java.awt.*;
  * Created by Lucas on 2017-05-05.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles general functions that all Libgdx characters should have
  * Uses: LibgdxTeleportable
  * Used by: LibgdxEnemy, LibgdxPlayer
  */

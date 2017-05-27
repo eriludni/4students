@@ -15,8 +15,8 @@ import com.mygdx.game.Utils.CONSTANTS;
  * Created by Erik on 16/05/2017.
  *
  * @author Erik Lundin
- * Responsibility:
- * Uses:
+ * Responsibility: Handles how the main menu looks
+ * Uses: CONSTNTS
  * Used by: MainMenuScreen, PauseScreen
  */
 public class MainMenuSkins {

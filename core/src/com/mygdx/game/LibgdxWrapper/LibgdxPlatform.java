@@ -10,7 +10,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  * Created by Niklas on 2017-05-26.
  *
  * @author Niklas Baerveldt
- * Responsibility:
+ * Responsibility: Handles how platforms should be created in the Libgdx world
  * Uses: LibgdxWorld, CONSTANTS
  * Used by: LibgdxWorld
  */

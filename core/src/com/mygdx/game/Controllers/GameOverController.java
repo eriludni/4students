@@ -9,7 +9,7 @@ import com.mygdx.game.View.GameOverScreen;
  * Created by lucasr on 5/17/17.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles how the game over screen responds to input from the user
  * Uses: IController, GameOverScreen, Dash
  * Used by: Dash
  */

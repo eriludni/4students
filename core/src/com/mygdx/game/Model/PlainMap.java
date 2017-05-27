@@ -4,7 +4,7 @@ package com.mygdx.game.Model;
  * Created by lucasr on 5/18/17.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles how a plain map should be generated
  * Uses: IPowerUpModifier
  * Used by: PowerUpModifier
  */

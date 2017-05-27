@@ -7,6 +7,7 @@ import java.util.Random;
  * Created by Erik on 2017-05-03.
  *
  * @author Erik Lundin
+ * Responsibility: Handles the generation of the map
  * Uses: PowerUp
  * Used by: LibgdxWorld, MyContactListener
  */

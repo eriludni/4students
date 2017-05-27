@@ -18,8 +18,8 @@ import com.mygdx.game.Utils.CONSTANTS;
  * Created by lucasr on 5/17/17.
  *
  * @author Lucas Ruud
- * Responsibility:
- * Uses:
+ * Responsibility: Handles the screen for when the game is over
+ * Uses: GameWorld, GameOverSkins
  * Used by: GameOverController
  */
 public class GameOverScreen implements Screen {

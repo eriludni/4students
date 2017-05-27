@@ -8,8 +8,8 @@ import static java.lang.Math.*;
  * Created by Niklas on 2017-05-08.
  *
  * @author Niklas Baerveldt
- * Responsibility:
- * Uses: Teleportable
+ * Responsibility: Handles the data for projectiles in the game
+ * Uses: Teleportable, IKillable
  * Used by: LibgdxProjectile, LibgdxCharacter
  */
 public class Projectile implements Teleportable {

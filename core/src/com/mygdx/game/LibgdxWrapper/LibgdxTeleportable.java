@@ -6,7 +6,7 @@ import com.mygdx.game.Model.Teleportable;
  * Created by Niklas on 2017-05-18.
  *
  * @author Niklas BaerVeldt
- * Responsibility:
+ * Responsibility: Interface for things teleportable in Libgdx
  * Uses: Teleportable
  * Used by: LibgdxWorld, LibgdxCharacter, LibgdxProjectile
  */

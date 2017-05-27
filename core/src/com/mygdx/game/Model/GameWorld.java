@@ -9,6 +9,7 @@ import java.util.Random;
  * Created by Erik on 26/04/2017.
  *
  * @author Erik Lundin
+ * Responsibility: Handles the data of things in the ligical game world
  * Uses: Player, Enemy, EnemyBrain, PowerUp
  * Used by: LibgdxWorld, GameOverScreen, PlayerController
  */

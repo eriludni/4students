@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by lucasr on 5/12/17.
  *
  * @author Lucas Ruud
+ * Responsibility: Interface for things that are killable
  * Uses:
  * Used by: Character, Projectile
  */

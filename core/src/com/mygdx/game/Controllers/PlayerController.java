@@ -16,7 +16,7 @@ import java.awt.*;
  * Created by Erik on 26/04/2017.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Handles how the player character responds to input from the user
  * Uses: IController, LibgdxWorld, LibgdxPlayer, Dash
  * Used by: Dash
  */

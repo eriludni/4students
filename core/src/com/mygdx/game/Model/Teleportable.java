@@ -4,7 +4,7 @@ package com.mygdx.game.Model;
  * Created by Niklas on 2017-05-18.
  *
  * @author Niklas Baerveldt
- * Responsibility:
+ * Responsibility: Interface for things that are teleportable
  * Uses:
  * Used by: LibgdxTeleportable, Character, Projectile
  */

@@ -9,7 +9,7 @@ import com.mygdx.game.View.PauseScreen;
  * Created by Erik on 2017-05-22.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Handles how the pause screen responds to input from the user
  * Uses: IController, PauseScreen, Dash
  * Used by: Dash
  */

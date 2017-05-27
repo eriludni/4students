@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by Lucas on 2017-04-27.
  *
  * @author Lucas Ruud
+ * Responsibility: Handles the data of enemies in the game
  * Uses: Character, EnemyBrain
  * Used by: Generator, LibgdxEnemy, LibgdxWorld, EnemyBrain, GameWorld
  */

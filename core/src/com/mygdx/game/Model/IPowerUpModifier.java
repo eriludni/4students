@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by lucasr on 5/18/17.
  *
  * @author Lucas Ruud
+ * Responsibility: Interface for things that can have a powerup modifier
  * Uses:
  * Used by: PowerUpModifier, DefaultMap, PlainMap, PlatformMap
  */

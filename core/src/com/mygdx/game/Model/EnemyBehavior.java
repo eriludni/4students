@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by Erik on 12/05/2017.
  *
  * @author Erik Lundin
+ * Responsibility: Decides what behavior a enemy is assigned
  * Uses: IEnemyBehavior, LinearBehavior, PacingBehavior
  * Used by: EnemyBrain, LinearBehavior, PacingBehavior
  */

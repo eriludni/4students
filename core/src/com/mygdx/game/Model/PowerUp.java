@@ -6,7 +6,7 @@ import java.util.Random;
  * Created by lucasr on 5/18/17.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles the data for powerups in the game
  * Uses: IItem
  * Used by: LibgdxPowerUp, Generator, GameWorld, LibgdxWorld
  */

@@ -4,7 +4,7 @@ package com.mygdx.game.Controllers;
  * Created by Erik on 22/05/2017.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Interface for controllers
  * Uses:
  * Used by: Dash, GameOverController, MenuController, PauseController, PlayerController
  */

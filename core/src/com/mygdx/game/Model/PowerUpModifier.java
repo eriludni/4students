@@ -4,7 +4,7 @@ package com.mygdx.game.Model;
  * Created by lucasr on 5/18/17.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles which power up modifier a certain power up is assigned
  * Uses: IPowerUpModifier
  * Used by: PowerUp
  */

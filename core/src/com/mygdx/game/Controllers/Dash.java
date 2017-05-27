@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 
 /**
  * @author
- * Responsibility:
+ * Responsibility: This is the class which sets up the rest of the game
  * Uses: IController, MenuController, GameOverController, PlayerController, PauseController
  * Used by: GameOverController, MenuController, PauseController, PlayerController
  */

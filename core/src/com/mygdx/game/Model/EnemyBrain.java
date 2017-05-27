@@ -6,6 +6,7 @@ import java.util.Random;
  * Created by Lucas on 2017-04-28.
  *
  * @author Lucas Ruud
+ * Resposibility: Handles what enemies should do during their lifetime
  * Uses: Enemy, EnemyBrain
  * Used by: Enemy, GameWorld
  */

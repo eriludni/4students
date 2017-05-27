@@ -4,7 +4,7 @@ package com.mygdx.game.Utils;
  * Created by lucasr on 5/19/17.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles general constants used by classes
  * Uses:
  * Used by: PlayerController, LibgdxCharacter, LibgdxCloud, LibgdxGround, LibgdxPlatform, LibgdxPlayer, LibgdxPowerUp, LibgdxProjectile, LibgdxWorld, GameWorld, GameOverScreen, MainMenuScreen, PauseScreen, PlayScreen, GameOverSkins, MainMenuSkins, Hud, DesktopLauncher
  */

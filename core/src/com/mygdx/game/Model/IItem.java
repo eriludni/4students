@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by lucasr on 5/18/17.
  *
  * @author Lucas Ruud
+ * Responsibility: Interface for items
  * Uses:
  * Used by: PowerUp
  */

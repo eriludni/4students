@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by Niklas on 2017-05-09.
  *
  * @author Niklas Baerveldt
- * Responsibility:
+ * Responsibility: Handles what happens when obhects collide
  * Uses: LibgdxProjectile, LibgdxWorld, LibgdxPlayer, LibgdxEnemy, Generator
  * Used by: LibgdxWorld
  */

@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by Lucas on 2017-04-27.
  *
  * @author Lucas Ruud
+ * Responsibility: Handles general functions that all characters should have
  * Uses: IKillable, Teleportable
  * Used by: Enemy, Player, LibgdxCharacter, LibgdxEnemy, LibgdxPlayer
  */

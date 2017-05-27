@@ -13,8 +13,8 @@ import com.mygdx.game.Utils.CONSTANTS;
  * Created by Erik on 18/05/2017.
  *
  * @author Erik Lundin
- * Responsibility:
- * Uses:
+ * Responsibility: Handles the screen shown when the game is paused
+ * Uses: MainMenuSkins, CONSTANTS
  * Used by: PauseController
  */
 public class PauseScreen implements Screen {

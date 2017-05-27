@@ -8,7 +8,7 @@ import com.mygdx.game.Model.Enemy;
  * Created by Lucas on 2017-05-05.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles the Lingdx representation of a logical enemy
  * Uses: LibgdxCharacter, Enemy
  * Used by: LibgdxWorld, MyContactListener
  */

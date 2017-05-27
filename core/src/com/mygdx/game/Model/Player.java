@@ -4,7 +4,7 @@ package com.mygdx.game.Model;
  * Created by Erik on 03/04/2017.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Handles the data for the player character in the game
  * Uses: Character
  * Used by: LibgdxPlayer, GameWorld
  */

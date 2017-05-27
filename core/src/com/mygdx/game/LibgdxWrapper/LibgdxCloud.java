@@ -10,7 +10,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  * Created by Erik on 26/05/2017.
  *
  * @author Erik Lundin
- * Responsibility:
+ * Responsibility: Handles how clouds should be created in the Libgdx world
  * Uses: LibgdxWorld
  * Used by: LibgdxWorld
  */

@@ -8,7 +8,7 @@ import com.mygdx.game.Utils.CONSTANTS;
  * Created by lucasr on 5/18/17.
  *
  * @author Lucas Ruud
- * Responsibility:
+ * Responsibility: Handles the Libgdx representation of powerups
  * Uses: LibgdxWorld, PowerUp
  * Used by: LibgdxWorld, MyContactListener
  */

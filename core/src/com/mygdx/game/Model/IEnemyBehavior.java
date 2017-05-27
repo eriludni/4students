@@ -4,6 +4,7 @@ package com.mygdx.game.Model;
  * Created by Erik on 12/05/2017.
  *
  * @author Erik Lundin
+ * Responsibilit: Interface for enemy behaviors
  * Uses:
  * Used by: EnemyBehavior, LinearBehavior, PacingBehavior
  */
