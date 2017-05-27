@@ -3,7 +3,7 @@ package com.mygdx.game.Model;
 /**
  * Created by Erik on 12/05/2017.
  */
-public class LinearBehavior extends EnemyBehavior implements IEnemyBehavior {
+public class LinearBehavior extends EnemyBehavior {
 
     private float x_Velocity;
 

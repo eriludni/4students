@@ -9,12 +9,12 @@ public class PlainMap implements IPowerUpModifier{
     private int mountainDiff = 2;
     private int numberOfPlatforms = 0;
     private int platformLength = 0;
-    private int minPlatformRow = 12; //Min 0
-    private int maxPlatformRow = 15; //Max 20
+    private int minPlatformRow = 12;
+    private int maxPlatformRow = 15;
     private int numberOfPitfalls = 0;
     private int pittfallLength = 0;
-    private int minPitfallRow = 0; //Min 0
-    private int maxPitfallRow = 20; //Max 20
+    private int minPitfallRow = 0;
+    private int maxPitfallRow = 20;
 
 
     /**

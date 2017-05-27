@@ -3,7 +3,7 @@ package com.mygdx.game.Model;
 /**
  * Created by Erik on 17/05/2017.
  */
-public class PacingBehavior extends EnemyBehavior implements IEnemyBehavior {
+public class PacingBehavior extends EnemyBehavior {
 
     private boolean direction;
    public PacingBehavior(){
