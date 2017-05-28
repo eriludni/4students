@@ -27,7 +27,6 @@ public class GameWorld {
     public GameWorld() {
         this.logicalPlayer = new Player(6, 0.1f, 0, 700, 300, 14);
         createLogicalEnemies();
-        createLogicalEnemyBrains();
         createLogicalPowerUps();
     }
 
@@ -41,15 +40,6 @@ public class GameWorld {
         for(int i = 0; i < enemyCount; i++) {
             logicalEnemies.add(new Enemy(3, 0.1f, 0, xPos, yPos, 14));
             xPos += 200;
-        }
-    }
-
-    /**
-     *Creates logical enemy brains for each logical enemy
-     */
-    public void createLogicalEnemyBrains(){
-        for(int i  = 0; i < enemyCount; i++){
-            logicalEnemyBrains.add(new EnemyBrain(logicalEnemies.get(i)));
         }
     }
 

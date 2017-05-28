@@ -316,7 +316,6 @@ public class LibgdxWorld {
         logicalWorld.removeAllLogicalEnemies();
         logicalWorld.createLogicalPowerUps();
         logicalWorld.createLogicalEnemies();
-        logicalWorld.createLogicalEnemyBrains();
         createLibgdxEnemies();
         MCL.setLgdxEnemies(getEnemyCharacters());
     }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.*;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,33 +23,37 @@ import java.util.Hashtable;
  * Created by Erik on 05/04/2017.
  *
  * @author Erik Lundin
- * Responsibility: Handles the view of the game when it is being played
- * Uses: Hud, LibgdxWorld, CONSTANTS
- * Used by: PlayerController
+ *         Responsibility: Handles the view of the game when it is being played
+ *         Uses: Hud, LibgdxWorld, CONSTANTS
+ *         Used by: PlayerController
  */
 public class PlayScreen implements Screen {
     private SpriteBatch batch;
-    private Hashtable<Integer,Texture> textures;
+    private Hashtable<Integer, TextureRegion> textures;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
     private LibgdxWorld gameWorld;
     private int timeStep = 0;
-    private Texture deletingTexture = new Texture("tiles/DeletingTexture.png");
+    private Texture spritesheet;
+    private TextureRegion[] regions = new TextureRegion[7];
 
     private Hud hud;
 
     private Stage stage;
 
-    public PlayScreen( LibgdxWorld gameWorld) {
+    public PlayScreen(LibgdxWorld gameWorld) {
         batch = new SpriteBatch();
+        spritesheet = new Texture("Tiles_32x32.png");
+
 
         this.gameWorld = gameWorld;
         gameCam = new OrthographicCamera();
         hud = new Hud();
-        gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT/ CONSTANTS.PPM, gameCam);
+        gamePort = new FitViewport(CONSTANTS.WIDTH / CONSTANTS.PPM, CONSTANTS.HEIGHT / CONSTANTS.PPM, gameCam);
         stage = new Stage(gamePort);
-        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2+ 32f/CONSTANTS.PPM, 0);
+        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2 + 32f / CONSTANTS.PPM, 0);
         initiateHashTable();
+
 
         this.gameWorld = gameWorld;
     }
@@ -56,24 +61,26 @@ public class PlayScreen implements Screen {
     /**
      * Initiates the hashtable with ID numbers for bodies and their corresponding texture.
      */
-    private void initiateHashTable(){
-        textures = new Hashtable<Integer, Texture>();
-        Texture playerTexture = new Texture("player.png");
-        Texture enemyTexture = new Texture("enemy.png");
-        Texture projectileTexture = new Texture("projectile.png");
-        Texture powerUpTexture = new Texture("pwrup.png");
-        Texture groundTexture = new Texture("groundTexture.png");
-        Texture platformTexture = new Texture("platformTexture.png");
-        Texture cloud = new Texture("cloud.png");
+    private void initiateHashTable() {
+        textures = new Hashtable<Integer, TextureRegion>();
 
 
-        textures.put(1,playerTexture);
-        textures.put(2,enemyTexture);
-        textures.put(3,projectileTexture);
-        textures.put(4,powerUpTexture);
-        textures.put(5,groundTexture);
-        textures.put(6,platformTexture);
-        textures.put(7,cloud);
+        regions[0] = new TextureRegion(spritesheet, 0, 0, 32, 32); //playerTexture
+        regions[1] = new TextureRegion(spritesheet,96,192,32,32); //enemyTexture
+        regions[2] = new TextureRegion(spritesheet,0,64,32,32); //projectileTexture
+        regions[3] = new TextureRegion(spritesheet,0,32,32,32); //powerUpTexture
+        regions[4] = new TextureRegion(spritesheet,32,0,32,96); //groundTexture
+        regions[5] = new TextureRegion(spritesheet,192,0,32,32); //platformTexture
+        regions[6] = new TextureRegion(spritesheet,0,160,96,32); //cloud
+
+
+        textures.put(1, regions[0]);
+        textures.put(2, regions[1]);
+        textures.put(3, regions[2]);
+        textures.put(4, regions[3]);
+        textures.put(5, regions[4]);
+        textures.put(6, regions[5]);
+        textures.put(7, regions[6]);
 
     }
 
@@ -111,11 +118,9 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        Gdx.gl.glClearColor(14/255f, 186/255f, 235/255f, 1);
+        Gdx.gl.glClearColor(14 / 255f, 186 / 255f, 235 / 255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //renderer.render();
-        //b2dr.render(gameWorld.getWorld(), gameCam.combined);
         dangerousTexture();
 
         renderBodies();
@@ -125,10 +130,10 @@ public class PlayScreen implements Screen {
     /**
      * Draws a texture that chases the player.
      */
-    private void dangerousTexture(){
+    private void dangerousTexture() {
         float counterPos = gameWorld.getCounter();
         batch.begin();
-        batch.draw(deletingTexture,counterPos * 100 - gameCam.position.x * 100 - CONSTANTS.WIDTH / 2,32,CONSTANTS.WIDTH,CONSTANTS.HEIGHT);
+        batch.draw(regions[2], counterPos * 100 - gameCam.position.x * 100 - CONSTANTS.WIDTH / 2, 32, CONSTANTS.WIDTH, CONSTANTS.HEIGHT);
         batch.end();
     }
 
@@ -139,20 +144,20 @@ public class PlayScreen implements Screen {
         Array<Body> bodies = new Array<Body>();
         gameWorld.getWorld().getBodies(bodies);
         for (Body body : bodies) {
-                Drawable drawableobject = (Drawable) body.getUserData();
-                int textureKey = drawableobject.getBodyID();
-                float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;
-                float yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
-                if (textureKey == 5) {
-                    yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() * 88;
-                }
-
-                batch.begin();
-                batch.draw(textures.get(textureKey), xPosition, yPosition, drawableobject.getFixtureWidth() * CONSTANTS.PPM, drawableobject.getFixtureHeight() * CONSTANTS.PPM);
-                batch.end();
+            Drawable drawableobject = (Drawable) body.getUserData();
+            int textureKey = drawableobject.getBodyID();
+            float xPosition = (body.getPosition().x - gameCam.position.x) * CONSTANTS.PPM + CONSTANTS.WIDTH / 2 - drawableobject.getFixtureWidth() * CONSTANTS.PPM / 2;
+            float yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() - drawableobject.getFixtureHeight() * CONSTANTS.PPM / 2;
+            if (textureKey == 5) {
+                yPosition = (body.getPosition().y - 32f / CONSTANTS.PPM) * CONSTANTS.PPM - drawableobject.getFixtureHeight() * 88;
             }
 
+            batch.begin();
+            batch.draw(textures.get(textureKey), xPosition, yPosition, drawableobject.getFixtureWidth() * CONSTANTS.PPM, drawableobject.getFixtureHeight() * CONSTANTS.PPM);
+            batch.end();
         }
+
+    }
 
 
     @Override
@@ -197,6 +202,8 @@ public class PlayScreen implements Screen {
     /**
      * Getter
      */
-    public Stage getStage(){return stage;}
+    public Stage getStage() {
+        return stage;
+    }
 
 }
