@@ -240,17 +240,6 @@ public class DashTest {
     }
 
     /**
-     * Tests if the logical enemy brains are created correctly
-     */
-    @Test
-    public void testGameWorldCreateLogicalEnemyBrains() {
-        GameWorld world = new GameWorld();
-        world.removeAllLogicalEnemyBrains();
-        world.createLogicalEnemyBrains();
-        assertTrue(world.getLogicalEnemyBrains().size() == world.getEnemyCount());
-    }
-
-    /**
      * Tests if the logical powerups are created correctly
      */
     @Test
